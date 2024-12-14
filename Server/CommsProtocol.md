@@ -5,7 +5,8 @@ the format can change overtime, so we'll send the format each time a connection 
 
 ## The format
 There should be a basic format that will extend for each command individually.
-> <blockquotetitle>Note</blockquotetitle><br>
+
+> [!Note]
 > The protocol should contain keys for encryption and tokens. This is something to be thinking on.
 
 ### Basic client protocol
@@ -26,16 +27,3 @@ There should be a basic format that will extend for each command individually.
   "Checksum": <Number>
 }
 ```
-
-<!-- Custom Styling -->
-<style>
-blockquote {
-    border-left: 3px solid #599fff;
-    background-color: transparent;
-}
-
-blockquote blockquotetitle {
-    color: #599fff;
-    font-size: 1.1em;
-}
-</style>

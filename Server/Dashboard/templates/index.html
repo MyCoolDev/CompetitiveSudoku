@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <main>
+        <div id="container">
+            <div id="dashboard_left">
+                <div id="dashboard_left_upper">
+                    <img src="/static/img/Server.svg" alt="Server">
+                    <h1>Main Server</h1>
+                    {% if not server_status %}
+                        <p id="server_status" class="offline">Offline</p>
+                    {% else %}
+                        <p id="server_status" class="online">Online</p>
+                    {% endif %}
+                </div>
+
+            </div>
+            <div id="dashboard_right">
+                <span class="horizontal_line"></span>
+                <h2>Competitive Sudoku Server Dashboard</h2>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

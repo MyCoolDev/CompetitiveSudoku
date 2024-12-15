@@ -12,18 +12,18 @@ There should be a basic format that will extend for each command individually.
 ### Basic client protocol
 ```json
 {
-  "Command": <String>,
-  "Data": <Json>,
-  "Checksum": <String>
+  "Command": "<String>",
+  "Data": "<Json>",
+  "Checksum": "<String>"
 }
 ```
 
 ### Basic server protocol
 ```json
 {
-  "StatusCode": <Number>,
-  "Status": <String>,
-  "Data?": <Json>,
-  "Checksum": <String>
+  "StatusCode": "<Number>",
+  "Status": "<String>",
+  "Data?": "<Json>",
+  "Checksum": "<String>"
 }
 ```

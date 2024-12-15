@@ -13,9 +13,9 @@ All the user account related databases.
 ```json
 {
   "<username>": {
-    "password": <Hashed password>,
-    "salt": <Hashed password salt>,
-    "last_login": <Date>
+    "password": "<Hashed password>",
+    "salt": "<Hashed password salt>",
+    "last_login": "<Date>"
     ...
   }
 }

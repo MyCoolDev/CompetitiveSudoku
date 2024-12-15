@@ -12,9 +12,9 @@ There should be a basic format that will extend for each command individually.
 ### Basic client protocol
 ```json
 {
-  "Command": <Number>,
-  "Data": <String>,
-  "Checksum": <Number>
+  "Command": <String>,
+  "Data": <Json>,
+  "Checksum": <String>
 }
 ```
 
@@ -23,7 +23,7 @@ There should be a basic format that will extend for each command individually.
 {
   "StatusCode": <Number>,
   "Status": <String>,
-  "Data?": <String>,
-  "Checksum": <Number>
+  "Data?": <Json>,
+  "Checksum": <String>
 }
 ```

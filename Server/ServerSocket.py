@@ -1,9 +1,9 @@
 import socket
-import threading
 
 import utils
 from ClientInterface import Client
 from ThreadPool import ThreadPool
+import API.LatestVersion as api
 
 
 class ServerSocket:
@@ -13,6 +13,9 @@ class ServerSocket:
     def __init__(self):
         # *should be in config*, for now just a static var
         self.MAX_CLIENTS = 3
+
+        # all the clients that the server is handling.
+        self.clients = []
 
         # create a socket with tpc protocol.
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -30,7 +33,7 @@ class ServerSocket:
         """
         Start the server socket for incoming connections.
         """
-        # start listening for incoming connection from clients
+        # start listening for incoming connection from clients.
         self.server_socket.listen()
 
         # set the running variable to true and start the main loop.
@@ -49,21 +52,31 @@ class ServerSocket:
         Each interaction of the server main loop,
         this should only be accepting and handling connections.
         """
-        # accept client connection
+        # accept client connection.
         client_socket, client_address = self.server_socket.accept()
 
-        # create object for the client
+        # create object for the client.
         client = Client(client_address, client_socket)
 
-        # start to handle the client on a different thread
+        # start to handle the client on a different thread.
+        self.threadpool.submit(self.handle_client, client)
 
-    def handle_client(self, client) -> None:
+    def handle_client(self, client: Client) -> None:
         """
         handle each client individually, wait for incoming requests and serve them.
         should be running on the different thread.
         :param client: the client interface to handle
         """
         utils.server_print("Starts handling " + client.address + ".")
+
+        while client.running:
+            request = client.get_request()
+
+            # route the command to the specific api path.
+            if request["Command"].lower() == "register":
+                # register data should have username and password.
+                if "Username" not in request['data'] or "Password" not in request['data']:
+                    client.send_response(400, "Bad Request", {"msg": "Missing Username or Password attribute."})
 
     def stop(self) -> None:
         self.__running = False

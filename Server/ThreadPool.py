@@ -1,49 +1,64 @@
 import threading
 from queue import Queue
 
+from typing import Callable
+
 class ThreadPool:
-    def __init__(self, num_threads):
+    def __init__(self, num_threads: int):
         """
         Create a pool of thread that will manage the thread we're using in the program.
         All the thread will be running, but they will wait for a task or run a task.
         :param num_threads: the amount of threads in the pool, all the threads will be running, but some of them may be on wait.
         """
-        # The Queue.Queue is thread-safe, so multiple threads can access it concurrently.
+        # the Queue.Queue is thread-safe, so multiple threads can access it concurrently.
         self.task_queue = Queue()
         self.threads = []
         self.shutdown_event = threading.Event()
 
-        # Initialize and start worker threads
+        # initialize and start worker threads
         for _ in range(num_threads):
+
+            # create the thread
             thread = threading.Thread(target=self.worker)
-            # Ensures threads exit when the main program exits
+
+            # ensures threads exit when the main program exits
             thread.daemon = True
+
             # start running the thread on the worker function
             thread.start()
-            # append the thread to the list.
+
+            # add the thread to the list.
             self.threads.append(thread)
 
     def worker(self) -> None:
         """
         The main loop of each thread, here a thread may wait for a task in the pool or execute a task.
         """
+        # check the shutdown event for shutdown.
         while not self.shutdown_event.is_set():
             try:
-                # Get a task from the queue
-                task, args, kwargs = self.task_queue.get(timeout=1)  # Timeout prevents deadlock on shutdown
+                # get a task from the queue
+                # *timeout prevents deadlock on shutdown*
+                task, args, kwargs = self.task_queue.get(timeout=1)
+
                 try:
-                    # Execute the task
+                    # execute the task
                     task(*args, **kwargs)
+
                 except Exception as e:
                     print(f"Error executing task: {e}")
+
                 finally:
-                    # Mark the task as done
+                    # mark the task as done
                     self.task_queue.task_done()
+
             # empty() - not reliable?
             except self.task_queue.empty():
-                continue  # Timeout reached, loop to check shutdown_event
 
-    def submit(self, task, *args, **kwargs) -> None:
+                # Timeout reached, loop to check shutdown_event
+                continue
+
+    def submit(self, task: Callable, *args, **kwargs) -> None:
         """
         Submit a task to the pool.
         :param task: the function to execute
@@ -57,10 +72,10 @@ class ThreadPool:
         Shut down the thread pool.
         :param wait: should the pool wait for all the threads to end. by default set to False.
         """
-        # Signal threads to stop
+        # emit the threads to stop
         self.shutdown_event.set()
 
         if wait:
             for thread in self.threads:
-                # Wait for all threads to finish
+                # wait for all threads to finish
                 thread.join()

@@ -53,15 +53,15 @@ class Client:
 
             # check the command
             if "command" not in request:
-                self.send_response(400, "Bad Request", {"msg": "Missing Command attribute."})
+                self.send_response(400, "Bad Request", {"Msg": "Missing Command attribute."})
                 return None
 
             if "data" not in request:
-                self.send_response(400, "Bad Request", {"msg": "Missing Data attribute."})
+                self.send_response(400, "Bad Request", {"Msg": "Missing Data attribute."})
                 return None
 
             if "checksum" not in request:
-                self.send_response(400, "Bad Request", {"msg": "Missing Checksum attribute."})
+                self.send_response(400, "Bad Request", {"Msg": "Missing Checksum attribute."})
                 return None
 
             # save the checksum.
@@ -75,7 +75,7 @@ class Client:
 
             # check if the checksums match, if not send an error response.
             if current_checksum != recv_checksum:
-                self.send_response(400, "Bad Request", {"msg": "Invalid Checksum."})
+                self.send_response(400, "Bad Request", {"Msg": "Invalid Checksum."})
                 return None
 
             return request

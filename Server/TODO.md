@@ -13,6 +13,7 @@
 - Create the rating system.
 - Create 3d renders for spectators.
 - Create levov 3d mode.
+- request ratelimit.
 
 ### Client communications
 - Create a protocol (format of a set of commends) of the communication

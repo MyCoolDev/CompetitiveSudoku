@@ -3,6 +3,7 @@ import socket
 import utils
 from ClientInterface import Client
 from ThreadPool import ThreadPool
+from Database.Database import Database
 import API.LatestVersion as api
 
 
@@ -16,6 +17,9 @@ class ServerSocket:
 
         # all the clients that the server is handling.
         self.clients = []
+
+        # the database interface
+        self.database = Database(0)
 
         # create a socket with tpc protocol.
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -76,7 +80,12 @@ class ServerSocket:
             if request["Command"].lower() == "register":
                 # register data should have username and password.
                 if "Username" not in request['data'] or "Password" not in request['data']:
-                    client.send_response(400, "Bad Request", {"msg": "Missing Username or Password attribute."})
+                    client.send_response(400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
+
+
+            # username is unique
+
+    # -- Server running status --
 
     def stop(self) -> None:
         self.__running = False

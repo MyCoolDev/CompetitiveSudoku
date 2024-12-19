@@ -2,6 +2,8 @@ import json
 from queue import Queue
 import threading
 
+from abc import ABC, abstractmethod
+
 # maybe add cache system ;(
 
 class Database:
@@ -108,3 +110,8 @@ class Database:
         except Exception as e:
             print(f"Error updating db collection: {e}")
             return False
+
+class DatabaseActions(ABC):
+    @abstractmethod
+    def user_exists(self):
+        pass

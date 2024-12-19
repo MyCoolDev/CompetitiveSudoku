@@ -5,7 +5,6 @@ unlike sql based database. And so we think of the rules and implement them indiv
 ## User System
 All the user account related databases.
 
-* uid (userid) is unique
 * username is unique
 
 ### Basic user data on users.json
@@ -15,7 +14,7 @@ All the user account related databases.
   "<username>": {
     "password": "<Hashed password>",
     "salt": "<Hashed password salt>",
-    "last_login": "<Date>"
+    "last_login": "<Date>",
     ...
   }
 }

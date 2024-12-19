@@ -9,7 +9,7 @@ There should be a basic format that will extend for each command individually.
 > [!Note]
 > The protocol should contain keys for encryption and tokens. This is something to be thinking on.
 
-### Basic client protocol
+## Basic client protocol
 ```json
 {
   "Command": "<String>",
@@ -18,12 +18,66 @@ There should be a basic format that will extend for each command individually.
 }
 ```
 
-### Basic server protocol
+## Basic server protocol
 ```json
 {
   "StatusCode": "<Number>",
   "Status": "<String>",
   "Data?": "<Json>",
+  "Checksum": "<String>"
+}
+```
+
+## Register
+
+#### The client request
+
+```json
+{
+  "Command": "Register",
+  "Data": {
+    "Username": "<String>",
+    "Password": "<String>"
+  },
+  "Checksum": "<String>"
+}
+```
+
+#### The server response in case username or password are missing.
+
+```json
+{
+  "StatusCode": 400,
+  "Status": "Bad Request",
+  "Data": {
+    "Msg": "Missing Username or Password attribute."
+  },
+  "Checksum": "<String>"
+}
+```
+
+#### The server response if username is not unique.
+
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "Username must be unique."
+  },
+  "Checksum": "<String>"
+}
+```
+
+#### The server response in successful registration.
+
+```json
+{
+  "StatusCode": 201,
+  "Status": "Created",
+  "Data": {
+    "Msg": "The new user has been registered."
+  },
   "Checksum": "<String>"
 }
 ```

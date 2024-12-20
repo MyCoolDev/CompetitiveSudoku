@@ -79,11 +79,17 @@ class ServerSocket:
             # route the command to the specific api path.
             if request["Command"].lower() == "register":
                 # register data should have username and password.
-                if "Username" not in request['data'] or "Password" not in request['data']:
+                if "Username" not in request['Data'] or "Password" not in request['Data']:
                     client.send_response(400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
+                    continue
 
+                # username should be unique
+                if request["Data"]["Username"] in self.database.submit_read("Users"):
+                    client.send_response(409, "Conflict", {"Msg": "Username must be unique."})
+                    continue
 
-            # username is unique
+                print(api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database))
+                client.send_response(201, "Created", {"Msg": "User registered."})
 
     # -- Server running status --
 

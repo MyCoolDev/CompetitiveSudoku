@@ -76,7 +76,7 @@ There should be a basic format that will extend for each command individually.
   "StatusCode": 201,
   "Status": "Created",
   "Data": {
-    "Msg": "The new user has been registered."
+    "Msg": "User registered."
   },
   "Checksum": "<String>"
 }

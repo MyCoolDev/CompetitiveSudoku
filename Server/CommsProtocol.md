@@ -81,3 +81,70 @@ There should be a basic format that will extend for each command individually.
   "Checksum": "<String>"
 }
 ```
+
+## Login
+
+#### The client request
+
+```json
+{
+  "Command": "Login",
+  "Data": {
+    "Username": "<String>",
+    "Password": "<String>"
+  },
+  "Checksum": "<String>"
+}
+```
+
+#### The server response in case username or password are missing.
+
+```json
+{
+  "StatusCode": 400,
+  "Status": "Bad Request",
+  "Data": {
+    "Msg": "Missing Username or Password attribute."
+  },
+  "Checksum": "<String>"
+}
+```
+
+#### The server response in case users doesn't exist
+
+```json
+{
+  "StatusCode": 404,
+  "Status": "Not Found",
+  "Data": {
+    "Msg": "Invalid Credentials."
+  },
+  "Checksum": "<String>"
+}
+```
+
+#### The server response in case users doesn't exist
+
+```json
+{
+  "StatusCode": 404,
+  "Status": "Not Found",
+  "Data": {
+    "Msg": "Invalid Credentials."
+  },
+  "Checksum": "<String>"
+}
+```
+
+#### The server response in successful login.
+
+```json
+{
+  "StatusCode": 202,
+  "Status": "Accepted",
+  "Data": {
+    "Msg": "Logged in successfully."
+  },
+  "Checksum": "<String>"
+}
+```

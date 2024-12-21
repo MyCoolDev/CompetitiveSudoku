@@ -15,16 +15,16 @@ class ThreadPool:
         self.threads = []
         self.shutdown_event = threading.Event()
 
-        # initialize and start worker threads
+        # initialize and start worker threads.
         for _ in range(num_threads):
 
-            # create the thread
+            # create the thread.
             thread = threading.Thread(target=self.worker)
 
-            # ensures threads exit when the main program exits
+            # ensures threads exit when the main program exits.
             thread.daemon = True
 
-            # start running the thread on the worker function
+            # start running the thread on the worker function.
             thread.start()
 
             # add the thread to the list.
@@ -37,25 +37,25 @@ class ThreadPool:
         # check the shutdown event for shutdown.
         while not self.shutdown_event.is_set():
             try:
-                # get a task from the queue
+                # get a task from the queue.
                 # *timeout prevents deadlock on shutdown*
                 task, args, kwargs = self.task_queue.get(timeout=1)
 
                 try:
-                    # execute the task
+                    # execute the task.
                     task(*args, **kwargs)
 
                 except Exception as e:
                     print(f"Error executing task: {e}")
 
                 finally:
-                    # mark the task as done
+                    # mark the task as done.
                     self.task_queue.task_done()
 
             # empty() - not reliable?
             except self.task_queue.empty():
 
-                # Timeout reached, loop to check shutdown_event
+                # Timeout reached, loop to check shutdown_event.
                 continue
 
     def submit(self, task: Callable, *args, **kwargs) -> None:

@@ -5,12 +5,14 @@ from ClientInterface import Client
 from ThreadPool import ThreadPool
 from Database.Database import Database
 import API.LatestVersion as api
+import Hashing
 
 
 class ServerSocket:
     """
     The server socket side, run the server socket and listen for incoming connections.
     """
+
     def __init__(self):
         # *should be in config*, for now just a static var
         self.MAX_CLIENTS = 3
@@ -33,23 +35,10 @@ class ServerSocket:
         # create a thread pool of client handling.
         self.threadpool = ThreadPool(self.MAX_CLIENTS)
 
-    def start_socket(self) -> None:
-        """
-        Start the server socket for incoming connections.
-        """
-        # start listening for incoming connection from clients.
-        self.server_socket.listen()
-
-        # set the running variable to true and start the main loop.
-        self.__running = True
-        self.run()
-
-    def run(self) -> None:
-        """
-        Main loop of the server socket.
-        """
-        while self.__running:
-            self.server_iteration()
+        # auth tokens
+        self.tokens = {
+            #   "token": "username"
+        }
 
     def server_iteration(self) -> None:
         """
@@ -91,7 +80,67 @@ class ServerSocket:
                 print(api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database))
                 client.send_response(201, "Created", {"Msg": "User registered."})
 
+            elif request["Command"].lower() == "login":
+                # login data should have username and password.
+                if "Username" not in request['Data'] or "Password" not in request['Data']:
+                    client.send_response(400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
+                    continue
+
+                information = api.account.get(request["Data"]["Username"])
+
+                if information is None or not Hashing.check_password(bytes.fromhex(information["Password"]),
+                                                                     request["Data"]["Password"]):
+                    client.send_response(404, "Not Found", {"Msg": "Invalid Credentials."})
+                    continue
+
+                client.send_response(200, "OK", {"Msg": "Logged in successfully."})
+
+            elif request["Command"].lower() == "create_lobby":
+                pass
+
+            elif request["Command"].lower() == "join_lobby":
+                pass
+
+            elif request["Command"].lower() == "leave_lobby":
+                pass
+
+            elif request["Command"].lower() == "delete_lobby":
+                pass
+
+            elif request["Command"].lower() == "get_lobby":
+                pass
+
+            elif request["Command"].lower() == "list_lobby":
+                pass
+
+            elif request["Command"].lower() == "kick_player_lobby":
+                pass
+
+            elif request["Command"].lower() == "ban_player_lobby":
+                pass
+
+    def generate_auth_token(self):
+        pass
+
     # -- Server running status --
+
+    def start_socket(self) -> None:
+        """
+        Start the server socket for incoming connections.
+        """
+        # start listening for incoming connection from clients.
+        self.server_socket.listen()
+
+        # set the running variable to true and start the main loop.
+        self.__running = True
+        self.run()
+
+    def run(self) -> None:
+        """
+        Main loop of the server socket.
+        """
+        while self.__running:
+            self.server_iteration()
 
     def stop(self) -> None:
         self.__running = False

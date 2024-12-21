@@ -13,7 +13,6 @@ All the user account related databases.
 {
   "<username>": {
     "password": "<Hashed password>",
-    "salt": "<Hashed password salt>",
     "last_login": "<Date>",
     ...
   }

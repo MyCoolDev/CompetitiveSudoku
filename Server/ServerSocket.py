@@ -1,4 +1,5 @@
 import socket
+import datetime as dt
 
 import utils
 from ClientInterface import Client
@@ -14,45 +15,58 @@ class ServerSocket:
     """
 
     def __init__(self):
-        # *should be in config*, for now just a static var
-        self.MAX_CLIENTS = 3
+        # create or split the log file:
+        with open(f"Logs/{dt.datetime.now().strftime('%d-%m-%Y')}.log", 'a') as log:
+            log.write("=============== Initiating the server. ===============\n")
 
-        # all the clients that the server is handling.
-        self.clients = []
+        try:
 
-        # the database interface
-        self.database = Database(0)
+            # *should be in config*, for now just a static var
+            self.MAX_CLIENTS = 3
 
-        # create a socket with tpc protocol.
-        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            # all the clients that the server is handling.
+            self.clients = []
 
-        # bind the server to the local ip address and port 8080.
-        self.server_socket.bind(('127.0.0.1', 8080))
+            # the database interface
+            self.database = Database(0)
 
-        # running variable for the main loop, variable is private.
-        self.__running = False
+            # create a socket with tpc protocol.
+            self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        # create a thread pool of client handling.
-        self.threadpool = ThreadPool(self.MAX_CLIENTS)
+            # bind the server to the local ip address and port 8080.
+            self.server_socket.bind(('127.0.0.1', 8080))
 
-        # auth tokens
-        self.tokens = {
-            #   "token": "username"
-        }
+            # running variable for the main loop, variable is private.
+            self.__running = False
+
+            # create a thread pool of client handling.
+            self.threadpool = ThreadPool(self.MAX_CLIENTS)
+
+            # auth tokens
+            self.tokens = {
+                #   "token": "username"
+            }
+            utils.server_print("Status", "ServerSocket initialized.")
+        except Exception as e:
+            utils.server_print("Error", str(e))
 
     def server_iteration(self) -> None:
         """
         Each interaction of the server main loop,
         this should only be accepting and handling connections.
         """
-        # accept client connection.
-        client_socket, client_address = self.server_socket.accept()
+        try:
+            # accept client connection.
+            client_socket, client_address = self.server_socket.accept()
+            utils.server_print("Client " + client_address + " connection request accepted.")
 
-        # create object for the client.
-        client = Client(client_address, client_socket)
+            # create object for the client.
+            client = Client(client_address, client_socket)
 
-        # start to handle the client on a different thread.
-        self.threadpool.submit(self.handle_client, client)
+            # start to handle the client on a different thread.
+            self.threadpool.submit(self.handle_client, client)
+        except Exception as e:
+            utils.server_print("Error", str(e))
 
     def handle_client(self, client: Client) -> None:
         """
@@ -60,7 +74,7 @@ class ServerSocket:
         should be running on the different thread.
         :param client: the client interface to handle
         """
-        utils.server_print("Starts handling " + client.address + ".")
+        utils.server_print("Starting to handle " + client.address + ".")
 
         while client.running:
             request = client.get_request()
@@ -79,6 +93,7 @@ class ServerSocket:
 
                 print(api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database))
                 client.send_response(201, "Created", {"Msg": "User registered."})
+                utils.server_print("User " + request["Data"]["Username"] + " registered.")
 
             elif request["Command"].lower() == "login":
                 # login data should have username and password.
@@ -94,6 +109,7 @@ class ServerSocket:
                     continue
 
                 client.send_response(200, "OK", {"Msg": "Logged in successfully."})
+                utils.server_print("User " + request["Data"]["Username"] + " logged in successfully.")
 
             elif request["Command"].lower() == "create_lobby":
                 pass
@@ -133,6 +149,9 @@ class ServerSocket:
 
         # set the running variable to true and start the main loop.
         self.__running = True
+
+        utils.server_print("Status", "Server is running.")
+
         self.run()
 
     def run(self) -> None:
@@ -145,6 +164,7 @@ class ServerSocket:
     def stop(self) -> None:
         self.__running = False
         self.server_socket.close()
+        utils.server_print("Server closed.")
 
     def toggle_status(self) -> None:
         if self.__running:
@@ -160,3 +180,7 @@ class ServerSocket:
 
     def __str__(self):
         pass
+
+if __name__ == '__main__':
+    server = ServerSocket()
+    server.start_socket()

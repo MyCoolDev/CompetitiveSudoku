@@ -1,3 +1,4 @@
+import queue
 import threading
 from queue import Queue
 
@@ -52,9 +53,7 @@ class ThreadPool:
                     # mark the task as done.
                     self.task_queue.task_done()
 
-            # empty() - not reliable?
-            except self.task_queue.empty():
-
+            finally:
                 # Timeout reached, loop to check shutdown_event.
                 continue
 

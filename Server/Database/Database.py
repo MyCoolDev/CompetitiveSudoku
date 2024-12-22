@@ -4,6 +4,9 @@ import threading
 
 from abc import ABC, abstractmethod
 
+import Server.utils as utils
+
+
 # maybe add cache system ;(
 
 class Database:
@@ -30,6 +33,8 @@ class Database:
         # start running the thread on the worker function
         thread.start()
 
+        utils.server_print("Database", "Database worker is running")
+
     def worker(self):
         while not self.shutdown_event.is_set():
             try:
@@ -45,13 +50,12 @@ class Database:
                         result_queue.put(result)
 
                 except Exception as e:
-                    print(f"Error processing db task: {e}")
+                    utils.server_print("Database", f"Error processing db task: {e}")
 
                 finally:
                     # mark the task as done
                     self.task_queue.task_done()
-
-            except self.task_queue.empty():
+            finally:
                 continue
 
     def submit_read(self, collection: str) -> str or None:
@@ -108,10 +112,5 @@ class Database:
 
             return True
         except Exception as e:
-            print(f"Error updating db collection: {e}")
+            utils.server_print("Database", f"Error updating db collection: {e}")
             return False
-
-class DatabaseActions(ABC):
-    @abstractmethod
-    def user_exists(self):
-        pass

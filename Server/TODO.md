@@ -1,6 +1,6 @@
 # Todo - Server
 - ~~Create the basic server socket and class.~~
-- Create a log file system for debugging and review of the server.
+- ~~Create a log file system for debugging and review of the server.~~
 - Check about config options.
 - ~~Create the database system.~~
 - **Create encryption to the communications.**

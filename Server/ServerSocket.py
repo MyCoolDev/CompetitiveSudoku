@@ -93,7 +93,7 @@ class ServerSocket:
 
                 print(api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database))
                 client.send_response(201, "Created", {"Msg": "User registered."})
-                utils.server_print("User " + request["Data"]["Username"] + " registered.")
+                utils.server_print("Server", "User " + request["Data"]["Username"] + " registered.")
 
             elif request["Command"].lower() == "login":
                 # login data should have username and password.
@@ -101,7 +101,7 @@ class ServerSocket:
                     client.send_response(400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
                     continue
 
-                information = api.account.get(request["Data"]["Username"])
+                information = api.account.get(request["Data"]["Username"], self.database)
 
                 if information is None or not Hashing.check_password(bytes.fromhex(information["Password"]),
                                                                      request["Data"]["Password"]):
@@ -109,7 +109,7 @@ class ServerSocket:
                     continue
 
                 client.send_response(200, "OK", {"Msg": "Logged in successfully."})
-                utils.server_print("User " + request["Data"]["Username"] + " logged in successfully.")
+                utils.server_print("Server", "User " + request["Data"]["Username"] + " logged in successfully.")
 
             elif request["Command"].lower() == "create_lobby":
                 pass

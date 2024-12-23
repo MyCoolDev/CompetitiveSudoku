@@ -21,7 +21,7 @@
 
 ### Save for later - Server dashboard
 - ~~Create a flask webserver~~
-- Design the dashboard.
+- **Design the dashboard.**
 - Create Server dashboard.
 - Create a websocket for the dashboard for live updates.
 - Run the server socket using the dashboard.

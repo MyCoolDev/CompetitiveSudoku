@@ -1,5 +1,3 @@
-import sys
-
 import pygame
 
 
@@ -10,7 +8,7 @@ class App:
         """
         pygame.init()
 
-        self.screen = pygame.display.set_mode((500, 500))
+        self.screen = pygame.display.set_mode((1200, 800))
         self.clock = pygame.time.Clock()
         self.events = None
         self.running = False

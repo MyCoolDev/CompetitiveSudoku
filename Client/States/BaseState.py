@@ -1,9 +1,33 @@
+import pygame
+
+
 class BaseState:
-    def __init__(self):
-        pass
+    def __init__(self, screen: pygame.Surface):
+        """
+        A state of the gui, a specific screen (one "page").
+        """
+        self.screen = screen
+        self.__init_vars(screen)
 
-    def update(self):
-        pass
+    def __init_vars(self, *args, **kwargs) -> None:
+        """
+        initiate the vars
+        """
 
-    def render(self):
-        pass
+    def update(self, dt: float, events: list, *args, **kwargs):
+        """
+        update the vars for the next render
+        :param dt:
+        :param events:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
+    def render(self, *args, **kwargs):
+        """
+        render the state
+        :param args:
+        :param kwargs:
+        :return:
+        """

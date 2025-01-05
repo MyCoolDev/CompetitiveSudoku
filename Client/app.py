@@ -1,5 +1,7 @@
 import pygame
 
+from States.LogRegisterState import LogRegister
+
 
 class App:
     def __init__(self):
@@ -13,6 +15,8 @@ class App:
         self.events = None
         self.running = False
         self.dt = 0  # delta time
+
+        self.current_state = LogRegister(self.screen)
 
     def start_client(self):
         """
@@ -34,9 +38,10 @@ class App:
                 self.running = False
 
     def update(self):
-        pass
+        self.current_state.update(self.dt, self.events)
 
     def render(self):
+        self.current_state.render()
         pygame.display.flip()
         self.dt = self.clock.tick(60) / 1000
 

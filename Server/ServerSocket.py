@@ -181,6 +181,7 @@ class ServerSocket:
     def __str__(self):
         pass
 
+
 if __name__ == '__main__':
     server = ServerSocket()
     server.start_socket()

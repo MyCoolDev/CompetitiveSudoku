@@ -30,8 +30,10 @@ def register(username: str, password: str, db_interface: Database) -> bool:
 
     return db_interface.submit_update("Users", users)
 
+
 def delete(username: str, password: str):
     pass
+
 
 def get(username: str, db_interface: Database) -> dict or None:
     """

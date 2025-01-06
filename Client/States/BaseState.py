@@ -1,12 +1,15 @@
 import pygame
 
+from Client.client import ClientSocket
+
 
 class BaseState:
-    def __init__(self, screen: pygame.Surface):
+    def __init__(self, screen: pygame.Surface, client: ClientSocket):
         """
         A state of the gui, a specific screen (one "page").
         """
         self.screen = screen
+        self.client = client
         self.__init_vars(screen)
 
     def __init_vars(self, *args, **kwargs) -> None:

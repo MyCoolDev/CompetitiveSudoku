@@ -1,0 +1,111 @@
+=============== Initiating the server. ===============
+[05-01-2025 21:58:38] [Database] Database worker is running
+[05-01-2025 21:58:38] [Status] ServerSocket initialized.
+[05-01-2025 21:58:38] [Status] Server is running.
+[05-01-2025 21:59:27] [Error] can only concatenate str (not "tuple") to str
+=============== Initiating the server. ===============
+[05-01-2025 22:01:20] [Database] Database worker is running
+[05-01-2025 22:01:20] [Status] ServerSocket initialized.
+[05-01-2025 22:01:20] [Status] Server is running.
+[05-01-2025 22:01:22] [Error] server_print() missing 1 required positional argument: 'text'
+=============== Initiating the server. ===============
+[05-01-2025 22:01:43] [Database] Database worker is running
+[05-01-2025 22:01:43] [Status] ServerSocket initialized.
+[05-01-2025 22:01:43] [Status] Server is running.
+[05-01-2025 22:01:49] [Connection] Client ('127.0.0.1', 57618) connection request accepted.
+=============== Initiating the server. ===============
+[05-01-2025 22:01:54] [Database] Database worker is running
+[05-01-2025 22:01:54] [Status] ServerSocket initialized.
+[05-01-2025 22:01:54] [Status] Server is running.
+=============== Initiating the server. ===============
+[05-01-2025 22:02:07] [Database] Database worker is running
+[05-01-2025 22:02:07] [Status] ServerSocket initialized.
+[05-01-2025 22:02:07] [Status] Server is running.
+[05-01-2025 22:02:09] [Connection] Client ('127.0.0.1', 57624) connection request accepted.
+[05-01-2025 22:02:09] [Connection] Starting to handle ('127.0.0.1', 57624).
+=============== Initiating the server. ===============
+[05-01-2025 22:05:55] [Database] Database worker is running
+[05-01-2025 22:05:55] [Status] ServerSocket initialized.
+[05-01-2025 22:05:55] [Status] Server is running.
+[05-01-2025 22:05:58] [Connection] Client ('127.0.0.1', 57727) connection request accepted.
+[05-01-2025 22:05:58] [Handler] Starting to handle ('127.0.0.1', 57727).
+[05-01-2025 22:06:08] [Handler] Request received from ('127.0.0.1', 57727).
+=============== Initiating the server. ===============
+[05-01-2025 22:10:04] [Database] Database worker is running
+[05-01-2025 22:10:04] [Status] ServerSocket initialized.
+[05-01-2025 22:10:04] [Status] Server is running.
+[05-01-2025 22:10:06] [Connection] Client ('127.0.0.1', 57821) connection request accepted.
+[05-01-2025 22:10:06] [Handler] Starting to handle ('127.0.0.1', 57821).
+[05-01-2025 22:10:24] [Handler] Request received from ('127.0.0.1', 57821).
+=============== Initiating the server. ===============
+[05-01-2025 22:13:31] [Database] Database worker is running
+[05-01-2025 22:13:31] [Status] ServerSocket initialized.
+[05-01-2025 22:13:31] [Status] Server is running.
+[05-01-2025 22:13:33] [Connection] Client ('127.0.0.1', 57890) connection request accepted.
+[05-01-2025 22:13:33] [Handler] Starting to handle ('127.0.0.1', 57890).
+[05-01-2025 22:13:45] [Handler] Request received from ('127.0.0.1', 57890).
+=============== Initiating the server. ===============
+[05-01-2025 22:14:11] [Database] Database worker is running
+[05-01-2025 22:14:11] [Status] ServerSocket initialized.
+[05-01-2025 22:14:11] [Status] Server is running.
+[05-01-2025 22:14:15] [Connection] Client ('127.0.0.1', 57908) connection request accepted.
+[05-01-2025 22:14:15] [Handler] Starting to handle ('127.0.0.1', 57908).
+[05-01-2025 22:14:26] [Handler] Request received from ('127.0.0.1', 57908).
+[05-01-2025 22:16:13] [Connection] Client ('127.0.0.1', 57963) connection request accepted.
+[05-01-2025 22:16:13] [Handler] Starting to handle ('127.0.0.1', 57963).
+[05-01-2025 22:16:17] [Handler] Request received from ('127.0.0.1', 57963).
+=============== Initiating the server. ===============
+[05-01-2025 22:18:44] [Database] Database worker is running
+[05-01-2025 22:18:44] [Status] ServerSocket initialized.
+[05-01-2025 22:18:44] [Status] Server is running.
+[05-01-2025 22:18:47] [Connection] Client ('127.0.0.1', 58010) connection request accepted.
+[05-01-2025 22:18:47] [Handler] Starting to handle ('127.0.0.1', 58010).
+[05-01-2025 22:18:48] [Handler | get_request] 'dict' object has no attribute 'encode'
+[05-01-2025 22:18:48] [Handler] Request received from ('127.0.0.1', 58010).
+=============== Initiating the server. ===============
+[05-01-2025 22:20:58] [Database] Database worker is running
+[05-01-2025 22:20:58] [Status] ServerSocket initialized.
+[05-01-2025 22:20:58] [Status] Server is running.
+[05-01-2025 22:21:01] [Connection] Client ('127.0.0.1', 58067) connection request accepted.
+[05-01-2025 22:21:01] [Handler] Starting to handle ('127.0.0.1', 58067).
+[05-01-2025 22:21:05] [Handler] Request received from ('127.0.0.1', 58067).
+=============== Initiating the server. ===============
+[05-01-2025 22:21:39] [Database] Database worker is running
+[05-01-2025 22:21:39] [Status] ServerSocket initialized.
+[05-01-2025 22:21:39] [Status] Server is running.
+[05-01-2025 22:21:39] [Connection] Client ('127.0.0.1', 58077) connection request accepted.
+[05-01-2025 22:21:39] [Handler] Starting to handle ('127.0.0.1', 58077).
+[05-01-2025 22:21:50] [Handler] Request received from ('127.0.0.1', 58077).
+[05-01-2025 22:22:32] [Connection] Client ('127.0.0.1', 58095) connection request accepted.
+[05-01-2025 22:22:32] [Handler] Starting to handle ('127.0.0.1', 58095).
+[05-01-2025 22:22:36] [Handler] Request received from ('127.0.0.1', 58095).
+=============== Initiating the server. ===============
+[05-01-2025 22:23:09] [Database] Database worker is running
+[05-01-2025 22:23:09] [Status] ServerSocket initialized.
+[05-01-2025 22:23:09] [Status] Server is running.
+[05-01-2025 22:23:11] [Connection] Client ('127.0.0.1', 58166) connection request accepted.
+[05-01-2025 22:23:11] [Handler] Starting to handle ('127.0.0.1', 58166).
+[05-01-2025 22:23:14] [Handler] Request received from ('127.0.0.1', 58166).
+=============== Initiating the server. ===============
+[05-01-2025 22:24:13] [Database] Database worker is running
+[05-01-2025 22:24:13] [Status] ServerSocket initialized.
+[05-01-2025 22:24:13] [Status] Server is running.
+[05-01-2025 22:24:17] [Connection] Client ('127.0.0.1', 58282) connection request accepted.
+[05-01-2025 22:24:17] [Handler] Starting to handle ('127.0.0.1', 58282).
+[05-01-2025 22:24:21] [Handler] Request received from ('127.0.0.1', 58282).
+=============== Initiating the server. ===============
+[05-01-2025 22:24:59] [Database] Database worker is running
+[05-01-2025 22:24:59] [Status] ServerSocket initialized.
+[05-01-2025 22:24:59] [Status] Server is running.
+[05-01-2025 22:25:03] [Connection] Client ('127.0.0.1', 58310) connection request accepted.
+[05-01-2025 22:25:03] [Handler] Starting to handle ('127.0.0.1', 58310).
+[05-01-2025 22:25:06] [Handler | get_request] 'dict' object has no attribute 'lower'
+[05-01-2025 22:25:06] [Handler] Request received from ('127.0.0.1', 58310).
+=============== Initiating the server. ===============
+[05-01-2025 22:25:56] [Database] Database worker is running
+[05-01-2025 22:25:56] [Status] ServerSocket initialized.
+[05-01-2025 22:25:56] [Status] Server is running.
+[05-01-2025 22:25:58] [Connection] Client ('127.0.0.1', 58350) connection request accepted.
+[05-01-2025 22:25:58] [Handler] Starting to handle ('127.0.0.1', 58350).
+[05-01-2025 22:26:38] [Handler | get_request] 'checksum'
+[05-01-2025 22:26:38] [Handler] Request received from ('127.0.0.1', 58350).

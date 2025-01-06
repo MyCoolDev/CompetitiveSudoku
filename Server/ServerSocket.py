@@ -58,7 +58,7 @@ class ServerSocket:
         try:
             # accept client connection.
             client_socket, client_address = self.server_socket.accept()
-            utils.server_print("Client " + client_address + " connection request accepted.")
+            utils.server_print("Connection", "Client " + str(client_address) + " connection request accepted.")
 
             # create object for the client.
             client = Client(client_address, client_socket)
@@ -74,30 +74,39 @@ class ServerSocket:
         should be running on the different thread.
         :param client: the client interface to handle
         """
-        utils.server_print("Starting to handle " + client.address + ".")
+        utils.server_print("Handler", "Starting to handle " + str(client.address) + ".")
 
         while client.running:
             request = client.get_request()
 
+            utils.server_print("Handler", "Request received from " + str(client.address) + ".")
+
             # route the command to the specific api path.
             if request["Command"].lower() == "register":
+                utils.server_print("Handler", "Request identified as Register from " + str(client.address) + ".")
                 # register data should have username and password.
                 if "Username" not in request['Data'] or "Password" not in request['Data']:
+                    utils.server_print("Handler Error", "No username or password provided.")
                     client.send_response(400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
                     continue
 
                 # username should be unique
                 if request["Data"]["Username"] in self.database.submit_read("Users"):
+                    utils.server_print("Handler Error", "Username already registered.")
                     client.send_response(409, "Conflict", {"Msg": "Username must be unique."})
                     continue
+
+                utils.server_print("Handler", "Request passed all checks.")
 
                 print(api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database))
                 client.send_response(201, "Created", {"Msg": "User registered."})
                 utils.server_print("Server", "User " + request["Data"]["Username"] + " registered.")
 
             elif request["Command"].lower() == "login":
+                utils.server_print("Handler", "Request identified as Login from " + str(client.address) + ".")
                 # login data should have username and password.
                 if "Username" not in request['Data'] or "Password" not in request['Data']:
+                    utils.server_print("Handler Error", "No username or password provided.")
                     client.send_response(400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
                     continue
 
@@ -105,9 +114,11 @@ class ServerSocket:
 
                 if information is None or not Hashing.check_password(bytes.fromhex(information["Password"]),
                                                                      request["Data"]["Password"]):
+                    utils.server_print("Handler Error", "Invalid credentials.")
                     client.send_response(404, "Not Found", {"Msg": "Invalid Credentials."})
                     continue
 
+                utils.server_print("Handler", "Request passed all checks.")
                 client.send_response(200, "OK", {"Msg": "Logged in successfully."})
                 utils.server_print("Server", "User " + request["Data"]["Username"] + " logged in successfully.")
 

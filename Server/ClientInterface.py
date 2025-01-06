@@ -2,6 +2,8 @@ import socket
 import json
 import hashlib
 
+import utils
+
 
 class Client:
     def __init__(self, address: str, con: socket.socket, **data):
@@ -44,23 +46,26 @@ class Client:
         """
         try:
             # wait for the request to arrive.
-            request = self.connection.recv(1024).decode('utf-8').lower()
+            request = self.connection.recv(1024).decode('utf-8')
+
+            lower_request = request.lower()
 
             # convert to json object.
             request = json.loads(request)
+            lower_request = json.loads(lower_request)
 
             # --- check the format requirements (see CommsProtocol.md) ---
 
             # check the command
-            if "command" not in request:
+            if "command" not in lower_request:
                 self.send_response(400, "Bad Request", {"Msg": "Missing Command attribute."})
                 return None
 
-            if "data" not in request:
+            if "data" not in lower_request:
                 self.send_response(400, "Bad Request", {"Msg": "Missing Data attribute."})
                 return None
 
-            if "checksum" not in request:
+            if "checksum" not in lower_request:
                 self.send_response(400, "Bad Request", {"Msg": "Missing Checksum attribute."})
                 return None
 
@@ -69,6 +74,8 @@ class Client:
 
             # delete the checksum from the original request.
             del request["checksum"]
+
+            print(request)
 
             # generate a new checksum for the request.
             current_checksum = self.create_checksum(request)
@@ -82,7 +89,7 @@ class Client:
 
         except Exception as e:
             # print the exception
-            print(e)
+            utils.server_print("Handler | get_request", str(e))
 
             # send an error response
             self.send_response(400, "Bad Request")
@@ -109,13 +116,15 @@ class Client:
                 response["Data"] = data
 
             # calc the checksum, md5 to hex.
-            checksum = self.create_checksum(json.dumps(response))
+            checksum = self.create_checksum(response)
 
             # add the checksum to the response
             response["Checksum"] = checksum
 
             # stringify the json format and encode to bytes.
             stringify_response = json.dumps(response).encode('utf-8')
+
+            print(stringify_response)
 
             # send the response to the client.
             sent = self.connection.send(stringify_response)
@@ -130,14 +139,14 @@ class Client:
             return False
 
     @staticmethod
-    def create_checksum(subject: str) -> str:
+    def create_checksum(subject: dict) -> str:
         """
         Generate md5 checksum to plain text.
         :param subject: the subject of the checksum
         :return: the md5 generated checksum in hexdigits.
         """
 
-        return hashlib.md5(subject.encode('utf-8')).hexdigest()
+        return hashlib.md5(json.dumps(subject).encode('utf-8')).hexdigest()
 
     def stop(self):
         self.running = False

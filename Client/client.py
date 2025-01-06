@@ -1,4 +1,6 @@
 import socket
+import hashlib
+import json
 
 
 class ClientSocket:
@@ -18,15 +20,67 @@ class ClientSocket:
         except Exception as e:
             print(e)
 
-    def send_request(self, command: int, data: str) -> bool:
-        pass
+    def send_request(self, command: str, data: dict) -> dict:
+        """
+        Send request to the server.
+        :param command:
+        :param data:
+        :return: response of the server
+        """
+        # group all the response (except the checksum) into a json to calc the checksum.
+        request = {
+            "Command": command,
+            "Data": data,
+        }
+
+        # calc the checksum, md5 to hex.
+        checksum = self.create_checksum(request)
+
+        # add the checksum to the response
+        request["Checksum"] = checksum
+
+        try:
+            # stringify the json format and encode to bytes.
+            stringify_response = json.dumps(request).encode('utf-8')
+
+            # send the response to the client.
+            sent = self.socket.send(stringify_response)
+
+            # check if the sent response length is the same the original stringify response.
+            if not sent == len(stringify_response):
+                return {}
+
+            print("Request sent.")
+
+            # wait for the request to arrive.
+            response = self.socket.recv(1024).decode('utf-8').lower()
+
+            # convert to json object.
+            response = json.loads(response)
+
+            # save the checksum.
+            recv_checksum = response["checksum"]
+
+            # delete the checksum from the original request.
+            del response["checksum"]
+
+            # generate a new checksum for the request.
+            current_checksum = self.create_checksum(response)
+
+            # check if the checksums match, if not send an error response.
+            if current_checksum != recv_checksum:
+                return {}
+
+            return response
+        except Exception as e:
+            print(e)
 
     @staticmethod
-    def create_checksum(subject: str) -> str:
+    def create_checksum(subject: dict) -> str:
         """
         Generate md5 checksum to plain text.
         :param subject: the subject of the checksum
         :return: the md5 generated checksum in hexdigits.
         """
 
-        return hashlib.md5(subject.encode('utf-8')).hexdigest()
+        return hashlib.md5(json.dumps(subject).encode('utf-8')).hexdigest()

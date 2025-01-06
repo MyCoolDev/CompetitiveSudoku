@@ -4,11 +4,12 @@ from Client.States.BaseState import BaseState
 from Client.Components.Text import Text
 from Client.Components.Button import Button
 from Client.Components.TextBox import TextBox
+from Client.client import ClientSocket
 
 
 class LogRegister(BaseState):
-    def __init__(self, screen: pygame.Surface):
-        super().__init__(screen)
+    def __init__(self, screen: pygame.Surface, client: ClientSocket):
+        super().__init__(screen, client)
         self.__init_vars()
 
     def __init_vars(self, *args, **kwargs) -> None:
@@ -22,7 +23,12 @@ class LogRegister(BaseState):
         self.username_textbox.update(dt, events)
         self.password_textbox.update(dt, events)
         self.login.update(dt, events)
-        self.register.update(dt, events)
+
+        if self.register.update(dt, events):
+            self.register_func()
+
+    def register_func(self):
+        print(self.client.send_request("Register", {"Username": self.username_textbox.content, "Password": self.password_textbox.content}))
 
     def render(self, *args, **kwargs):
         self.title.render(self.screen)

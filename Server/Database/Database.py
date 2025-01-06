@@ -76,6 +76,7 @@ class Database:
     def read(self, collection: str) -> str or None:
         try:
             with open(f"/{self.profile}/{collection}.json", "r") as f:
+                print(f"/{self.profile}/{collection}.json")
                 data = json.load(f)
 
                 return data

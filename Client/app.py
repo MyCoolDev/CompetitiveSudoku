@@ -1,6 +1,7 @@
 import pygame
 
 from States.LogRegisterState import LogRegister
+from client import ClientSocket
 
 
 class App:
@@ -16,7 +17,10 @@ class App:
         self.running = False
         self.dt = 0  # delta time
 
-        self.current_state = LogRegister(self.screen)
+        # sockets
+        self.client = ClientSocket()
+
+        self.current_state = LogRegister(self.screen, self.client)
 
     def start_client(self):
         """

@@ -1,0 +1,719 @@
+=============== Initiating the server. ===============
+[06-01-2025 08:35:21] [Database] Database worker is running
+[06-01-2025 08:35:21] [Status] ServerSocket initialized.
+[06-01-2025 08:35:21] [Status] Server is running.
+[06-01-2025 08:35:24] [Connection] Client ('127.0.0.1', 54470) connection request accepted.
+[06-01-2025 08:35:24] [Handler] Starting to handle ('127.0.0.1', 54470).
+[06-01-2025 08:35:28] [Handler | get_request] 'checksum'
+[06-01-2025 08:35:28] [Handler] Request received from ('127.0.0.1', 54470).
+=============== Initiating the server. ===============
+[06-01-2025 08:37:50] [Database] Database worker is running
+[06-01-2025 08:37:50] [Status] ServerSocket initialized.
+[06-01-2025 08:37:50] [Status] Server is running.
+[06-01-2025 08:37:52] [Connection] Client ('127.0.0.1', 54492) connection request accepted.
+[06-01-2025 08:37:52] [Handler] Starting to handle ('127.0.0.1', 54492).
+[06-01-2025 08:37:57] [Handler] Request received from ('127.0.0.1', 54492).
+[06-01-2025 08:37:57] [Handler] Request identified as Register from ('127.0.0.1', 54492).
+=============== Initiating the server. ===============
+[06-01-2025 08:40:53] [Database] Database worker is running
+[06-01-2025 08:40:53] [Status] ServerSocket initialized.
+[06-01-2025 08:40:53] [Status] Server is running.
+[06-01-2025 08:40:56] [Connection] Client ('127.0.0.1', 54517) connection request accepted.
+[06-01-2025 08:40:56] [Handler] Starting to handle ('127.0.0.1', 54517).
+[06-01-2025 08:40:59] [Handler] Request received from ('127.0.0.1', 54517).
+[06-01-2025 08:40:59] [Handler] Request identified as Register from ('127.0.0.1', 54517).
+=============== Initiating the server. ===============
+[06-01-2025 08:41:31] [Database] Database worker is running
+[06-01-2025 08:41:31] [Status] ServerSocket initialized.
+[06-01-2025 08:41:31] [Status] Server is running.
+[06-01-2025 08:41:34] [Connection] Client ('127.0.0.1', 54520) connection request accepted.
+[06-01-2025 08:41:34] [Handler] Starting to handle ('127.0.0.1', 54520).
+[06-01-2025 08:41:44] [Handler] Request received from ('127.0.0.1', 54520).
+[06-01-2025 08:41:44] [Handler] Request identified as Register from ('127.0.0.1', 54520).
+=============== Initiating the server. ===============
+[06-01-2025 08:42:41] [Database] Database worker is running
+[06-01-2025 08:42:41] [Status] ServerSocket initialized.
+[06-01-2025 08:42:41] [Status] Server is running.
+[06-01-2025 08:42:44] [Connection] Client ('127.0.0.1', 55209) connection request accepted.
+[06-01-2025 08:42:44] [Handler] Starting to handle ('127.0.0.1', 55209).
+[06-01-2025 08:42:48] [Handler] Request received from ('127.0.0.1', 55209).
+[06-01-2025 08:42:48] [Handler] Request identified as Register from ('127.0.0.1', 55209).
+=============== Initiating the server. ===============
+[06-01-2025 08:44:01] [Database] Database worker is running
+[06-01-2025 08:44:01] [Status] ServerSocket initialized.
+[06-01-2025 08:44:01] [Status] Server is running.
+[06-01-2025 08:44:03] [Connection] Client ('127.0.0.1', 55239) connection request accepted.
+[06-01-2025 08:44:03] [Handler] Starting to handle ('127.0.0.1', 55239).
+[06-01-2025 08:44:07] [Handler] Request received from ('127.0.0.1', 55239).
+[06-01-2025 08:44:07] [Handler] Request identified as Register from ('127.0.0.1', 55239).
+=============== Initiating the server. ===============
+[06-01-2025 08:44:28] [Database] Database worker is running
+[06-01-2025 08:44:28] [Status] ServerSocket initialized.
+[06-01-2025 08:44:28] [Status] Server is running.
+[06-01-2025 08:44:34] [Connection] Client ('127.0.0.1', 55245) connection request accepted.
+[06-01-2025 08:44:34] [Handler] Starting to handle ('127.0.0.1', 55245).
+[06-01-2025 08:44:38] [Handler] Request received from ('127.0.0.1', 55245).
+[06-01-2025 08:44:38] [Handler] Request identified as Register from ('127.0.0.1', 55245).
+=============== Initiating the server. ===============
+[06-01-2025 08:45:08] [Database] Database worker is running
+[06-01-2025 08:45:08] [Status] ServerSocket initialized.
+[06-01-2025 08:45:08] [Status] Server is running.
+[06-01-2025 08:45:12] [Connection] Client ('127.0.0.1', 55248) connection request accepted.
+[06-01-2025 08:45:12] [Handler] Starting to handle ('127.0.0.1', 55248).
+[06-01-2025 08:45:15] [Handler] Request received from ('127.0.0.1', 55248).
+[06-01-2025 08:45:15] [Handler] Request identified as Register from ('127.0.0.1', 55248).
+=============== Initiating the server. ===============
+[06-01-2025 08:47:39] [Database] Database worker is running
+[06-01-2025 08:47:39] [Status] ServerSocket initialized.
+[06-01-2025 08:47:39] [Status] Server is running.
+[06-01-2025 08:47:45] [Connection] Client ('127.0.0.1', 55258) connection request accepted.
+[06-01-2025 08:47:45] [Handler] Starting to handle ('127.0.0.1', 55258).
+[06-01-2025 08:47:48] [Handler] Request received from ('127.0.0.1', 55258).
+[06-01-2025 08:47:48] [Handler] Request identified as Register from ('127.0.0.1', 55258).
+=============== Initiating the server. ===============
+[06-01-2025 08:48:30] [Database] Database worker is running
+[06-01-2025 08:48:30] [Status] ServerSocket initialized.
+[06-01-2025 08:48:30] [Status] Server is running.
+[06-01-2025 08:48:32] [Connection] Client ('127.0.0.1', 55262) connection request accepted.
+[06-01-2025 08:48:32] [Handler] Starting to handle ('127.0.0.1', 55262).
+[06-01-2025 08:48:36] [Handler] Request received from ('127.0.0.1', 55262).
+[06-01-2025 08:48:36] [Handler] Request identified as Register from ('127.0.0.1', 55262).
+=============== Initiating the server. ===============
+[06-01-2025 08:50:37] [Database] Database worker is running
+[06-01-2025 08:50:37] [Status] ServerSocket initialized.
+[06-01-2025 08:50:37] [Status] Server is running.
+[06-01-2025 08:50:39] [Connection] Client ('127.0.0.1', 55276) connection request accepted.
+[06-01-2025 08:50:39] [Handler] Starting to handle ('127.0.0.1', 55276).
+[06-01-2025 08:50:42] [Handler] Request received from ('127.0.0.1', 55276).
+[06-01-2025 08:50:42] [Handler] Request identified as Register from ('127.0.0.1', 55276).
+=============== Initiating the server. ===============
+[06-01-2025 08:51:15] [Database] Database worker is running
+[06-01-2025 08:51:15] [Status] ServerSocket initialized.
+[06-01-2025 08:51:15] [Status] Server is running.
+[06-01-2025 08:51:17] [Connection] Client ('127.0.0.1', 55281) connection request accepted.
+[06-01-2025 08:51:17] [Handler] Starting to handle ('127.0.0.1', 55281).
+[06-01-2025 08:51:20] [Handler] Request received from ('127.0.0.1', 55281).
+[06-01-2025 08:51:20] [Handler] Request identified as Register from ('127.0.0.1', 55281).
+=============== Initiating the server. ===============
+[06-01-2025 08:53:49] [Database] Database worker is running
+[06-01-2025 08:53:49] [Status] ServerSocket initialized.
+[06-01-2025 08:53:49] [Status] Server is running.
+[06-01-2025 08:53:51] [Connection] Client ('127.0.0.1', 55290) connection request accepted.
+[06-01-2025 08:53:51] [Handler] Starting to handle ('127.0.0.1', 55290).
+[06-01-2025 08:53:54] [Handler] Request received from ('127.0.0.1', 55290).
+[06-01-2025 08:53:54] [Handler] Request identified as Register from ('127.0.0.1', 55290).
+=============== Initiating the server. ===============
+[06-01-2025 08:59:09] [Database] Database worker is running
+[06-01-2025 08:59:09] [Status] ServerSocket initialized.
+[06-01-2025 08:59:10] [Status] Server is running.
+[06-01-2025 08:59:11] [Connection] Client ('127.0.0.1', 55426) connection request accepted.
+[06-01-2025 08:59:11] [Handler] Starting to handle ('127.0.0.1', 55426).
+[06-01-2025 08:59:14] [Handler] Request received from ('127.0.0.1', 55426).
+[06-01-2025 08:59:14] [Handler] Request identified as Register from ('127.0.0.1', 55426).
+=============== Initiating the server. ===============
+[06-01-2025 08:59:39] [Database] Database worker is running
+[06-01-2025 08:59:39] [Status] ServerSocket initialized.
+[06-01-2025 08:59:39] [Status] Server is running.
+[06-01-2025 08:59:41] [Connection] Client ('127.0.0.1', 55427) connection request accepted.
+[06-01-2025 08:59:41] [Handler] Starting to handle ('127.0.0.1', 55427).
+[06-01-2025 08:59:46] [Handler] Request received from ('127.0.0.1', 55427).
+[06-01-2025 08:59:46] [Handler] Request identified as Register from ('127.0.0.1', 55427).
+=============== Initiating the server. ===============
+[06-01-2025 09:00:00] [Database] Database worker is running
+[06-01-2025 09:00:00] [Status] ServerSocket initialized.
+[06-01-2025 09:00:00] [Status] Server is running.
+[06-01-2025 09:00:10] [Connection] Client ('127.0.0.1', 55429) connection request accepted.
+[06-01-2025 09:00:10] [Handler] Starting to handle ('127.0.0.1', 55429).
+[06-01-2025 09:00:13] [Handler] Request received from ('127.0.0.1', 55429).
+[06-01-2025 09:00:13] [Handler] Request identified as Register from ('127.0.0.1', 55429).
+[06-01-2025 09:00:55] [Connection] Client ('127.0.0.1', 55434) connection request accepted.
+[06-01-2025 09:00:55] [Handler] Starting to handle ('127.0.0.1', 55434).
+=============== Initiating the server. ===============
+[06-01-2025 09:01:01] [Database] Database worker is running
+[06-01-2025 09:01:01] [Status] ServerSocket initialized.
+[06-01-2025 09:01:01] [Status] Server is running.
+[06-01-2025 09:01:03] [Connection] Client ('127.0.0.1', 55435) connection request accepted.
+[06-01-2025 09:01:03] [Handler] Starting to handle ('127.0.0.1', 55435).
+[06-01-2025 09:01:07] [Handler] Request received from ('127.0.0.1', 55435).
+[06-01-2025 09:01:07] [Handler] Request identified as Register from ('127.0.0.1', 55435).
+=============== Initiating the server. ===============
+[06-01-2025 09:02:02] [Database] Database worker is running
+[06-01-2025 09:02:02] [Status] ServerSocket initialized.
+[06-01-2025 09:02:02] [Status] Server is running.
+[06-01-2025 09:02:04] [Connection] Client ('127.0.0.1', 55438) connection request accepted.
+[06-01-2025 09:02:04] [Handler] Starting to handle ('127.0.0.1', 55438).
+[06-01-2025 09:02:07] [Handler] Request received from ('127.0.0.1', 55438).
+[06-01-2025 09:02:07] [Handler] Request identified as Register from ('127.0.0.1', 55438).
+=============== Initiating the server. ===============
+[06-01-2025 09:02:24] [Database] Database worker is running
+[06-01-2025 09:02:24] [Status] ServerSocket initialized.
+[06-01-2025 09:02:24] [Status] Server is running.
+[06-01-2025 09:02:24] [Connection] Client ('127.0.0.1', 55439) connection request accepted.
+[06-01-2025 09:02:24] [Handler] Starting to handle ('127.0.0.1', 55439).
+[06-01-2025 09:02:26] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[06-01-2025 09:02:26] [Handler] Request received from ('127.0.0.1', 55439).
+[06-01-2025 09:02:27] [Connection] Client ('127.0.0.1', 55440) connection request accepted.
+[06-01-2025 09:02:27] [Handler] Starting to handle ('127.0.0.1', 55440).
+=============== Initiating the server. ===============
+[06-01-2025 09:02:53] [Database] Database worker is running
+[06-01-2025 09:02:53] [Status] ServerSocket initialized.
+[06-01-2025 09:02:53] [Status] Server is running.
+[06-01-2025 09:03:02] [Connection] Client ('127.0.0.1', 55441) connection request accepted.
+[06-01-2025 09:03:02] [Handler] Starting to handle ('127.0.0.1', 55441).
+[06-01-2025 09:03:06] [Handler] Request received from ('127.0.0.1', 55441).
+[06-01-2025 09:03:06] [Handler] Request identified as Register from ('127.0.0.1', 55441).
+=============== Initiating the server. ===============
+[06-01-2025 09:04:52] [Database] Database worker is running
+[06-01-2025 09:04:52] [Status] ServerSocket initialized.
+[06-01-2025 09:04:52] [Status] Server is running.
+[06-01-2025 09:04:55] [Connection] Client ('127.0.0.1', 55442) connection request accepted.
+[06-01-2025 09:04:55] [Handler] Starting to handle ('127.0.0.1', 55442).
+[06-01-2025 09:05:01] [Handler] Request received from ('127.0.0.1', 55442).
+[06-01-2025 09:05:01] [Handler] Request identified as Register from ('127.0.0.1', 55442).
+=============== Initiating the server. ===============
+[06-01-2025 09:08:23] [Database] Database worker is running
+[06-01-2025 09:08:23] [Status] ServerSocket initialized.
+[06-01-2025 09:08:23] [Status] Server is running.
+[06-01-2025 09:08:27] [Connection] Client ('127.0.0.1', 55454) connection request accepted.
+[06-01-2025 09:08:27] [Handler] Starting to handle ('127.0.0.1', 55454).
+[06-01-2025 09:08:30] [Handler] Request received from ('127.0.0.1', 55454).
+[06-01-2025 09:08:30] [Handler] Request identified as Register from ('127.0.0.1', 55454).
+=============== Initiating the server. ===============
+[06-01-2025 09:09:01] [Database] Database worker is running
+[06-01-2025 09:09:01] [Status] ServerSocket initialized.
+[06-01-2025 09:09:01] [Status] Server is running.
+[06-01-2025 09:09:03] [Connection] Client ('127.0.0.1', 55455) connection request accepted.
+[06-01-2025 09:09:03] [Handler] Starting to handle ('127.0.0.1', 55455).
+[06-01-2025 09:09:07] [Handler] Request received from ('127.0.0.1', 55455).
+[06-01-2025 09:09:07] [Handler] Request identified as Register from ('127.0.0.1', 55455).
+[06-01-2025 09:09:07] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:07] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:07] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:07] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:07] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:07] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:08] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:08] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:08] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:08] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:08] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:08] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:08] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:09] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:09] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:09] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:09] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:09] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:09] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:09] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:10] [Database] Error processing db task: name 'task' is not defined
+[06-01-2025 09:09:10] [Database] Error processing db task: name 'task' is not defined
+=============== Initiating the server. ===============
+[06-01-2025 09:10:13] [Database] Database worker is running
+[06-01-2025 09:10:13] [Status] ServerSocket initialized.
+[06-01-2025 09:10:13] [Status] Server is running.
+=============== Initiating the server. ===============
+[06-01-2025 09:10:22] [Database] Database worker is running
+[06-01-2025 09:10:22] [Status] ServerSocket initialized.
+[06-01-2025 09:10:22] [Status] Server is running.
+[06-01-2025 09:10:23] [Connection] Client ('127.0.0.1', 55459) connection request accepted.
+[06-01-2025 09:10:23] [Handler] Starting to handle ('127.0.0.1', 55459).
+[06-01-2025 09:10:26] [Handler] Request received from ('127.0.0.1', 55459).
+[06-01-2025 09:10:26] [Handler] Request identified as Register from ('127.0.0.1', 55459).
+[06-01-2025 09:10:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:29] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:29] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:29] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:29] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:29] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:29] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:29] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:29] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+[06-01-2025 09:10:29] [Database] Error processing db task: Database.read() takes 2 positional arguments but 6 were given
+=============== Initiating the server. ===============
+[06-01-2025 09:11:20] [Database] Database worker is running
+[06-01-2025 09:11:20] [Status] ServerSocket initialized.
+[06-01-2025 09:11:20] [Status] Server is running.
+[06-01-2025 09:11:21] [Connection] Client ('127.0.0.1', 55464) connection request accepted.
+[06-01-2025 09:11:21] [Handler] Starting to handle ('127.0.0.1', 55464).
+[06-01-2025 09:11:24] [Handler] Request received from ('127.0.0.1', 55464).
+[06-01-2025 09:11:24] [Handler] Request identified as Register from ('127.0.0.1', 55464).
+[06-01-2025 09:11:24] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:24] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:24] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:25] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:26] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:26] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:26] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:26] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:26] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:26] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:26] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:26] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:27] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:11:28] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+=============== Initiating the server. ===============
+[06-01-2025 09:11:58] [Database] Database worker is running
+[06-01-2025 09:11:58] [Status] ServerSocket initialized.
+[06-01-2025 09:11:58] [Status] Server is running.
+[06-01-2025 09:12:02] [Connection] Client ('127.0.0.1', 55466) connection request accepted.
+[06-01-2025 09:12:02] [Handler] Starting to handle ('127.0.0.1', 55466).
+[06-01-2025 09:12:05] [Handler] Request received from ('127.0.0.1', 55466).
+[06-01-2025 09:12:05] [Handler] Request identified as Register from ('127.0.0.1', 55466).
+[06-01-2025 09:12:05] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:05] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:05] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:05] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:05] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:06] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:06] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:06] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:06] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:06] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:06] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:06] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:06] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:07] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:07] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:07] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:07] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:07] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:07] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:07] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:07] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+[06-01-2025 09:12:07] [Database] Error processing db task: Database.read() takes 2 positional arguments but 5 were given
+=============== Initiating the server. ===============
+[06-01-2025 09:12:15] [Database] Database worker is running
+[06-01-2025 09:12:16] [Status] ServerSocket initialized.
+[06-01-2025 09:12:16] [Status] Server is running.
+[06-01-2025 09:12:16] [Connection] Client ('127.0.0.1', 55467) connection request accepted.
+[06-01-2025 09:12:16] [Handler] Starting to handle ('127.0.0.1', 55467).
+[06-01-2025 09:12:17] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[06-01-2025 09:12:17] [Handler] Request received from ('127.0.0.1', 55467).
+[06-01-2025 09:12:17] [Connection] Client ('127.0.0.1', 55468) connection request accepted.
+[06-01-2025 09:12:17] [Handler] Starting to handle ('127.0.0.1', 55468).
+[06-01-2025 09:12:20] [Handler] Request received from ('127.0.0.1', 55468).
+[06-01-2025 09:12:20] [Handler] Request identified as Register from ('127.0.0.1', 55468).
+[06-01-2025 09:12:20] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:20] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:22] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:22] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:22] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:22] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:22] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:22] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:22] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:22] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:22] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:23] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:24] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+[06-01-2025 09:12:24] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+=============== Initiating the server. ===============
+[06-01-2025 09:13:14] [Database] Database worker is running
+[06-01-2025 09:13:14] [Status] ServerSocket initialized.
+[06-01-2025 09:13:15] [Status] Server is running.
+[06-01-2025 09:13:18] [Connection] Client ('127.0.0.1', 55469) connection request accepted.
+[06-01-2025 09:13:18] [Handler] Starting to handle ('127.0.0.1', 55469).
+[06-01-2025 09:13:21] [Handler] Request received from ('127.0.0.1', 55469).
+[06-01-2025 09:13:21] [Handler] Request identified as Register from ('127.0.0.1', 55469).
+[06-01-2025 09:13:21] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+=============== Initiating the server. ===============
+[06-01-2025 09:14:30] [Database] Database worker is running
+[06-01-2025 09:14:30] [Status] ServerSocket initialized.
+[06-01-2025 09:14:30] [Status] Server is running.
+[06-01-2025 09:14:32] [Connection] Client ('127.0.0.1', 55470) connection request accepted.
+[06-01-2025 09:14:32] [Handler] Starting to handle ('127.0.0.1', 55470).
+[06-01-2025 09:14:36] [Handler] Request received from ('127.0.0.1', 55470).
+[06-01-2025 09:14:36] [Handler] Request identified as Register from ('127.0.0.1', 55470).
+=============== Initiating the server. ===============
+[06-01-2025 09:15:12] [Database] Database worker is running
+[06-01-2025 09:15:12] [Status] ServerSocket initialized.
+[06-01-2025 09:15:12] [Status] Server is running.
+[06-01-2025 09:15:14] [Connection] Client ('127.0.0.1', 55471) connection request accepted.
+[06-01-2025 09:15:14] [Handler] Starting to handle ('127.0.0.1', 55471).
+[06-01-2025 09:15:17] [Handler] Request received from ('127.0.0.1', 55471).
+[06-01-2025 09:15:17] [Handler] Request identified as Register from ('127.0.0.1', 55471).
+=============== Initiating the server. ===============
+[06-01-2025 09:16:30] [Database] Database worker is running
+[06-01-2025 09:16:31] [Status] ServerSocket initialized.
+[06-01-2025 09:16:31] [Status] Server is running.
+[06-01-2025 09:16:32] [Connection] Client ('127.0.0.1', 55472) connection request accepted.
+[06-01-2025 09:16:32] [Handler] Starting to handle ('127.0.0.1', 55472).
+[06-01-2025 09:16:36] [Handler] Request received from ('127.0.0.1', 55472).
+[06-01-2025 09:16:36] [Handler] Request identified as Register from ('127.0.0.1', 55472).
+=============== Initiating the server. ===============
+[06-01-2025 09:16:55] [Database] Database worker is running
+[06-01-2025 09:16:55] [Status] ServerSocket initialized.
+[06-01-2025 09:16:55] [Status] Server is running.
+[06-01-2025 09:16:57] [Connection] Client ('127.0.0.1', 55473) connection request accepted.
+[06-01-2025 09:16:57] [Handler] Starting to handle ('127.0.0.1', 55473).
+[06-01-2025 09:17:01] [Handler] Request received from ('127.0.0.1', 55473).
+[06-01-2025 09:17:01] [Handler] Request identified as Register from ('127.0.0.1', 55473).
+=============== Initiating the server. ===============
+[06-01-2025 09:17:46] [Database] Database worker is running
+[06-01-2025 09:17:46] [Status] ServerSocket initialized.
+[06-01-2025 09:17:46] [Status] Server is running.
+[06-01-2025 09:17:47] [Connection] Client ('127.0.0.1', 55475) connection request accepted.
+[06-01-2025 09:17:47] [Handler] Starting to handle ('127.0.0.1', 55475).
+[06-01-2025 09:17:47] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[06-01-2025 09:17:47] [Handler] Request received from ('127.0.0.1', 55475).
+[06-01-2025 09:17:48] [Connection] Client ('127.0.0.1', 55476) connection request accepted.
+[06-01-2025 09:17:48] [Handler] Starting to handle ('127.0.0.1', 55476).
+[06-01-2025 09:17:51] [Handler] Request received from ('127.0.0.1', 55476).
+[06-01-2025 09:17:51] [Handler] Request identified as Register from ('127.0.0.1', 55476).
+=============== Initiating the server. ===============
+[06-01-2025 09:18:26] [Database] Database worker is running
+[06-01-2025 09:18:27] [Status] ServerSocket initialized.
+[06-01-2025 09:18:27] [Status] Server is running.
+[06-01-2025 09:18:29] [Connection] Client ('127.0.0.1', 55478) connection request accepted.
+[06-01-2025 09:18:29] [Handler] Starting to handle ('127.0.0.1', 55478).
+[06-01-2025 09:18:32] [Handler] Request received from ('127.0.0.1', 55478).
+[06-01-2025 09:18:33] [Handler] Request identified as Register from ('127.0.0.1', 55478).
+=============== Initiating the server. ===============
+[06-01-2025 09:20:39] [Database] Database worker is running
+[06-01-2025 09:20:39] [Status] ServerSocket initialized.
+[06-01-2025 09:20:39] [Status] Server is running.
+[06-01-2025 09:20:41] [Connection] Client ('127.0.0.1', 55644) connection request accepted.
+[06-01-2025 09:20:41] [Handler] Starting to handle ('127.0.0.1', 55644).
+[06-01-2025 09:20:44] [Handler] Request received from ('127.0.0.1', 55644).
+[06-01-2025 09:20:44] [Handler] Request identified as Register from ('127.0.0.1', 55644).
+=============== Initiating the server. ===============
+[06-01-2025 09:21:09] [Database] Database worker is running
+[06-01-2025 09:21:09] [Status] ServerSocket initialized.
+[06-01-2025 09:21:09] [Status] Server is running.
+[06-01-2025 09:21:11] [Connection] Client ('127.0.0.1', 55647) connection request accepted.
+[06-01-2025 09:21:11] [Handler] Starting to handle ('127.0.0.1', 55647).
+[06-01-2025 09:21:14] [Handler] Request received from ('127.0.0.1', 55647).
+[06-01-2025 09:21:14] [Handler] Request identified as Register from ('127.0.0.1', 55647).
+=============== Initiating the server. ===============
+[06-01-2025 09:21:35] [Database] Database worker is running
+[06-01-2025 09:21:35] [Status] ServerSocket initialized.
+[06-01-2025 09:21:36] [Status] Server is running.
+[06-01-2025 09:21:38] [Connection] Client ('127.0.0.1', 55657) connection request accepted.
+[06-01-2025 09:21:38] [Handler] Starting to handle ('127.0.0.1', 55657).
+[06-01-2025 09:21:41] [Handler] Request received from ('127.0.0.1', 55657).
+[06-01-2025 09:21:41] [Handler] Request identified as Register from ('127.0.0.1', 55657).
+=============== Initiating the server. ===============
+[06-01-2025 09:23:10] [Database] Database worker is running
+[06-01-2025 09:23:10] [Status] ServerSocket initialized.
+[06-01-2025 09:23:10] [Status] Server is running.
+[06-01-2025 09:23:13] [Connection] Client ('127.0.0.1', 55662) connection request accepted.
+[06-01-2025 09:23:13] [Handler] Starting to handle ('127.0.0.1', 55662).
+[06-01-2025 09:23:16] [Handler] Request received from ('127.0.0.1', 55662).
+[06-01-2025 09:23:16] [Handler] Request identified as Register from ('127.0.0.1', 55662).
+[06-01-2025 09:23:16] [Handler] Request passed all checks.
+[06-01-2025 09:23:17] [Server] User test registered.
+=============== Initiating the server. ===============
+[06-01-2025 09:26:16] [Database] Database worker is running
+[06-01-2025 09:26:16] [Status] ServerSocket initialized.
+[06-01-2025 09:26:16] [Status] Server is running.
+[06-01-2025 09:26:18] [Connection] Client ('127.0.0.1', 55693) connection request accepted.
+[06-01-2025 09:26:18] [Handler] Starting to handle ('127.0.0.1', 55693).
+[06-01-2025 09:26:20] [Handler] Request received from ('127.0.0.1', 55693).
+[06-01-2025 09:26:21] [Handler] Request identified as Register from ('127.0.0.1', 55693).
+[06-01-2025 09:26:21] [Handler] Request passed all checks.
+[06-01-2025 09:26:21] [Database] Error processing db task: Database.read() takes 2 positional arguments but 3 were given
+=============== Initiating the server. ===============
+[06-01-2025 09:27:13] [Database] Database worker is running
+[06-01-2025 09:27:13] [Status] ServerSocket initialized.
+[06-01-2025 09:27:13] [Status] Server is running.
+[06-01-2025 09:27:15] [Connection] Client ('127.0.0.1', 55698) connection request accepted.
+[06-01-2025 09:27:15] [Handler] Starting to handle ('127.0.0.1', 55698).
+[06-01-2025 09:27:17] [Handler] Request received from ('127.0.0.1', 55698).
+[06-01-2025 09:27:18] [Handler] Request identified as Register from ('127.0.0.1', 55698).
+[06-01-2025 09:27:18] [Handler] Request passed all checks.
+[06-01-2025 09:27:18] [Database] Error updating db collection: Object of type datetime is not JSON serializable
+[06-01-2025 09:27:18] [Server] User test registered.
+=============== Initiating the server. ===============
+[06-01-2025 09:30:10] [Database] Database worker is running
+[06-01-2025 09:30:10] [Status] ServerSocket initialized.
+[06-01-2025 09:30:10] [Status] Server is running.
+[06-01-2025 09:30:12] [Connection] Client ('127.0.0.1', 55735) connection request accepted.
+[06-01-2025 09:30:12] [Handler] Starting to handle ('127.0.0.1', 55735).
+[06-01-2025 09:30:15] [Handler] Request received from ('127.0.0.1', 55735).
+[06-01-2025 09:30:15] [Handler] Request identified as Register from ('127.0.0.1', 55735).
+[06-01-2025 09:30:15] [Handler] Request passed all checks.
+[06-01-2025 09:30:16] [Server] User test registered.
+=============== Initiating the server. ===============
+[06-01-2025 09:32:13] [Database] Database worker is running
+[06-01-2025 09:32:14] [Status] ServerSocket initialized.
+[06-01-2025 09:32:14] [Status] Server is running.
+[06-01-2025 09:32:16] [Connection] Client ('127.0.0.1', 54825) connection request accepted.
+[06-01-2025 09:32:16] [Handler] Starting to handle ('127.0.0.1', 54825).
+[06-01-2025 09:32:19] [Handler] Request received from ('127.0.0.1', 54825).
+[06-01-2025 09:32:19] [Handler] Request identified as Register from ('127.0.0.1', 54825).
+[06-01-2025 09:32:19] [Handler Error] Username already registered.
+=============== Initiating the server. ===============
+[06-01-2025 09:32:28] [Database] Database worker is running
+[06-01-2025 09:32:28] [Status] ServerSocket initialized.
+[06-01-2025 09:32:28] [Status] Server is running.
+[06-01-2025 09:32:31] [Connection] Client ('127.0.0.1', 54827) connection request accepted.
+[06-01-2025 09:32:31] [Handler] Starting to handle ('127.0.0.1', 54827).
+[06-01-2025 09:32:34] [Handler] Request received from ('127.0.0.1', 54827).
+[06-01-2025 09:32:34] [Handler] Request identified as Register from ('127.0.0.1', 54827).
+=============== Initiating the server. ===============
+[06-01-2025 09:32:43] [Database] Database worker is running
+[06-01-2025 09:32:44] [Status] ServerSocket initialized.
+[06-01-2025 09:32:44] [Status] Server is running.
+[06-01-2025 09:32:45] [Connection] Client ('127.0.0.1', 54828) connection request accepted.
+[06-01-2025 09:32:45] [Handler] Starting to handle ('127.0.0.1', 54828).
+[06-01-2025 09:32:49] [Handler] Request received from ('127.0.0.1', 54828).
+[06-01-2025 09:32:49] [Handler] Request identified as Register from ('127.0.0.1', 54828).
+[06-01-2025 09:32:49] [Handler] Request passed all checks.
+[06-01-2025 09:32:50] [Server] User test registered.
+=============== Initiating the server. ===============
+[06-01-2025 09:34:47] [Database] Database worker is running
+[06-01-2025 09:34:48] [Status] ServerSocket initialized.
+[06-01-2025 09:34:48] [Status] Server is running.
+[06-01-2025 09:34:52] [Connection] Client ('127.0.0.1', 54846) connection request accepted.
+[06-01-2025 09:34:52] [Handler] Starting to handle ('127.0.0.1', 54846).
+[06-01-2025 09:35:00] [Handler] Request received from ('127.0.0.1', 54846).
+[06-01-2025 09:35:00] [Handler] Request identified as Register from ('127.0.0.1', 54846).
+[06-01-2025 09:35:01] [Handler] Request passed all checks.
+[06-01-2025 09:35:01] [Server] User test2 registered.
+[06-01-2025 09:35:05] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[06-01-2025 09:35:05] [Handler] Request received from ('127.0.0.1', 54846).
+=============== Initiating the server. ===============
+[06-01-2025 10:09:34] [Database] Database worker is running
+[06-01-2025 10:09:35] [Status] ServerSocket initialized.
+[06-01-2025 10:09:35] [Status] Server is running.
+[06-01-2025 10:09:55] [Connection] Client ('127.0.0.1', 55235) connection request accepted.
+[06-01-2025 10:09:55] [Handler] Starting to handle ('127.0.0.1', 55235).
+[06-01-2025 10:09:59] [Handler] Request received from ('127.0.0.1', 55235).
+[06-01-2025 10:09:59] [Handler] Request identified as Login from ('127.0.0.1', 55235).
+[06-01-2025 10:09:59] [Handler Error] Invalid credentials.
+[06-01-2025 10:10:14] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[06-01-2025 10:10:14] [Handler] Request received from ('127.0.0.1', 55235).
+=============== Initiating the server. ===============
+[06-01-2025 10:10:16] [Database] Database worker is running
+[06-01-2025 10:10:16] [Status] ServerSocket initialized.
+[06-01-2025 10:10:16] [Status] Server is running.
+[06-01-2025 10:10:18] [Connection] Client ('127.0.0.1', 55241) connection request accepted.
+[06-01-2025 10:10:18] [Handler] Starting to handle ('127.0.0.1', 55241).
+[06-01-2025 10:10:21] [Handler] Request received from ('127.0.0.1', 55241).
+[06-01-2025 10:10:21] [Handler] Request identified as Register from ('127.0.0.1', 55241).
+[06-01-2025 10:10:21] [Handler] Request passed all checks.
+[06-01-2025 10:10:22] [Server] User test registered.
+=============== Initiating the server. ===============
+[06-01-2025 10:17:47] [Database] Database worker is running
+[06-01-2025 10:17:47] [Status] ServerSocket initialized.
+[06-01-2025 10:17:47] [Status] Server is running.
+[06-01-2025 10:17:49] [Connection] Client ('127.0.0.1', 55307) connection request accepted.
+[06-01-2025 10:17:49] [Handler] Starting to handle ('127.0.0.1', 55307).
+[06-01-2025 10:17:52] [Handler] Request received from ('127.0.0.1', 55307).
+[06-01-2025 10:17:52] [Handler] Request identified as Login from ('127.0.0.1', 55307).
+=============== Initiating the server. ===============
+[06-01-2025 10:22:49] [Database] Database worker is running
+[06-01-2025 10:22:50] [Status] ServerSocket initialized.
+[06-01-2025 10:22:50] [Status] Server is running.
+[06-01-2025 10:22:51] [Connection] Client ('127.0.0.1', 55345) connection request accepted.
+[06-01-2025 10:22:51] [Handler] Starting to handle ('127.0.0.1', 55345).
+[06-01-2025 10:22:54] [Handler] Request received from ('127.0.0.1', 55345).
+[06-01-2025 10:22:54] [Handler] Request identified as Register from ('127.0.0.1', 55345).
+[06-01-2025 10:22:54] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+=============== Initiating the server. ===============
+[06-01-2025 10:23:09] [Database] Database worker is running
+[06-01-2025 10:23:09] [Status] ServerSocket initialized.
+[06-01-2025 10:23:09] [Status] Server is running.
+[06-01-2025 10:23:10] [Connection] Client ('127.0.0.1', 55351) connection request accepted.
+[06-01-2025 10:23:10] [Handler] Starting to handle ('127.0.0.1', 55351).
+[06-01-2025 10:23:13] [Handler] Request received from ('127.0.0.1', 55351).
+[06-01-2025 10:23:13] [Handler] Request identified as Login from ('127.0.0.1', 55351).
+[06-01-2025 10:23:14] [Database] Error processing db task: Database.read() missing 1 required positional argument: 'collection'
+=============== Initiating the server. ===============
+[06-01-2025 10:23:39] [Database] Database worker is running
+[06-01-2025 10:23:39] [Status] ServerSocket initialized.
+[06-01-2025 10:23:40] [Status] Server is running.
+[06-01-2025 10:23:41] [Connection] Client ('127.0.0.1', 55352) connection request accepted.
+[06-01-2025 10:23:41] [Handler] Starting to handle ('127.0.0.1', 55352).
+[06-01-2025 10:23:44] [Handler] Request received from ('127.0.0.1', 55352).
+[06-01-2025 10:23:44] [Handler] Request identified as Login from ('127.0.0.1', 55352).
+=============== Initiating the server. ===============
+[06-01-2025 10:26:09] [Database] Database worker is running
+[06-01-2025 10:26:09] [Status] ServerSocket initialized.
+[06-01-2025 10:26:09] [Status] Server is running.
+[06-01-2025 10:26:10] [Connection] Client ('127.0.0.1', 55369) connection request accepted.
+[06-01-2025 10:26:11] [Handler] Starting to handle ('127.0.0.1', 55369).
+[06-01-2025 10:26:15] [Handler] Request received from ('127.0.0.1', 55369).
+[06-01-2025 10:26:15] [Handler] Request identified as Login from ('127.0.0.1', 55369).
+=============== Initiating the server. ===============
+[06-01-2025 10:26:37] [Database] Database worker is running
+[06-01-2025 10:26:38] [Status] ServerSocket initialized.
+[06-01-2025 10:26:38] [Status] Server is running.
+[06-01-2025 10:26:39] [Connection] Client ('127.0.0.1', 55375) connection request accepted.
+[06-01-2025 10:26:39] [Handler] Starting to handle ('127.0.0.1', 55375).
+[06-01-2025 10:26:42] [Handler] Request received from ('127.0.0.1', 55375).
+[06-01-2025 10:26:42] [Handler] Request identified as Login from ('127.0.0.1', 55375).
+=============== Initiating the server. ===============
+[06-01-2025 10:28:35] [Database] Database worker is running
+[06-01-2025 10:28:35] [Status] ServerSocket initialized.
+[06-01-2025 10:28:35] [Status] Server is running.
+[06-01-2025 10:28:40] [Connection] Client ('127.0.0.1', 55478) connection request accepted.
+[06-01-2025 10:28:40] [Handler] Starting to handle ('127.0.0.1', 55478).
+[06-01-2025 10:28:43] [Handler] Request received from ('127.0.0.1', 55478).
+[06-01-2025 10:28:43] [Handler] Request identified as Login from ('127.0.0.1', 55478).
+=============== Initiating the server. ===============
+[06-01-2025 10:32:27] [Database] Database worker is running
+[06-01-2025 10:32:27] [Status] ServerSocket initialized.
+[06-01-2025 10:32:27] [Status] Server is running.
+[06-01-2025 10:32:28] [Connection] Client ('127.0.0.1', 55517) connection request accepted.
+[06-01-2025 10:32:28] [Handler] Starting to handle ('127.0.0.1', 55517).
+[06-01-2025 10:32:32] [Handler] Request received from ('127.0.0.1', 55517).
+[06-01-2025 10:32:32] [Handler] Request identified as Login from ('127.0.0.1', 55517).
+[06-01-2025 10:32:32] [Handler] Request passed all checks.
+[06-01-2025 10:32:33] [Server] User test logged in successfully.

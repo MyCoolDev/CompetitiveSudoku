@@ -70,12 +70,10 @@ class Client:
                 return None
 
             # save the checksum.
-            recv_checksum = request["checksum"]
+            recv_checksum = request["Checksum"]
 
             # delete the checksum from the original request.
-            del request["checksum"]
-
-            print(request)
+            del request["Checksum"]
 
             # generate a new checksum for the request.
             current_checksum = self.create_checksum(request)
@@ -134,7 +132,7 @@ class Client:
 
         except Exception as e:
             # print the exception to the console
-            print(e)
+            utils.server_print("Handler | send_response", str(e))
 
             return False
 

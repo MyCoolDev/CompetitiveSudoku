@@ -22,13 +22,23 @@ class LogRegister(BaseState):
     def update(self, dt: float, events: list, *args, **kwargs):
         self.username_textbox.update(dt, events)
         self.password_textbox.update(dt, events)
-        self.login.update(dt, events)
+        if self.login.update(dt, events):
+            self.login_func()
 
         if self.register.update(dt, events):
             self.register_func()
 
     def register_func(self):
-        print(self.client.send_request("Register", {"Username": self.username_textbox.content, "Password": self.password_textbox.content}))
+        response = self.client.send_request("Register", {"Username": self.username_textbox.content, "Password": self.password_textbox.content})
+        if response["StatusCode"] == 201:
+            print("Registered successfully")
+            self.client.set_token(response["Data"]["Token"])
+
+    def login_func(self):
+        response = self.client.send_request("Login", {"Username": self.username_textbox.content, "Password": self.password_textbox.content})
+        if response["StatusCode"] == 200:
+            print("Login successfully")
+            self.client.set_token(response["Data"]["Token"])
 
     def render(self, *args, **kwargs):
         self.title.render(self.screen)

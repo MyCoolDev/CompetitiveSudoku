@@ -12,6 +12,9 @@ class ClientSocket:
         self.server_address = "127.0.0.1"
         self.server_port = 8080
 
+        # auth token
+        self.token = None
+
         try:
             self.socket = socket.socket()
             self.socket.connect((self.server_address, self.server_port))
@@ -33,6 +36,9 @@ class ClientSocket:
             "Data": data,
         }
 
+        if self.token is not None:
+            request["Token"] = self.token
+
         # calc the checksum, md5 to hex.
         checksum = self.create_checksum(request)
 
@@ -53,16 +59,16 @@ class ClientSocket:
             print("Request sent.")
 
             # wait for the request to arrive.
-            response = self.socket.recv(1024).decode('utf-8').lower()
+            response = self.socket.recv(1024).decode('utf-8')
 
             # convert to json object.
             response = json.loads(response)
 
             # save the checksum.
-            recv_checksum = response["checksum"]
+            recv_checksum = response["Checksum"]
 
             # delete the checksum from the original request.
-            del response["checksum"]
+            del response["Checksum"]
 
             # generate a new checksum for the request.
             current_checksum = self.create_checksum(response)
@@ -74,6 +80,12 @@ class ClientSocket:
             return response
         except Exception as e:
             print(e)
+
+    def set_token(self, token: str):
+        """
+        set the authentication token
+        """
+        self.token = token
 
     @staticmethod
     def create_checksum(subject: dict) -> str:

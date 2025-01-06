@@ -1,6 +1,8 @@
 import pygame
 
 from States.LogRegisterState import LogRegister
+from States.Home import Home
+
 from client import ClientSocket
 
 
@@ -43,6 +45,9 @@ class App:
 
     def update(self):
         self.current_state.update(self.dt, self.events)
+
+        if self.client.token is not None:
+            self.current_state = Home(self.screen, self.client)
 
     def render(self):
         self.current_state.render()

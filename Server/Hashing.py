@@ -5,6 +5,7 @@ Manage all the hashing function that the server use.
 import hashlib
 import bcrypt
 
+
 def hash_password(password: str) -> bytes:
     """
     hash the password using bcrypt.
@@ -19,6 +20,7 @@ def hash_password(password: str) -> bytes:
 
     return hashed
 
+
 def hash_password_with_salt(password: str, salt: bytes) -> bytes:
     """
     hash the password using bcrypt and the given salt.
@@ -29,6 +31,7 @@ def hash_password_with_salt(password: str, salt: bytes) -> bytes:
     hashed = bcrypt.hashpw(password.encode(), salt)
 
     return hashed
+
 
 def check_password(hashed_password: bytes, password: str) -> bool:
     """

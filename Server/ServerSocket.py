@@ -1,5 +1,8 @@
 import socket
 import datetime as dt
+import random
+import string
+import codecs
 
 import utils
 from ClientInterface import Client
@@ -99,7 +102,14 @@ class ServerSocket:
                 utils.server_print("Handler", "Request passed all checks.")
 
                 print(api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database))
-                client.send_response(201, "Created", {"Msg": "User registered."})
+
+                # generate auth token
+                token = self.generate_auth_token()
+
+                # update the token dict
+                self.tokens[token] = request["Data"]["Username"]
+
+                client.send_response(201, "Created", {"Msg": "User registered.", "Token": token})
                 utils.server_print("Server", "User " + request["Data"]["Username"] + " registered.")
 
             elif request["Command"].lower() == "login":
@@ -111,15 +121,25 @@ class ServerSocket:
                     continue
 
                 information = api.account.get(request["Data"]["Username"], self.database)
+                print(information)
 
-                if information is None or not Hashing.check_password(bytes.fromhex(information["Password"]),
+                print(bytes.fromhex(information["password"]))
+
+                if information is None or not Hashing.check_password(bytes.fromhex(information["password"]),
                                                                      request["Data"]["Password"]):
                     utils.server_print("Handler Error", "Invalid credentials.")
                     client.send_response(404, "Not Found", {"Msg": "Invalid Credentials."})
                     continue
 
                 utils.server_print("Handler", "Request passed all checks.")
-                client.send_response(200, "OK", {"Msg": "Logged in successfully."})
+
+                # generate auth token
+                token = self.generate_auth_token()
+
+                # update the token dict
+                self.tokens[token] = request["Data"]["Username"]
+
+                client.send_response(200, "OK", {"Msg": "Logged in successfully.", "Token": token})
                 utils.server_print("Server", "User " + request["Data"]["Username"] + " logged in successfully.")
 
             elif request["Command"].lower() == "create_lobby":
@@ -147,7 +167,16 @@ class ServerSocket:
                 pass
 
     def generate_auth_token(self):
-        pass
+        """
+        generate an auth token to the user.
+        """
+
+        token = "".join([random.choice(string.hexdigits) for _ in range(32)])
+
+        while token in self.tokens:
+            token = "".join([random.choice(string.hexdigits) for _ in range(32)])
+
+        return token
 
     # -- Server running status --
 

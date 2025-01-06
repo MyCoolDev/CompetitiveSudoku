@@ -25,7 +25,7 @@ def register(username: str, password: str, db_interface: Database) -> bool:
 
     users[username] = {
         "password": hashed_password,
-        "last_login": datetime.datetime.now()
+        "last_login": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     }
 
     return db_interface.submit_update("Users", users)

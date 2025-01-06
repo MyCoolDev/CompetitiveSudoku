@@ -1,6 +1,7 @@
 import json
 from queue import Queue
 import threading
+import os
 
 from abc import ABC, abstractmethod
 
@@ -21,7 +22,7 @@ class Database:
         self.profile = "Tests" if profile not in [0, 1] else "Tests" if profile == 0 else "Official"
 
         # the Queue.Queue is thread-safe, so multiple threads can access it concurrently.
-        self.task_queue = Queue()
+        self.task_queue = []
         self.shutdown_event = threading.Event()
 
         # create the thread
@@ -39,22 +40,20 @@ class Database:
         while not self.shutdown_event.is_set():
             try:
                 # get a task from the queue
-                task, result_queue, args, kwargs = self.task_queue.get(timeout=1)
+                obj = self.task_queue.pop(0)
+
+                print(obj)
 
                 try:
                     # execute the task and store the result
-                    result = task(*args, **kwargs)
+                    result = obj[0](*obj[2])
 
-                    if result_queue:
+                    if obj[1]:
                         # push the result to the result queue
-                        result_queue.put(result)
+                        obj[1].put(result)
 
                 except Exception as e:
                     utils.server_print("Database", f"Error processing db task: {e}")
-
-                finally:
-                    # mark the task as done
-                    self.task_queue.task_done()
             finally:
                 continue
 
@@ -66,17 +65,17 @@ class Database:
         """
         result_queue = Queue()
 
-        self.task_queue.put((self.read, result_queue, collection))
+        self.task_queue.append((self.read, result_queue, [self.profile, collection]))
 
         while result_queue.empty():
             continue
 
         return result_queue.get()
 
-    def read(self, collection: str) -> str or None:
+    @staticmethod
+    def read(profile, collection: str) -> str or None:
         try:
-            with open(f"/{self.profile}/{collection}.json", "r") as f:
-                print(f"/{self.profile}/{collection}.json")
+            with open(os.getcwd() + f"\\Database\\{profile}\\{collection}.json", "r") as f:
                 data = json.load(f)
 
                 return data
@@ -99,17 +98,18 @@ class Database:
         """
         result_queue = Queue()
 
-        self.task_queue.put((self.read, result_queue, collection, data))
+        self.task_queue.append((self.update, result_queue, [self.profile, collection, data]))
 
         while result_queue.empty():
             continue
 
         return result_queue.get()
 
-    def update(self, collection: str, data: dict) -> bool:
+    @staticmethod
+    def update(profile: str, collection: str, data: dict) -> bool:
         try:
-            with open(f"/{self.profile}/{collection}.json", "w") as f:
-                f.write(json.dumps(data))
+            with open(os.getcwd() + f"\\Database\\{profile}\\{collection}.json", "w") as f:
+                f.write(json.dumps(data, indent=4))
 
             return True
         except Exception as e:

@@ -37,12 +37,14 @@ class Database:
         utils.server_print("Database", "Database worker is running")
 
     def worker(self):
+        """
+        The worker function that will handle all the db jobs
+        :return:
+        """
         while not self.shutdown_event.is_set():
             try:
                 # get a task from the queue
                 obj = self.task_queue.pop(0)
-
-                print(obj)
 
                 try:
                     # execute the task and store the result

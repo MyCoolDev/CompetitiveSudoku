@@ -717,3 +717,43 @@
 [06-01-2025 10:32:32] [Handler] Request identified as Login from ('127.0.0.1', 55517).
 [06-01-2025 10:32:32] [Handler] Request passed all checks.
 [06-01-2025 10:32:33] [Server] User test logged in successfully.
+[06-01-2025 21:06:39] [Connection] Client ('127.0.0.1', 52649) connection request accepted.
+[06-01-2025 21:06:39] [Handler] Starting to handle ('127.0.0.1', 52649).
+[06-01-2025 21:06:57] [Handler] Request received from ('127.0.0.1', 52649).
+[06-01-2025 21:06:57] [Handler] Request identified as Login from ('127.0.0.1', 52649).
+[06-01-2025 21:06:58] [Handler] Request passed all checks.
+[06-01-2025 21:06:58] [Server] User test logged in successfully.
+[06-01-2025 21:07:04] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[06-01-2025 21:07:04] [Handler] Request received from ('127.0.0.1', 52649).
+=============== Initiating the server. ===============
+[06-01-2025 21:33:49] [Database] Database worker is running
+[06-01-2025 21:33:50] [Status] ServerSocket initialized.
+[06-01-2025 21:33:50] [Status] Server is running.
+[06-01-2025 21:33:51] [Connection] Client ('127.0.0.1', 53358) connection request accepted.
+[06-01-2025 21:33:52] [Handler] Starting to handle ('127.0.0.1', 53358).
+[06-01-2025 21:33:54] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[06-01-2025 21:33:54] [Handler] Request received from ('127.0.0.1', 53358).
+=============== Initiating the server. ===============
+[06-01-2025 21:35:48] [Database] Database worker is running
+[06-01-2025 21:35:49] [Status] ServerSocket initialized.
+[06-01-2025 21:35:49] [Status] Server is running.
+[06-01-2025 21:35:50] [Connection] Client ('127.0.0.1', 53392) connection request accepted.
+[06-01-2025 21:35:51] [Handler] Starting to handle ('127.0.0.1', 53392).
+[06-01-2025 21:35:54] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[06-01-2025 21:35:54] [Handler] Request received from ('127.0.0.1', 53392).
+[06-01-2025 21:36:38] [Connection] Client ('127.0.0.1', 53406) connection request accepted.
+[06-01-2025 21:36:38] [Handler] Starting to handle ('127.0.0.1', 53406).
+[06-01-2025 21:36:53] [Handler] Request received from ('127.0.0.1', 53406).
+[06-01-2025 21:36:53] [Handler] Request identified as Login from ('127.0.0.1', 53406).
+[06-01-2025 21:36:54] [Handler] Request passed all checks.
+[06-01-2025 21:36:54] [Server] User test logged in successfully.
+[06-01-2025 21:36:57] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[06-01-2025 21:36:57] [Handler] Request received from ('127.0.0.1', 53406).
+=============== Initiating the server. ===============
+[06-01-2025 22:31:00] [Database] Database worker is running
+[06-01-2025 22:31:00] [Status] ServerSocket initialized.
+[06-01-2025 22:31:00] [Status] Server is running.
+[06-01-2025 22:31:02] [Connection] Client ('127.0.0.1', 54739) connection request accepted.
+[06-01-2025 22:31:02] [Handler] Starting to handle ('127.0.0.1', 54739).
+[06-01-2025 22:31:19] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[06-01-2025 22:31:19] [Handler] Request received from ('127.0.0.1', 54739).

@@ -16,6 +16,7 @@ class BaseState:
         """
         initiate the vars
         """
+        pass
 
     def update(self, dt: float, events: list, *args, **kwargs):
         """
@@ -26,6 +27,7 @@ class BaseState:
         :param kwargs:
         :return:
         """
+        pass
 
     def render(self, *args, **kwargs):
         """
@@ -34,3 +36,4 @@ class BaseState:
         :param kwargs:
         :return:
         """
+        pass

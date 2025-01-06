@@ -50,6 +50,7 @@ class App:
             self.current_state = Home(self.screen, self.client)
 
     def render(self):
+        self.screen.fill((30, 30, 30))
         self.current_state.render()
         pygame.display.flip()
         self.dt = self.clock.tick(60) / 1000

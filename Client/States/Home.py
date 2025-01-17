@@ -13,10 +13,13 @@ class Home(BaseState):
         self.__init_vars()
 
     def __init_vars(self, *args, **kwargs) -> None:
-        pass
+        self.title = Text("Competitive Sudoku", "Poppins", 24, True, pygame.Vector2(self.screen.get_width() / 2, self.screen.get_height() / 5), (255, 255, 255))
+        self.lobby_code = TextBox(pygame.Vector2(self.screen.get_width() / 4, 60), pygame.Vector2(self.screen.get_width() / 3, 3.5 * self.screen.get_height() / 7), (226, 226, 226), "Enter Lobby Code", "Poppins", 16, (30, 30, 30), padding_left=20, padding_right=20, border_radius=10, hidden=True)
 
     def update(self, dt: float, events: list, *args, **kwargs):
-        pass
+        # self.lobby_code.update()
+        self.lobby_code.update(dt, events)
 
     def render(self, *args, **kwargs):
-        pass
+        self.title.render(self.screen)
+        self.lobby_code.render(self.screen)

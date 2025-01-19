@@ -13,13 +13,16 @@ class Home(BaseState):
         self.__init_vars()
 
     def __init_vars(self, *args, **kwargs) -> None:
-        self.title = Text("Competitive Sudoku", "Poppins", 24, True, pygame.Vector2(self.screen.get_width() / 2, self.screen.get_height() / 5), (255, 255, 255))
-        self.lobby_code = TextBox(pygame.Vector2(self.screen.get_width() / 4, 60), pygame.Vector2(self.screen.get_width() / 3, 3.5 * self.screen.get_height() / 7), (226, 226, 226), "Enter Lobby Code", "Poppins", 16, (30, 30, 30), padding_left=20, padding_right=20, border_radius=10, hidden=True)
+        self.title = Text("Competitive Sudoku", "Poppins", 24, True, pygame.Vector2(self.screen.get_width() / 2, 1 * self.screen.get_height() / 7), (255, 255, 255))
+        self.lobby_code = TextBox(pygame.Vector2(self.screen.get_width() / 4, 60), pygame.Vector2((self.screen.get_width() / 2 - 10) / 2, 5 * self.screen.get_height() / 7), (226, 226, 226), "Enter Lobby Code", "Poppins", 16, (30, 30, 30), padding_left=20, padding_right=20, border_radius=10)
+        self.join_lobby_button = Button(pygame.Vector2(self.screen.get_width() / 5, 60), pygame.Vector2(self.screen.get_width() / 2 + 10, 5 * self.screen.get_height() / 7), (129, 129, 129), "Join Lobby", "Poppins", 16, (226, 226, 226), top_left_mode=True, border_radius=10)
+        self.create_lobby_button = Button(pygame.Vector2(self.screen.get_width() / 3.5, 60), pygame.Vector2(self.screen.get_width() / 2, 6 * self.screen.get_height() / 7), (36, 123, 255), "Create Lobby", "Poppins", 16, (226, 226, 226), border_radius=10)
 
     def update(self, dt: float, events: list, *args, **kwargs):
-        # self.lobby_code.update()
         self.lobby_code.update(dt, events)
 
     def render(self, *args, **kwargs):
         self.title.render(self.screen)
         self.lobby_code.render(self.screen)
+        self.join_lobby_button.render(self.screen)
+        self.create_lobby_button.render(self.screen)

@@ -81,3 +81,158 @@
 [17-01-2025 12:58:36] [Server] User test logged in successfully.
 [17-01-2025 12:58:39] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
 [17-01-2025 12:58:39] [Handler] Request received from ('127.0.0.1', 50324).
+=============== Initiating the server. ===============
+[17-01-2025 15:12:13] [Database] Database worker is running
+[17-01-2025 15:12:13] [Status] ServerSocket initialized.
+[17-01-2025 15:12:13] [Status] Server is running.
+[17-01-2025 15:12:16] [Connection] Client ('127.0.0.1', 62151) connection request accepted.
+[17-01-2025 15:12:16] [Handler] Starting to handle ('127.0.0.1', 62151).
+[17-01-2025 15:12:20] [Handler] Request received from ('127.0.0.1', 62151).
+[17-01-2025 15:12:20] [Handler] Request identified as Login from ('127.0.0.1', 62151).
+[17-01-2025 15:12:20] [Handler] Request passed all checks.
+[17-01-2025 15:12:20] [Server] User test logged in successfully.
+[17-01-2025 15:12:27] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:12:27] [Handler] Request received from ('127.0.0.1', 62151).
+[17-01-2025 15:13:07] [Connection] Client ('127.0.0.1', 62174) connection request accepted.
+[17-01-2025 15:13:08] [Handler] Starting to handle ('127.0.0.1', 62174).
+[17-01-2025 15:13:12] [Handler] Request received from ('127.0.0.1', 62174).
+[17-01-2025 15:13:12] [Handler] Request identified as Login from ('127.0.0.1', 62174).
+[17-01-2025 15:13:12] [Handler] Request passed all checks.
+[17-01-2025 15:13:12] [Server] User test logged in successfully.
+[17-01-2025 15:13:16] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:13:16] [Handler] Request received from ('127.0.0.1', 62174).
+[17-01-2025 15:14:06] [Connection] Client ('127.0.0.1', 62191) connection request accepted.
+[17-01-2025 15:14:06] [Handler] Starting to handle ('127.0.0.1', 62191).
+[17-01-2025 15:14:09] [Handler] Request received from ('127.0.0.1', 62191).
+[17-01-2025 15:14:10] [Handler] Request identified as Login from ('127.0.0.1', 62191).
+[17-01-2025 15:14:10] [Handler] Request passed all checks.
+[17-01-2025 15:14:10] [Server] User test logged in successfully.
+[17-01-2025 15:14:15] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:14:15] [Handler] Request received from ('127.0.0.1', 62191).
+[17-01-2025 15:20:50] [Connection] Client ('127.0.0.1', 62307) connection request accepted.
+[17-01-2025 15:20:50] [Handler] Starting to handle ('127.0.0.1', 62307).
+[17-01-2025 15:20:54] [Handler] Request received from ('127.0.0.1', 62307).
+[17-01-2025 15:20:55] [Handler] Request identified as Login from ('127.0.0.1', 62307).
+[17-01-2025 15:20:55] [Handler] Request passed all checks.
+[17-01-2025 15:20:55] [Server] User test logged in successfully.
+[17-01-2025 15:21:04] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:21:04] [Handler] Request received from ('127.0.0.1', 62307).
+[17-01-2025 15:22:46] [Connection] Client ('127.0.0.1', 62335) connection request accepted.
+[17-01-2025 15:22:46] [Handler] Starting to handle ('127.0.0.1', 62335).
+[17-01-2025 15:22:50] [Handler] Request received from ('127.0.0.1', 62335).
+[17-01-2025 15:22:50] [Handler] Request identified as Login from ('127.0.0.1', 62335).
+[17-01-2025 15:22:50] [Handler] Request passed all checks.
+[17-01-2025 15:22:50] [Server] User test logged in successfully.
+[17-01-2025 15:22:50] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:22:51] [Handler] Request received from ('127.0.0.1', 62335).
+[17-01-2025 15:27:47] [Connection] Client ('127.0.0.1', 62474) connection request accepted.
+[17-01-2025 15:27:47] [Handler] Starting to handle ('127.0.0.1', 62474).
+[17-01-2025 15:27:51] [Handler] Request received from ('127.0.0.1', 62474).
+[17-01-2025 15:27:51] [Handler] Request identified as Login from ('127.0.0.1', 62474).
+[17-01-2025 15:27:51] [Handler] Request passed all checks.
+[17-01-2025 15:27:52] [Server] User test logged in successfully.
+[17-01-2025 15:27:55] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:27:55] [Handler] Request received from ('127.0.0.1', 62474).
+[17-01-2025 15:28:14] [Connection] Client ('127.0.0.1', 62489) connection request accepted.
+[17-01-2025 15:28:15] [Handler] Starting to handle ('127.0.0.1', 62489).
+[17-01-2025 15:28:18] [Handler] Request received from ('127.0.0.1', 62489).
+[17-01-2025 15:28:19] [Handler] Request identified as Login from ('127.0.0.1', 62489).
+[17-01-2025 15:28:19] [Handler] Request passed all checks.
+[17-01-2025 15:28:19] [Server] User test logged in successfully.
+[17-01-2025 15:28:24] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:28:24] [Handler] Request received from ('127.0.0.1', 62489).
+[17-01-2025 15:29:33] [Connection] Client ('127.0.0.1', 62524) connection request accepted.
+[17-01-2025 15:29:33] [Handler] Starting to handle ('127.0.0.1', 62524).
+[17-01-2025 15:29:37] [Handler] Request received from ('127.0.0.1', 62524).
+[17-01-2025 15:29:37] [Handler] Request identified as Login from ('127.0.0.1', 62524).
+[17-01-2025 15:29:38] [Handler] Request passed all checks.
+[17-01-2025 15:29:38] [Server] User test logged in successfully.
+[17-01-2025 15:29:43] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:29:44] [Handler] Request received from ('127.0.0.1', 62524).
+[17-01-2025 15:29:57] [Connection] Client ('127.0.0.1', 62535) connection request accepted.
+[17-01-2025 15:29:58] [Handler] Starting to handle ('127.0.0.1', 62535).
+[17-01-2025 15:30:01] [Handler] Request received from ('127.0.0.1', 62535).
+[17-01-2025 15:30:01] [Handler] Request identified as Login from ('127.0.0.1', 62535).
+[17-01-2025 15:30:02] [Handler] Request passed all checks.
+[17-01-2025 15:30:02] [Server] User test logged in successfully.
+[17-01-2025 15:30:12] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:30:12] [Handler] Request received from ('127.0.0.1', 62535).
+[17-01-2025 15:30:22] [Connection] Client ('127.0.0.1', 62550) connection request accepted.
+[17-01-2025 15:30:22] [Handler] Starting to handle ('127.0.0.1', 62550).
+[17-01-2025 15:30:26] [Handler] Request received from ('127.0.0.1', 62550).
+[17-01-2025 15:30:26] [Handler] Request identified as Login from ('127.0.0.1', 62550).
+[17-01-2025 15:30:26] [Handler] Request passed all checks.
+[17-01-2025 15:30:26] [Server] User test logged in successfully.
+[17-01-2025 15:30:32] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:30:32] [Handler] Request received from ('127.0.0.1', 62550).
+[17-01-2025 15:38:46] [Connection] Client ('127.0.0.1', 62713) connection request accepted.
+[17-01-2025 15:38:46] [Handler] Starting to handle ('127.0.0.1', 62713).
+[17-01-2025 15:38:50] [Handler] Request received from ('127.0.0.1', 62713).
+[17-01-2025 15:38:50] [Handler] Request identified as Login from ('127.0.0.1', 62713).
+[17-01-2025 15:38:50] [Handler] Request passed all checks.
+[17-01-2025 15:38:50] [Server] User test logged in successfully.
+[17-01-2025 15:38:53] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:38:53] [Handler] Request received from ('127.0.0.1', 62713).
+[17-01-2025 15:39:00] [Connection] Client ('127.0.0.1', 62718) connection request accepted.
+[17-01-2025 15:39:01] [Handler] Starting to handle ('127.0.0.1', 62718).
+[17-01-2025 15:39:04] [Handler] Request received from ('127.0.0.1', 62718).
+[17-01-2025 15:39:04] [Handler] Request identified as Login from ('127.0.0.1', 62718).
+[17-01-2025 15:39:04] [Handler] Request passed all checks.
+[17-01-2025 15:39:04] [Server] User test logged in successfully.
+[17-01-2025 15:39:07] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:39:07] [Handler] Request received from ('127.0.0.1', 62718).
+[17-01-2025 15:40:07] [Connection] Client ('127.0.0.1', 62737) connection request accepted.
+[17-01-2025 15:40:07] [Handler] Starting to handle ('127.0.0.1', 62737).
+[17-01-2025 15:40:10] [Handler] Request received from ('127.0.0.1', 62737).
+[17-01-2025 15:40:10] [Handler] Request identified as Login from ('127.0.0.1', 62737).
+[17-01-2025 15:40:10] [Handler] Request passed all checks.
+[17-01-2025 15:40:11] [Server] User test logged in successfully.
+[17-01-2025 15:40:46] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:40:47] [Handler] Request received from ('127.0.0.1', 62737).
+[17-01-2025 15:40:47] [Connection] Client ('127.0.0.1', 62754) connection request accepted.
+[17-01-2025 15:40:48] [Handler] Starting to handle ('127.0.0.1', 62754).
+[17-01-2025 15:40:51] [Handler] Request received from ('127.0.0.1', 62754).
+[17-01-2025 15:40:51] [Handler] Request identified as Login from ('127.0.0.1', 62754).
+[17-01-2025 15:40:51] [Handler] Request passed all checks.
+[17-01-2025 15:40:51] [Server] User test logged in successfully.
+[17-01-2025 15:40:55] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:40:55] [Handler] Request received from ('127.0.0.1', 62754).
+[17-01-2025 15:41:04] [Connection] Client ('127.0.0.1', 62759) connection request accepted.
+[17-01-2025 15:41:05] [Handler] Starting to handle ('127.0.0.1', 62759).
+[17-01-2025 15:41:08] [Handler] Request received from ('127.0.0.1', 62759).
+[17-01-2025 15:41:08] [Handler] Request identified as Login from ('127.0.0.1', 62759).
+[17-01-2025 15:41:08] [Handler] Request passed all checks.
+[17-01-2025 15:41:08] [Server] User test logged in successfully.
+[17-01-2025 15:41:11] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:41:11] [Handler] Request received from ('127.0.0.1', 62759).
+[17-01-2025 15:41:34] [Connection] Client ('127.0.0.1', 62767) connection request accepted.
+[17-01-2025 15:41:35] [Handler] Starting to handle ('127.0.0.1', 62767).
+[17-01-2025 15:41:38] [Handler] Request received from ('127.0.0.1', 62767).
+[17-01-2025 15:41:38] [Handler] Request identified as Login from ('127.0.0.1', 62767).
+[17-01-2025 15:41:38] [Handler] Request passed all checks.
+[17-01-2025 15:41:39] [Server] User test logged in successfully.
+[17-01-2025 15:41:40] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:41:41] [Handler] Request received from ('127.0.0.1', 62767).
+[17-01-2025 15:41:47] [Connection] Client ('127.0.0.1', 62770) connection request accepted.
+[17-01-2025 15:41:47] [Handler] Starting to handle ('127.0.0.1', 62770).
+[17-01-2025 15:41:51] [Handler] Request received from ('127.0.0.1', 62770).
+[17-01-2025 15:41:51] [Handler] Request identified as Login from ('127.0.0.1', 62770).
+[17-01-2025 15:41:52] [Handler Error] Invalid credentials.
+[17-01-2025 15:41:59] [Handler] Request received from ('127.0.0.1', 62770).
+[17-01-2025 15:41:59] [Handler] Request identified as Login from ('127.0.0.1', 62770).
+[17-01-2025 15:41:59] [Handler] Request passed all checks.
+[17-01-2025 15:41:59] [Server] User test logged in successfully.
+[17-01-2025 15:43:27] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:43:27] [Handler] Request received from ('127.0.0.1', 62770).
+[17-01-2025 15:44:09] [Connection] Client ('127.0.0.1', 62839) connection request accepted.
+[17-01-2025 15:44:09] [Handler] Starting to handle ('127.0.0.1', 62839).
+[17-01-2025 15:44:18] [Handler] Request received from ('127.0.0.1', 62839).
+[17-01-2025 15:44:19] [Handler] Request identified as Login from ('127.0.0.1', 62839).
+[17-01-2025 15:44:19] [Handler] Request passed all checks.
+[17-01-2025 15:44:19] [Server] User test logged in successfully.
+[17-01-2025 15:44:26] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:44:26] [Handler] Request received from ('127.0.0.1', 62839).
+[17-01-2025 15:44:35] [Connection] Client ('127.0.0.1', 62848) connection request accepted.
+[17-01-2025 15:44:35] [Handler] Starting to handle ('127.0.0.1', 62848).
+[17-01-2025 15:44:49] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[17-01-2025 15:44:49] [Handler] Request received from ('127.0.0.1', 62848).

@@ -101,8 +101,6 @@ class ServerSocket:
 
                 utils.server_print("Handler", "Request passed all checks.")
 
-                print(api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database))
-
                 # generate auth token
                 token = self.generate_auth_token()
 
@@ -121,9 +119,6 @@ class ServerSocket:
                     continue
 
                 information = api.account.get(request["Data"]["Username"], self.database)
-                print(information)
-
-                print(bytes.fromhex(information["password"]))
 
                 if information is None or not Hashing.check_password(bytes.fromhex(information["password"]),
                                                                      request["Data"]["Password"]):

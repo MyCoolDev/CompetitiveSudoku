@@ -13,7 +13,7 @@ class App:
         """
         pygame.init()
 
-        self.screen = pygame.display.set_mode((1200, 800))
+        self.screen = pygame.display.set_mode((1920, 1080), pygame.NOFRAME)
         self.clock = pygame.time.Clock()
         self.events = None
         self.running = False
@@ -38,18 +38,32 @@ class App:
         pygame.quit()
 
     def handle_events(self, events):
+        """
+        Handle the pygame events
+        :param events:
+        :return:
+        """
         for event in events:
             # quit event for the close button on the top nav.
             if event.type == pygame.QUIT:
                 self.running = False
 
     def update(self):
+        """
+        Update all the objects
+        :return:
+        """
+        # update using the state
         self.current_state.update(self.dt, self.events)
 
-        if self.client.token is not None:
+        if self.client.token is not None and type(self.current_state) == LogRegister:
             self.current_state = Home(self.screen, self.client)
 
     def render(self):
+        """
+        render everything to the screen
+        :return:
+        """
         self.screen.fill((30, 30, 30))
         self.current_state.render()
         pygame.display.flip()

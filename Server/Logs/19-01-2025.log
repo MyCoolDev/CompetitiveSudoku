@@ -1,0 +1,24 @@
+=============== Initiating the server. ===============
+[19-01-2025 20:56:18] [Database] Database worker is running
+[19-01-2025 20:56:19] [Status] ServerSocket initialized.
+[19-01-2025 20:56:19] [Status] Server is running.
+[19-01-2025 20:56:22] [Connection] Client ('127.0.0.1', 52751) connection request accepted.
+[19-01-2025 20:56:22] [Handler] Starting to handle ('127.0.0.1', 52751).
+[19-01-2025 20:56:27] [Handler] Request received from ('127.0.0.1', 52751).
+[19-01-2025 20:56:27] [Handler] Request identified as Login from ('127.0.0.1', 52751).
+[19-01-2025 20:56:27] [Handler] Request passed all checks.
+[19-01-2025 20:56:28] [Server] User test logged in successfully.
+[19-01-2025 20:56:32] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[19-01-2025 20:56:32] [Handler] Request received from ('127.0.0.1', 52751).
+=============== Initiating the server. ===============
+[19-01-2025 21:14:41] [Database] Database worker is running
+[19-01-2025 21:14:42] [Status] ServerSocket initialized.
+[19-01-2025 21:14:42] [Status] Server is running.
+[19-01-2025 21:14:44] [Connection] Client ('127.0.0.1', 53147) connection request accepted.
+[19-01-2025 21:14:44] [Handler] Starting to handle ('127.0.0.1', 53147).
+[19-01-2025 21:14:52] [Handler] Request received from ('127.0.0.1', 53147).
+[19-01-2025 21:14:52] [Handler] Request identified as Login from ('127.0.0.1', 53147).
+[19-01-2025 21:14:52] [Handler] Request passed all checks.
+[19-01-2025 21:14:53] [Server] User test logged in successfully.
+[19-01-2025 21:15:05] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[19-01-2025 21:15:05] [Handler] Request received from ('127.0.0.1', 53147).

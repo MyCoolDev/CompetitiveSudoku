@@ -3,9 +3,6 @@ All the user action system
 register, login, delete account, get information...
 """
 from Server.Database.Database import Database
-import hashlib
-import string
-import random
 import datetime
 import Server.Hashing as Hashing
 
@@ -26,6 +23,11 @@ def register(username: str, password: str, db_interface: Database) -> bool:
     users[username] = {
         "password": hashed_password,
         "last_login": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "messages": {
+            "seen": {},
+            "unseen": []
+        },
+        "friends": []
     }
 
     return db_interface.submit_update("Users", users)

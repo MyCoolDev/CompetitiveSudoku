@@ -14,6 +14,11 @@ All the user account related databases.
   "<username>": {
     "password": "<Hashed password>",
     "last_login": "<Date>",
+    "messages": {
+        "seen": {},
+        "unseen": []
+    },
+    "friends": [],
     ...
   }
 }

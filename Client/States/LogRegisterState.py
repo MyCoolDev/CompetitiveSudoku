@@ -17,7 +17,7 @@ class LogRegister(BaseState):
         self.password_textbox = TextBox(pygame.Vector2(self.screen.get_width() / 3, 60), pygame.Vector2(self.screen.get_width() / 3, 3.5 * self.screen.get_height() / 7), (226, 226, 226), "Enter Password", "Poppins", 16, (30, 30, 30), padding_left=20, padding_right=20, border_radius=10, hidden=True)
         self.username_textbox = TextBox(pygame.Vector2(self.screen.get_width() / 3, 60), pygame.Vector2(self.screen.get_width() / 3, 2.5 * self.screen.get_height() / 7), (226, 226, 226), "Enter Username", "Poppins", 16, (30, 30, 30), padding_left=20, padding_right=20, border_radius=10, next_input=self.password_textbox)
         self.login = Button(pygame.Vector2(self.screen.get_width() / 5, 60), pygame.Vector2((self.screen.get_width() - self.screen.get_width() / 5) / 2 - 10, 5.5 * self.screen.get_height() / 7), (36, 123, 255), "Login", "Poppins", 16, (226, 226, 226), border_radius=10)
-        self.register = Button(pygame.Vector2(self.screen.get_width() / 5, 60), pygame.Vector2((self.screen.get_width() + self.screen.get_width() / 5) / 2 + 10, 5.5 * self.screen.get_height() / 7), (36, 123, 255), "Register", "Poppins", 16, (226, 226, 226), border_radius=10)
+        self.register = Button(pygame.Vector2(self.screen.get_width() / 5, 60), pygame.Vector2((self.screen.get_width() + self.screen.get_width() / 5) / 2 + 10, 5.5 * self.screen.get_height() / 7), (129, 129, 129), "Register", "Poppins", 16, (226, 226, 226), border_radius=10)
 
     def update(self, dt: float, events: list, *args, **kwargs):
         self.username_textbox.update(dt, events)

@@ -46,12 +46,13 @@ class ServerSocket:
             # create a thread pool of client handling.
             self.threadpool = ThreadPool(self.MAX_CLIENTS)
 
-            # auth tokens
-            self.tokens = {
-                #   "token": "username"
-            }
-
             self.lobby_manager = LobbyManager()
+
+            # all the tokens that have been generated.
+            self.tokens = []
+
+            # request counter - used for request identification
+            self.requests = 0
 
             utils.server_print("Status", "ServerSocket initialized.")
         except Exception as e:
@@ -85,40 +86,46 @@ class ServerSocket:
 
         while client.running:
             request = client.get_request()
+            request_id = self.requests
+            self.requests += 1
 
-            utils.server_print("Handler", "Request received from " + str(client.address) + ".")
+            utils.server_print("Handler", f"Request ({request_id}) received from " + str(client.address) + ".")
 
             # route the command to the specific api path.
             if request["Command"].lower() == "register":
-                utils.server_print("Handler", "Request identified as Register from " + str(client.address) + ".")
+                utils.server_print("Handler", f"Request ({request_id}) identified as Register from " + str(client.address) + ".")
                 # register data should have username and password.
                 if "Username" not in request['Data'] or "Password" not in request['Data']:
-                    utils.server_print("Handler Error", "No username or password provided.")
+                    utils.server_print("Handler Error", f"Request ({request_id}), no username or password provided.")
                     client.send_response(400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
                     continue
 
                 # username should be unique
                 if request["Data"]["Username"] in self.database.submit_read("Users"):
-                    utils.server_print("Handler Error", "Username already registered.")
+                    utils.server_print("Handler Error", f"Request ({request_id}), Username already registered.")
                     client.send_response(409, "Conflict", {"Msg": "Username must be unique."})
                     continue
 
-                utils.server_print("Handler", "Request passed all checks.")
+                utils.server_print("Handler", f"Request ({request_id}), passed all checks.")
 
                 # generate auth token
                 token = self.generate_auth_token()
 
-                # update the token dict
-                self.tokens[token] = request["Data"]["Username"]
+                # add the token to the used token list
+                self.tokens.append(token)
+
+                # update the token and username to client object
+                client.token = token
+                client.username = request["Data"]["Username"]
 
                 client.send_response(201, "Created", {"Msg": "User registered.", "Token": token})
-                utils.server_print("Server", "User " + request["Data"]["Username"] + " registered.")
+                utils.server_print("Server", f"Request ({request_id}), User " + request["Data"]["Username"] + " registered.")
 
             elif request["Command"].lower() == "login":
-                utils.server_print("Handler", "Request identified as Login from " + str(client.address) + ".")
+                utils.server_print("Handler", f"Request ({request_id}), identified as Login from " + str(client.address) + ".")
                 # login data should have username and password.
                 if "Username" not in request['Data'] or "Password" not in request['Data']:
-                    utils.server_print("Handler Error", "No username or password provided.")
+                    utils.server_print("Handler Error", f"Request ({request_id}), No username or password provided.")
                     client.send_response(400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
                     continue
 
@@ -126,42 +133,45 @@ class ServerSocket:
 
                 if information is None or not Hashing.check_password(bytes.fromhex(information["password"]),
                                                                      request["Data"]["Password"]):
-                    utils.server_print("Handler Error", "Invalid credentials.")
+                    utils.server_print("Handler Error", f"Request ({request_id}), Invalid credentials.")
                     client.send_response(404, "Not Found", {"Msg": "Invalid Credentials."})
                     continue
 
-                utils.server_print("Handler", "Request passed all checks.")
+                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
 
                 # generate auth token
                 token = self.generate_auth_token()
 
-                # update the token dict
-                self.tokens[token] = request["Data"]["Username"]
+                # add the token to the used token list
+                self.tokens.append(token)
+
+                # update the token and username to client object
+                client.set_data("token", token)
+                client.set_data("username", request["Data"]["Username"])
 
                 client.send_response(200, "OK", {"Msg": "Logged in successfully.", "Token": token})
-                utils.server_print("Server", "User " + request["Data"]["Username"] + " logged in successfully.")
+                utils.server_print("Server", f"Request ({request_id}), User " + request["Data"]["Username"] + " logged in successfully.")
 
             elif request["Command"].lower() == "create_lobby":
                 utils.server_print("Handler", "Request identified as Create Lobby from " + str(client.address) + ".")
 
+                print(request)
+
                 # check if the token exists
-                if "Token" not in request["Data"] or request["Data"]["Token"] not in self.tokens:
-                    utils.server_print("Handler Error", "No Token provided.")
+                if "Token" not in request or request["Token"] != client.get_data("token"):
+                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
                     client.send_response(400, "Bad Request", {"Msg": "No Token provided."})
                     continue
 
-                if "Name" not in request["Data"] or "Description" not in request["Data"]:
-                    utils.server_print("Handler Error", "No Name or Description provided.")
-                    client.send_response(400, "Not Found", {"Msg": "Missing Name or Description attribute."})
-                    continue
-
-                if client.lobby is not None:
+                if client.get_data("lobby") is not None:
                     utils.server_print("Handler Error", "User already in lobby.")
                     client.send_response(409, "Conflict", {"Msg": "User already in lobby."})
                     continue
 
                 # create and use the lobby
-                self.lobby_manager.create_lobby(request["Data"]["Name"], request["Data"]["Description"], client)
+                lobby = self.lobby_manager.create_lobby(client)
+                client.send_response(201, "Created", {"Msg": "Lobby created successfully.", "Lobby_Info": lobby.__repr__()})
+                utils.server_print("Server", f"Request ({request_id}), Lobby created successfully.")
 
             elif request["Command"].lower() == "join_lobby":
                 pass

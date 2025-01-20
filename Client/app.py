@@ -2,6 +2,7 @@ import pygame
 
 from States.LogRegisterState import LogRegister
 from States.Home import Home
+from States.InLobby import InLobby
 
 from client import ClientSocket
 
@@ -58,6 +59,9 @@ class App:
 
         if self.client.token is not None and type(self.current_state) == LogRegister:
             self.current_state = Home(self.screen, self.client)
+
+        if self.client.get_data("lobby_info") is not None:
+            self.current_state = InLobby(self.screen, self.client)
 
     def render(self):
         """

@@ -17,8 +17,6 @@ class Client:
         self.address = address
         self.running = True
         self.data = data
-        self.lobby = None
-        # self.token = ?
 
     def get_data(self, name: str):
         """

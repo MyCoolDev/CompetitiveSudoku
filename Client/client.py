@@ -15,6 +15,9 @@ class ClientSocket:
         # auth token
         self.token = None
 
+        # saved data
+        self.data = {}
+
         try:
             self.socket = socket.socket()
             self.socket.connect((self.server_address, self.server_port))
@@ -22,6 +25,26 @@ class ClientSocket:
 
         except Exception as e:
             print(e)
+
+    def get_data(self, name: str):
+        """
+        Get a specific key from the data collection.
+        :param name: the key of the data value
+        :return: the value of the key in the data collection
+        """
+        if name in self.data:
+            return self.data[name]
+
+        return None
+
+    def set_data(self, name: str, value: any):
+        """
+        Set a specific data to the data collection.
+        :param name: the key of the data value.
+        :param value: the value of the key that will be saved in the data collection.
+        :return: the success of the operation.
+        """
+        self.data[name] = value
 
     def send_request(self, command: str, data: dict) -> dict:
         """

@@ -69,7 +69,7 @@ There should be a basic format that will extend for each command individually.
 }
 ```
 
-#### The server response in successful registration.
+#### The server response on successful registration.
 
 ```json
 {
@@ -136,16 +136,16 @@ There should be a basic format that will extend for each command individually.
 }
 ```
 
-#### The server response in successful login.
+#### The server response on successful login.
 
 ```json
 {
   "StatusCode": 202,
   "Status": "Accepted",
   "Data": {
-    "Msg": "Logged in successfully.",
-    "Token": "<TOKEN_HERE>"
+    "Msg": "Logged in successfully."
   },
+  "Token": "<TOKEN_HERE>",
   "Checksum": "<String>"
 }
 ```
@@ -157,16 +157,22 @@ There should be a basic format that will extend for each command individually.
 ```json
 {
   "Command": "Create_Lobby",
-  "Data": {
-    "Name": "<LOBBY_NAME_HERE>",
-    "Description": "<LOBBY_DESCRIPTION_HERE>",
-    "Token": "<TOKEN_HERE>"
-  },
+  "Data": {},
+  "Token": "<TOKEN_HERE>",
   "Checksum": "<String>"
 }
 ```
 
-# 
+### The server response on successfully creating the lobby
 ```json
-
+{
+  "StatusCode": 201,
+  "Status": "Created",
+  "Data": {
+    "Msg": "Lobby created successfully.",
+    "Lobby_Info": {
+      
+    }
+  }
+}
 ```

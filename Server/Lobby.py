@@ -8,13 +8,13 @@ import utils
 
 
 class Lobby:
-    def __init__(self, name: str, description: str, owner: Client, code: str):
+    def __init__(self, owner: Client, code: str):
         """
         The lobby data structure to store all the data and do some actions on it.
         """
-        self.name = name
-        self.description = description
         self.board = SudokuBoard(3)
+
+        self.code = code
 
         self.MAX_PLAYERS = 6
 
@@ -22,13 +22,23 @@ class Lobby:
         self.spectators = []
         self.started = False
         self.owner = owner
-        self.owner.lobby = self
+        self.owner.set_data("lobby", self)
 
     def register_client(self, client: Client):
         if len(self.players) < self.MAX_PLAYERS:
             self.players.append(client)
         else:
             self.spectators.append(client)
+
+    def __repr__(self):
+        return {
+            "max_players": self.MAX_PLAYERS,
+            "players": [x.get_data("username") for x in self.players],
+            "spectators": [x.get_data("username") for x in self.spectators],
+            "started": self.started,
+            "owner": self.owner.get_data("username"),
+            "code": self.code
+        }
 
 
 class LobbyManager:
@@ -38,14 +48,14 @@ class LobbyManager:
         """
         self.all_lobbies = {}
 
-    def create_lobby(self, name: str, description: str, owner: Client):
+    def create_lobby(self, owner: Client) -> Lobby:
         utils.server_print("Lobby Manager", "Creating new lobby")
-        Lobby(name, description, owner, self.generate_code())
+        return Lobby(owner, self.generate_code())
 
     def generate_code(self):
-        token = "".join([random.choice(string.hexdigits) for _ in range(32)])
+        code = "".join([random.choice(string.digits) for _ in range(6)])
 
-        # while token in self.:
-        #    token = "".join([random.choice(string.hexdigits) for _ in range(32)])
+        while code in self.all_lobbies:
+            code = "".join([random.choice(string.digits) for _ in range(6)])
 
-        return token
+        return code

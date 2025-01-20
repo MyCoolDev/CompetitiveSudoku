@@ -21,6 +21,16 @@ class Home(BaseState):
     def update(self, dt: float, events: list, *args, **kwargs):
         self.lobby_code.update(dt, events)
 
+        if self.create_lobby_button.update(dt, events):
+            self.create_lobby()
+
+    def create_lobby(self):
+        response = self.client.send_request("Create_Lobby", {})
+        if response["StatusCode"] == 201:
+            print("Lobby created successfully")
+
+        self.client.set_data("lobby_info", response["Data"]["Lobby_Info"])
+
     def render(self, *args, **kwargs):
         self.title.render(self.screen)
         self.lobby_code.render(self.screen)

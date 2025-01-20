@@ -1,0 +1,20 @@
+=============== Initiating the server. ===============
+[20-01-2025 09:06:35] [Database] Database worker is running
+[20-01-2025 09:06:36] [Status] ServerSocket initialized.
+[20-01-2025 09:06:36] [Status] Server is running.
+[20-01-2025 09:06:38] [Connection] Client ('127.0.0.1', 53488) connection request accepted.
+[20-01-2025 09:06:38] [Handler] Starting to handle ('127.0.0.1', 53488).
+[20-01-2025 09:06:40] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[20-01-2025 09:06:41] [Handler] Request received from ('127.0.0.1', 53488).
+=============== Initiating the server. ===============
+[20-01-2025 09:06:48] [Database] Database worker is running
+[20-01-2025 09:06:48] [Status] ServerSocket initialized.
+[20-01-2025 09:06:48] [Status] Server is running.
+[20-01-2025 09:06:53] [Connection] Client ('127.0.0.1', 53490) connection request accepted.
+[20-01-2025 09:06:53] [Handler] Starting to handle ('127.0.0.1', 53490).
+[20-01-2025 09:07:11] [Handler] Request received from ('127.0.0.1', 53490).
+[20-01-2025 09:07:11] [Handler] Request identified as Register from ('127.0.0.1', 53490).
+[20-01-2025 09:07:12] [Handler] Request passed all checks.
+[20-01-2025 09:07:12] [Server] User username registered.
+[20-01-2025 09:07:48] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[20-01-2025 09:07:48] [Handler] Request received from ('127.0.0.1', 53490).

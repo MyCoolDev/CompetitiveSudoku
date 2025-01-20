@@ -4,6 +4,7 @@ from queue import Queue
 
 from typing import Callable
 
+
 class ThreadPool:
     def __init__(self, num_threads: int):
         """

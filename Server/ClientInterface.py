@@ -17,6 +17,7 @@ class Client:
         self.address = address
         self.running = True
         self.data = data
+        self.lobby = None
         # self.token = ?
 
     def get_data(self, name: str):
@@ -140,7 +141,7 @@ class Client:
     def create_checksum(subject: dict) -> str:
         """
         Generate md5 checksum to plain text.
-        :param subject: the subject of the checksum
+        :param subject: the subject of the checksum.
         :return: the md5 generated checksum in hexdigits.
         """
 

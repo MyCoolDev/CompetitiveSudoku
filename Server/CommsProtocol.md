@@ -143,8 +143,30 @@ There should be a basic format that will extend for each command individually.
   "StatusCode": 202,
   "Status": "Accepted",
   "Data": {
-    "Msg": "Logged in successfully."
+    "Msg": "Logged in successfully.",
+    "Token": "<TOKEN_HERE>"
   },
   "Checksum": "<String>"
 }
+```
+
+## Create Lobby
+
+### the client request
+
+```json
+{
+  "Command": "Create_Lobby",
+  "Data": {
+    "Name": "<LOBBY_NAME_HERE>",
+    "Description": "<LOBBY_DESCRIPTION_HERE>",
+    "Token": "<TOKEN_HERE>"
+  },
+  "Checksum": "<String>"
+}
+```
+
+# 
+```json
+
 ```

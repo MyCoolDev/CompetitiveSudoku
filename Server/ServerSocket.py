@@ -10,6 +10,7 @@ from ThreadPool import ThreadPool
 from Database.Database import Database
 import API.LatestVersion as api
 import Hashing
+from Lobby import Lobby, LobbyManager
 
 
 class ServerSocket:
@@ -49,6 +50,9 @@ class ServerSocket:
             self.tokens = {
                 #   "token": "username"
             }
+
+            self.lobby_manager = LobbyManager()
+
             utils.server_print("Status", "ServerSocket initialized.")
         except Exception as e:
             utils.server_print("Error", str(e))
@@ -138,7 +142,26 @@ class ServerSocket:
                 utils.server_print("Server", "User " + request["Data"]["Username"] + " logged in successfully.")
 
             elif request["Command"].lower() == "create_lobby":
-                pass
+                utils.server_print("Handler", "Request identified as Create Lobby from " + str(client.address) + ".")
+
+                # check if the token exists
+                if "Token" not in request["Data"] or request["Data"]["Token"] not in self.tokens:
+                    utils.server_print("Handler Error", "No Token provided.")
+                    client.send_response(400, "Bad Request", {"Msg": "No Token provided."})
+                    continue
+
+                if "Name" not in request["Data"] or "Description" not in request["Data"]:
+                    utils.server_print("Handler Error", "No Name or Description provided.")
+                    client.send_response(400, "Not Found", {"Msg": "Missing Name or Description attribute."})
+                    continue
+
+                if client.lobby is not None:
+                    utils.server_print("Handler Error", "User already in lobby.")
+                    client.send_response(409, "Conflict", {"Msg": "User already in lobby."})
+                    continue
+
+                # create and use the lobby
+                self.lobby_manager.create_lobby(request["Data"]["Name"], request["Data"]["Description"], client)
 
             elif request["Command"].lower() == "join_lobby":
                 pass

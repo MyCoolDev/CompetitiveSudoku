@@ -2,7 +2,6 @@
 Manage all the hashing function that the server use.
 """
 
-import hashlib
 import bcrypt
 
 

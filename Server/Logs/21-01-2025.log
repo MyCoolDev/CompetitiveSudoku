@@ -1,0 +1,52 @@
+= ============== Initiating the server. ===============
+[21-01-2025 17:48:05] [Database] Database worker is running
+[21-01-2025 17:48:06] [Status] ServerSocket initialized.
+[21-01-2025 17:48:06] [Status] Server is running.
+[21-01-2025 17:48:07] [Connection] Client ('127.0.0.1', 54490) connection request accepted.
+[21-01-2025 17:48:07] [Handler] Starting to handle ('127.0.0.1', 54490).
+[21-01-2025 17:48:10] [Handler] Request (0) received from ('127.0.0.1', 54490).
+[21-01-2025 17:48:10] [Handler] Request (0), identified as Login from ('127.0.0.1', 54490).
+[21-01-2025 17:48:11] [Handler] Request (0), Request passed all checks.
+[21-01-2025 17:48:11] [Server] Request (0), User test logged in successfully.
+[21-01-2025 17:48:18] [Handler] Request (1) received from ('127.0.0.1', 54490).
+[21-01-2025 17:48:18] [Handler] Request identified as Create Lobby from ('127.0.0.1', 54490).
+[21-01-2025 17:48:18] [Lobby Manager] Creating new lobby
+[21-01-2025 17:48:18] [Server] Request (1), Lobby created successfully.
+[21-01-2025 17:48:20] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[21-01-2025 17:48:20] [Handler] Request (2) received from ('127.0.0.1', 54490).
+=============== Initiating the server. ===============
+[21-01-2025 17:48:46] [Database] Database worker is running
+[21-01-2025 17:48:46] [Status] ServerSocket initialized.
+[21-01-2025 17:48:46] [Status] Server is running.
+=============== Initiating the server. ===============
+[21-01-2025 17:51:18] [Database] Database worker is running
+[21-01-2025 17:51:19] [Status] ServerSocket initialized.
+[21-01-2025 17:51:19] [Status] Server is running.
+[21-01-2025 17:51:21] [Connection] Client ('127.0.0.1', 54610) connection request accepted.
+[21-01-2025 17:51:21] [Handler] Starting to handle ('127.0.0.1', 54610).
+[21-01-2025 17:51:24] [Handler] Request (0) received from ('127.0.0.1', 54610).
+[21-01-2025 17:51:24] [Handler] Request (0), identified as Login from ('127.0.0.1', 54610).
+[21-01-2025 17:51:25] [Handler] Request (0), Request passed all checks.
+[21-01-2025 17:51:25] [Server] Request (0), User test logged in successfully.
+[21-01-2025 17:51:26] [Handler] Request (1) received from ('127.0.0.1', 54610).
+[21-01-2025 17:51:26] [Handler] Request identified as Create Lobby from ('127.0.0.1', 54610).
+[21-01-2025 17:51:26] [Lobby Manager] Creating new lobby
+[21-01-2025 17:51:26] [Server] Request (1), Lobby created successfully.
+[21-01-2025 17:51:28] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[21-01-2025 17:51:28] [Handler] Request (2) received from ('127.0.0.1', 54610).
+=============== Initiating the server. ===============
+[21-01-2025 19:12:50] [Database] Database worker is running
+[21-01-2025 19:12:50] [Status] ServerSocket initialized.
+[21-01-2025 19:12:50] [Status] Server is running.
+[21-01-2025 19:12:51] [Connection] Client ('127.0.0.1', 56573) connection request accepted.
+[21-01-2025 19:12:52] [Handler] Starting to handle ('127.0.0.1', 56573).
+[21-01-2025 19:12:56] [Handler] Request (0) received from ('127.0.0.1', 56573).
+[21-01-2025 19:12:56] [Handler] Request (0), identified as Login from ('127.0.0.1', 56573).
+[21-01-2025 19:12:56] [Handler] Request (0), Request passed all checks.
+[21-01-2025 19:12:57] [Server] Request (0), User test logged in successfully.
+[21-01-2025 19:13:02] [Handler] Request (1) received from ('127.0.0.1', 56573).
+[21-01-2025 19:13:02] [Handler] Request identified as Create Lobby from ('127.0.0.1', 56573).
+[21-01-2025 19:13:02] [Lobby Manager] Creating new lobby
+[21-01-2025 19:13:02] [Server] Request (1), Lobby created successfully.
+[21-01-2025 19:13:05] [Handler | get_request] Expecting value: line 1 column 1 (char 0)
+[21-01-2025 19:13:05] [Handler] Request (2) received from ('127.0.0.1', 56573).

@@ -1,13 +1,19 @@
 import socket
 import hashlib
 import json
+import time
+import threading
+
+from States.Home import Home
 
 
 class ClientSocket:
-    def __init__(self):
+    def __init__(self, application):
         """
         The client socket side, interact with the server to get and post data to the server.
         """
+
+        self.application = application
 
         self.server_address = "127.0.0.1"
         self.server_port = 8080
@@ -17,6 +23,9 @@ class ClientSocket:
 
         # saved data
         self.data = {}
+
+        self.requests_id_counter = 0
+        self.responses = {}
 
         try:
             self.socket = socket.socket()
@@ -46,18 +55,23 @@ class ClientSocket:
         """
         self.data[name] = value
 
-    def send_request(self, command: str, data: dict) -> dict:
+    def send_request(self, command: str, data: dict, timeout=1) -> dict:
         """
         Send request to the server.
         :param command:
         :param data:
-        :return: response of the server
+        :param timeout: timeout of response in seconds.
+        :return: response of the server.
         """
         # group all the response (except the checksum) into a json to calc the checksum.
+        rid = self.requests_id_counter
         request = {
+            "Id": rid,
             "Command": command,
             "Data": data,
         }
+
+        self.requests_id_counter += 1
 
         if self.token is not None:
             request["Token"] = self.token
@@ -81,28 +95,55 @@ class ClientSocket:
 
             print("Request sent.")
 
-            # wait for the request to arrive.
-            response = self.socket.recv(1024).decode('utf-8')
+            start = time.time()
+            end_time = time.time()
 
-            # convert to json object.
-            response = json.loads(response)
+            response = {}
 
-            # save the checksum.
-            recv_checksum = response["Checksum"]
-
-            # delete the checksum from the original request.
-            del response["Checksum"]
-
-            # generate a new checksum for the request.
-            current_checksum = self.create_checksum(response)
-
-            # check if the checksums match, if not send an error response.
-            if current_checksum != recv_checksum:
-                return {}
+            while rid not in self.responses and end_time - start < timeout:
+                end_time = time.time()
 
             return response
         except Exception as e:
             print(e)
+
+    def listener(self):
+        while True:
+            try:
+                # wait for the request to arrive.
+                response = self.socket.recv(1024).decode('utf-8')
+
+                # convert to json object.
+                response = json.loads(response)
+
+                # save the checksum.
+                recv_checksum = response["Checksum"]
+
+                # delete the checksum from the original request.
+                del response["Checksum"]
+
+                # generate a new checksum for the request.
+                current_checksum = self.create_checksum(response)
+
+                # check if the checksums match, if not send an error response.
+                if current_checksum == recv_checksum:
+                    if "Id" in response:
+                        self.responses[response["Id"]] = response
+                        continue
+                    else:
+                        # push server notifications.
+                        self.handle_server_notification(response)
+            except Exception as e:
+                print(e)
+
+    def handle_server_notification(self, update: dict):
+        """
+        Handle server push notification.
+        :param update: the push notification received from the server.
+        :return:
+        """
+        if update["Update"] == "Lobby_Kick":
+            self.application.current_state = Home(self.application.screen, self)
 
     def set_token(self, token: str):
         """

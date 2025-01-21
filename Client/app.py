@@ -14,14 +14,14 @@ class App:
         """
         pygame.init()
 
-        self.screen = pygame.display.set_mode((1920, 1080), pygame.NOFRAME)
+        self.screen = pygame.display.set_mode((1920, 1080))
         self.clock = pygame.time.Clock()
         self.events = None
         self.running = False
         self.dt = 0  # delta time
 
-        # sockets
-        self.client = ClientSocket()
+        # socket
+        self.client = ClientSocket(self)
 
         self.current_state = LogRegister(self.screen, self.client)
 

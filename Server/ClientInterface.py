@@ -55,17 +55,22 @@ class Client:
 
             # --- check the format requirements (see CommsProtocol.md) ---
 
-            # check the command
+            if "id" not in lower_request:
+                self.send_response(-1, 400, "Bad Request", {"Msg": "Missing Request Id attribute."})
+                return None
+
+            rid = lower_request["id"]
+
             if "command" not in lower_request:
-                self.send_response(400, "Bad Request", {"Msg": "Missing Command attribute."})
+                self.send_response(rid, 400, "Bad Request", {"Msg": "Missing Command attribute."})
                 return None
 
             if "data" not in lower_request:
-                self.send_response(400, "Bad Request", {"Msg": "Missing Data attribute."})
+                self.send_response(rid, 400, "Bad Request", {"Msg": "Missing Data attribute."})
                 return None
 
             if "checksum" not in lower_request:
-                self.send_response(400, "Bad Request", {"Msg": "Missing Checksum attribute."})
+                self.send_response(rid, 400, "Bad Request", {"Msg": "Missing Checksum attribute."})
                 return None
 
             # save the checksum.
@@ -79,7 +84,7 @@ class Client:
 
             # check if the checksums match, if not send an error response.
             if current_checksum != recv_checksum:
-                self.send_response(400, "Bad Request", {"Msg": "Invalid Checksum."})
+                self.send_response(rid, 400, "Bad Request", {"Msg": "Invalid Checksum."})
                 return None
 
             return request
@@ -93,9 +98,10 @@ class Client:
 
             return None
 
-    def send_response(self, status_code: int, status: str, data=None) -> bool:
+    def send_response(self, rid, status_code: int, status: str, data = None) -> bool:
         """
         Send a response to the client.
+        :param rid: the request id of the response
         :param status_code: the status code of the request the response handling
         :param status: the status code in plain text
         :param data: data related to the response if needed.
@@ -104,8 +110,49 @@ class Client:
         try:
             # group all the response (except the checksum) into a json to calc the checksum.
             response = {
+                "Id": rid,
                 "StatusCode": status_code,
                 "Status": status,
+            }
+
+            # add the data if exists.
+            if data is not None:
+                response["Data"] = data
+
+            # calc the checksum, md5 to hex.
+            checksum = self.create_checksum(response)
+
+            # add the checksum to the response
+            response["Checksum"] = checksum
+
+            # stringify the json format and encode to bytes.
+            stringify_response = json.dumps(response).encode('utf-8')
+
+            print(stringify_response)
+
+            # send the response to the client.
+            sent = self.connection.send(stringify_response)
+
+            # check if the sent response length is the same the original stringify response.
+            return sent == len(stringify_response)
+
+        except Exception as e:
+            # print the exception to the console
+            utils.server_print("Handler | send_response", str(e))
+
+            return False
+
+    def push_notification(self, update: str, data: dict = None) -> bool:
+        """
+        Send push notification to the client
+        :param update:
+        :param data:
+        :return:
+        """
+        try:
+            # group all the response (except the checksum) into a json to calc the checksum.
+            response = {
+                "Update": update,
             }
 
             # add the data if exists.

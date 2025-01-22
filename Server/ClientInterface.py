@@ -43,6 +43,7 @@ class Client:
         Wait for the client to send a request to the server.
         :return: the request after formation.
         """
+        rid = -1
         try:
             # wait for the request to arrive.
             request = self.connection.recv(1024).decode('utf-8')
@@ -56,7 +57,7 @@ class Client:
             # --- check the format requirements (see CommsProtocol.md) ---
 
             if "id" not in lower_request:
-                self.send_response(-1, 400, "Bad Request", {"Msg": "Missing Request Id attribute."})
+                self.send_response(rid, 400, "Bad Request", {"Msg": "Missing Request Id attribute."})
                 return None
 
             rid = lower_request["id"]
@@ -94,7 +95,7 @@ class Client:
             utils.server_print("Handler | get_request", str(e))
 
             # send an error response
-            self.send_response(400, "Bad Request")
+            self.send_response(rid, 400, "Bad Request")
 
             return None
 
@@ -127,8 +128,6 @@ class Client:
 
             # stringify the json format and encode to bytes.
             stringify_response = json.dumps(response).encode('utf-8')
-
-            print(stringify_response)
 
             # send the response to the client.
             sent = self.connection.send(stringify_response)
@@ -167,8 +166,6 @@ class Client:
 
             # stringify the json format and encode to bytes.
             stringify_response = json.dumps(response).encode('utf-8')
-
-            print(stringify_response)
 
             # send the response to the client.
             sent = self.connection.send(stringify_response)

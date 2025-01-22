@@ -4,9 +4,6 @@ import json
 import time
 import threading
 
-from States.Home import Home
-
-
 class ClientSocket:
     def __init__(self, application):
         """
@@ -31,6 +28,8 @@ class ClientSocket:
             self.socket = socket.socket()
             self.socket.connect((self.server_address, self.server_port))
             print("Connected to the server.")
+
+            threading.Thread(target=self.listener, daemon=True).start()
 
         except Exception as e:
             print(e)
@@ -103,6 +102,9 @@ class ClientSocket:
             while rid not in self.responses and end_time - start < timeout:
                 end_time = time.time()
 
+            if rid in self.responses:
+                response = self.responses[rid]
+
             return response
         except Exception as e:
             print(e)
@@ -127,6 +129,7 @@ class ClientSocket:
 
                 # check if the checksums match, if not send an error response.
                 if current_checksum == recv_checksum:
+                    print(response)
                     if "Id" in response:
                         self.responses[response["Id"]] = response
                         continue
@@ -142,8 +145,8 @@ class ClientSocket:
         :param update: the push notification received from the server.
         :return:
         """
-        if update["Update"] == "Lobby_Kick":
-            self.application.current_state = Home(self.application.screen, self)
+        # if update["Update"] == "Lobby_Kick":
+        #    self.application.current_state = Home(self.application.screen, self)
 
     def set_token(self, token: str):
         """

@@ -20,6 +20,7 @@ class Lobby:
 
         self.players = [owner]
         self.spectators = []
+        self.bans = []
         self.started = False
         self.owner = owner
         self.owner.set_data("lobby", self)

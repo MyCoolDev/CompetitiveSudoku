@@ -41,7 +41,7 @@ class TextBox(MonoBehaviour):
         self.text_color = text_color
         self.text_position = pygame.Vector2(self.position.x + self.padding[0], self.position.y + self.size.y / 2)
 
-        self.text = Text(self.content, self.font, self.font_size, False, self.text_position, self.text_color,
+        self.text = Text(self.content, self.font, self.font_size, self.text_position, self.text_color,
                          left_mode=True)
 
         self.hidden = hidden
@@ -66,7 +66,7 @@ class TextBox(MonoBehaviour):
         if not self.is_default_content_presented and self.hidden:
             text_to_display = "*" * len(self.content)
 
-        self.text = Text(text_to_display, self.font, self.font_size, False, self.text_position, self.text_color,
+        self.text = Text(text_to_display, self.font, self.font_size, self.text_position, self.text_color,
                          left_mode=True)
 
     def is_collide(self, point: tuple):

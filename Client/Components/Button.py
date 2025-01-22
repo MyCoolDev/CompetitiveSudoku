@@ -12,7 +12,7 @@ class Button(MonoBehaviour):
         if content != "":
             self.font_size = font_size
             self.text_color = text_color
-            self.text = Text(content, font, font_size, True, position + int(top_left_mode) * 1/2 * size, text_color)
+            self.text = Text(content, font, font_size, position + int(top_left_mode) * 1/2 * size, text_color)
 
     def is_collide(self, point: tuple):
         return self.rect.collidepoint(point[0], point[1])

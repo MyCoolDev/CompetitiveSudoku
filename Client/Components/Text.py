@@ -2,13 +2,14 @@ import pygame
 
 pygame.font.init()
 
-
 class Text:
-    def __init__(self, txt: str, font: str, font_size: int, bold: bool, position: pygame.Vector2, color: tuple,
+    def __init__(self, txt: str, font: str, font_size: int, position: pygame.Vector2, color: tuple,
                  alpha=255, top_left_mode=False, left_mode=False, top_mode=False):
         self.txt = txt
         self.font_name = font
-        self.font = pygame.font.SysFont(font, font_size, bold)
+
+        self.font = pygame.font.Font("Fonts/Poppins-" + self.font_name + ".ttf", font_size)
+
         self.abs_position = position
         self.font_size = font_size
         self.color = color

@@ -1,4 +1,6 @@
 import pygame
+# used for clipboard copy and paste.
+import pyperclip
 
 from Client.Components.MonoBehaviour import MonoBehaviour
 from Client.Components.Text import Text
@@ -88,6 +90,8 @@ class TextBox(MonoBehaviour):
                         if self.next_input is not None:
                             self.next_input.is_focused = True
                             self.is_focused = False
+                    elif event.unicode == "\x16":
+                        self.update_text(self.content + pyperclip.paste())
                     elif event.unicode != "":
                         self.update_text(self.content + event.unicode)
 

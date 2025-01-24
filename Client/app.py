@@ -57,18 +57,19 @@ class App:
         # update using the state
         self.current_state.update(self.dt, self.events)
 
-        if self.client.token is not None and type(self.current_state) == LogRegister:
-            self.current_state = Home(self.screen, self.client)
+        if self.client.token is not None:
+            if self.client.get_data("lobby") is None:
+                self.current_state = Home(self.screen, self.client)
 
-        if self.client.get_data("lobby_info") is not None:
-            self.current_state = InLobby(self.screen, self.client)
+            else:
+                self.current_state = InLobby(self.screen, self.client)
 
     def render(self):
         """
-        render everything to the screen
+        render everything to the screen.
         :return:
         """
-        self.screen.fill((30, 30, 30))
+        self.screen.fill((46, 46, 46))
         self.current_state.render()
         pygame.display.flip()
         self.dt = self.clock.tick(60) / 1000

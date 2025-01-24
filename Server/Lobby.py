@@ -25,15 +25,17 @@ class Lobby:
         self.owner = owner
         self.owner.set_data("lobby", self)
 
-    def register_client(self, client: Client):
+    def register_client(self, client: Client) -> str:
         """
         Add a client to the lobby. (Implementation of join lobby or create lobby)
         :param client: client to add
         """
         if len(self.players) < self.MAX_PLAYERS:
             self.players.append(client)
+            return "players"
         else:
             self.spectators.append(client)
+            return "spectators"
 
     def remove_client(self, client: Client) -> bool:
         """
@@ -42,12 +44,8 @@ class Lobby:
         :return: True if the client was removed, False otherwise.
         """
         if client != self.owner:
-            if client in self.players:
+            if client in self.players + self.spectators:
                 self.players.remove(client)
-                client.set_data("lobby", None)
-                return True
-            if client in self.spectators:
-                self.spectators.remove(client)
                 client.set_data("lobby", None)
                 return True
 

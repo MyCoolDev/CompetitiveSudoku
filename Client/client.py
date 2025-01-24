@@ -4,6 +4,7 @@ import json
 import time
 import threading
 
+
 class ClientSocket:
     def __init__(self, application):
         """
@@ -145,8 +146,12 @@ class ClientSocket:
         :param update: the push notification received from the server.
         :return:
         """
-        # if update["Update"] == "Lobby_Kick":
-        #    self.application.current_state = Home(self.application.screen, self)
+        if update["Update"] == "Lobby_Kick":
+            self.set_data("lobby_info", None)
+        elif update["Update"] == "User_Joined_Lobby":
+            lobby = self.get_data("lobby_info")
+            lobby[""]
+            self.set_data("lobby_info", self.get_data("lobby_info"))
 
     def set_token(self, token: str):
         """

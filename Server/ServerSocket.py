@@ -216,9 +216,13 @@ class ServerSocket:
                 utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
 
                 lobby = self.lobby_manager.all_lobbies[request["Data"]["Code"]]
-                lobby.register_client(client)
+                role = lobby.register_client(client)
+                client.send_response(rid, 200, "OK", {"Msg": "Successfully joining lobby.", "Lobby_Info": lobby.__repr__(), "Role": role})
+
+                for c in lobby.players + lobby.spectators:
+                    c.push_notification("User_Joined_Lobby", {"Msg": "New user joined the lobby.", "Username": "<String>", "Role": role})
+
                 utils.server_print("Server", f"Request ({request_id}), Client registered to lobby.")
-                client.send_response(rid, 200, "OK", {"Msg": "Successfully joining lobby.", "Lobby_Info": lobby.__repr__()})
 
             elif request["Command"].lower() == "leave_lobby":
                 """

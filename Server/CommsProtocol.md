@@ -289,8 +289,22 @@ Join a lobby using code.
     "Msg": "Successfully joining lobby.",
     "Lobby_Info": {
       ...
-    }
-  }
+    },
+    "Role": "<String>"
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server push notification to all the user in the lobby
+```json
+{
+  "Update": "User_Joined_Lobby",
+  "Data": {
+    "Msg": "New user joined the lobby.",
+    "Username": "<String>",
+    "Role": "<String>"
+  },
   "Checksum": "<String>"
 }
 ```

@@ -17,16 +17,14 @@ class Button(MonoBehaviour):
     def is_collide(self, point: tuple):
         return self.rect.collidepoint(point[0], point[1])
 
-    def update(self, dt: float, events: list, function=None) -> None or bool:
+    def update(self, dt: float, events: list) -> None or bool:
         for event in events:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
 
                 if self.is_collide(mouse_pos):
-                    if function is None:
-                        return True
+                    return True
 
-        if function is None:
             return False
 
         return None

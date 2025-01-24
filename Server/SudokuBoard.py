@@ -1,6 +1,9 @@
 import random
 import copy
 
+# randomize rows, columns and numbers (of valid base pattern)
+from random import sample
+
 
 class SudokuBoard:
     def __init__(self, base):
@@ -15,8 +18,6 @@ class SudokuBoard:
         # pattern for a baseline valid solution
         def pattern(r, c): return (base * (r % base) + r // base + c) % side
 
-        # randomize rows, columns and numbers (of valid base pattern)
-        from random import sample
         def shuffle(s): return sample(s, len(s))
 
         rBase = range(base)

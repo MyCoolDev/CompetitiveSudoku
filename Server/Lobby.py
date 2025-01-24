@@ -24,6 +24,8 @@ class Lobby:
         self.started = False
         self.owner = owner
         self.owner.set_data("lobby", self)
+        self.players_colors = [(255, 90, 90), (96, 90, 255), (255, 230, 90), (90, 255, 134), (66, 255, 211), (227, 90, 255)]
+        self.__shuffle_colors()
 
     def register_client(self, client: Client) -> str:
         """
@@ -69,14 +71,18 @@ class Lobby:
         """
         pass
 
+    def __shuffle_colors(self):
+        random.sample(self.players_colors, len(self.players_colors))
+
     def __repr__(self):
         return {
+            "code": self.code,
+            "owner": self.owner.get_data("username"),
+            "started": self.started,
             "max_players": self.MAX_PLAYERS,
             "players": [x.get_data("username") for x in self.players],
-            "spectators": [x.get_data("username") for x in self.spectators],
-            "started": self.started,
-            "owner": self.owner.get_data("username"),
-            "code": self.code
+            "spectators": len(self.spectators),
+            "players_colors": self.players_colors
         }
 
 

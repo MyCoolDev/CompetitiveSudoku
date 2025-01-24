@@ -150,7 +150,7 @@ class ClientSocket:
             self.set_data("lobby_info", None)
         elif update["Update"] == "User_Joined_Lobby":
             lobby = self.get_data("lobby_info")
-            lobby[""]
+            lobby[update["Data"]["Role"]].append(update["Data"]["Username"])
             self.set_data("lobby_info", self.get_data("lobby_info"))
 
     def set_token(self, token: str):

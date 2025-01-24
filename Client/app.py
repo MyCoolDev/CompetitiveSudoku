@@ -58,10 +58,10 @@ class App:
         self.current_state.update(self.dt, self.events)
 
         if self.client.token is not None:
-            if self.client.get_data("lobby") is None:
+            if self.client.get_data("lobby_info") is None and type(self.current_state) is not Home:
                 self.current_state = Home(self.screen, self.client)
 
-            else:
+            elif self.client.get_data("lobby_info") is not None and type(self.current_state) is not InLobby:
                 self.current_state = InLobby(self.screen, self.client)
 
     def render(self):

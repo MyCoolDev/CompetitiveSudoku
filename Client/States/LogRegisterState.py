@@ -25,6 +25,7 @@ class LogRegister(BaseState):
     def update(self, dt: float, events: list, *args, **kwargs):
         self.username_textbox.update(dt, events)
         self.password_textbox.update(dt, events)
+
         if self.login.update(dt, events):
             self.login_func()
 

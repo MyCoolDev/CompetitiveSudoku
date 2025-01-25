@@ -72,7 +72,7 @@ class Lobby:
         pass
 
     def __shuffle_colors(self):
-        random.sample(self.players_colors, len(self.players_colors))
+        self.players_colors = random.sample(self.players_colors, len(self.players_colors))
 
     def __repr__(self):
         return {

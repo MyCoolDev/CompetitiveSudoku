@@ -13,6 +13,7 @@ class App:
         The client application gui using pygame.
         """
         pygame.init()
+        pygame.mixer.init()
 
         self.screen = pygame.display.set_mode((1920, 1080))
         self.clock = pygame.time.Clock()

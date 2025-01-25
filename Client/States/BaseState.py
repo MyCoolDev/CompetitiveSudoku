@@ -10,6 +10,12 @@ class BaseState:
         """
         self.screen = screen
         self.client = client
+        self.mouse_cursor = {
+            "IBEAM": [],
+            "HAND": [],
+            "NO": []
+        }
+        self.last_mouse_pos = pygame.mouse.get_pos()
         self.__init_vars(screen)
 
     def __init_vars(self, *args, **kwargs) -> None:
@@ -27,7 +33,30 @@ class BaseState:
         :param kwargs:
         :return:
         """
-        pass
+        if pygame.mouse.get_pos() != self.last_mouse_pos:
+            self.update_mouse()
+
+    def update_mouse(self):
+        pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
+
+        self.last_mouse_pos = pygame.mouse.get_pos()
+
+        for key, values in self.mouse_cursor.items():
+            if key == "IBEAM":
+                for value in values:
+                    if value.is_collide(self.last_mouse_pos):
+                        pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_IBEAM)
+                        return
+            if key == "HAND":
+                for value in values:
+                    if value.is_collide(self.last_mouse_pos):
+                        pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
+                        return
+            if key == "NO":
+                for value in values:
+                    if value.is_collide(self.last_mouse_pos):
+                        pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_NO)
+                        return
 
     def render(self, *args, **kwargs):
         """

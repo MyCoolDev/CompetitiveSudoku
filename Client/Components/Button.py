@@ -15,6 +15,9 @@ class Button(MonoBehaviour):
             self.text = Text(content, font, font_size, position + int(top_left_mode) * 1/2 * size, text_color)
 
     def is_collide(self, point: tuple):
+        if self.rect is None:
+            return None
+
         return self.rect.collidepoint(point[0], point[1])
 
     def update(self, dt: float, events: list) -> None or bool:

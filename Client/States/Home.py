@@ -24,7 +24,11 @@ class Home(BaseState):
         self.menu_icon = Image(os.path.join("Images", "Menu.png"), pygame.Vector2(24, 24), pygame.Vector2(self.navbar.position.x + 20, self.navbar.position.y + 10))
         self.friend_icon = Image(os.path.join("Images", "Person.png"), pygame.Vector2(20, 20), self.menu_icon.position + pygame.Vector2(24 + 20, 3))
 
+        self.mouse_cursor["IBEAM"] = [self.lobby_code]
+        self.mouse_cursor["HAND"] = [self.menu_icon, self.join_lobby_button, self.create_lobby_button]
+
     def update(self, dt: float, events: list, *args, **kwargs):
+        super().update(dt, events, args, kwargs)
         self.lobby_code.update(dt, events)
 
         if self.create_lobby_button.update(dt, events):
@@ -38,12 +42,14 @@ class Home(BaseState):
         if response["StatusCode"] == 201:
             print("Lobby created successfully")
             self.client.set_data("lobby_info", response["Data"]["Lobby_Info"])
+            self.client.set_data("Lobby_Role", "players")
 
     def join_lobby(self):
         response = self.client.send_request("Join_Lobby", {"Code": self.lobby_code.content})
         if response["StatusCode"] == 200:
             print("Lobby joined successfully")
             self.client.set_data("lobby_info", response["Data"]["Lobby_Info"])
+            self.client.set_data("Lobby_Role", response["Data"]["Role"])
 
     def render(self, *args, **kwargs):
         self.title.render(self.screen)

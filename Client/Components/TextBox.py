@@ -72,6 +72,9 @@ class TextBox(MonoBehaviour):
                          left_mode=True)
 
     def is_collide(self, point: tuple):
+        if self.rect is None:
+            return None
+        
         return self.rect.collidepoint(point[0], point[1])
 
     def update(self, dt: float, events: list) -> bool:

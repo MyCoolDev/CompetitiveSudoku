@@ -22,7 +22,11 @@ class LogRegister(BaseState):
         self.login = Button(pygame.Vector2(self.screen.get_width() / 5, 60), pygame.Vector2((self.screen.get_width() - self.screen.get_width() / 5) / 2 - 10, 5.2 * self.screen.get_height() / 7), (65, 129, 204), "Login", "SemiBold", 16, (226, 226, 226), border_radius=15)
         self.register = Button(pygame.Vector2(self.screen.get_width() / 5, 60), pygame.Vector2((self.screen.get_width() + self.screen.get_width() / 5) / 2 + 10, 5.2 * self.screen.get_height() / 7), (129, 129, 129), "Register", "SemiBold", 16, (226, 226, 226), border_radius=15)
 
+        self.mouse_cursor["IBEAM"] = [self.username_textbox, self.password_textbox]
+        self.mouse_cursor["HAND"] = [self.login, self.register]
+
     def update(self, dt: float, events: list, *args, **kwargs):
+        super().update(dt, events, args, kwargs)
         self.username_textbox.update(dt, events)
         self.password_textbox.update(dt, events)
 
@@ -37,12 +41,14 @@ class LogRegister(BaseState):
         if response["StatusCode"] == 201:
             print("Registered successfully")
             self.client.set_token(response["Data"]["Token"])
+            self.client.set_data("username", self.username_textbox.content)
 
     def login_func(self):
         response = self.client.send_request("Login", {"Username": self.username_textbox.content, "Password": self.password_textbox.content})
         if response["StatusCode"] == 200:
             print("Login successfully")
             self.client.set_token(response["Data"]["Token"])
+            self.client.set_data("username", self.username_textbox.content)
 
     def render(self, *args, **kwargs):
         self.title.render(self.screen)

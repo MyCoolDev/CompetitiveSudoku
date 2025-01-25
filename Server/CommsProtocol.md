@@ -346,6 +346,11 @@ Leave a lobby the user inside.
 }
 ```
 
+## Become Lobby Spectator
+
+## Become Lobby Player
+
+
 ## Get Lobby
 Get information about lobby using code.
 
@@ -494,3 +499,5 @@ kick a user from a lobby, only the owner can kick a player.
   "Checksum": "<String>"
 }
 ```
+
+## Ban Player Lobby

@@ -148,10 +148,26 @@ class ClientSocket:
         """
         if update["Update"] == "Lobby_Kick":
             self.set_data("lobby_info", None)
+            self.set_data("Lobby_Role", None)
+        elif update["Update"] == "Lobby_Ban":
+            self.set_data("lobby_info", None)
+            self.set_data("Lobby_Role", None)
         elif update["Update"] == "User_Joined_Lobby":
             lobby = self.get_data("lobby_info")
             lobby[update["Data"]["Role"]].append(update["Data"]["Username"])
             self.set_data("lobby_info", self.get_data("lobby_info"))
+        elif update["Update"] == "Become_Spectator":
+            lobby = self.get_data("lobby_info")
+            lobby["spectators"] += 1
+            lobby["players"].remove(update["Data"]["Username"])
+
+            if self.get_data("username") == update["Data"]["Username"]:
+                self.set_data("Lobby_Role", "spectators")
+
+        elif update["Update"] == "Become_Player":
+            lobby = self.get_data("lobby_info")
+            lobby["players"].append(update["Data"]["Username"])
+            lobby["spectators"] -= 1
 
     def set_token(self, token: str):
         """

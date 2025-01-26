@@ -9,11 +9,11 @@ import Server.Hashing as Hashing
 
 def register(username: str, password: str, db_interface: Database) -> bool:
     """
-    Register a new user to the database
-    :param username: the user username
-    :param password: the password of the user
-    :param db_interface: the database interface of the server
-    :return: the success of the registration.
+    Register a new user to the database.
+    :param username: The user username.
+    :param password: The password of the user.
+    :param db_interface: The database interface of the server.
+    :return: The success of the registration.
     """
 
     users = db_interface.submit_read("Users")
@@ -27,7 +27,8 @@ def register(username: str, password: str, db_interface: Database) -> bool:
             "seen": {},
             "unseen": []
         },
-        "friends": []
+        "friends": [],
+        "friend_requests": []
     }
 
     return db_interface.submit_update("Users", users)
@@ -35,6 +36,22 @@ def register(username: str, password: str, db_interface: Database) -> bool:
 
 def delete(username: str, password: str):
     pass
+
+def update_login_time(username: str, db_interface: Database) -> bool:
+    """
+    Update the login time of the user.
+    :param username: The user username.
+    :param db_interface: The database interface of the server.
+    :return: The success of the update.
+    """
+    users = db_interface.submit_read("Users")
+
+    if username not in users:
+        return False
+
+    users[username]["last_login"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    return db_interface.submit_update("Users", users)
 
 
 def get(username: str, db_interface: Database) -> dict or None:

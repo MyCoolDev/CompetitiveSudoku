@@ -28,6 +28,9 @@ class InLobby(BaseState):
         self.data_checksum = None
         self.old_data = None
         self.become_a_player_button = None
+        self.my_card = None
+        self.players_cards = []
+        self.owner = False
         self.__init_vars()
         self.join_lobby.play()
 
@@ -35,7 +38,8 @@ class InLobby(BaseState):
         self.data = self.client.get_data('lobby_info')
         self.old_data = copy.deepcopy(self.data)
         self.data_checksum = self.client.create_checksum(self.data)
-        self.players_cards = []
+
+        self.owner = self.data["owner"] == self.client.get_data("username")
 
         self.navbar = MonoBehaviour(pygame.Vector2(127, 45), pygame.Vector2(40, 40), (2, 2, 2), border_radius=10)
         self.menu_icon = Image(os.path.join("Images", "Menu.png"), pygame.Vector2(24, 24), pygame.Vector2(self.navbar.position.x + 20, self.navbar.position.y + 10))
@@ -62,6 +66,62 @@ class InLobby(BaseState):
         if self.code_copy_icon.update(events):
             pyperclip.copy(self.data["code"])
 
+        if self.become_a_player_button is not None and self.become_a_player_button[0].update(events):
+            response = self.client.send_request("Become_Lobby_Player", {})
+            if response["StatusCode"] == 200:
+                self.become_a_player_button = None
+                lobby = self.client.get_data("lobby_info")
+                lobby["spectators"] -= 1
+                lobby["players"].append(self.client.get_data("username"))
+                self.client.set_data("Lobby_Role", "players")
+
+        if self.my_card[3].update(events):
+            print(self.data)
+            response = self.client.send_request("Become_Lobby_Spectator", {})
+            if response["StatusCode"] == 200:
+                lobby = self.client.get_data("lobby_info")
+                lobby["spectators"] += 1
+                lobby["players"].remove(self.client.get_data("username"))
+                self.client.set_data("Lobby_Role", "spectators")
+
+        if self.owner:
+            for card in self.players_cards:
+                if card == self.my_card:
+                    continue
+
+                for i, element in enumerate(card[3:]):
+                    if element.update(events):
+                        if i == 0:
+                            """
+                            Kick player.
+                            """
+                            response = self.client.send_request("Kick_User_Lobby", {"Username": card[2].txt})
+
+                            if response["StatusCode"] == 200:
+                                lobby = self.client.get_data("lobby_info")
+                                lobby["players"].remove(card[2].txt)
+
+                        elif i == 1:
+                            """
+                            Ban player.
+                            """
+                            response = self.client.send_request("Ban_User_Lobby", {"Username": card[2].txt})
+
+                            if response["StatusCode"] == 200:
+                                lobby = self.client.get_data("lobby_info")
+                                lobby["players"].remove(card[2].txt)
+
+                        elif i == 2:
+                            """
+                            Make spectator.
+                            """
+                            response = self.client.send_request("Make_Lobby_Spectator", {"Username": card[2].txt})
+
+                            if response["StatusCode"] == 200:
+                                lobby = self.client.get_data("lobby_info")
+                                lobby["spectators"] += 1
+                                lobby["players"].remove(card[2].txt)
+
         # check if data has changed, if not don't update.
 
         new_data_checksum = self.client.create_checksum(self.data)
@@ -71,10 +131,14 @@ class InLobby(BaseState):
         # update some staff
         if len(self.data["players"]) != len(self.old_data["players"]):
             self.number_of_players.update_text(f"{len(self.data['players'])} / {self.data['max_players']} Players")
+            self.players_cards = []
             self.init_players()
 
             if len(self.data["players"]) > len(self.old_data["players"]):
                 self.join_lobby.play()
+
+        if self.data["spectators"] != self.old_data["spectators"]:
+            self.spectator_count.update_text(f"{self.data['spectators']}")
 
         self.data_checksum = new_data_checksum
         self.old_data = copy.deepcopy(self.data)
@@ -95,12 +159,13 @@ class InLobby(BaseState):
 
     def init_player_card(self, username: str, color: str, index: int, base: pygame.Vector2, is_not_player=False) -> list:
         """
-        init a player card, with positions using index.
-        :param username: the username.
-        :param color: the color name of the player.
-        :param index: the index of the player (for position).
-        :param base: the base position (layout base position).
-        :return: the player card (list of all the elements for render).
+        Init a player card, with positions using index.
+        :param username: The username.
+        :param color: The color name of the player.
+        :param index: The index of the player (for position).
+        :param base: The base position (layout base position).
+        :param is_not_player: Is it a player or a button.
+        :return: The player card (list of all the elements for render).
         """
 
         NAME_ICON_GAP = 15
@@ -125,7 +190,7 @@ class InLobby(BaseState):
         objs = [card_background, icon, player_name]
 
         if is_not_player:
-            return objs
+            return [card_background, player_name]
 
         my_username = self.client.get_data("username")
 
@@ -133,7 +198,8 @@ class InLobby(BaseState):
             obj = Image(os.path.join("Images", "Spectator.png"), pygame.Vector2(21, 16), card_background.position + pygame.Vector2(card_background.size[0] - 25 - 21, 21))
             objs.append(obj)
             self.mouse_cursor["HAND"].append(obj)
-        elif self.data["owner"] == my_username:
+            self.my_card = objs
+        elif self.owner:
             obj = Image(os.path.join("Images", "Kick.png"), pygame.Vector2(16, 16), card_background.position + pygame.Vector2(card_background.size[0] - 25 - 16, 21))
             objs.append(obj)
             self.mouse_cursor["HAND"].append(obj)

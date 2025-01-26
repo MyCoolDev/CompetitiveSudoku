@@ -280,6 +280,18 @@ Join a lobby using code.
 }
 ```
 
+### The server response in case the user is blocked from the server
+
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "You're blocked from the lobby."
+  },
+  "Checksum": "<String>"
+}
+```
 ### The server response on successfully joining the lobby
 ```json
 {
@@ -346,6 +358,18 @@ Leave a lobby the user inside.
 }
 ```
 
+### The server push notification to all the clients in the lobby
+```json
+{
+  "Update": "User_Left_Lobby",
+  "Data": {
+    "Username": "<USERNAME_HERE>",
+    "Role": "<ROLE_HERE>"
+  },
+  "Checksum": "<String>"
+}
+```
+
 ## Become Lobby Spectator
 Become a spectator in lobby (players only)
 
@@ -377,7 +401,7 @@ Become a spectator in lobby (players only)
   "StatusCode": 409,
   "Status": "Conflict",
   "Data": {
-    "Msg": "User is already a spectator"
+    "Msg": "User is already a spectator."
   },
   "Checksum": "<String>"
 }
@@ -390,6 +414,17 @@ Become a spectator in lobby (players only)
   "Status": "OK",
   "Data": {
     "Msg": "Successfully becoming a spectator."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server push notification to all the clients in the lobby when user became a spectator
+```json
+{
+  "Update": "Become_Spectator",
+  "Data": {
+    "Username": "<USERNAME_HERE>"
   },
   "Checksum": "<String>"
 }
@@ -426,7 +461,7 @@ Become a player in lobby (spectators only)
   "StatusCode": 409,
   "Status": "Conflict",
   "Data": {
-    "Msg": "User is already a player"
+    "Msg": "User is already a player."
   },
   "Checksum": "<String>"
 }
@@ -452,6 +487,127 @@ Become a player in lobby (spectators only)
   "Status": "OK",
   "Data": {
     "Msg": "Successfully becoming a player."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response on successfully becoming a player
+```json
+{
+  "StatusCode": 200,
+  "Status": "OK",
+  "Data": {
+    "Msg": "Successfully becoming a player."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server push notification to all the clients in the lobby when user became a player
+```json
+{
+  "Update": "Become_Player",
+  "Data": {
+    "Username": "<USERNAME_HERE>"
+  },
+  "Checksum": "<String>"
+}
+```
+
+## Make Lobby Spectator
+Make a lobby player to a spectator, lobby owner only.
+
+### The client request
+```json
+{
+  "Command": "Make_Lobby_Spectator",
+  "Data": {
+    "Username": "<USERNAME_HERE>"
+  },
+  "Token": "<TOKEN_HERE>",
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user (sending the request) isn't in lobby
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "User isn't in lobby."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user (sending the request) isn't the owner of the lobby
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "User isn't the owner of lobby."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user doesn't provide username
+```json
+{
+  "StatusCode": 400,
+  "Status": "Bad Request",
+  "Data": {
+    "Msg": "No username provided."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user (requested) isn't in the lobby
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "Requested user isn't in lobby."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user (requested) isn't a player
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "Requested User is already a spectator."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response on successfully making a spectator
+```json
+{
+  "StatusCode": 200,
+  "Status": "OK",
+  "Data": {
+    "Msg": "Successfully making a spectator."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server push notification to all the clients in the lobby when user became a spectator
+```json
+{
+  "Update": "Become_Spectator",
+  "Data": {
+    "Username": "<USERNAME_HERE>"
   },
   "Checksum": "<String>"
 }
@@ -504,6 +660,15 @@ Get information about lobby using code.
       ...
     }
   },
+  "Checksum": "<String>"
+}
+```
+
+### The server push notification to all the clients in the lobby when user joined
+```json
+{
+  "Update": "User_Joined_Lobby",
+  "Data": {},
   "Checksum": "<String>"
 }
 ```
@@ -606,4 +771,112 @@ kick a user from a lobby, only the owner can kick a player.
 }
 ```
 
-## Ban Player Lobby
+## Ban User Lobby
+Ban a user from a lobby, only the owner can ban a player.
+
+### The clint request
+```json
+{
+  "Command": "Ban_User_Lobby",
+  "Data": {
+    "Username": "<String>"
+  },
+  "Token": "<TOKEN_HERE>",
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user isn't in lobby
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "User isn't in lobby."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user isn't the owner of the lobby
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "User isn't the owner of lobby."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user doesn't provide username
+```json
+{
+  "StatusCode": 400,
+  "Status": "Bad Request",
+  "Data": {
+    "Msg": "No username provided."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the username is invalid
+```json
+{
+  "StatusCode": 404,
+  "Status": "Not Found",
+  "Data": {
+    "Msg": "Invalid username."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The serer response in case the user to ban is not inside the lobby
+```json
+{
+  "StatusCode": 404,
+  "Status": "Not Found",
+  "Data": {
+    "Msg": "User to ban isn't in lobby."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response on successfully kicking the user
+```json
+{
+  "StatusCode": 200,
+  "Status": "OK",
+  "Data": {
+    "Msg": "User baned."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server push notification to the baned user on kick
+```json
+{
+  "Update": "Lobby_Ban",
+  "Data": {
+    "Msg": "You have been baned from the lobby."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server push notification to all the clients in the lobby
+```json
+{
+  "Update": "User_Left_Lobby",
+  "Data": {
+    "Username": "<USERNAME_HERE>",
+    "Role": "Player"
+  },
+  "Checksum": "<String>"
+}
+```

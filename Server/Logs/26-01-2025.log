@@ -170,3 +170,922 @@
 [26-01-2025 00:26:18] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
 [26-01-2025 00:26:20] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
 [26-01-2025 00:26:20] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 17:21:01] [Database] Database worker is running
+[26-01-2025 17:21:01] [Status] ServerSocket initialized.
+[26-01-2025 17:21:01] [Status] Server is running.
+[26-01-2025 17:21:04] [Connection] Client ('127.0.0.1', 51200) connection request accepted.
+[26-01-2025 17:21:04] [Handler] Starting to handle ('127.0.0.1', 51200).
+[26-01-2025 17:22:05] [Handler] Request (0) received from ('127.0.0.1', 51200).
+[26-01-2025 17:22:05] [Handler] Request (0), identified as Login from ('127.0.0.1', 51200).
+[26-01-2025 17:22:05] [Handler] Request (0), Request passed all checks.
+[26-01-2025 17:22:05] [Server] Request (0), User test logged in successfully.
+[26-01-2025 17:22:09] [Handler] Request (1) received from ('127.0.0.1', 51200).
+[26-01-2025 17:22:09] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 51200).
+[26-01-2025 17:22:09] [Handler] Request (1), Request passed all checks.
+[26-01-2025 17:22:09] [Lobby Manager] Creating new lobby
+[26-01-2025 17:22:09] [Server] Request (1), Lobby created successfully.
+[26-01-2025 17:22:09] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:22:09] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:22:32] [Connection] Client ('127.0.0.1', 51234) connection request accepted.
+[26-01-2025 17:22:32] [Handler] Starting to handle ('127.0.0.1', 51234).
+[26-01-2025 17:22:39] [Handler] Request (3) received from ('127.0.0.1', 51234).
+[26-01-2025 17:22:39] [Handler] Request (3), identified as Login from ('127.0.0.1', 51234).
+[26-01-2025 17:22:39] [Handler] Request (3), Request passed all checks.
+[26-01-2025 17:22:40] [Server] Request (3), User test logged in successfully.
+[26-01-2025 17:22:40] [Handler] Request (4) received from ('127.0.0.1', 51234).
+[26-01-2025 17:22:40] [Handler] Request (4), identified as Create Lobby from ('127.0.0.1', 51234).
+[26-01-2025 17:22:41] [Handler] Request (4), Request passed all checks.
+[26-01-2025 17:22:41] [Lobby Manager] Creating new lobby
+[26-01-2025 17:22:41] [Server] Request (4), Lobby created successfully.
+[26-01-2025 17:22:50] [Connection] Client ('127.0.0.1', 51242) connection request accepted.
+[26-01-2025 17:22:50] [Handler] Starting to handle ('127.0.0.1', 51242).
+[26-01-2025 17:22:53] [Handler] Request (5) received from ('127.0.0.1', 51242).
+[26-01-2025 17:22:54] [Handler] Request (5), identified as Login from ('127.0.0.1', 51242).
+[26-01-2025 17:22:54] [Handler] Request (5), Request passed all checks.
+[26-01-2025 17:22:54] [Server] Request (5), User ron logged in successfully.
+[26-01-2025 17:22:55] [Handler] Request (6) received from ('127.0.0.1', 51242).
+[26-01-2025 17:22:55] [Handler] Request identified as Join Lobby from ('127.0.0.1', 51242).
+[26-01-2025 17:22:55] [Handler] Request (6), Request passed all checks.
+[26-01-2025 17:22:56] [Server] Request (6), Client registered to lobby.
+[26-01-2025 17:23:26] [Handler] Request (7) received from ('127.0.0.1', 51242).
+[26-01-2025 17:23:26] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51242).
+[26-01-2025 17:23:26] [Handler] Request (7), Request passed all checks.
+[26-01-2025 17:24:14] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:24:14] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:24:15] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:24:15] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 17:28:41] [Database] Database worker is running
+[26-01-2025 17:28:41] [Status] ServerSocket initialized.
+[26-01-2025 17:28:42] [Status] Server is running.
+[26-01-2025 17:28:45] [Connection] Client ('127.0.0.1', 51346) connection request accepted.
+[26-01-2025 17:28:45] [Handler] Starting to handle ('127.0.0.1', 51346).
+[26-01-2025 17:28:48] [Handler] Request (0) received from ('127.0.0.1', 51346).
+[26-01-2025 17:28:48] [Handler] Request (0), identified as Login from ('127.0.0.1', 51346).
+[26-01-2025 17:28:49] [Handler] Request (0), Request passed all checks.
+[26-01-2025 17:28:49] [Server] Request (0), User test logged in successfully.
+[26-01-2025 17:28:49] [Handler] Request (1) received from ('127.0.0.1', 51346).
+[26-01-2025 17:28:49] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 51346).
+[26-01-2025 17:28:50] [Handler] Request (1), Request passed all checks.
+[26-01-2025 17:28:50] [Lobby Manager] Creating new lobby
+[26-01-2025 17:28:50] [Server] Request (1), Lobby created successfully.
+[26-01-2025 17:28:51] [Handler] Request (2) received from ('127.0.0.1', 51346).
+[26-01-2025 17:28:51] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51346).
+[26-01-2025 17:28:52] [Handler] Request (2), Request passed all checks.
+[26-01-2025 17:29:17] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:29:18] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:29:19] [Connection] Client ('127.0.0.1', 51357) connection request accepted.
+[26-01-2025 17:29:19] [Handler] Starting to handle ('127.0.0.1', 51357).
+[26-01-2025 17:29:21] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:29:21] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 17:29:24] [Database] Database worker is running
+[26-01-2025 17:29:25] [Status] ServerSocket initialized.
+[26-01-2025 17:29:25] [Status] Server is running.
+[26-01-2025 17:29:26] [Connection] Client ('127.0.0.1', 51366) connection request accepted.
+[26-01-2025 17:29:26] [Handler] Starting to handle ('127.0.0.1', 51366).
+[26-01-2025 17:29:29] [Handler] Request (0) received from ('127.0.0.1', 51366).
+[26-01-2025 17:29:29] [Handler] Request (0), identified as Login from ('127.0.0.1', 51366).
+[26-01-2025 17:29:30] [Handler] Request (0), Request passed all checks.
+[26-01-2025 17:29:30] [Server] Request (0), User test logged in successfully.
+[26-01-2025 17:29:33] [Handler] Request (1) received from ('127.0.0.1', 51366).
+[26-01-2025 17:29:33] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 51366).
+[26-01-2025 17:29:33] [Handler] Request (1), Request passed all checks.
+[26-01-2025 17:29:33] [Lobby Manager] Creating new lobby
+[26-01-2025 17:29:33] [Server] Request (1), Lobby created successfully.
+[26-01-2025 17:29:36] [Handler] Request (2) received from ('127.0.0.1', 51366).
+[26-01-2025 17:29:36] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51366).
+[26-01-2025 17:29:36] [Handler] Request (2), Request passed all checks.
+[26-01-2025 17:31:18] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:31:19] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:31:19] [Connection] Client ('127.0.0.1', 51414) connection request accepted.
+[26-01-2025 17:31:20] [Handler] Starting to handle ('127.0.0.1', 51414).
+[26-01-2025 17:31:23] [Handler] Request (4) received from ('127.0.0.1', 51414).
+[26-01-2025 17:31:24] [Handler] Request (4), identified as Login from ('127.0.0.1', 51414).
+[26-01-2025 17:31:24] [Handler] Request (4), Request passed all checks.
+[26-01-2025 17:31:24] [Server] Request (4), User test logged in successfully.
+[26-01-2025 17:31:24] [Handler] Request (5) received from ('127.0.0.1', 51414).
+[26-01-2025 17:31:25] [Handler] Request (5), identified as Create Lobby from ('127.0.0.1', 51414).
+[26-01-2025 17:31:25] [Handler] Request (5), Request passed all checks.
+[26-01-2025 17:31:25] [Lobby Manager] Creating new lobby
+[26-01-2025 17:31:25] [Server] Request (5), Lobby created successfully.
+[26-01-2025 17:31:29] [Handler] Request (6) received from ('127.0.0.1', 51414).
+[26-01-2025 17:31:29] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51414).
+[26-01-2025 17:31:29] [Handler] Request (6), Request passed all checks.
+[26-01-2025 17:31:31] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:31:31] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:32:41] [Connection] Client ('127.0.0.1', 51437) connection request accepted.
+[26-01-2025 17:32:41] [Handler] Starting to handle ('127.0.0.1', 51437).
+[26-01-2025 17:32:45] [Handler] Request (8) received from ('127.0.0.1', 51437).
+[26-01-2025 17:32:45] [Handler] Request (8), identified as Login from ('127.0.0.1', 51437).
+[26-01-2025 17:32:46] [Handler] Request (8), Request passed all checks.
+[26-01-2025 17:32:46] [Server] Request (8), User test logged in successfully.
+[26-01-2025 17:32:46] [Handler] Request (9) received from ('127.0.0.1', 51437).
+[26-01-2025 17:32:47] [Handler] Request (9), identified as Create Lobby from ('127.0.0.1', 51437).
+[26-01-2025 17:32:47] [Handler] Request (9), Request passed all checks.
+[26-01-2025 17:32:47] [Lobby Manager] Creating new lobby
+[26-01-2025 17:32:47] [Server] Request (9), Lobby created successfully.
+[26-01-2025 17:32:48] [Handler] Request (10) received from ('127.0.0.1', 51437).
+[26-01-2025 17:32:48] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51437).
+[26-01-2025 17:32:49] [Handler] Request (10), Request passed all checks.
+[26-01-2025 17:32:51] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:32:51] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:33:05] [Connection] Client ('127.0.0.1', 51447) connection request accepted.
+[26-01-2025 17:33:05] [Handler] Starting to handle ('127.0.0.1', 51447).
+[26-01-2025 17:33:08] [Handler] Request (12) received from ('127.0.0.1', 51447).
+[26-01-2025 17:33:08] [Handler] Request (12), identified as Login from ('127.0.0.1', 51447).
+[26-01-2025 17:33:08] [Handler] Request (12), Request passed all checks.
+[26-01-2025 17:33:09] [Server] Request (12), User test logged in successfully.
+[26-01-2025 17:33:09] [Handler] Request (13) received from ('127.0.0.1', 51447).
+[26-01-2025 17:33:09] [Handler] Request (13), identified as Create Lobby from ('127.0.0.1', 51447).
+[26-01-2025 17:33:09] [Handler] Request (13), Request passed all checks.
+[26-01-2025 17:33:10] [Lobby Manager] Creating new lobby
+[26-01-2025 17:33:10] [Server] Request (13), Lobby created successfully.
+[26-01-2025 17:33:12] [Handler] Request (14) received from ('127.0.0.1', 51447).
+[26-01-2025 17:33:12] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51447).
+[26-01-2025 17:33:12] [Handler] Request (14), Request passed all checks.
+[26-01-2025 17:33:14] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:33:14] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:33:53] [Connection] Client ('127.0.0.1', 51465) connection request accepted.
+[26-01-2025 17:33:54] [Handler] Starting to handle ('127.0.0.1', 51465).
+[26-01-2025 17:33:57] [Handler] Request (16) received from ('127.0.0.1', 51465).
+[26-01-2025 17:33:57] [Handler] Request (16), identified as Login from ('127.0.0.1', 51465).
+[26-01-2025 17:33:57] [Handler] Request (16), Request passed all checks.
+[26-01-2025 17:33:57] [Server] Request (16), User test logged in successfully.
+[26-01-2025 17:33:58] [Handler] Request (17) received from ('127.0.0.1', 51465).
+[26-01-2025 17:33:58] [Handler] Request (17), identified as Create Lobby from ('127.0.0.1', 51465).
+[26-01-2025 17:33:58] [Handler] Request (17), Request passed all checks.
+[26-01-2025 17:33:58] [Lobby Manager] Creating new lobby
+[26-01-2025 17:33:58] [Server] Request (17), Lobby created successfully.
+[26-01-2025 17:34:00] [Handler] Request (18) received from ('127.0.0.1', 51465).
+[26-01-2025 17:34:00] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51465).
+[26-01-2025 17:34:00] [Handler] Request (18), Request passed all checks.
+[26-01-2025 17:34:05] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:34:05] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:34:49] [Connection] Client ('127.0.0.1', 51478) connection request accepted.
+[26-01-2025 17:34:49] [Handler] Starting to handle ('127.0.0.1', 51478).
+[26-01-2025 17:34:52] [Handler] Request (20) received from ('127.0.0.1', 51478).
+[26-01-2025 17:34:52] [Handler] Request (20), identified as Login from ('127.0.0.1', 51478).
+[26-01-2025 17:34:53] [Handler] Request (20), Request passed all checks.
+[26-01-2025 17:34:53] [Server] Request (20), User test logged in successfully.
+[26-01-2025 17:34:53] [Handler] Request (21) received from ('127.0.0.1', 51478).
+[26-01-2025 17:34:54] [Handler] Request (21), identified as Create Lobby from ('127.0.0.1', 51478).
+[26-01-2025 17:34:54] [Handler] Request (21), Request passed all checks.
+[26-01-2025 17:34:54] [Lobby Manager] Creating new lobby
+[26-01-2025 17:34:54] [Server] Request (21), Lobby created successfully.
+[26-01-2025 17:34:55] [Handler] Request (22) received from ('127.0.0.1', 51478).
+[26-01-2025 17:34:55] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51478).
+[26-01-2025 17:34:55] [Handler] Request (22), Request passed all checks.
+[26-01-2025 17:34:57] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:34:58] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:35:40] [Connection] Client ('127.0.0.1', 51492) connection request accepted.
+[26-01-2025 17:35:40] [Handler] Starting to handle ('127.0.0.1', 51492).
+[26-01-2025 17:35:43] [Handler] Request (24) received from ('127.0.0.1', 51492).
+[26-01-2025 17:35:43] [Handler] Request (24), identified as Login from ('127.0.0.1', 51492).
+[26-01-2025 17:35:43] [Handler] Request (24), Request passed all checks.
+[26-01-2025 17:35:43] [Server] Request (24), User test logged in successfully.
+[26-01-2025 17:35:44] [Handler] Request (25) received from ('127.0.0.1', 51492).
+[26-01-2025 17:35:44] [Handler] Request (25), identified as Create Lobby from ('127.0.0.1', 51492).
+[26-01-2025 17:35:44] [Handler] Request (25), Request passed all checks.
+[26-01-2025 17:35:44] [Lobby Manager] Creating new lobby
+[26-01-2025 17:35:44] [Server] Request (25), Lobby created successfully.
+[26-01-2025 17:35:49] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:35:50] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:48:38] [Connection] Client ('127.0.0.1', 51751) connection request accepted.
+[26-01-2025 17:48:38] [Handler] Starting to handle ('127.0.0.1', 51751).
+[26-01-2025 17:48:41] [Handler] Request (27) received from ('127.0.0.1', 51751).
+[26-01-2025 17:48:41] [Handler] Request (27), identified as Login from ('127.0.0.1', 51751).
+[26-01-2025 17:48:41] [Handler] Request (27), Request passed all checks.
+[26-01-2025 17:48:41] [Server] Request (27), User test logged in successfully.
+[26-01-2025 17:48:42] [Handler] Request (28) received from ('127.0.0.1', 51751).
+[26-01-2025 17:48:42] [Handler] Request (28), identified as Create Lobby from ('127.0.0.1', 51751).
+[26-01-2025 17:48:42] [Handler] Request (28), Request passed all checks.
+[26-01-2025 17:48:42] [Lobby Manager] Creating new lobby
+[26-01-2025 17:48:42] [Server] Request (28), Lobby created successfully.
+[26-01-2025 17:48:44] [Handler] Request (29) received from ('127.0.0.1', 51751).
+[26-01-2025 17:48:44] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51751).
+[26-01-2025 17:48:44] [Handler] Request (29), Request passed all checks.
+[26-01-2025 17:48:44] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:48:45] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:49:25] [Connection] Client ('127.0.0.1', 51763) connection request accepted.
+[26-01-2025 17:49:25] [Handler] Starting to handle ('127.0.0.1', 51763).
+[26-01-2025 17:49:28] [Handler] Request (31) received from ('127.0.0.1', 51763).
+[26-01-2025 17:49:28] [Handler] Request (31), identified as Login from ('127.0.0.1', 51763).
+[26-01-2025 17:49:29] [Handler] Request (31), Request passed all checks.
+[26-01-2025 17:49:29] [Server] Request (31), User test logged in successfully.
+[26-01-2025 17:49:31] [Handler] Request (32) received from ('127.0.0.1', 51763).
+[26-01-2025 17:49:31] [Handler] Request (32), identified as Create Lobby from ('127.0.0.1', 51763).
+[26-01-2025 17:49:31] [Handler] Request (32), Request passed all checks.
+[26-01-2025 17:49:31] [Lobby Manager] Creating new lobby
+[26-01-2025 17:49:31] [Server] Request (32), Lobby created successfully.
+[26-01-2025 17:49:33] [Handler] Request (33) received from ('127.0.0.1', 51763).
+[26-01-2025 17:49:33] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51763).
+[26-01-2025 17:49:33] [Handler] Request (33), Request passed all checks.
+[26-01-2025 17:49:33] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:49:33] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:50:43] [Connection] Client ('127.0.0.1', 51783) connection request accepted.
+[26-01-2025 17:50:43] [Handler] Starting to handle ('127.0.0.1', 51783).
+[26-01-2025 17:50:47] [Handler] Request (35) received from ('127.0.0.1', 51783).
+[26-01-2025 17:50:47] [Handler] Request (35), identified as Login from ('127.0.0.1', 51783).
+[26-01-2025 17:50:48] [Handler] Request (35), Request passed all checks.
+[26-01-2025 17:50:48] [Server] Request (35), User test logged in successfully.
+[26-01-2025 17:50:48] [Handler] Request (36) received from ('127.0.0.1', 51783).
+[26-01-2025 17:50:48] [Handler] Request (36), identified as Create Lobby from ('127.0.0.1', 51783).
+[26-01-2025 17:50:48] [Handler] Request (36), Request passed all checks.
+[26-01-2025 17:50:49] [Lobby Manager] Creating new lobby
+[26-01-2025 17:50:49] [Server] Request (36), Lobby created successfully.
+[26-01-2025 17:50:50] [Handler] Request (37) received from ('127.0.0.1', 51783).
+[26-01-2025 17:50:50] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51783).
+[26-01-2025 17:50:50] [Handler] Request (37), Request passed all checks.
+[26-01-2025 17:50:55] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:50:55] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 17:57:03] [Database] Database worker is running
+[26-01-2025 17:57:03] [Status] ServerSocket initialized.
+[26-01-2025 17:57:03] [Status] Server is running.
+[26-01-2025 17:57:05] [Connection] Client ('127.0.0.1', 51894) connection request accepted.
+[26-01-2025 17:57:05] [Handler] Starting to handle ('127.0.0.1', 51894).
+[26-01-2025 17:57:08] [Handler] Request (0) received from ('127.0.0.1', 51894).
+[26-01-2025 17:57:08] [Handler] Request (0), identified as Login from ('127.0.0.1', 51894).
+[26-01-2025 17:57:08] [Handler] Request (0), Request passed all checks.
+[26-01-2025 17:57:08] [Server] Request (0), User test logged in successfully.
+[26-01-2025 17:57:09] [Handler] Request (1) received from ('127.0.0.1', 51894).
+[26-01-2025 17:57:09] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 51894).
+[26-01-2025 17:57:10] [Handler] Request (1), Request passed all checks.
+[26-01-2025 17:57:10] [Lobby Manager] Creating new lobby
+[26-01-2025 17:57:10] [Server] Request (1), Lobby created successfully.
+[26-01-2025 17:57:10] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:57:10] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:57:33] [Connection] Client ('127.0.0.1', 51901) connection request accepted.
+[26-01-2025 17:57:34] [Handler] Starting to handle ('127.0.0.1', 51901).
+[26-01-2025 17:57:36] [Handler] Request (3) received from ('127.0.0.1', 51901).
+[26-01-2025 17:57:36] [Handler] Request (3), identified as Login from ('127.0.0.1', 51901).
+[26-01-2025 17:57:37] [Handler] Request (3), Request passed all checks.
+[26-01-2025 17:57:37] [Server] Request (3), User test logged in successfully.
+[26-01-2025 17:57:38] [Handler] Request (4) received from ('127.0.0.1', 51901).
+[26-01-2025 17:57:38] [Handler] Request (4), identified as Create Lobby from ('127.0.0.1', 51901).
+[26-01-2025 17:57:38] [Handler] Request (4), Request passed all checks.
+[26-01-2025 17:57:38] [Lobby Manager] Creating new lobby
+[26-01-2025 17:57:38] [Server] Request (4), Lobby created successfully.
+[26-01-2025 17:57:45] [Handler] Request (5) received from ('127.0.0.1', 51901).
+[26-01-2025 17:57:45] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51901).
+[26-01-2025 17:57:45] [Handler] Request (5), Request passed all checks.
+[26-01-2025 17:57:51] [Handler] Request (6) received from ('127.0.0.1', 51901).
+[26-01-2025 17:57:51] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 51901).
+[26-01-2025 17:57:51] [Handler] Request (6), Request passed all checks.
+[26-01-2025 17:58:12] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:58:12] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 17:58:31] [Database] Database worker is running
+[26-01-2025 17:58:32] [Status] ServerSocket initialized.
+[26-01-2025 17:58:32] [Status] Server is running.
+[26-01-2025 17:58:35] [Connection] Client ('127.0.0.1', 51948) connection request accepted.
+[26-01-2025 17:58:35] [Handler] Starting to handle ('127.0.0.1', 51948).
+[26-01-2025 17:58:41] [Handler] Request (0) received from ('127.0.0.1', 51948).
+[26-01-2025 17:58:41] [Handler] Request (0), identified as Login from ('127.0.0.1', 51948).
+[26-01-2025 17:58:41] [Handler] Request (0), Request passed all checks.
+[26-01-2025 17:58:41] [Server] Request (0), User test logged in successfully.
+[26-01-2025 17:58:50] [Handler] Request (1) received from ('127.0.0.1', 51948).
+[26-01-2025 17:58:50] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 51948).
+[26-01-2025 17:58:50] [Handler] Request (1), Request passed all checks.
+[26-01-2025 17:58:50] [Lobby Manager] Creating new lobby
+[26-01-2025 17:58:50] [Server] Request (1), Lobby created successfully.
+[26-01-2025 17:58:56] [Handler] Request (2) received from ('127.0.0.1', 51948).
+[26-01-2025 17:58:56] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51948).
+[26-01-2025 17:58:56] [Handler] Request (2), Request passed all checks.
+[26-01-2025 17:58:59] [Handler] Request (3) received from ('127.0.0.1', 51948).
+[26-01-2025 17:58:59] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 51948).
+[26-01-2025 17:59:00] [Handler] Request (3), Request passed all checks.
+[26-01-2025 17:59:07] [Connection] Client ('127.0.0.1', 51962) connection request accepted.
+[26-01-2025 17:59:07] [Handler] Starting to handle ('127.0.0.1', 51962).
+[26-01-2025 17:59:11] [Handler] Request (4) received from ('127.0.0.1', 51962).
+[26-01-2025 17:59:11] [Handler] Request (4), identified as Login from ('127.0.0.1', 51962).
+[26-01-2025 17:59:11] [Handler] Request (4), Request passed all checks.
+[26-01-2025 17:59:11] [Server] Request (4), User ron logged in successfully.
+[26-01-2025 17:59:16] [Handler] Request (5) received from ('127.0.0.1', 51962).
+[26-01-2025 17:59:16] [Handler] Request identified as Join Lobby from ('127.0.0.1', 51962).
+[26-01-2025 17:59:16] [Handler] Request (5), Request passed all checks.
+[26-01-2025 17:59:17] [Server] Request (5), Client registered to lobby.
+[26-01-2025 17:59:21] [Handler] Request (6) received from ('127.0.0.1', 51962).
+[26-01-2025 17:59:21] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51962).
+[26-01-2025 17:59:21] [Handler] Request (6), Request passed all checks.
+[26-01-2025 17:59:26] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:59:26] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:59:26] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 17:59:26] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 23:16:52] [Database] Database worker is running
+[26-01-2025 23:16:52] [Status] ServerSocket initialized.
+[26-01-2025 23:16:52] [Status] Server is running.
+[26-01-2025 23:16:54] [Connection] Client ('127.0.0.1', 51941) connection request accepted.
+[26-01-2025 23:16:55] [Handler] Starting to handle ('127.0.0.1', 51941).
+[26-01-2025 23:16:57] [Handler] Request (0) received from ('127.0.0.1', 51941).
+[26-01-2025 23:16:58] [Handler] Request (0), identified as Login from ('127.0.0.1', 51941).
+[26-01-2025 23:16:58] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:16:58] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:16:59] [Handler] Request (1) received from ('127.0.0.1', 51941).
+[26-01-2025 23:16:59] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 51941).
+[26-01-2025 23:16:59] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:16:59] [Lobby Manager] Creating new lobby
+[26-01-2025 23:16:59] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:17:06] [Connection] Client ('127.0.0.1', 51946) connection request accepted.
+[26-01-2025 23:17:06] [Handler] Starting to handle ('127.0.0.1', 51946).
+[26-01-2025 23:17:14] [Handler] Request (2) received from ('127.0.0.1', 51946).
+[26-01-2025 23:17:14] [Handler] Request (2), identified as Login from ('127.0.0.1', 51946).
+[26-01-2025 23:17:15] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:17:15] [Server] Request (2), User ron logged in successfully.
+[26-01-2025 23:17:16] [Handler] Request (3) received from ('127.0.0.1', 51946).
+[26-01-2025 23:17:16] [Handler] Request identified as Join Lobby from ('127.0.0.1', 51946).
+[26-01-2025 23:17:16] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:17:16] [Server] Request (3), Client registered to lobby.
+[26-01-2025 23:17:18] [Handler] Request (4) received from ('127.0.0.1', 51946).
+[26-01-2025 23:17:18] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51946).
+[26-01-2025 23:17:18] [Handler] Request (4), Request passed all checks.
+[26-01-2025 23:17:18] [Server] Request (4), Client ron became a spectator on lobby 652089.
+[26-01-2025 23:17:19] [Handler] Request (5) received from ('127.0.0.1', 51946).
+[26-01-2025 23:17:19] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 51946).
+[26-01-2025 23:17:20] [Handler] Request (5), Request passed all checks.
+[26-01-2025 23:17:20] [Server] Request (5), Client ron became a player on lobby 652089.
+[26-01-2025 23:18:08] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:18:08] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:18:09] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:18:09] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:18:11] [Connection] Client ('127.0.0.1', 51971) connection request accepted.
+[26-01-2025 23:18:11] [Handler] Starting to handle ('127.0.0.1', 51971).
+[26-01-2025 23:18:12] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:18:12] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 23:18:15] [Database] Database worker is running
+[26-01-2025 23:18:15] [Status] ServerSocket initialized.
+[26-01-2025 23:18:15] [Status] Server is running.
+[26-01-2025 23:18:19] [Connection] Client ('127.0.0.1', 51974) connection request accepted.
+[26-01-2025 23:18:19] [Handler] Starting to handle ('127.0.0.1', 51974).
+[26-01-2025 23:18:22] [Handler] Request (0) received from ('127.0.0.1', 51974).
+[26-01-2025 23:18:22] [Handler] Request (0), identified as Login from ('127.0.0.1', 51974).
+[26-01-2025 23:18:22] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:18:22] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:18:23] [Handler] Request (1) received from ('127.0.0.1', 51974).
+[26-01-2025 23:18:23] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 51974).
+[26-01-2025 23:18:24] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:18:24] [Lobby Manager] Creating new lobby
+[26-01-2025 23:18:24] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:18:27] [Connection] Client ('127.0.0.1', 51976) connection request accepted.
+[26-01-2025 23:18:27] [Handler] Starting to handle ('127.0.0.1', 51976).
+[26-01-2025 23:18:33] [Handler] Request (2) received from ('127.0.0.1', 51976).
+[26-01-2025 23:18:33] [Handler] Request (2), identified as Login from ('127.0.0.1', 51976).
+[26-01-2025 23:18:33] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:18:33] [Server] Request (2), User ron logged in successfully.
+[26-01-2025 23:18:37] [Handler] Request (3) received from ('127.0.0.1', 51976).
+[26-01-2025 23:18:37] [Handler] Request identified as Join Lobby from ('127.0.0.1', 51976).
+[26-01-2025 23:18:37] [Handler Error] Request (3), Invalid code.
+[26-01-2025 23:18:43] [Handler] Request (4) received from ('127.0.0.1', 51976).
+[26-01-2025 23:18:43] [Handler] Request identified as Join Lobby from ('127.0.0.1', 51976).
+[26-01-2025 23:18:43] [Handler] Request (4), Request passed all checks.
+[26-01-2025 23:18:44] [Server] Request (4), Client registered to lobby.
+[26-01-2025 23:18:47] [Handler] Request (5) received from ('127.0.0.1', 51974).
+[26-01-2025 23:18:47] [Handler] Request identified as Make Lobby Spectator from ('127.0.0.1', 51974).
+[26-01-2025 23:18:47] [Handler Error] Request (5), User test isn't the owner of lobby 391618.
+[26-01-2025 23:19:45] [Handler] Request (6) received from ('127.0.0.1', 51976).
+[26-01-2025 23:19:45] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 51976).
+[26-01-2025 23:19:45] [Handler] Request (6), Request passed all checks.
+[26-01-2025 23:19:46] [Server] Request (6), Client ron became a spectator on lobby 391618.
+[26-01-2025 23:19:47] [Handler] Request (7) received from ('127.0.0.1', 51976).
+[26-01-2025 23:19:47] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 51976).
+[26-01-2025 23:19:47] [Handler] Request (7), Request passed all checks.
+[26-01-2025 23:19:47] [Server] Request (7), Client ron became a player on lobby 391618.
+[26-01-2025 23:21:10] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:21:10] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:21:11] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:21:11] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 23:22:55] [Database] Database worker is running
+[26-01-2025 23:22:55] [Status] ServerSocket initialized.
+[26-01-2025 23:22:55] [Status] Server is running.
+[26-01-2025 23:22:57] [Connection] Client ('127.0.0.1', 52066) connection request accepted.
+[26-01-2025 23:22:57] [Handler] Starting to handle ('127.0.0.1', 52066).
+[26-01-2025 23:23:00] [Handler] Request (0) received from ('127.0.0.1', 52066).
+[26-01-2025 23:23:00] [Handler] Request (0), identified as Login from ('127.0.0.1', 52066).
+[26-01-2025 23:23:01] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:23:01] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:23:02] [Handler] Request (1) received from ('127.0.0.1', 52066).
+[26-01-2025 23:23:02] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52066).
+[26-01-2025 23:23:02] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:23:02] [Lobby Manager] Creating new lobby
+[26-01-2025 23:23:02] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:23:05] [Connection] Client ('127.0.0.1', 52069) connection request accepted.
+[26-01-2025 23:23:06] [Handler] Starting to handle ('127.0.0.1', 52069).
+[26-01-2025 23:23:09] [Handler] Request (2) received from ('127.0.0.1', 52069).
+[26-01-2025 23:23:09] [Handler] Request (2), identified as Login from ('127.0.0.1', 52069).
+[26-01-2025 23:23:09] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:23:09] [Server] Request (2), User ron logged in successfully.
+[26-01-2025 23:23:11] [Handler] Request (3) received from ('127.0.0.1', 52069).
+[26-01-2025 23:23:11] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52069).
+[26-01-2025 23:23:11] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:23:11] [Server] Request (3), Client registered to lobby.
+[26-01-2025 23:23:13] [Handler] Request (4) received from ('127.0.0.1', 52069).
+[26-01-2025 23:23:13] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52069).
+[26-01-2025 23:23:13] [Handler] Request (4), Request passed all checks.
+[26-01-2025 23:23:13] [Server] Request (4), Client ron became a spectator on lobby 871424.
+[26-01-2025 23:23:14] [Handler] Request (5) received from ('127.0.0.1', 52069).
+[26-01-2025 23:23:14] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52069).
+[26-01-2025 23:23:14] [Handler] Request (5), Request passed all checks.
+[26-01-2025 23:23:14] [Server] Request (5), Client ron became a player on lobby 871424.
+=============== Initiating the server. ===============
+[26-01-2025 23:24:35] [Database] Database worker is running
+[26-01-2025 23:24:36] [Status] ServerSocket initialized.
+[26-01-2025 23:24:36] [Status] Server is running.
+=============== Initiating the server. ===============
+[26-01-2025 23:24:55] [Database] Database worker is running
+[26-01-2025 23:24:55] [Status] ServerSocket initialized.
+[26-01-2025 23:24:55] [Status] Server is running.
+[26-01-2025 23:24:57] [Connection] Client ('127.0.0.1', 52104) connection request accepted.
+[26-01-2025 23:24:57] [Handler] Starting to handle ('127.0.0.1', 52104).
+[26-01-2025 23:25:00] [Handler] Request (0) received from ('127.0.0.1', 52104).
+[26-01-2025 23:25:00] [Handler] Request (0), identified as Login from ('127.0.0.1', 52104).
+[26-01-2025 23:25:00] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:25:01] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:25:03] [Handler] Request (1) received from ('127.0.0.1', 52104).
+[26-01-2025 23:25:03] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52104).
+[26-01-2025 23:25:03] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:25:03] [Lobby Manager] Creating new lobby
+[26-01-2025 23:25:03] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:25:06] [Handler] Request (2) received from ('127.0.0.1', 52104).
+[26-01-2025 23:25:06] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52104).
+[26-01-2025 23:25:06] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:25:07] [Server] Request (2), Client test became a spectator on lobby 273330.
+[26-01-2025 23:25:07] [Handler] Request (3) received from ('127.0.0.1', 52104).
+[26-01-2025 23:25:07] [Handler] Request (3), identified as Kick User From Lobby from ('127.0.0.1', 52104).
+[26-01-2025 23:25:07] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:25:07] [Server] Request (3), Client test kicked the lobby 273330.
+=============== Initiating the server. ===============
+[26-01-2025 23:26:22] [Database] Database worker is running
+[26-01-2025 23:26:22] [Status] ServerSocket initialized.
+[26-01-2025 23:26:22] [Status] Server is running.
+[26-01-2025 23:26:24] [Connection] Client ('127.0.0.1', 52133) connection request accepted.
+[26-01-2025 23:26:25] [Handler] Starting to handle ('127.0.0.1', 52133).
+[26-01-2025 23:26:27] [Handler] Request (0) received from ('127.0.0.1', 52133).
+[26-01-2025 23:26:28] [Handler] Request (0), identified as Login from ('127.0.0.1', 52133).
+[26-01-2025 23:26:28] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:26:28] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:26:29] [Handler] Request (1) received from ('127.0.0.1', 52133).
+[26-01-2025 23:26:29] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52133).
+[26-01-2025 23:26:29] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:26:29] [Lobby Manager] Creating new lobby
+[26-01-2025 23:26:29] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:26:35] [Connection] Client ('127.0.0.1', 52136) connection request accepted.
+[26-01-2025 23:26:35] [Handler] Starting to handle ('127.0.0.1', 52136).
+[26-01-2025 23:26:38] [Handler] Request (2) received from ('127.0.0.1', 52136).
+[26-01-2025 23:26:39] [Handler] Request (2), identified as Login from ('127.0.0.1', 52136).
+[26-01-2025 23:26:39] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:26:39] [Server] Request (2), User ron logged in successfully.
+[26-01-2025 23:26:40] [Handler] Request (3) received from ('127.0.0.1', 52136).
+[26-01-2025 23:26:40] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52136).
+[26-01-2025 23:26:40] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:26:41] [Server] Request (3), Client registered to lobby.
+[26-01-2025 23:26:50] [Handler] Request (4) received from ('127.0.0.1', 52133).
+[26-01-2025 23:26:50] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52133).
+[26-01-2025 23:26:50] [Handler] Request (4), Request passed all checks.
+[26-01-2025 23:26:50] [Server] Request (4), Client test became a spectator on lobby 785583.
+[26-01-2025 23:26:51] [Handler] Request (5) received from ('127.0.0.1', 52133).
+[26-01-2025 23:26:51] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52133).
+[26-01-2025 23:26:51] [Handler] Request (5), Request passed all checks.
+[26-01-2025 23:26:52] [Server] Request (5), Client test became a player on lobby 785583.
+[26-01-2025 23:26:57] [Handler] Request (6) received from ('127.0.0.1', 52133).
+[26-01-2025 23:26:57] [Handler] Request identified as Make Lobby Spectator from ('127.0.0.1', 52133).
+[26-01-2025 23:26:58] [Handler] Request (6), Request passed all checks.
+[26-01-2025 23:27:40] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:27:40] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:27:40] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:27:40] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:28:48] [Connection] Client ('127.0.0.1', 52179) connection request accepted.
+[26-01-2025 23:28:49] [Handler] Starting to handle ('127.0.0.1', 52179).
+[26-01-2025 23:28:52] [Handler] Request (9) received from ('127.0.0.1', 52179).
+[26-01-2025 23:28:52] [Handler] Request (9), identified as Login from ('127.0.0.1', 52179).
+[26-01-2025 23:28:52] [Handler Error] Request (9), Invalid credentials.
+[26-01-2025 23:28:59] [Handler] Request (10) received from ('127.0.0.1', 52179).
+[26-01-2025 23:28:59] [Handler] Request (10), identified as Login from ('127.0.0.1', 52179).
+[26-01-2025 23:28:59] [Handler] Request (10), Request passed all checks.
+[26-01-2025 23:28:59] [Server] Request (10), User test logged in successfully.
+[26-01-2025 23:29:00] [Handler] Request (11) received from ('127.0.0.1', 52179).
+[26-01-2025 23:29:00] [Handler] Request (11), identified as Create Lobby from ('127.0.0.1', 52179).
+[26-01-2025 23:29:01] [Handler] Request (11), Request passed all checks.
+[26-01-2025 23:29:01] [Lobby Manager] Creating new lobby
+[26-01-2025 23:29:01] [Server] Request (11), Lobby created successfully.
+[26-01-2025 23:29:04] [Connection] Client ('127.0.0.1', 52183) connection request accepted.
+[26-01-2025 23:29:04] [Handler] Starting to handle ('127.0.0.1', 52183).
+[26-01-2025 23:29:07] [Handler] Request (12) received from ('127.0.0.1', 52183).
+[26-01-2025 23:29:07] [Handler] Request (12), identified as Login from ('127.0.0.1', 52183).
+[26-01-2025 23:29:08] [Handler] Request (12), Request passed all checks.
+[26-01-2025 23:29:08] [Server] Request (12), User ron logged in successfully.
+[26-01-2025 23:29:10] [Handler] Request (13) received from ('127.0.0.1', 52183).
+[26-01-2025 23:29:10] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52183).
+[26-01-2025 23:29:10] [Handler] Request (13), Request passed all checks.
+[26-01-2025 23:29:10] [Server] Request (13), Client registered to lobby.
+[26-01-2025 23:29:12] [Handler] Request (14) received from ('127.0.0.1', 52183).
+[26-01-2025 23:29:12] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52183).
+[26-01-2025 23:29:12] [Handler] Request (14), Request passed all checks.
+[26-01-2025 23:29:12] [Server] Request (14), Client ron became a spectator on lobby 012333.
+[26-01-2025 23:29:48] [Handler] Request (15) received from ('127.0.0.1', 52183).
+[26-01-2025 23:29:48] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52183).
+[26-01-2025 23:29:48] [Handler] Request (15), Request passed all checks.
+[26-01-2025 23:29:48] [Server] Request (15), Client ron became a player on lobby 012333.
+[26-01-2025 23:29:53] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:29:54] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:31:36] [Handler] Request (17) received from ('127.0.0.1', 52179).
+[26-01-2025 23:31:37] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52179).
+[26-01-2025 23:31:37] [Handler] Request (17), Request passed all checks.
+[26-01-2025 23:31:37] [Server] Request (17), Client test became a spectator on lobby 012333.
+[26-01-2025 23:31:41] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:31:41] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 23:31:43] [Database] Database worker is running
+[26-01-2025 23:31:44] [Status] ServerSocket initialized.
+[26-01-2025 23:31:44] [Status] Server is running.
+[26-01-2025 23:31:45] [Connection] Client ('127.0.0.1', 52242) connection request accepted.
+[26-01-2025 23:31:45] [Handler] Starting to handle ('127.0.0.1', 52242).
+[26-01-2025 23:31:48] [Handler] Request (0) received from ('127.0.0.1', 52242).
+[26-01-2025 23:31:48] [Handler] Request (0), identified as Login from ('127.0.0.1', 52242).
+[26-01-2025 23:31:48] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:31:49] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:31:51] [Handler] Request (1) received from ('127.0.0.1', 52242).
+[26-01-2025 23:31:51] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52242).
+[26-01-2025 23:31:51] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:31:51] [Lobby Manager] Creating new lobby
+[26-01-2025 23:31:51] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:31:53] [Handler] Request (2) received from ('127.0.0.1', 52242).
+[26-01-2025 23:31:53] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52242).
+[26-01-2025 23:31:53] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:31:53] [Server] Request (2), Client test became a spectator on lobby 889807.
+[26-01-2025 23:32:25] [Handler] Request (3) received from ('127.0.0.1', 52242).
+[26-01-2025 23:32:25] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52242).
+[26-01-2025 23:32:25] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:32:25] [Server] Request (3), Client test became a player on lobby 889807.
+[26-01-2025 23:32:29] [Handler] Request (4) received from ('127.0.0.1', 52242).
+[26-01-2025 23:32:29] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52242).
+[26-01-2025 23:32:29] [Handler] Request (4), Request passed all checks.
+[26-01-2025 23:32:29] [Server] Request (4), Client test became a spectator on lobby 889807.
+[26-01-2025 23:32:30] [Handler] Request (5) received from ('127.0.0.1', 52242).
+[26-01-2025 23:32:30] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52242).
+[26-01-2025 23:32:30] [Handler] Request (5), Request passed all checks.
+[26-01-2025 23:32:30] [Server] Request (5), Client test became a player on lobby 889807.
+[26-01-2025 23:32:32] [Handler] Request (6) received from ('127.0.0.1', 52242).
+[26-01-2025 23:32:33] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52242).
+[26-01-2025 23:32:33] [Handler] Request (6), Request passed all checks.
+[26-01-2025 23:32:33] [Server] Request (6), Client test became a spectator on lobby 889807.
+[26-01-2025 23:32:33] [Handler] Request (7) received from ('127.0.0.1', 52242).
+[26-01-2025 23:32:33] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52242).
+[26-01-2025 23:32:33] [Handler] Request (7), Request passed all checks.
+[26-01-2025 23:32:33] [Server] Request (7), Client test became a player on lobby 889807.
+[26-01-2025 23:32:39] [Connection] Client ('127.0.0.1', 52257) connection request accepted.
+[26-01-2025 23:32:39] [Handler] Starting to handle ('127.0.0.1', 52257).
+[26-01-2025 23:32:48] [Handler] Request (8) received from ('127.0.0.1', 52257).
+[26-01-2025 23:32:48] [Handler] Request (8), identified as Login from ('127.0.0.1', 52257).
+[26-01-2025 23:32:49] [Handler] Request (8), Request passed all checks.
+[26-01-2025 23:32:49] [Server] Request (8), User ron logged in successfully.
+[26-01-2025 23:32:50] [Handler] Request (9) received from ('127.0.0.1', 52257).
+[26-01-2025 23:32:50] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52257).
+[26-01-2025 23:32:50] [Handler] Request (9), Request passed all checks.
+[26-01-2025 23:32:50] [Server] Request (9), Client registered to lobby.
+[26-01-2025 23:32:54] [Handler] Request (10) received from ('127.0.0.1', 52242).
+[26-01-2025 23:32:54] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52242).
+[26-01-2025 23:32:54] [Handler] Request (10), Request passed all checks.
+[26-01-2025 23:32:54] [Server] Request (10), Client test became a spectator on lobby 889807.
+[26-01-2025 23:32:55] [Handler] Request (11) received from ('127.0.0.1', 52242).
+[26-01-2025 23:32:55] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52242).
+[26-01-2025 23:32:55] [Handler] Request (11), Request passed all checks.
+[26-01-2025 23:32:55] [Server] Request (11), Client test became a player on lobby 889807.
+[26-01-2025 23:32:58] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:32:58] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 23:34:23] [Database] Database worker is running
+[26-01-2025 23:34:23] [Status] ServerSocket initialized.
+[26-01-2025 23:34:23] [Status] Server is running.
+[26-01-2025 23:34:25] [Connection] Client ('127.0.0.1', 52297) connection request accepted.
+[26-01-2025 23:34:25] [Handler] Starting to handle ('127.0.0.1', 52297).
+[26-01-2025 23:34:32] [Handler] Request (0) received from ('127.0.0.1', 52297).
+[26-01-2025 23:34:33] [Handler] Request (0), identified as Login from ('127.0.0.1', 52297).
+[26-01-2025 23:34:33] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:34:33] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:34:35] [Handler] Request (1) received from ('127.0.0.1', 52297).
+[26-01-2025 23:34:35] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52297).
+[26-01-2025 23:34:35] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:34:36] [Lobby Manager] Creating new lobby
+[26-01-2025 23:34:36] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:34:40] [Connection] Client ('127.0.0.1', 52307) connection request accepted.
+[26-01-2025 23:34:40] [Handler] Starting to handle ('127.0.0.1', 52307).
+[26-01-2025 23:34:43] [Handler] Request (2) received from ('127.0.0.1', 52307).
+[26-01-2025 23:34:43] [Handler] Request (2), identified as Login from ('127.0.0.1', 52307).
+[26-01-2025 23:34:43] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:34:43] [Server] Request (2), User ron logged in successfully.
+[26-01-2025 23:34:46] [Handler] Request (3) received from ('127.0.0.1', 52307).
+[26-01-2025 23:34:46] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52307).
+[26-01-2025 23:34:47] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:34:47] [Server] Request (3), Client registered to lobby.
+[26-01-2025 23:34:49] [Handler] Request (4) received from ('127.0.0.1', 52297).
+[26-01-2025 23:34:49] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52297).
+[26-01-2025 23:34:50] [Handler] Request (4), Request passed all checks.
+[26-01-2025 23:34:50] [Server] Request (4), Client test became a spectator on lobby 889119.
+[26-01-2025 23:34:51] [Handler] Request (5) received from ('127.0.0.1', 52297).
+[26-01-2025 23:34:51] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52297).
+[26-01-2025 23:34:51] [Handler] Request (5), Request passed all checks.
+[26-01-2025 23:34:51] [Server] Request (5), Client test became a player on lobby 889119.
+[26-01-2025 23:34:52] [Handler] Request (6) received from ('127.0.0.1', 52297).
+[26-01-2025 23:34:52] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52297).
+[26-01-2025 23:34:52] [Handler] Request (6), Request passed all checks.
+[26-01-2025 23:34:52] [Server] Request (6), Client test became a spectator on lobby 889119.
+[26-01-2025 23:34:56] [Handler] Request (7) received from ('127.0.0.1', 52307).
+[26-01-2025 23:34:56] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52307).
+[26-01-2025 23:34:56] [Handler] Request (7), Request passed all checks.
+[26-01-2025 23:34:56] [Server] Request (7), Client ron became a spectator on lobby 889119.
+[26-01-2025 23:34:59] [Handler] Request (8) received from ('127.0.0.1', 52307).
+[26-01-2025 23:35:00] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52307).
+[26-01-2025 23:35:00] [Handler] Request (8), Request passed all checks.
+[26-01-2025 23:35:00] [Server] Request (8), Client ron became a player on lobby 889119.
+[26-01-2025 23:35:03] [Handler] Request (9) received from ('127.0.0.1', 52297).
+[26-01-2025 23:35:04] [Handler] Request (9), identified as Kick User From Lobby from ('127.0.0.1', 52297).
+[26-01-2025 23:35:04] [Handler] Request (9), Request passed all checks.
+[26-01-2025 23:35:04] [Server] Request (9), Client ron kicked the lobby 889119.
+=============== Initiating the server. ===============
+[26-01-2025 23:38:25] [Database] Database worker is running
+[26-01-2025 23:38:25] [Status] ServerSocket initialized.
+[26-01-2025 23:38:26] [Status] Server is running.
+[26-01-2025 23:38:28] [Connection] Client ('127.0.0.1', 52400) connection request accepted.
+[26-01-2025 23:38:28] [Handler] Starting to handle ('127.0.0.1', 52400).
+[26-01-2025 23:38:31] [Handler] Request (0) received from ('127.0.0.1', 52400).
+[26-01-2025 23:38:31] [Handler] Request (0), identified as Login from ('127.0.0.1', 52400).
+[26-01-2025 23:38:31] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:38:31] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:38:32] [Handler] Request (1) received from ('127.0.0.1', 52400).
+[26-01-2025 23:38:32] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52400).
+[26-01-2025 23:38:32] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:38:32] [Lobby Manager] Creating new lobby
+[26-01-2025 23:38:32] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:38:34] [Handler] Request (2) received from ('127.0.0.1', 52400).
+[26-01-2025 23:38:34] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52400).
+[26-01-2025 23:38:34] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:38:35] [Server] Request (2), Client test became a spectator on lobby 511746.
+[26-01-2025 23:38:36] [Handler] Request (3) received from ('127.0.0.1', 52400).
+[26-01-2025 23:38:36] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52400).
+[26-01-2025 23:38:36] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:38:36] [Server] Request (3), Client test became a player on lobby 511746.
+[26-01-2025 23:38:40] [Connection] Client ('127.0.0.1', 52404) connection request accepted.
+[26-01-2025 23:38:40] [Handler] Starting to handle ('127.0.0.1', 52404).
+[26-01-2025 23:38:43] [Handler] Request (4) received from ('127.0.0.1', 52404).
+[26-01-2025 23:38:43] [Handler] Request (4), identified as Login from ('127.0.0.1', 52404).
+[26-01-2025 23:38:44] [Handler] Request (4), Request passed all checks.
+[26-01-2025 23:38:44] [Server] Request (4), User ron logged in successfully.
+[26-01-2025 23:38:45] [Handler] Request (5) received from ('127.0.0.1', 52404).
+[26-01-2025 23:38:45] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52404).
+[26-01-2025 23:38:45] [Handler] Request (5), Request passed all checks.
+[26-01-2025 23:38:45] [Server] Request (5), Client registered to lobby.
+[26-01-2025 23:38:49] [Handler] Request (6) received from ('127.0.0.1', 52400).
+[26-01-2025 23:38:49] [Handler] Request identified as Make Lobby Spectator from ('127.0.0.1', 52400).
+[26-01-2025 23:38:50] [Handler] Request (6), Request passed all checks.
+[26-01-2025 23:38:52] [Handler] Request (7) received from ('127.0.0.1', 52404).
+[26-01-2025 23:38:52] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52404).
+[26-01-2025 23:38:52] [Handler] Request (7), Request passed all checks.
+[26-01-2025 23:38:52] [Server] Request (7), Client ron became a player on lobby 511746.
+[26-01-2025 23:38:54] [Handler] Request (8) received from ('127.0.0.1', 52400).
+[26-01-2025 23:38:54] [Handler] Request (8), identified as Kick User From Lobby from ('127.0.0.1', 52400).
+[26-01-2025 23:38:55] [Handler] Request (8), Request passed all checks.
+[26-01-2025 23:38:55] [Server] Request (8), Client ron kicked the lobby 511746.
+[26-01-2025 23:38:59] [Handler] Request (9) received from ('127.0.0.1', 52404).
+[26-01-2025 23:39:00] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52404).
+[26-01-2025 23:39:00] [Handler Error] Request (9), User ron already in lobby.
+=============== Initiating the server. ===============
+[26-01-2025 23:43:51] [Database] Database worker is running
+[26-01-2025 23:43:51] [Status] ServerSocket initialized.
+[26-01-2025 23:43:51] [Status] Server is running.
+[26-01-2025 23:43:54] [Connection] Client ('127.0.0.1', 52522) connection request accepted.
+[26-01-2025 23:43:54] [Handler] Starting to handle ('127.0.0.1', 52522).
+[26-01-2025 23:43:57] [Handler] Request (0) received from ('127.0.0.1', 52522).
+[26-01-2025 23:43:57] [Handler] Request (0), identified as Login from ('127.0.0.1', 52522).
+[26-01-2025 23:43:57] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:43:58] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:43:58] [Handler] Request (1) received from ('127.0.0.1', 52522).
+[26-01-2025 23:43:59] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52522).
+[26-01-2025 23:43:59] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:43:59] [Lobby Manager] Creating new lobby
+[26-01-2025 23:43:59] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:44:03] [Connection] Client ('127.0.0.1', 52526) connection request accepted.
+[26-01-2025 23:44:04] [Handler] Starting to handle ('127.0.0.1', 52526).
+[26-01-2025 23:44:09] [Handler] Request (2) received from ('127.0.0.1', 52526).
+[26-01-2025 23:44:09] [Handler] Request (2), identified as Login from ('127.0.0.1', 52526).
+[26-01-2025 23:44:09] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:44:09] [Server] Request (2), User ron logged in successfully.
+[26-01-2025 23:44:10] [Handler] Request (3) received from ('127.0.0.1', 52526).
+[26-01-2025 23:44:10] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52526).
+[26-01-2025 23:44:10] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:44:10] [Server] Request (3), Client registered to lobby 185970.
+[26-01-2025 23:44:13] [Handler] Request (4) received from ('127.0.0.1', 52526).
+[26-01-2025 23:44:14] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52526).
+[26-01-2025 23:44:14] [Handler] Request (4), Request passed all checks.
+[26-01-2025 23:44:14] [Server] Request (4), Client ron became a spectator on lobby 185970.
+[26-01-2025 23:44:20] [Handler] Request (5) received from ('127.0.0.1', 52526).
+[26-01-2025 23:44:20] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52526).
+[26-01-2025 23:44:20] [Handler] Request (5), Request passed all checks.
+[26-01-2025 23:44:20] [Server] Request (5), Client ron became a player on lobby 185970.
+[26-01-2025 23:44:23] [Handler] Request (6) received from ('127.0.0.1', 52522).
+[26-01-2025 23:44:23] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 52522).
+[26-01-2025 23:44:23] [Handler] Request (6), Request passed all checks.
+[26-01-2025 23:44:23] [Server] Request (6), Client test became a spectator on lobby 185970.
+[26-01-2025 23:44:26] [Handler] Request (7) received from ('127.0.0.1', 52522).
+[26-01-2025 23:44:26] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52522).
+[26-01-2025 23:44:26] [Handler] Request (7), Request passed all checks.
+[26-01-2025 23:44:26] [Server] Request (7), Client test became a player on lobby 185970.
+[26-01-2025 23:44:29] [Handler] Request (8) received from ('127.0.0.1', 52522).
+[26-01-2025 23:44:29] [Handler] Request (8), identified as Kick User From Lobby from ('127.0.0.1', 52522).
+[26-01-2025 23:44:29] [Handler] Request (8), Request passed all checks.
+[26-01-2025 23:44:29] [Server] Request (8), Client ron kicked the lobby 185970.
+[26-01-2025 23:44:33] [Handler] Request (9) received from ('127.0.0.1', 52526).
+[26-01-2025 23:44:33] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52526).
+[26-01-2025 23:44:33] [Handler] Request (9), Request passed all checks.
+[26-01-2025 23:44:33] [Server] Request (9), Client registered to lobby 185970.
+[26-01-2025 23:44:36] [Handler] Request (10) received from ('127.0.0.1', 52522).
+[26-01-2025 23:44:37] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:44:37] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 23:46:22] [Database] Database worker is running
+[26-01-2025 23:46:23] [Status] ServerSocket initialized.
+[26-01-2025 23:46:23] [Status] Server is running.
+[26-01-2025 23:46:24] [Connection] Client ('127.0.0.1', 52580) connection request accepted.
+[26-01-2025 23:46:25] [Handler] Starting to handle ('127.0.0.1', 52580).
+[26-01-2025 23:46:28] [Handler] Request (0) received from ('127.0.0.1', 52580).
+[26-01-2025 23:46:28] [Handler] Request (0), identified as Login from ('127.0.0.1', 52580).
+[26-01-2025 23:46:28] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:46:28] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:46:29] [Handler] Request (1) received from ('127.0.0.1', 52580).
+[26-01-2025 23:46:29] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52580).
+[26-01-2025 23:46:29] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:46:29] [Lobby Manager] Creating new lobby
+[26-01-2025 23:46:29] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:46:33] [Connection] Client ('127.0.0.1', 52583) connection request accepted.
+[26-01-2025 23:46:33] [Handler] Starting to handle ('127.0.0.1', 52583).
+[26-01-2025 23:46:36] [Handler] Request (2) received from ('127.0.0.1', 52583).
+[26-01-2025 23:46:36] [Handler] Request (2), identified as Login from ('127.0.0.1', 52583).
+[26-01-2025 23:46:37] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:46:37] [Server] Request (2), User ron logged in successfully.
+[26-01-2025 23:46:37] [Handler] Request (3) received from ('127.0.0.1', 52583).
+[26-01-2025 23:46:38] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52583).
+[26-01-2025 23:46:38] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:46:38] [Server] Request (3), Client registered to lobby 851426.
+[26-01-2025 23:46:44] [Handler] Request (4) received from ('127.0.0.1', 52580).
+[26-01-2025 23:46:44] [Handler] Request (4), identified as Ban User From Lobby from ('127.0.0.1', 52580).
+[26-01-2025 23:46:44] [Handler Error] Request (4), No username provided.
+[26-01-2025 23:46:47] [Handler] Request (5) received from ('127.0.0.1', 52580).
+[26-01-2025 23:46:48] [Handler] Request (5), identified as Ban User From Lobby from ('127.0.0.1', 52580).
+[26-01-2025 23:46:48] [Handler Error] Request (5), No username provided.
+[26-01-2025 23:46:49] [Handler] Request (6) received from ('127.0.0.1', 52580).
+[26-01-2025 23:46:49] [Handler] Request (6), identified as Ban User From Lobby from ('127.0.0.1', 52580).
+[26-01-2025 23:46:49] [Handler Error] Request (6), No username provided.
+[26-01-2025 23:47:47] [Handler] Request (7) received from ('127.0.0.1', 52580).
+[26-01-2025 23:47:47] [Handler] Request (7), identified as Kick User From Lobby from ('127.0.0.1', 52580).
+[26-01-2025 23:47:48] [Handler] Request (7), Request passed all checks.
+[26-01-2025 23:47:48] [Server] Request (7), Client ron kicked the lobby 851426.
+=============== Initiating the server. ===============
+[26-01-2025 23:47:51] [Database] Database worker is running
+[26-01-2025 23:47:52] [Status] ServerSocket initialized.
+[26-01-2025 23:47:52] [Status] Server is running.
+[26-01-2025 23:47:54] [Connection] Client ('127.0.0.1', 52619) connection request accepted.
+[26-01-2025 23:47:54] [Handler] Starting to handle ('127.0.0.1', 52619).
+[26-01-2025 23:48:03] [Handler] Request (0) received from ('127.0.0.1', 52619).
+[26-01-2025 23:48:03] [Handler] Request (0), identified as Login from ('127.0.0.1', 52619).
+[26-01-2025 23:48:04] [Handler Error] Request (0), Invalid credentials.
+[26-01-2025 23:48:07] [Handler] Request (1) received from ('127.0.0.1', 52619).
+[26-01-2025 23:48:07] [Handler] Request (1), identified as Login from ('127.0.0.1', 52619).
+[26-01-2025 23:48:07] [Handler Error] Request (1), Invalid credentials.
+[26-01-2025 23:48:15] [Handler] Request (2) received from ('127.0.0.1', 52619).
+[26-01-2025 23:48:15] [Handler] Request (2), identified as Login from ('127.0.0.1', 52619).
+[26-01-2025 23:48:16] [Handler Error] Request (2), Invalid credentials.
+[26-01-2025 23:48:18] [Handler] Request (3) received from ('127.0.0.1', 52619).
+[26-01-2025 23:48:18] [Handler] Request (3), identified as Login from ('127.0.0.1', 52619).
+[26-01-2025 23:48:19] [Handler Error] Request (3), Invalid credentials.
+[26-01-2025 23:48:24] [Handler] Request (4) received from ('127.0.0.1', 52619).
+[26-01-2025 23:48:24] [Handler] Request (4), identified as Login from ('127.0.0.1', 52619).
+[26-01-2025 23:48:25] [Handler Error] Request (4), Invalid credentials.
+[26-01-2025 23:48:40] [Handler] Request (5) received from ('127.0.0.1', 52619).
+[26-01-2025 23:48:40] [Handler] Request (5), identified as Login from ('127.0.0.1', 52619).
+[26-01-2025 23:48:41] [Handler] Request (5), Request passed all checks.
+[26-01-2025 23:48:41] [Server] Request (5), User ron logged in successfully.
+[26-01-2025 23:48:42] [Handler] Request (6) received from ('127.0.0.1', 52619).
+[26-01-2025 23:48:42] [Handler] Request (6), identified as Create Lobby from ('127.0.0.1', 52619).
+[26-01-2025 23:48:42] [Handler] Request (6), Request passed all checks.
+[26-01-2025 23:48:42] [Lobby Manager] Creating new lobby
+[26-01-2025 23:48:42] [Server] Request (6), Lobby created successfully.
+[26-01-2025 23:48:46] [Connection] Client ('127.0.0.1', 52633) connection request accepted.
+[26-01-2025 23:48:46] [Handler] Starting to handle ('127.0.0.1', 52633).
+[26-01-2025 23:48:49] [Handler] Request (7) received from ('127.0.0.1', 52633).
+[26-01-2025 23:48:49] [Handler] Request (7), identified as Login from ('127.0.0.1', 52633).
+[26-01-2025 23:48:50] [Handler] Request (7), Request passed all checks.
+[26-01-2025 23:48:50] [Server] Request (7), User test logged in successfully.
+[26-01-2025 23:48:51] [Handler] Request (8) received from ('127.0.0.1', 52633).
+[26-01-2025 23:48:51] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52633).
+[26-01-2025 23:48:51] [Handler] Request (8), Request passed all checks.
+[26-01-2025 23:48:51] [Server] Request (8), Client registered to lobby 517716.
+[26-01-2025 23:48:55] [Handler] Request (9) received from ('127.0.0.1', 52619).
+[26-01-2025 23:48:55] [Handler] Request (9), identified as Ban User From Lobby from ('127.0.0.1', 52619).
+[26-01-2025 23:48:55] [Handler Error] Request (9), No username provided.
+[26-01-2025 23:48:57] [Handler] Request (10) received from ('127.0.0.1', 52619).
+[26-01-2025 23:48:57] [Handler] Request (10), identified as Ban User From Lobby from ('127.0.0.1', 52619).
+[26-01-2025 23:48:57] [Handler Error] Request (10), No username provided.
+[26-01-2025 23:48:58] [Handler] Request (11) received from ('127.0.0.1', 52619).
+[26-01-2025 23:48:58] [Handler] Request (11), identified as Ban User From Lobby from ('127.0.0.1', 52619).
+[26-01-2025 23:48:58] [Handler Error] Request (11), No username provided.
+[26-01-2025 23:49:32] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:49:32] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:49:33] [Connection] Client ('127.0.0.1', 52654) connection request accepted.
+[26-01-2025 23:49:33] [Handler] Starting to handle ('127.0.0.1', 52654).
+=============== Initiating the server. ===============
+[26-01-2025 23:49:38] [Database] Database worker is running
+[26-01-2025 23:49:38] [Status] ServerSocket initialized.
+[26-01-2025 23:49:38] [Status] Server is running.
+[26-01-2025 23:49:43] [Connection] Client ('127.0.0.1', 52659) connection request accepted.
+[26-01-2025 23:49:43] [Handler] Starting to handle ('127.0.0.1', 52659).
+[26-01-2025 23:49:46] [Handler] Request (0) received from ('127.0.0.1', 52659).
+[26-01-2025 23:49:46] [Handler] Request (0), identified as Login from ('127.0.0.1', 52659).
+[26-01-2025 23:49:47] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:49:47] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:49:48] [Handler] Request (1) received from ('127.0.0.1', 52659).
+[26-01-2025 23:49:48] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52659).
+[26-01-2025 23:49:48] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:49:48] [Lobby Manager] Creating new lobby
+[26-01-2025 23:49:49] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:49:52] [Connection] Client ('127.0.0.1', 52664) connection request accepted.
+[26-01-2025 23:49:52] [Handler] Starting to handle ('127.0.0.1', 52664).
+[26-01-2025 23:49:57] [Handler] Request (2) received from ('127.0.0.1', 52664).
+[26-01-2025 23:49:57] [Handler] Request (2), identified as Login from ('127.0.0.1', 52664).
+[26-01-2025 23:49:57] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:49:58] [Server] Request (2), User ron logged in successfully.
+[26-01-2025 23:49:58] [Handler] Request (3) received from ('127.0.0.1', 52664).
+[26-01-2025 23:49:58] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52664).
+[26-01-2025 23:49:58] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:49:59] [Server] Request (3), Client registered to lobby 875130.
+[26-01-2025 23:50:02] [Handler] Request (4) received from ('127.0.0.1', 52659).
+[26-01-2025 23:50:02] [Handler] Request (4), identified as Kick User From Lobby from ('127.0.0.1', 52659).
+[26-01-2025 23:50:03] [Handler] Request (4), Request passed all checks.
+[26-01-2025 23:50:03] [Server] Request (4), Client ron kicked the lobby 875130.
+[26-01-2025 23:50:05] [Handler] Request (5) received from ('127.0.0.1', 52664).
+[26-01-2025 23:50:05] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52664).
+[26-01-2025 23:50:05] [Handler] Request (5), Request passed all checks.
+[26-01-2025 23:50:05] [Server] Request (5), Client registered to lobby 875130.
+[26-01-2025 23:50:07] [Handler] Request (6) received from ('127.0.0.1', 52659).
+[26-01-2025 23:50:07] [Handler] Request identified as Make Lobby Spectator from ('127.0.0.1', 52659).
+[26-01-2025 23:50:07] [Handler] Request (6), Request passed all checks.
+[26-01-2025 23:50:09] [Handler] Request (7) received from ('127.0.0.1', 52664).
+[26-01-2025 23:50:09] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 52664).
+[26-01-2025 23:50:09] [Handler] Request (7), Request passed all checks.
+[26-01-2025 23:50:09] [Server] Request (7), Client ron became a player on lobby 875130.
+[26-01-2025 23:50:12] [Handler] Request (8) received from ('127.0.0.1', 52659).
+[26-01-2025 23:50:12] [Handler] Request (8), identified as Ban User From Lobby from ('127.0.0.1', 52659).
+[26-01-2025 23:50:12] [Handler] Request (8), Request passed all checks.
+[26-01-2025 23:50:12] [Server] Request (8), Client ron Baned the lobby 875130.
+=============== Initiating the server. ===============
+[26-01-2025 23:51:06] [Database] Database worker is running
+[26-01-2025 23:51:06] [Status] ServerSocket initialized.
+[26-01-2025 23:51:06] [Status] Server is running.
+[26-01-2025 23:51:09] [Connection] Client ('127.0.0.1', 52696) connection request accepted.
+[26-01-2025 23:51:09] [Handler] Starting to handle ('127.0.0.1', 52696).
+[26-01-2025 23:51:11] [Handler] Request (0) received from ('127.0.0.1', 52696).
+[26-01-2025 23:51:12] [Handler] Request (0), identified as Login from ('127.0.0.1', 52696).
+[26-01-2025 23:51:12] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:51:12] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:51:13] [Handler] Request (1) received from ('127.0.0.1', 52696).
+[26-01-2025 23:51:13] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52696).
+[26-01-2025 23:51:13] [Handler] Request (1), Request passed all checks.
+[26-01-2025 23:51:14] [Lobby Manager] Creating new lobby
+[26-01-2025 23:51:14] [Server] Request (1), Lobby created successfully.
+[26-01-2025 23:51:17] [Connection] Client ('127.0.0.1', 52705) connection request accepted.
+[26-01-2025 23:51:18] [Handler] Starting to handle ('127.0.0.1', 52705).
+[26-01-2025 23:51:24] [Handler] Request (2) received from ('127.0.0.1', 52705).
+[26-01-2025 23:51:24] [Handler] Request (2), identified as Login from ('127.0.0.1', 52705).
+[26-01-2025 23:51:24] [Handler] Request (2), Request passed all checks.
+[26-01-2025 23:51:25] [Server] Request (2), User ron logged in successfully.
+[26-01-2025 23:51:26] [Handler] Request (3) received from ('127.0.0.1', 52705).
+[26-01-2025 23:51:26] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52705).
+[26-01-2025 23:51:26] [Handler] Request (3), Request passed all checks.
+[26-01-2025 23:51:26] [Server] Request (3), Client registered to lobby 184767.
+[26-01-2025 23:51:30] [Handler] Request (4) received from ('127.0.0.1', 52696).
+[26-01-2025 23:51:30] [Handler] Request (4), identified as Ban User From Lobby from ('127.0.0.1', 52696).
+[26-01-2025 23:51:30] [Handler] Request (4), Request passed all checks.
+[26-01-2025 23:51:30] [Server] Request (4), Client ron Baned the lobby 184767.
+[26-01-2025 23:51:32] [Handler] Request (5) received from ('127.0.0.1', 52705).
+[26-01-2025 23:51:32] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52705).
+[26-01-2025 23:51:33] [Handler] Request (5), Request passed all checks.
+[26-01-2025 23:51:33] [Server] Request (5), Client is blocked from lobby 184767
+[26-01-2025 23:51:36] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:51:36] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:51:37] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:51:37] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[26-01-2025 23:56:16] [Database] Database worker is running
+[26-01-2025 23:56:16] [Status] ServerSocket initialized.
+[26-01-2025 23:56:16] [Status] Server is running.
+[26-01-2025 23:56:18] [Connection] Client ('127.0.0.1', 52822) connection request accepted.
+[26-01-2025 23:56:18] [Handler] Starting to handle ('127.0.0.1', 52822).
+[26-01-2025 23:56:20] [Handler] Request (0) received from ('127.0.0.1', 52822).
+[26-01-2025 23:56:21] [Handler] Request (0), identified as Login from ('127.0.0.1', 52822).
+[26-01-2025 23:56:21] [Handler] Request (0), Request passed all checks.
+[26-01-2025 23:56:21] [Server] Request (0), User test logged in successfully.
+[26-01-2025 23:56:22] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[26-01-2025 23:56:23] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host

@@ -27,30 +27,38 @@ class Lobby:
         self.players_colors = [(255, 90, 90), (96, 90, 255), (255, 230, 90), (90, 255, 134), (66, 255, 211), (227, 90, 255)]
         self.__shuffle_colors()
 
-    def register_client(self, client: Client) -> str:
+    def register_client(self, client: Client) -> (str, bool):
         """
         Add a client to the lobby. (Implementation of join lobby or create lobby)
         :param client: client to add
+        :return: the role and the success of the registration.
         """
         if client not in self.bans:
             if len(self.players) < self.MAX_PLAYERS:
                 self.players.append(client)
-                return "players"
+                return "players", True
             else:
                 self.spectators.append(client)
-                return "spectators"
+                return "spectators", True
 
-    def remove_client(self, client: Client) -> bool:
+        return "", False
+
+    def remove_client(self, client: Client) -> (str, bool):
         """
         Remove a client from the lobby. (Implementation of leave lobby)
         :param client: Client to remove.
         :return: True if the client was removed, False otherwise.
         """
         if client != self.owner:
-            if client in self.players + self.spectators:
+            if client in self.players:
                 self.players.remove(client)
-                client.set_data("lobby", None)
-                return True
+                client.set_data("lobby_info", None)
+                return "players", True
+
+            if client in self.spectators:
+                self.spectators.remove(client)
+                client.set_data("lobby_info", None)
+                return "spectators", True
 
         return False
 

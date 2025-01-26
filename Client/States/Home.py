@@ -28,7 +28,7 @@ class Home(BaseState):
         self.mouse_cursor["HAND"] = [self.menu_icon, self.join_lobby_button, self.create_lobby_button]
 
     def update(self, dt: float, events: list, *args, **kwargs):
-        super().update(dt, events, args, kwargs)
+        super().update(dt, events, *args, **kwargs)
         self.lobby_code.update(dt, events)
 
         if self.create_lobby_button.update(dt, events):

@@ -266,6 +266,7 @@ class ServerSocket:
                 client.send_response(rid, 200, "Ok", {"Msg": "Successfully becoming a spectator."})
 
                 for c in lobby.players + lobby.spectators:
+                    pass
                     
 
             elif request["Command"].lower() == "leave_lobby":

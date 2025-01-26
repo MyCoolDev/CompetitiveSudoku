@@ -32,12 +32,13 @@ class Lobby:
         Add a client to the lobby. (Implementation of join lobby or create lobby)
         :param client: client to add
         """
-        if len(self.players) < self.MAX_PLAYERS:
-            self.players.append(client)
-            return "players"
-        else:
-            self.spectators.append(client)
-            return "spectators"
+        if client not in self.bans:
+            if len(self.players) < self.MAX_PLAYERS:
+                self.players.append(client)
+                return "players"
+            else:
+                self.spectators.append(client)
+                return "spectators"
 
     def remove_client(self, client: Client) -> bool:
         """
@@ -50,6 +51,13 @@ class Lobby:
                 self.players.remove(client)
                 client.set_data("lobby", None)
                 return True
+
+        return False
+
+    def ban_client(self, client: Client) -> bool:
+        if self.remove_client(client):
+            self.bans.append(client)
+            return True
 
         return False
 

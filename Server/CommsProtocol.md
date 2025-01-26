@@ -347,9 +347,115 @@ Leave a lobby the user inside.
 ```
 
 ## Become Lobby Spectator
+Become a spectator in lobby (players only)
+
+### The client request
+```json
+{
+  "Command": "Become_Lobby_Spectator",
+  "Data": {},
+  "Token": "<TOKEN_HERE>",
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user isn't in lobby
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "User isn't in lobby."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user isn't a player
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "User is already a spectator"
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response on successfully becoming a spectator
+```json
+{
+  "StatusCode": 200,
+  "Status": "OK",
+  "Data": {
+    "Msg": "Successfully becoming a spectator."
+  },
+  "Checksum": "<String>"
+}
+```
 
 ## Become Lobby Player
+Become a player in lobby (spectators only)
 
+### The client request
+```json
+{
+  "Command": "Become_Lobby_Player",
+  "Data": {},
+  "Token": "<TOKEN_HERE>",
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user isn't in lobby
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "User isn't in lobby."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user isn't a player
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "User is already a player"
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the lobby is full
+
+```json
+{
+  "StatusCode": 409,
+  "Status": "Conflict",
+  "Data": {
+    "Msg": "The lobby is full."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response on successfully becoming a player
+```json
+{
+  "StatusCode": 200,
+  "Status": "OK",
+  "Data": {
+    "Msg": "Successfully becoming a player."
+  },
+  "Checksum": "<String>"
+}
+```
 
 ## Get Lobby
 Get information about lobby using code.

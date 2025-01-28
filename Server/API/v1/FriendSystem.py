@@ -16,7 +16,7 @@ def get_friend_list(username: str, db_interface: Database) -> None or list[str]:
 
     # check if the user exists
     if username in users:
-        return [(friend_name, users[friend_name]["last_login"] for friend_name in users[username]["friends"])]
+        return [((friend_name, users[friend_name]["last_login"]) for friend_name in users[username]["friends"])]
 
     return None
 
@@ -43,6 +43,7 @@ def get_friend_information(username: str, db_interface: Database) -> None or dic
 
     return None
 
+
 def add_friend(username: str, requested_username, db_interface: Database) -> bool:
     """
     Send a friend request to other user.
@@ -61,9 +62,9 @@ def add_friend(username: str, requested_username, db_interface: Database) -> boo
         return False
 
     users[requested_username]["friend_requests"].append(username)
-    users[requested_username]["friends"].append(username)
 
     return db_interface.submit_update("Users", users)
+
 
 def accept_friend(username: str, requested_username, db_interface: Database) -> bool:
     """

@@ -880,3 +880,65 @@ Ban a user from a lobby, only the owner can ban a player.
   "Checksum": "<String>"
 }
 ```
+
+## Add Friend
+add friend
+
+### The clint request
+```json
+{
+  "Command": "Add_Friend",
+  "Data": {
+    "Username": "<String>"
+  },
+  "Token": "<TOKEN_HERE>",
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the user doesn't provide username
+```json
+{
+  "StatusCode": 400,
+  "Status": "Bad Request",
+  "Data": {
+    "Msg": "No username provided."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response in case the username is invalid
+```json
+{
+  "StatusCode": 404,
+  "Status": "Not Found",
+  "Data": {
+    "Msg": "Invalid username."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server response on successfully sending friend request
+```json
+{
+  "StatusCode": 200,
+  "Status": "OK",
+  "Data": {
+    "Msg": "Friend request sent."
+  },
+  "Checksum": "<String>"
+}
+```
+
+### The server push notification to the requested user
+```json
+{
+  "Update": "Friend_Request",
+  "Data": {
+    "Username": "<USERNAME_HERE>"
+  },
+  "Checksum": "<String>"
+}
+```

@@ -31,6 +31,9 @@ class Home(BaseState):
         super().update(dt, events, *args, **kwargs)
         self.lobby_code.update(dt, events)
 
+        if self.menu_icon.update(events):
+            pass
+
         if self.create_lobby_button.update(dt, events):
             self.create_lobby()
 

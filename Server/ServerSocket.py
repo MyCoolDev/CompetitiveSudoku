@@ -516,8 +516,7 @@ class ServerSocket:
                     continue
 
                 if client is not lobby.owner:
-                    utils.server_print("Handler Error",
-                                       f"Request ({request_id}), User {client.get_data('username')} isn't the owner of lobby {lobby.code}.")
+                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't the owner of lobby {lobby.code}.")
                     client.send_response(rid, 409, "Conflict", {"Msg": "User isn't the owner of lobby."})
                     continue
 
@@ -550,6 +549,50 @@ class ServerSocket:
                 for c in lobby.players + lobby.spectators:
                     if c is not client:
                         c.push_notification("Use_Left_Lobby", {"Username": client_to_ban.get_data("username"), "Role": "players"})
+
+            elif request["Command"].lower() == "add_friend":
+                utils.server_print("Handler", f"Request ({request_id}), identified as Add Friend from " + str(client.address) + ".")
+
+                # check if the token exists
+                if "Token" not in request or request["Token"] != client.get_data("token"):
+                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+                    continue
+
+                if "Username" not in request["Data"]:
+                    utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
+                    client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
+                    continue
+
+                information = api.account.get(request["Data"]["Username"], self.database)
+
+                if information is None:
+                    utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
+                    client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
+                    continue
+
+                api.friend.add_friend(client.get_data("username"), request, self.database)
+                client.send_response(rid, 200, "OK", {"Msg": "Friend request sent."})
+
+                if request["Data"]["Username"] in self.logged_clients:
+                    self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request", {"Username": client.get_data("username")})
+
+            elif request["Command"].lower() == "accept_friend":
+                pass
+            elif request["Command"].lower() == "reject_friend":
+                pass
+            elif request["Command"].lower() == "invite_friend":
+                pass
+            elif request["Command"].lower() == "accept_friend_invitation":
+                pass
+            elif request["Command"].lower() == "reject_friend_invitation":
+                pass
+            elif request["Command"].lower() == "get_friend_information":
+                pass
+            elif request["Command"].lower() == "message_friend":
+                pass
+            elif request["Command"].lower() == "get_chat_information":
+                pass
 
     def generate_auth_token(self):
         """

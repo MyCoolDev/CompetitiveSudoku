@@ -99,495 +99,43 @@ class ServerSocket:
 
             # route the command to the specific api path.
             if request["Command"].lower() == "register":
-                """
-                Register a new account, login into the new account, return an auth token for authentication next
-                """
-
-                utils.server_print("Handler", f"Request ({request_id}) identified as Register from " + str(client.address) + ".")
-                # register data should have username and password.
-                if "Username" not in request['Data'] or "Password" not in request['Data']:
-                    utils.server_print("Handler Error", f"Request ({request_id}), no username or password provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
-                    continue
-
-                # username should be unique
-                if request["Data"]["Username"] in self.database.submit_read("Users"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), Username already registered.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "Username must be unique."})
-                    continue
-
-                utils.server_print("Handler", f"Request ({request_id}), passed all checks.")
-
-                # register the user
-                if not api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database):
-                    utils.server_print("Handler Error", f"Request ({request_id}), Error while registering the user.")
-                    client.send_response(rid, 500, "Internal Server Error", {"Msg": "Error while registering the user."})
-                    continue
-
-                # generate auth token
-                token = self.generate_auth_token()
-
-                # add the token to the used token list
-                self.tokens.append(token)
-
-                # update the token and username to client object
-                client.set_data("token", token)
-                client.set_data("username", request["Data"]["Username"])
-
-                self.logged_clients[request["Data"]["Username"]] = client
-
-                # get user friend list
-                friends = api.friend.get_friend_list(request["Data"]["Username"], self.logged_clients, self.database)
-
-                client.send_response(rid, 201, "Created", {"Msg": "User registered.", "Token": token, "Friends": friends})
-                utils.server_print("Server", f"Request ({request_id}), User " + request["Data"]["Username"] + " registered.")
+                self.handle_register(client, request, request_id, rid)
 
             elif request["Command"].lower() == "login":
-                """
-                Login to an account using username and password, return an auth token for authentication next.
-                """
-
-                utils.server_print("Handler", f"Request ({request_id}), identified as Login from " + str(client.address) + ".")
-                # login data should have username and password.
-                if "Username" not in request['Data'] or "Password" not in request['Data']:
-                    utils.server_print("Handler Error", f"Request ({request_id}), No username or password provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
-                    continue
-
-                information = api.account.get(request["Data"]["Username"], self.database)
-
-                if information is None or not Hashing.check_password(bytes.fromhex(information["password"]),
-                                                                     request["Data"]["Password"]):
-                    utils.server_print("Handler Error", f"Request ({request_id}), Invalid credentials.")
-                    client.send_response(rid, 404, "Not Found", {"Msg": "Invalid Credentials."})
-                    continue
-
-                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
-
-                # generate auth token
-                token = self.generate_auth_token()
-
-                # add the token to the used token list
-                self.tokens.append(token)
-
-                # update the token and username to client object
-                client.set_data("token", token)
-                client.set_data("username", request["Data"]["Username"])
-
-                self.logged_clients[request["Data"]["Username"]] = client
-
-                # get user friend list
-                friends = api.friend.get_friend_list(request["Data"]["Username"], self.logged_clients, self.database)
-
-                client.send_response(rid, 200, "OK", {"Msg": "Logged in successfully.", "Token": token, "Friends": friends})
-                utils.server_print("Server", f"Request ({request_id}), User " + request["Data"]["Username"] + " logged in successfully.")
-                api.account.update_login_time(request["Data"]["Username"], self.database)
+                self.handle_login(client, request, request_id, rid)
 
             elif request["Command"].lower() == "create_lobby":
-                """
-                Create a new lobby using auth token.
-                """
-
-                utils.server_print("Handler", f"Request ({request_id}), identified as Create Lobby from " + str(client.address) + ".")
-
-                # check if the token exists
-                if "Token" not in request or request["Token"] != client.get_data("token"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
-                    continue
-
-                if client.get_data("lobby") is not None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} already in lobby.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User already in lobby."})
-                    continue
-
-                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
-
-                # create and use the lobby
-                lobby = self.lobby_manager.create_lobby(client)
-                client.set_data("lobby_info", lobby)
-                client.send_response(rid, 201, "Created", {"Msg": "Lobby created successfully.", "Lobby_Info": lobby.__repr__()})
-                utils.server_print("Server", f"Request ({request_id}), Lobby created successfully.")
+                self.handle_create_lobby(client, request, request_id, rid)
 
             elif request["Command"].lower() == "join_lobby":
-                """
-                Join lobby using auth token, code.
-                """
-
-                utils.server_print("Handler", "Request identified as Join Lobby from " + str(client.address) + ".")
-
-                # check if the token exists
-                if "Token" not in request or request["Token"] != client.get_data("token"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
-                    continue
-
-                if client.get_data("lobby_info") is not None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} already in lobby.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User already in lobby."})
-                    continue
-
-                if "Code" not in request["Data"]:
-                    utils.server_print("Handler Error", f"Request ({request_id}), No code provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No code provided."})
-
-                if request["Data"]["Code"] not in self.lobby_manager.all_lobbies:
-                    utils.server_print("Handler Error", f"Request ({request_id}), Invalid code.")
-                    client.send_response(rid, 404, "Not Found", {"Msg": "Invalid code."})
-                    continue
-
-                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
-
-                lobby = self.lobby_manager.all_lobbies[request["Data"]["Code"]]
-                role, success = lobby.register_client(client)
-                if success:
-                    client.set_data("lobby_info", lobby)
-                    client.send_response(rid, 200, "OK", {"Msg": "Successfully joining lobby.", "Lobby_Info": lobby.__repr__(), "Role": role})
-
-                    data = {"Msg": "New user joined the lobby.", "Role": role, "Username": client.get_data("username")}
-
-                    if role != "players":
-                        del data["Username"]
-
-                    for c in lobby.players + lobby.spectators:
-                        if c is not client:
-                            c.push_notification("User_Joined_Lobby", data)
-
-                    utils.server_print("Server", f"Request ({request_id}), Client registered to lobby {lobby.code}.")
-                else:
-                    client.send_response(rid, 409, "Conflict", {"Msg": "You're blocked from the lobby."})
-                    utils.server_print("Server", f"Request ({request_id}), Client is blocked from lobby {lobby.code}")
+                self.handle_join_lobby(client, request, request_id, rid)
 
             elif request["Command"].lower() == "leave_lobby":
-                """
-                Leave the lobby using auth token, return the information on the lobby.
-                """
-
-                utils.server_print("Handler", f"Request ({request_id}), identified as Leave Lobby from " + str(client.address) + ".")
-
-                # check if the token exists
-                if "Token" not in request or request["Token"] != client.get_data("token"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
-                    continue
-
-                if client.get_data("lobby_info") is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
-                    continue
-
-                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
-
-                lobby = client.get_data("lobby_info")
-                role, success = lobby.remove_client(client)
-
-                if success:
-                    utils.server_print("Server", f"Request ({request_id}), Client {client.get_data('username')} leaved the lobby {lobby.code}.")
-                    client.send_response(rid, 200, "OK", {"Msg": "Successfully leaving lobby."})
-
-                    for c in lobby.players + lobby.spectators:
-                        c.push_notification("User_Left_Lobby", {"Username": request["Data"]["Username"], "Role": role})
+                self.handle_leave_lobby(client, request, request_id, rid)
 
             elif request["Command"].lower() == "delete_lobby":
                 pass
 
             elif request["Command"].lower() == "get_lobby":
-                """
-                Get lobby information using code.
-                """
-
-                utils.server_print("Handler", f"Request ({request_id}), identified as Get Lobby from " + str(client.address) + ".")
-
-                # check if the token exists
-                if "Token" not in request or request["Token"] != client.get_data("token"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
-                    continue
-
-                if "Code" not in request["Data"]:
-                    utils.server_print("Handler Error", f"Request ({request_id}), No code provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No code provided."})
-                    continue
-
-                if request["Data"]["Code"] not in self.lobby_manager.all_lobbies:
-                    utils.server_print("Handler Error", f"Request ({request_id}), Invalid code.")
-                    client.send_response(rid, 404, "Not Found", {"Msg": "Invalid code."})
-                    continue
-
-                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
-
-                lobby = self.lobby_manager.all_lobbies[request["Data"]["Code"]]
-                utils.server_print("Server", f"Request ({request_id}), Client {client.get_data('username')} leaved the lobby {lobby.code}.")
-                client.send_response(rid, 200, "OK", {"Lobby_Info": lobby.__repr__()})
+                self.handle_get_lobby(client, request, request_id, rid)
 
             elif request["Command"].lower() == "become_lobby_spectator":
-                """
-                Become a lobby spectator, for players. 
-                """
-
-                utils.server_print("Handler", "Request identified as Become Lobby Spectator from " + str(client.address) + ".")
-
-                # check if the token exists
-                if "Token" not in request or request["Token"] != client.get_data("token"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
-                    continue
-
-                lobby = client.get_data("lobby_info")
-
-                if lobby is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
-                    continue
-
-                # in case the user is not a player
-                if client in lobby.spectators:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} is already a spectator.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User is already a spectator."})
-                    continue
-
-                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
-
-                lobby.players.remove(client)
-                lobby.spectators.append(client)
-
-                client.send_response(rid, 200, "Ok", {"Msg": "Successfully becoming a spectator."})
-                utils.server_print("Server", f"Request ({request_id}), Client {client.get_data('username')} became a spectator on lobby {lobby.code}.")
-
-                for c in lobby.players + lobby.spectators:
-                    if c is not client:
-                        c.push_notification("Become_Spectator", {"Username": client.get_data("username")})
+                self.handle_become_lobby_spectator(client, request, request_id, rid)
 
             elif request["Command"].lower() == "become_lobby_player":
-                """
-                Become a lobby player, for spectators. 
-                """
-
-                utils.server_print("Handler", "Request identified as Become Lobby Player from " + str(client.address) + ".")
-
-                # check if the token exists
-                if "Token" not in request or request["Token"] != client.get_data("token"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
-                    continue
-
-                lobby = client.get_data("lobby_info")
-
-                if lobby is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
-                    continue
-
-                # in case the user is a player
-                if client in lobby.players:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} not in a player.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User is already a players."})
-                    continue
-
-                if len(lobby.players) >= lobby.MAX_PLAYERS:
-                    utils.server_print("Handler Error", f"Request ({request_id}), The lobby {lobby.code} is full.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "The lobby is full."})
-
-                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
-
-                lobby.players.append(client)
-                lobby.spectators.remove(client)
-
-                client.send_response(rid, 200, "Ok", {"Msg": "Successfully becoming a player."})
-                utils.server_print("Server", f"Request ({request_id}), Client {client.get_data('username')} became a player on lobby {lobby.code}.")
-
-                for c in lobby.players + lobby.spectators:
-                    if c is not client:
-                        c.push_notification("Become_Player", {"Username": client.get_data("username")})
+                self.handle_become_lobby_player(client, request, request_id, rid)
 
             elif request["Command"].lower() == "make_lobby_spectator":
-                """
-                Make a lobby spectator, for players. 
-                """
-
-                utils.server_print("Handler", "Request identified as Make Lobby Spectator from " + str(client.address) + ".")
-
-                # check if the token exists
-                if "Token" not in request or request["Token"] != client.get_data("token"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
-                    continue
-
-                lobby = client.get_data("lobby_info")
-
-                if lobby is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} already in lobby.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User already in lobby."})
-                    continue
-
-                if client is not lobby.owner:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't the owner of lobby {lobby.code}.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User isn't the owner of lobby."})
-                    continue
-
-                if "Username" not in request["Data"]:
-                    utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
-                    continue
-
-                information = api.account.get(request["Data"]["Username"], self.database)
-
-                if information is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
-                    client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
-                    continue
-
-                requested_client = self.logged_clients[request["Data"]["Username"]]
-
-                # in case the user is not a player
-                if requested_client not in lobby.players:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {request['Data']['Username']} not in a player.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User is already a spectator."})
-                    continue
-
-                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
-
-                lobby.players.remove(requested_client)
-                lobby.spectators.append(requested_client)
-
-                client.send_response(rid, 200, "Ok", {"Msg": "Successfully making a spectator."})
-
-                for c in lobby.players + lobby.spectators:
-                    if c is not client:
-                        c.push_notification("Become_Spectator", {"Username": request["Data"]["Username"]})
+                self.handle_make_lobby_spectator(client, request, request_id, rid)
 
             elif request["Command"].lower() == "kick_user_lobby":
-                """
-                Kick a player from a lobby, owner only.
-                """
-
-                utils.server_print("Handler", f"Request ({request_id}), identified as Kick User From Lobby from " + str(client.address) + ".")
-
-                # check if the token exists
-                if "Token" not in request or request["Token"] != client.get_data("token"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
-                    continue
-
-                lobby: Lobby = client.get_data("lobby_info")
-
-                if lobby is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
-                    continue
-
-                if client is not lobby.owner:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't the owner of lobby {lobby.code}.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User isn't the owner of lobby."})
-                    continue
-
-                if "Username" not in request["Data"]:
-                    utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
-                    continue
-
-                information = api.account.get(request["Data"]["Username"], self.database)
-
-                if information is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
-                    client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
-                    continue
-
-                lobby: Lobby = client.get_data("lobby")
-                client_to_kick: Client = lobby.get_client(request["Data"]["Username"])
-
-                if client_to_kick is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User to kick isn't in lobby.")
-                    client.send_response(rid, 404, "Not Found", "User to kick isn't in lobby.")
-
-                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
-
-                lobby.remove_client(client_to_kick)
-                utils.server_print("Server", f"Request ({request_id}), Client {request['Data']['Username']} kicked the lobby {lobby.code}.")
-                client_to_kick.push_notification("Lobby_Kick", {"Msg": "You have been kicked from the lobby."})
-                client.send_response(rid, 200, "OK", {"Msg": "User kicked."})
-
-                for c in lobby.players + lobby.spectators:
-                    if c is not client:
-                        c.push_notification("Use_Left_Lobby", {"Username": client_to_kick.get_data("username"), "Role": "players"})
+                self.handle_kick_user_lobby(client, request, request_id, rid)
 
             elif request["Command"].lower() == "ban_user_lobby":
-                utils.server_print("Handler", f"Request ({request_id}), identified as Ban User From Lobby from " + str(client.address) + ".")
-
-                # check if the token exists
-                if "Token" not in request or request["Token"] != client.get_data("token"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
-                    continue
-
-                lobby: Lobby = client.get_data("lobby_info")
-
-                if lobby is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
-                    continue
-
-                if client is not lobby.owner:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't the owner of lobby {lobby.code}.")
-                    client.send_response(rid, 409, "Conflict", {"Msg": "User isn't the owner of lobby."})
-                    continue
-
-                if "Username" not in request["Data"]:
-                    utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
-                    continue
-
-                information = api.account.get(request["Data"]["Username"], self.database)
-
-                if information is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
-                    client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
-                    continue
-
-                lobby: Lobby = client.get_data("lobby")
-                client_to_ban: Client = lobby.get_client(request["Data"]["Username"])
-
-                if client_to_ban is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), User to ban isn't in lobby.")
-                    client.send_response(rid, 404, "Not Found", "User to ban isn't in lobby.")
-
-                utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
-
-                lobby.ban_client(client_to_ban)
-                utils.server_print("Server", f"Request ({request_id}), Client {request['Data']['Username']} Baned the lobby {lobby.code}.")
-                client_to_ban.push_notification("Lobby_Ban", {"Msg": "You have been Baned from the lobby."})
-                client.send_response(rid, 200, "OK", {"Msg": "User Baned."})
-
-                for c in lobby.players + lobby.spectators:
-                    if c is not client:
-                        c.push_notification("Use_Left_Lobby", {"Username": client_to_ban.get_data("username"), "Role": "players"})
+                self.handle_ban_user_lobby(client, request, request_id, rid)
 
             elif request["Command"].lower() == "add_friend":
-                utils.server_print("Handler", f"Request ({request_id}), identified as Add Friend from " + str(client.address) + ".")
-
-                # check if the token exists
-                if "Token" not in request or request["Token"] != client.get_data("token"):
-                    utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
-                    continue
-
-                if "Username" not in request["Data"]:
-                    utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
-                    client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
-                    continue
-
-                information = api.account.get(request["Data"]["Username"], self.database)
-
-                if information is None:
-                    utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
-                    client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
-                    continue
-
-                api.friend.add_friend(client.get_data("username"), request, self.database)
-                client.send_response(rid, 200, "OK", {"Msg": "Friend request sent."})
-
-                if request["Data"]["Username"] in self.logged_clients:
-                    self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request", {"Username": client.get_data("username")})
+                self.handle_add_friend(client, request, request_id, rid)
 
             elif request["Command"].lower() == "accept_friend":
                 pass
@@ -605,6 +153,540 @@ class ServerSocket:
                 pass
             elif request["Command"].lower() == "get_chat_information":
                 pass
+
+    # -- Server Command Handlers --
+
+    def handle_register(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Register a new account, login into the new account, return an auth token for authentication next
+        """
+
+        utils.server_print("Handler",
+                           f"Request ({request_id}) identified as Register from " + str(client.address) + ".")
+        # register data should have username and password.
+        if "Username" not in request['Data'] or "Password" not in request['Data']:
+            utils.server_print("Handler Error", f"Request ({request_id}), no username or password provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
+            return
+
+        # username should be unique
+        if request["Data"]["Username"] in self.database.submit_read("Users"):
+            utils.server_print("Handler Error", f"Request ({request_id}), Username already registered.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "Username must be unique."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), passed all checks.")
+
+        # register the user
+        if not api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database):
+            utils.server_print("Handler Error", f"Request ({request_id}), Error while registering the user.")
+            client.send_response(rid, 500, "Internal Server Error", {"Msg": "Error while registering the user."})
+            return
+
+        # generate auth token
+        token = self.generate_auth_token()
+
+        # add the token to the used token list
+        self.tokens.append(token)
+
+        # update the token and username to client object
+        client.set_data("token", token)
+        client.set_data("username", request["Data"]["Username"])
+
+        self.logged_clients[request["Data"]["Username"]] = client
+
+        # get user friend list
+        friends = api.friend.get_friend_list(request["Data"]["Username"], self.logged_clients, self.database)
+
+        client.send_response(rid, 201, "Created", {"Msg": "User registered.", "Token": token, "Friends": friends})
+        utils.server_print("Server", f"Request ({request_id}), User " + request["Data"]["Username"] + " registered.")
+
+    def handle_login(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Login to an account using username and password, return an auth token for authentication next.
+        """
+
+        utils.server_print("Handler", f"Request ({request_id}), identified as Login from " + str(client.address) + ".")
+        # login data should have username and password.
+        if "Username" not in request['Data'] or "Password" not in request['Data']:
+            utils.server_print("Handler Error", f"Request ({request_id}), No username or password provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "Missing Username or Password attribute."})
+            return
+
+        information = api.account.get(request["Data"]["Username"], self.database)
+
+        if information is None or not Hashing.check_password(bytes.fromhex(information["password"]),
+                                                             request["Data"]["Password"]):
+            utils.server_print("Handler Error", f"Request ({request_id}), Invalid credentials.")
+            client.send_response(rid, 404, "Not Found", {"Msg": "Invalid Credentials."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        # generate auth token
+        token = self.generate_auth_token()
+
+        # add the token to the used token list
+        self.tokens.append(token)
+
+        # update the token and username to client object
+        client.set_data("token", token)
+        client.set_data("username", request["Data"]["Username"])
+
+        self.logged_clients[request["Data"]["Username"]] = client
+
+        # get user friend list
+        friends = api.friend.get_friend_list(request["Data"]["Username"], self.logged_clients, self.database)
+
+        client.send_response(rid, 200, "OK", {"Msg": "Logged in successfully.", "Token": token, "Friends": friends})
+        utils.server_print("Server",
+                           f"Request ({request_id}), User " + request["Data"]["Username"] + " logged in successfully.")
+        api.account.update_login_time(request["Data"]["Username"], self.database)
+
+    def handle_create_lobby(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Create a new lobby using auth token.
+        """
+
+        utils.server_print("Handler",
+                           f"Request ({request_id}), identified as Create Lobby from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        if client.get_data("lobby") is not None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} already in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User already in lobby."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        # create and use the lobby
+        lobby = self.lobby_manager.create_lobby(client)
+        client.set_data("lobby_info", lobby)
+        client.send_response(rid, 201, "Created",
+                             {"Msg": "Lobby created successfully.", "Lobby_Info": lobby.__repr__()})
+        utils.server_print("Server", f"Request ({request_id}), Lobby created successfully.")
+
+    def handle_join_lobby(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Join lobby using auth token, code.
+        """
+
+        utils.server_print("Handler", "Request identified as Join Lobby from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        if client.get_data("lobby_info") is not None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} already in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User already in lobby."})
+            return
+
+        if "Code" not in request["Data"]:
+            utils.server_print("Handler Error", f"Request ({request_id}), No code provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No code provided."})
+
+        if request["Data"]["Code"] not in self.lobby_manager.all_lobbies:
+            utils.server_print("Handler Error", f"Request ({request_id}), Invalid code.")
+            client.send_response(rid, 404, "Not Found", {"Msg": "Invalid code."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        lobby = self.lobby_manager.all_lobbies[request["Data"]["Code"]]
+        role, success = lobby.register_client(client)
+        if success:
+            client.set_data("lobby_info", lobby)
+            client.send_response(rid, 200, "OK",
+                                 {"Msg": "Successfully joining lobby.", "Lobby_Info": lobby.__repr__(), "Role": role})
+
+            data = {"Msg": "New user joined the lobby.", "Role": role, "Username": client.get_data("username")}
+
+            if role != "players":
+                del data["Username"]
+
+            for c in lobby.players + lobby.spectators:
+                if c is not client:
+                    c.push_notification("User_Joined_Lobby", data)
+
+            utils.server_print("Server", f"Request ({request_id}), Client registered to lobby {lobby.code}.")
+        else:
+            client.send_response(rid, 409, "Conflict", {"Msg": "You're blocked from the lobby."})
+            utils.server_print("Server", f"Request ({request_id}), Client is blocked from lobby {lobby.code}")
+
+    @staticmethod
+    def handle_leave_lobby(client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Leave the lobby using auth token, return the information on the lobby.
+        """
+
+        utils.server_print("Handler",
+                           f"Request ({request_id}), identified as Leave Lobby from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        if client.get_data("lobby_info") is None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        lobby = client.get_data("lobby_info")
+        role, success = lobby.remove_client(client)
+
+        if success:
+            utils.server_print("Server",
+                               f"Request ({request_id}), Client {client.get_data('username')} leaved the lobby {lobby.code}.")
+            client.send_response(rid, 200, "OK", {"Msg": "Successfully leaving lobby."})
+
+            for c in lobby.players + lobby.spectators:
+                c.push_notification("User_Left_Lobby", {"Username": request["Data"]["Username"], "Role": role})
+
+    def handle_get_lobby(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Get lobby information using code.
+        """
+
+        utils.server_print("Handler",
+                           f"Request ({request_id}), identified as Get Lobby from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        if "Code" not in request["Data"]:
+            utils.server_print("Handler Error", f"Request ({request_id}), No code provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No code provided."})
+            return
+
+        if request["Data"]["Code"] not in self.lobby_manager.all_lobbies:
+            utils.server_print("Handler Error", f"Request ({request_id}), Invalid code.")
+            client.send_response(rid, 404, "Not Found", {"Msg": "Invalid code."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        lobby = self.lobby_manager.all_lobbies[request["Data"]["Code"]]
+        utils.server_print("Server",
+                           f"Request ({request_id}), Client {client.get_data('username')} leaved the lobby {lobby.code}.")
+        client.send_response(rid, 200, "OK", {"Lobby_Info": lobby.__repr__()})
+
+    @staticmethod
+    def handle_become_lobby_spectator(client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Become a lobby spectator, for players.
+        """
+
+        utils.server_print("Handler", "Request identified as Become Lobby Spectator from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        lobby = client.get_data("lobby_info")
+
+        if lobby is None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
+            return
+
+        # in case the user is not a player
+        if client in lobby.spectators:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} is already a spectator.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User is already a spectator."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        lobby.players.remove(client)
+        lobby.spectators.append(client)
+
+        client.send_response(rid, 200, "Ok", {"Msg": "Successfully becoming a spectator."})
+        utils.server_print("Server",
+                           f"Request ({request_id}), Client {client.get_data('username')} became a spectator on lobby {lobby.code}.")
+
+        for c in lobby.players + lobby.spectators:
+            if c is not client:
+                c.push_notification("Become_Spectator", {"Username": client.get_data("username")})
+
+    @staticmethod
+    def handle_become_lobby_player(client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Become a lobby player, for spectators.
+        """
+
+        utils.server_print("Handler", "Request identified as Become Lobby Player from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        lobby = client.get_data("lobby_info")
+
+        if lobby is None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
+            return
+
+        # in case the user is a player
+        if client in lobby.players:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} not in a player.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User is already a players."})
+            return
+
+        if len(lobby.players) >= lobby.MAX_PLAYERS:
+            utils.server_print("Handler Error", f"Request ({request_id}), The lobby {lobby.code} is full.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "The lobby is full."})
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        lobby.players.append(client)
+        lobby.spectators.remove(client)
+
+        client.send_response(rid, 200, "Ok", {"Msg": "Successfully becoming a player."})
+        utils.server_print("Server",
+                           f"Request ({request_id}), Client {client.get_data('username')} became a player on lobby {lobby.code}.")
+
+        for c in lobby.players + lobby.spectators:
+            if c is not client:
+                c.push_notification("Become_Player", {"Username": client.get_data("username")})
+
+    def handle_make_lobby_spectator(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Make a lobby spectator, for players.
+        """
+
+        utils.server_print("Handler", "Request identified as Make Lobby Spectator from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        lobby = client.get_data("lobby_info")
+
+        if lobby is None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} already in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User already in lobby."})
+            return
+
+        if client is not lobby.owner:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't the owner of lobby {lobby.code}.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't the owner of lobby."})
+            return
+
+        if "Username" not in request["Data"]:
+            utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
+            return
+
+        information = api.account.get(request["Data"]["Username"], self.database)
+
+        if information is None:
+            utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
+            client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
+            return
+
+        requested_client = self.logged_clients[request["Data"]["Username"]]
+
+        # in case the user is not a player
+        if requested_client not in lobby.players:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {request['Data']['Username']} not in a player.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User is already a spectator."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        lobby.players.remove(requested_client)
+        lobby.spectators.append(requested_client)
+
+        client.send_response(rid, 200, "Ok", {"Msg": "Successfully making a spectator."})
+
+        for c in lobby.players + lobby.spectators:
+            if c is not client:
+                c.push_notification("Become_Spectator", {"Username": request["Data"]["Username"]})
+
+    def handle_kick_user_lobby(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Kick a player from a lobby, owner only.
+        """
+
+        utils.server_print("Handler", f"Request ({request_id}), identified as Kick User From Lobby from " + str(
+            client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        lobby: Lobby = client.get_data("lobby_info")
+
+        if lobby is None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
+            return
+
+        if client is not lobby.owner:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't the owner of lobby {lobby.code}.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't the owner of lobby."})
+            return
+
+        if "Username" not in request["Data"]:
+            utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
+            return
+
+        information = api.account.get(request["Data"]["Username"], self.database)
+
+        if information is None:
+            utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
+            client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
+            return
+
+        lobby: Lobby = client.get_data("lobby")
+        client_to_kick: Client = lobby.get_client(request["Data"]["Username"])
+
+        if client_to_kick is None:
+            utils.server_print("Handler Error", f"Request ({request_id}), User to kick isn't in lobby.")
+            client.send_response(rid, 404, "Not Found", "User to kick isn't in lobby.")
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        lobby.remove_client(client_to_kick)
+        utils.server_print("Server",
+                           f"Request ({request_id}), Client {request['Data']['Username']} kicked the lobby {lobby.code}.")
+        client_to_kick.push_notification("Lobby_Kick", {"Msg": "You have been kicked from the lobby."})
+        client.send_response(rid, 200, "OK", {"Msg": "User kicked."})
+
+        for c in lobby.players + lobby.spectators:
+            if c is not client:
+                c.push_notification("Use_Left_Lobby",
+                                    {"Username": client_to_kick.get_data("username"), "Role": "players"})
+
+    def handle_ban_user_lobby(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Ban a player from a lobby, owner only.
+        """
+        utils.server_print("Handler", f"Request ({request_id}), identified as Ban User From Lobby from " + str(
+            client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        lobby: Lobby = client.get_data("lobby_info")
+
+        if lobby is None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
+            return
+
+        if client is not lobby.owner:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't the owner of lobby {lobby.code}.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't the owner of lobby."})
+            return
+
+        if "Username" not in request["Data"]:
+            utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
+            return
+
+        information = api.account.get(request["Data"]["Username"], self.database)
+
+        if information is None:
+            utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
+            client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
+            return
+
+        lobby: Lobby = client.get_data("lobby")
+        client_to_ban: Client = lobby.get_client(request["Data"]["Username"])
+
+        if client_to_ban is None:
+            utils.server_print("Handler Error", f"Request ({request_id}), User to ban isn't in lobby.")
+            client.send_response(rid, 404, "Not Found", "User to ban isn't in lobby.")
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        lobby.ban_client(client_to_ban)
+        utils.server_print("Server",
+                           f"Request ({request_id}), Client {request['Data']['Username']} Baned the lobby {lobby.code}.")
+        client_to_ban.push_notification("Lobby_Ban", {"Msg": "You have been Baned from the lobby."})
+        client.send_response(rid, 200, "OK", {"Msg": "User Baned."})
+
+        for c in lobby.players + lobby.spectators:
+            if c is not client:
+                c.push_notification("Use_Left_Lobby",
+                                    {"Username": client_to_ban.get_data("username"), "Role": "players"})
+
+    def handle_add_friend(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Add a friend to the user.
+        """
+        utils.server_print("Handler",
+                           f"Request ({request_id}), identified as Add Friend from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        if "Username" not in request["Data"]:
+            utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
+            return
+
+        information = api.account.get(request["Data"]["Username"], self.database)
+
+        if information is None:
+            utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
+            client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
+            return
+
+        api.friend.add_friend(client.get_data("username"), request, self.database)
+        client.send_response(rid, 200, "OK", {"Msg": "Friend request sent."})
+
+        if request["Data"]["Username"] in self.logged_clients:
+            self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request", {
+                "Username": client.get_data("username")})
+
+    # -- User authentication token generator --
 
     def generate_auth_token(self):
         """

@@ -21,6 +21,7 @@ def register(username: str, password: str, db_interface: Database) -> bool:
     hashed_password = Hashing.hash_password(password).hex()
 
     users[username] = {
+        "username": username,
         "password": hashed_password,
         "last_login": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "messages": {
@@ -28,7 +29,12 @@ def register(username: str, password: str, db_interface: Database) -> bool:
             "unseen": []
         },
         "friends": [],
-        "friend_requests": []
+        "friend_requests": [],
+        "playtime": 0,
+        "games_played": 0,
+        "games_won": 0,
+        "account_level": 1,
+        "account_experience": 0
     }
 
     return db_interface.submit_update("Users", users)

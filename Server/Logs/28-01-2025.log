@@ -1,0 +1,17 @@
+=============== Initiating the server. ===============
+[28-01-2025 20:37:27] [Database] Database worker is running
+[28-01-2025 20:37:27] [Status] ServerSocket initialized.
+[28-01-2025 20:37:27] [Status] Server is running.
+[28-01-2025 20:37:29] [Connection] Client ('127.0.0.1', 52443) connection request accepted.
+[28-01-2025 20:37:29] [Handler] Starting to handle ('127.0.0.1', 52443).
+[28-01-2025 20:37:32] [Handler] Request (0) received from ('127.0.0.1', 52443).
+[28-01-2025 20:37:33] [Handler] Request (0), identified as Login from ('127.0.0.1', 52443).
+[28-01-2025 20:37:33] [Handler] Request (0), Request passed all checks.
+[28-01-2025 20:37:33] [Server] Request (0), User test logged in successfully.
+[28-01-2025 20:37:34] [Handler] Request (1) received from ('127.0.0.1', 52443).
+[28-01-2025 20:37:34] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52443).
+[28-01-2025 20:37:34] [Handler] Request (1), Request passed all checks.
+[28-01-2025 20:37:35] [Lobby Manager] Creating new lobby
+[28-01-2025 20:37:35] [Server] Request (1), Lobby created successfully.
+[28-01-2025 20:37:51] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[28-01-2025 20:37:51] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host

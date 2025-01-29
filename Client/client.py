@@ -19,6 +19,8 @@ class ClientSocket:
         # auth token
         self.token = None
 
+        self.friends_information = []
+
         # saved data
         self.data = {}
 
@@ -55,7 +57,7 @@ class ClientSocket:
         """
         self.data[name] = value
 
-    def send_request(self, command: str, data: dict, timeout=1) -> dict:
+    def send_request(self, command: str, data: dict, timeout=2) -> dict:
         """
         Send request to the server.
         :param command:

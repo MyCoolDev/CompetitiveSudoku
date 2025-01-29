@@ -1,22 +1,34 @@
 {
     "test": {
-        "password": "243262243132244748524f74623967436f6258737835314d39486779654f363059673935497a6c73466f63652e4a487a3074526679763841636e4a79",
-        "last_login": "2025-01-27 10:24:43",
+        "username": "test",
+        "password": "243262243132244262354a712f456376496d34536b68414b476f5a584f656c30515a3458314b6271713539735455796978786c4445314e4543453169",
+        "last_login": "2025-01-29 23:10:12",
         "messages": {
             "seen": {},
             "unseen": []
         },
         "friends": [],
-        "friend_requests": []
+        "friend_requests": [],
+        "playtime": 0,
+        "games_played": 0,
+        "games_won": 0,
+        "account_level": 1,
+        "account_experience": 0
     },
     "ron": {
-        "password": "2432622431322439596c775a43497147676f6974634b776733457845654b354b635662446178512f384e764b5a666e464947506c65644333776c5957",
-        "last_login": "2025-01-27 09:18:03",
+        "username": "ron",
+        "password": "2432622431322433533031336f6d706a676a3865344a654557324b422e6b366a4e344375445157726548617956394b69584f623946322f4e33513469",
+        "last_login": "2025-01-29 18:15:46",
         "messages": {
             "seen": {},
             "unseen": []
         },
         "friends": [],
-        "friend_requests": []
+        "friend_requests": [],
+        "playtime": 0,
+        "games_played": 0,
+        "games_won": 0,
+        "account_level": 1,
+        "account_experience": 0
     }
 }

@@ -70,10 +70,10 @@ class App:
         render everything to the screen.
         :return:
         """
+        self.dt = self.clock.tick(60) / 1000
         self.screen.fill((46, 46, 46))
         self.current_state.render()
         pygame.display.flip()
-        self.dt = self.clock.tick(60) / 1000
 
 
 if __name__ == '__main__':

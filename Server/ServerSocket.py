@@ -118,6 +118,12 @@ class ServerSocket:
 
                 utils.server_print("Handler", f"Request ({request_id}), passed all checks.")
 
+                # register the user
+                if not api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database):
+                    utils.server_print("Handler Error", f"Request ({request_id}), Error while registering the user.")
+                    client.send_response(rid, 500, "Internal Server Error", {"Msg": "Error while registering the user."})
+                    continue
+
                 # generate auth token
                 token = self.generate_auth_token()
 
@@ -130,7 +136,10 @@ class ServerSocket:
 
                 self.logged_clients[request["Data"]["Username"]] = client
 
-                client.send_response(rid, 201, "Created", {"Msg": "User registered.", "Token": token})
+                # get user friend list
+                friends = api.friend.get_friend_list(request["Data"]["Username"], self.logged_clients, self.database)
+
+                client.send_response(rid, 201, "Created", {"Msg": "User registered.", "Token": token, "Friends": friends})
                 utils.server_print("Server", f"Request ({request_id}), User " + request["Data"]["Username"] + " registered.")
 
             elif request["Command"].lower() == "login":
@@ -167,7 +176,10 @@ class ServerSocket:
 
                 self.logged_clients[request["Data"]["Username"]] = client
 
-                client.send_response(rid, 200, "OK", {"Msg": "Logged in successfully.", "Token": token})
+                # get user friend list
+                friends = api.friend.get_friend_list(request["Data"]["Username"], self.logged_clients, self.database)
+
+                client.send_response(rid, 200, "OK", {"Msg": "Logged in successfully.", "Token": token, "Friends": friends})
                 utils.server_print("Server", f"Request ({request_id}), User " + request["Data"]["Username"] + " logged in successfully.")
                 api.account.update_login_time(request["Data"]["Username"], self.database)
 

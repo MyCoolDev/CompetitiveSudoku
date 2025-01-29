@@ -42,6 +42,7 @@ class LogRegister(BaseState):
             print("Registered successfully")
             self.client.set_token(response["Data"]["Token"])
             self.client.set_data("username", self.username_textbox.content)
+            self.client.friends_information = response["Data"]["Friends"]
 
     def login_func(self):
         response = self.client.send_request("Login", {"Username": self.username_textbox.content, "Password": self.password_textbox.content})
@@ -49,6 +50,7 @@ class LogRegister(BaseState):
             print("Login successfully")
             self.client.set_token(response["Data"]["Token"])
             self.client.set_data("username", self.username_textbox.content)
+            self.client.friends_information = response["Data"]["Friends"]
 
     def render(self, *args, **kwargs):
         self.title.render(self.screen)

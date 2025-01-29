@@ -14,6 +14,9 @@ class Text:
         self.font_size = font_size
         self.color = color
         self.text_surface = self.font.render(txt, True, color)
+        self.top_left_mode = top_left_mode
+        self.left_mode = left_mode
+        self.top_mode = top_mode
 
         if top_left_mode:
             self.abs_position = pygame.Vector2(position.x + self.text_surface.get_width() / 2,
@@ -27,8 +30,7 @@ class Text:
 
         self.alpha = alpha
         self.update_alpha()
-        self.position = pygame.Vector2(self.abs_position.x - self.text_surface.get_width() / 2,
-                                       self.abs_position.y - self.text_surface.get_height() / 2)
+        self.__generate_position()
 
     def update_alpha(self):
         self.text_surface.set_alpha(self.alpha)
@@ -49,7 +51,13 @@ class Text:
         self.__create_text_surface()
 
     def update_position(self, position: pygame.Vector2):
-        self.abs_position = position
+        if self.top_left_mode:
+            self.abs_position = pygame.Vector2(position.x + self.text_surface.get_width() / 2, position.y + self.text_surface.get_height() / 2)
+        elif self.left_mode:
+            self.abs_position = pygame.Vector2(position.x + self.text_surface.get_width() / 2, position.y)
+        elif self.top_mode:
+            self.abs_position = pygame.Vector2(position.x, position.y + self.text_surface.get_height() / 2)
+        self.__generate_position()
 
     def update_font_size(self, new_size: int):
         self.font_size = new_size

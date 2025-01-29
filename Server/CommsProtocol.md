@@ -96,6 +96,8 @@ Register a new user to the system.
   "Data": {
     "Msg": "User registered."
   },
+  "Token": "<TOKEN_HERE>",
+  "Friends": [["<FRIENDS_HERE>"], ["<REQUESTS_HERE>"]],
   "Checksum": "<String>"
 }
 ```
@@ -165,6 +167,7 @@ Login to account.
     "Msg": "Logged in successfully."
   },
   "Token": "<TOKEN_HERE>",
+  "Friends": [["<FRIENDS_HERE>"], ["<REQUESTS_HERE>"]],
   "Checksum": "<String>"
 }
 ```

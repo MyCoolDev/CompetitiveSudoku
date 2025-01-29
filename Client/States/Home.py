@@ -8,6 +8,7 @@ from Client.Components.TextBox import TextBox
 from Client.client import ClientSocket
 from Client.Components.MonoBehaviour import MonoBehaviour
 from Client.Components.Image import Image
+from Client.Components.FriendList import FriendList
 
 
 class Home(BaseState):
@@ -23,6 +24,7 @@ class Home(BaseState):
         self.navbar = MonoBehaviour(pygame.Vector2(127, 45), pygame.Vector2(40, 40), (2, 2, 2), border_radius=10)
         self.menu_icon = Image(os.path.join("Images", "Menu.png"), pygame.Vector2(24, 24), pygame.Vector2(self.navbar.position.x + 20, self.navbar.position.y + 10))
         self.friend_icon = Image(os.path.join("Images", "Person.png"), pygame.Vector2(20, 20), self.menu_icon.position + pygame.Vector2(24 + 20, 3))
+        self.friend_list = FriendList(self.screen, self.client)
 
         self.mouse_cursor["IBEAM"] = [self.lobby_code]
         self.mouse_cursor["HAND"] = [self.menu_icon, self.join_lobby_button, self.create_lobby_button]
@@ -30,9 +32,10 @@ class Home(BaseState):
     def update(self, dt: float, events: list, *args, **kwargs):
         super().update(dt, events, *args, **kwargs)
         self.lobby_code.update(dt, events)
+        self.friend_list.update(dt, events)
 
         if self.menu_icon.update(events):
-            pass
+            self.friend_list.toggle()
 
         if self.create_lobby_button.update(dt, events):
             self.create_lobby()
@@ -62,3 +65,4 @@ class Home(BaseState):
         self.navbar.render(self.screen)
         self.menu_icon.render(self.screen)
         self.friend_icon.render(self.screen)
+        self.friend_list.render()

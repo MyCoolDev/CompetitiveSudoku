@@ -99,43 +99,43 @@ class ServerSocket:
 
             # route the command to the specific api path.
             if request["Command"].lower() == "register":
-                self.handle_register(client, request, request_id, rid)
+                self.handle_register(client, request, rid, request_id)
 
             elif request["Command"].lower() == "login":
-                self.handle_login(client, request, request_id, rid)
+                self.handle_login(client, request, rid, request_id)
 
             elif request["Command"].lower() == "create_lobby":
-                self.handle_create_lobby(client, request, request_id, rid)
+                self.handle_create_lobby(client, request, rid, request_id)
 
             elif request["Command"].lower() == "join_lobby":
-                self.handle_join_lobby(client, request, request_id, rid)
+                self.handle_join_lobby(client, request, rid, request_id)
 
             elif request["Command"].lower() == "leave_lobby":
-                self.handle_leave_lobby(client, request, request_id, rid)
+                self.handle_leave_lobby(client, request, rid, request_id)
 
             elif request["Command"].lower() == "delete_lobby":
                 pass
 
             elif request["Command"].lower() == "get_lobby":
-                self.handle_get_lobby(client, request, request_id, rid)
+                self.handle_get_lobby(client, request, rid, request_id)
 
             elif request["Command"].lower() == "become_lobby_spectator":
-                self.handle_become_lobby_spectator(client, request, request_id, rid)
+                self.handle_become_lobby_spectator(client, request, rid, request_id)
 
             elif request["Command"].lower() == "become_lobby_player":
-                self.handle_become_lobby_player(client, request, request_id, rid)
+                self.handle_become_lobby_player(client, request, rid, request_id)
 
             elif request["Command"].lower() == "make_lobby_spectator":
-                self.handle_make_lobby_spectator(client, request, request_id, rid)
+                self.handle_make_lobby_spectator(client, request, rid, request_id)
 
             elif request["Command"].lower() == "kick_user_lobby":
-                self.handle_kick_user_lobby(client, request, request_id, rid)
+                self.handle_kick_user_lobby(client, request, rid, request_id)
 
             elif request["Command"].lower() == "ban_user_lobby":
-                self.handle_ban_user_lobby(client, request, request_id, rid)
+                self.handle_ban_user_lobby(client, request, rid, request_id)
 
             elif request["Command"].lower() == "add_friend":
-                self.handle_add_friend(client, request, request_id, rid)
+                self.handle_add_friend(client, request, rid, request_id)
 
             elif request["Command"].lower() == "accept_friend":
                 pass

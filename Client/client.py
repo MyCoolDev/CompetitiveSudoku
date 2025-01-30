@@ -57,7 +57,7 @@ class ClientSocket:
         """
         self.data[name] = value
 
-    def send_request(self, command: str, data: dict, timeout=2) -> dict:
+    def send_request(self, command: str, data: dict, timeout=5) -> dict:
         """
         Send request to the server.
         :param command:

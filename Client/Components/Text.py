@@ -4,7 +4,7 @@ pygame.font.init()
 
 class Text:
     def __init__(self, txt: str, font: str, font_size: int, position: pygame.Vector2, color: tuple,
-                 alpha=255, top_left_mode=False, left_mode=False, top_mode=False):
+                 alpha=255, top_left_mode=False, left_mode=False, top_mode=False, center=False):
         self.txt = txt
         self.font_name = font
 

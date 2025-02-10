@@ -49,6 +49,7 @@ class Home(BaseState):
             print("Lobby created successfully")
             self.client.set_data("lobby_info", response["Data"]["Lobby_Info"])
             self.client.set_data("Lobby_Role", "players")
+            self.client.set_data("Lobby_Status", False)
 
     def join_lobby(self):
         response = self.client.send_request("Join_Lobby", {"Code": self.lobby_code.content})
@@ -56,6 +57,7 @@ class Home(BaseState):
             print("Lobby joined successfully")
             self.client.set_data("lobby_info", response["Data"]["Lobby_Info"])
             self.client.set_data("Lobby_Role", response["Data"]["Role"])
+            self.client.set_data("Lobby_Status", False)
 
     def render(self, *args, **kwargs):
         self.title.render(self.screen)

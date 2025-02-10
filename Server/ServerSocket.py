@@ -134,6 +134,9 @@ class ServerSocket:
             elif request["Command"].lower() == "ban_user_lobby":
                 self.handle_ban_user_lobby(client, request, rid, request_id)
 
+            elif request["Command"].lower() == "start_game":
+                self.handle_start_game(client, request, rid, request_id)
+
             elif request["Command"].lower() == "add_friend":
                 self.handle_add_friend(client, request, rid, request_id)
 
@@ -654,6 +657,43 @@ class ServerSocket:
                 c.push_notification("Use_Left_Lobby",
                                     {"Username": client_to_ban.get_data("username"), "Role": "players"})
 
+    @staticmethod
+    def handle_start_game(client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Start lobby game.
+        """
+        utils.server_print("Handle", f"Request ({request_id}), identified as Start Game from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        lobby: Lobby = client.get_data("lobby_info")
+
+        if lobby is None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
+            return
+
+        if client is not lobby.owner:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't the owner of lobby {lobby.code}.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't the owner of lobby."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        client.send_response(rid, 200, "OK", {"Msg": "Lobby game started.", "Board": lobby.board.puzzle})
+
+        for c in lobby.players + lobby.spectators:
+            if c is not client:
+                c.push_notification("Game_Started", {"board": lobby.board.puzzle})
+
+        utils.server_print("Server", f"Request ({request_id}), Game started on lobby {lobby.code}.")
+
     def handle_add_friend(self, client: Client, request: dict, rid: int, request_id: int) -> None:
         """
         Add a friend to the user.
@@ -679,12 +719,16 @@ class ServerSocket:
             client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
             return
 
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
         api.friend.add_friend(client.get_data("username"), request, self.database)
         client.send_response(rid, 200, "OK", {"Msg": "Friend request sent."})
 
         if request["Data"]["Username"] in self.logged_clients:
             self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request", {
                 "Username": client.get_data("username")})
+
+        utils.server_print("Server", f"Request ({request_id}), Friend Added.")
 
     # -- User authentication token generator --
 

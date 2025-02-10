@@ -6,6 +6,7 @@ from Client.Components.MonoBehaviour import MonoBehaviour
 from Client.Components.Text import Text
 from Client.Components.Button import Button
 
+
 class FriendList:
     def __init__(self, screen: pygame.Surface, client: ClientSocket):
         self.friends_selection_text = None
@@ -50,7 +51,6 @@ class FriendList:
         # tab selection
         self.friends_selection_bg = MonoBehaviour(pygame.Vector2(self.width / 2, 54), self.small_profile.position + pygame.Vector2(0, self.small_profile.size[1]), (32, 32, 32), border_top_right_radius=10)
         self.friends_selection_text = Text("Friends", "Medium", 16, self.friends_selection_bg.position + pygame.Vector2(self.friends_selection_bg.size[0] / 2, self.friends_selection_bg.size[1] / 2), (255, 255, 255))
-
 
     def toggle(self):
         """

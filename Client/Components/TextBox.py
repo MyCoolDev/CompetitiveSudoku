@@ -13,7 +13,7 @@ class TextBox(MonoBehaviour):
                  padding_top: int = 0, padding_right: int = 0, padding_bottom: int = 0, width: int = 0,
                  border_radius: int = -1,
                  border_top_left_radius: int = -1, border_top_right_radius: int = -1,
-                 border_bottom_left_radius: int = -1, border_bottom_right_radius: int = -1, next_input=None, hidden=False):
+                 border_bottom_left_radius: int = -1, border_bottom_right_radius: int = -1, next_input=None, hidden=False, text_left_mode=True, text_centered=False):
         super().__init__(size, position, box_color, width, border_radius, border_top_left_radius,
                          border_top_right_radius, border_bottom_left_radius, border_bottom_right_radius)
 
@@ -43,8 +43,11 @@ class TextBox(MonoBehaviour):
         self.text_color = text_color
         self.text_position = pygame.Vector2(self.position.x + self.padding[0], self.position.y + self.size.y / 2)
 
+        if text_centered:
+            self.text_position = pygame.Vector2((self.position.x + self.size.x / 2), (self.position.y + self.size.y  /2))
+
         self.text = Text(self.content, self.font, self.font_size, self.text_position, self.text_color,
-                         left_mode=True)
+                         left_mode=text_left_mode)
 
         self.hidden = hidden
 

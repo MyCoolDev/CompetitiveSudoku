@@ -20,6 +20,7 @@ COLOR_NAMES = {
     "[227, 90, 255]": "Purple"
 }
 
+
 class InLobby(BaseState):
     def __init__(self, screen: pygame.Surface, client: ClientSocket):
         super().__init__(screen, client)
@@ -42,20 +43,40 @@ class InLobby(BaseState):
         self.owner = self.data["owner"] == self.client.get_data("username")
 
         self.navbar = MonoBehaviour(pygame.Vector2(127, 45), pygame.Vector2(40, 40), (2, 2, 2), border_radius=10)
-        self.menu_icon = Image(os.path.join("Images", "Menu.png"), pygame.Vector2(24, 24), pygame.Vector2(self.navbar.position.x + 20, self.navbar.position.y + 10))
-        self.friend_icon = Image(os.path.join("Images", "Person.png"), pygame.Vector2(20, 20), self.menu_icon.position + pygame.Vector2(24 + 20, 3))
+        self.menu_icon = Image(os.path.join("Images", "Menu.png"), pygame.Vector2(24, 24),
+                               pygame.Vector2(self.navbar.position.x + 20, self.navbar.position.y + 10))
+        self.friend_icon = Image(os.path.join("Images", "Person.png"), pygame.Vector2(20, 20),
+                                 self.menu_icon.position + pygame.Vector2(24 + 20, 3))
 
-        self.title = Text(f"{self.data['owner']}'s Lobby", "SemiBold", 50, pygame.Vector2(80, 133), (255, 255, 255), top_left_mode=True)
-        self.code_display_background = MonoBehaviour(pygame.Vector2(195, 55), self.title.position + pygame.Vector2(self.title.text_surface.get_width() + 35, 10), (2, 2, 2), border_radius=10)
-        self.code_display = Text(self.data["code"], "Regular", 28, self.code_display_background.position + pygame.Vector2(25, self.code_display_background.size[1] / 2), (182, 182, 182), left_mode=True)
-        self.code_copy_icon = Image(os.path.join("Images", "Copy.png"), pygame.Vector2(20, 22), self.code_display_background.position + pygame.Vector2(25 + self.code_display.text_surface.get_width() + 24, 16))
+        self.title = Text(f"{self.data['owner']}'s Lobby", "SemiBold", 50, pygame.Vector2(80, 133), (255, 255, 255),
+                          top_left_mode=True)
+        self.code_display_background = MonoBehaviour(pygame.Vector2(195, 55), self.title.position + pygame.Vector2(
+            self.title.text_surface.get_width() + 35, 10), (2, 2, 2), border_radius=10)
+        self.code_display = Text(self.data["code"], "Regular", 28,
+                                 self.code_display_background.position + pygame.Vector2(25,
+                                                                                        self.code_display_background.size[
+                                                                                            1] / 2), (182, 182, 182),
+                                 left_mode=True)
+        self.code_copy_icon = Image(os.path.join("Images", "Copy.png"), pygame.Vector2(20, 22),
+                                    self.code_display_background.position + pygame.Vector2(
+                                        25 + self.code_display.text_surface.get_width() + 24, 16))
 
-        self.number_of_players = Text(f"{len(self.data['players'])} / {self.data['max_players']} Players", "Regular", 24, self.title.position + pygame.Vector2(0, self.title.text_surface.get_size()[1] + 30), (226, 226, 226), top_left_mode=True)
+        self.number_of_players = Text(f"{len(self.data['players'])} / {self.data['max_players']} Players", "Regular",
+                                      24, self.title.position + pygame.Vector2(0, self.title.text_surface.get_size()[
+                1] + 30), (226, 226, 226), top_left_mode=True)
         self.init_players()
 
-        self.left_image = Image(os.path.join("Images", "LobbyImage.png"), pygame.Vector2(1234, 1080), pygame.Vector2(self.screen.get_width() - 1234, 0))
-        self.spectator_icon = Image(os.path.join("Images", "Spectator.png"), pygame.Vector2(18, 14), pygame.Vector2(70, self.screen.get_height() - 40))
-        self.spectator_count = Text(str(self.data["spectators"]), "Regular", 22, self.spectator_icon.position + pygame.Vector2(self.spectator_icon.size[0] + 10, self.spectator_icon.size[1] / 2), (255, 255, 255), left_mode=True)
+        self.left_image = Image(os.path.join("Images", "LobbyImage.png"), pygame.Vector2(1234, 1080),
+                                pygame.Vector2(self.screen.get_width() - 1234, 0))
+        self.spectator_icon = Image(os.path.join("Images", "Spectator.png"), pygame.Vector2(18, 14),
+                                    pygame.Vector2(70, self.screen.get_height() - 40))
+        self.spectator_count = Text(str(self.data["spectators"]), "Regular", 22,
+                                    self.spectator_icon.position + pygame.Vector2(self.spectator_icon.size[0] + 10,
+                                                                                  self.spectator_icon.size[1] / 2),
+                                    (255, 255, 255), left_mode=True)
+
+        if self.owner:
+            self.start_game_button = Button(pygame.Vector2(200, 60), pygame.Vector2(self.screen.get_width() - 75 - 200, self.screen.get_height() - 50 - 60), (52, 191, 73), "Start Game", "Bold", 20, (226, 226, 226), border_radius=10, top_left_mode=True)
 
         # setting some mouse cursors
         self.mouse_cursor["HAND"] = [self.menu_icon, self.code_copy_icon]
@@ -122,6 +143,13 @@ class InLobby(BaseState):
                                 lobby["spectators"] += 1
                                 lobby["players"].remove(card[2].txt)
 
+        if self.start_game_button.update(dt, events):
+            response = self.client.send_request("Start_Game", {})
+            if response["StatusCode"] == 200:
+                print("test")
+                self.client.set_data("Lobby_Board", response["Data"]["Board"])
+                self.client.set_data("lobby_status", True)
+
         # check if data has changed, if not don't update.
 
         new_data_checksum = self.client.create_checksum(self.data)
@@ -150,14 +178,22 @@ class InLobby(BaseState):
         colors = self.data["players_colors"]
         for i, player in enumerate(self.data['players']):
             color = COLOR_NAMES[str(colors[i])]
-            self.players_cards.append(self.init_player_card(player, color, i, self.number_of_players.position + pygame.Vector2(20, self.number_of_players.text_surface.get_height() + 50)))
+            self.players_cards.append(self.init_player_card(player, color, i,
+                                                            self.number_of_players.position + pygame.Vector2(20,
+                                                                                                             self.number_of_players.text_surface.get_height() + 50)))
 
         if len(self.players_cards) < 6 and self.client.get_data("Lobby_Role") == "spectators":
-            self.become_a_player_button = self.init_player_card("Become A Player", COLOR_NAMES[str(colors[len(self.data["players"])])], len(self.data["players"]), self.number_of_players.position + pygame.Vector2(20, self.number_of_players.text_surface.get_height() + 50), True)
+            self.become_a_player_button = self.init_player_card("Become A Player",
+                                                                COLOR_NAMES[str(colors[len(self.data["players"])])],
+                                                                len(self.data["players"]),
+                                                                self.number_of_players.position + pygame.Vector2(20,
+                                                                                                                 self.number_of_players.text_surface.get_height() + 50),
+                                                                True)
         else:
             self.become_a_player_button = None
 
-    def init_player_card(self, username: str, color: str, index: int, base: pygame.Vector2, is_not_player=False) -> list:
+    def init_player_card(self, username: str, color: str, index: int, base: pygame.Vector2,
+                         is_not_player=False) -> list:
         """
         Init a player card, with positions using index.
         :param username: The username.
@@ -172,20 +208,29 @@ class InLobby(BaseState):
         BACKGROUND_PADDING_LEFT = 25
         CARDS_GAP = 30
 
-        card_background = Image(os.path.join("Images", "PlayerCard", color + ".png"), pygame.Vector2(467, 60), base + pygame.Vector2(0, (60 + CARDS_GAP) * index))
+        card_background = Image(os.path.join("Images", "PlayerCard", color + ".png"), pygame.Vector2(467, 60),
+                                base + pygame.Vector2(0, (60 + CARDS_GAP) * index))
 
         player_name = None
         icon = None
 
         if self.data["owner"] == username:
-            icon = Image(os.path.join("Images", "PlayerCard", "Icons",  "Owner.png"), pygame.Vector2(22, 22), card_background.position + pygame.Vector2(BACKGROUND_PADDING_LEFT, 17))
+            icon = Image(os.path.join("Images", "PlayerCard", "Icons", "Owner.png"), pygame.Vector2(22, 22),
+                         card_background.position + pygame.Vector2(BACKGROUND_PADDING_LEFT, 17))
         elif not is_not_player:
-            icon = Image(os.path.join("Images", "PlayerCard", "Icons", color + ".png"), pygame.Vector2(22, 22), card_background.position + pygame.Vector2(BACKGROUND_PADDING_LEFT, 17))
+            icon = Image(os.path.join("Images", "PlayerCard", "Icons", color + ".png"), pygame.Vector2(22, 22),
+                         card_background.position + pygame.Vector2(BACKGROUND_PADDING_LEFT, 17))
 
         if is_not_player:
-            player_name = Text(username, "Regular", 16, card_background.position + pygame.Vector2(BACKGROUND_PADDING_LEFT, card_background.size[1] / 2), (226, 226, 226), left_mode=True)
+            player_name = Text(username, "Regular", 16,
+                               card_background.position + pygame.Vector2(BACKGROUND_PADDING_LEFT,
+                                                                         card_background.size[1] / 2), (226, 226, 226),
+                               left_mode=True)
         else:
-            player_name = Text(username, "Regular", 16, card_background.position + pygame.Vector2(25 + 22 + NAME_ICON_GAP, card_background.size[1] / 2), (226, 226, 226), left_mode=True)
+            player_name = Text(username, "Regular", 16,
+                               card_background.position + pygame.Vector2(25 + 22 + NAME_ICON_GAP,
+                                                                         card_background.size[1] / 2), (226, 226, 226),
+                               left_mode=True)
 
         objs = [card_background, icon, player_name]
 
@@ -195,18 +240,22 @@ class InLobby(BaseState):
         my_username = self.client.get_data("username")
 
         if username == my_username:
-            obj = Image(os.path.join("Images", "Spectator.png"), pygame.Vector2(21, 16), card_background.position + pygame.Vector2(card_background.size[0] - 25 - 21, 21))
+            obj = Image(os.path.join("Images", "Spectator.png"), pygame.Vector2(21, 16),
+                        card_background.position + pygame.Vector2(card_background.size[0] - 25 - 21, 21))
             objs.append(obj)
             self.mouse_cursor["HAND"].append(obj)
             self.my_card = objs
         elif self.owner:
-            obj = Image(os.path.join("Images", "Kick.png"), pygame.Vector2(16, 16), card_background.position + pygame.Vector2(card_background.size[0] - 25 - 16, 21))
+            obj = Image(os.path.join("Images", "Kick.png"), pygame.Vector2(16, 16),
+                        card_background.position + pygame.Vector2(card_background.size[0] - 25 - 16, 21))
             objs.append(obj)
             self.mouse_cursor["HAND"].append(obj)
-            obj = Image(os.path.join("Images", "Block.png"), pygame.Vector2(16, 16), objs[-1].position + pygame.Vector2(-15 - 16, 0))
+            obj = Image(os.path.join("Images", "Block.png"), pygame.Vector2(16, 16),
+                        objs[-1].position + pygame.Vector2(-15 - 16, 0))
             objs.append(obj)
             self.mouse_cursor["HAND"].append(obj)
-            obj = Image(os.path.join("Images", "Spectator.png"), pygame.Vector2(21, 16), objs[-1].position + pygame.Vector2(-15 - 21, 0))
+            obj = Image(os.path.join("Images", "Spectator.png"), pygame.Vector2(21, 16),
+                        objs[-1].position + pygame.Vector2(-15 - 21, 0))
             objs.append(obj)
             self.mouse_cursor["HAND"].append(obj)
 
@@ -233,3 +282,6 @@ class InLobby(BaseState):
 
         self.spectator_icon.render(self.screen)
         self.spectator_count.render(self.screen)
+
+        if self.start_game_button:
+            self.start_game_button.render(self.screen)

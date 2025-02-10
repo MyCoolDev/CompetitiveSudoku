@@ -3,6 +3,7 @@ import pygame
 from States.LogRegisterState import LogRegister
 from States.Home import Home
 from States.InLobby import InLobby
+from States.InGame import InGame
 
 from client import ClientSocket
 
@@ -62,8 +63,11 @@ class App:
             if self.client.get_data("lobby_info") is None and type(self.current_state) is not Home:
                 self.current_state = Home(self.screen, self.client)
 
-            elif self.client.get_data("lobby_info") is not None and type(self.current_state) is not InLobby:
+            elif self.client.get_data("lobby_info") is not None and not self.client.get_data("lobby_status") and type(self.current_state) is not InLobby:
                 self.current_state = InLobby(self.screen, self.client)
+
+            elif self.client.get_data("lobby_status") is not None and self.client.get_data("lobby_status") and self.client.get_data("Lobby_Board") is not None and type(self.current_state) is not InGame:
+                self.current_state = InGame(self.screen, self.client)
 
     def render(self):
         """

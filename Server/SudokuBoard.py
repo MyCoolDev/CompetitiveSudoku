@@ -1,6 +1,5 @@
-import random
 import copy
-
+import random
 # randomize rows, columns and numbers (of valid base pattern)
 from random import sample
 

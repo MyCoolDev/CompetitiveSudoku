@@ -2,9 +2,10 @@
 All the user action system
 register, login, delete account, get information...
 """
-from Server.Database.Database import Database
 import datetime
+
 import Server.Hashing as Hashing
+from Server.Database.Database import Database
 
 
 def register(username: str, password: str, db_interface: Database) -> bool:

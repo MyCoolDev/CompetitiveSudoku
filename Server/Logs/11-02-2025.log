@@ -1,0 +1,29 @@
+=============== Initiating the server. ===============
+[11-02-2025 21:54:38] [Database] Database worker is running
+[11-02-2025 21:54:39] [Status] ServerSocket initialized.
+[11-02-2025 21:54:39] [Status] Server is running.
+[11-02-2025 21:54:41] [Connection] Client ('127.0.0.1', 55709) connection request accepted.
+[11-02-2025 21:54:42] [Handler] Starting to handle ('127.0.0.1', 55709).
+[11-02-2025 21:54:47] [Handler] Request (0) received from ('127.0.0.1', 55709).
+[11-02-2025 21:54:47] [Handler] Request (0), identified as Login from ('127.0.0.1', 55709).
+[11-02-2025 21:54:48] [Handler] Request (0), Request passed all checks.
+[11-02-2025 21:54:48] [Server] Request (0), User test logged in successfully.
+[11-02-2025 21:54:54] [Handler] Request (1) received from ('127.0.0.1', 55709).
+[11-02-2025 21:54:55] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 55709).
+[11-02-2025 21:54:55] [Handler] Request (1), Request passed all checks.
+[11-02-2025 21:54:55] [Lobby Manager] Creating new lobby
+[11-02-2025 21:54:55] [Server] Request (1), Lobby created successfully.
+[11-02-2025 21:55:09] [Handler] Request (2) received from ('127.0.0.1', 55709).
+[11-02-2025 21:55:09] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 55709).
+[11-02-2025 21:55:09] [Handler] Request (2), Request passed all checks.
+[11-02-2025 21:55:09] [Server] Request (2), Client test became a spectator on lobby 392706.
+[11-02-2025 21:55:10] [Handler] Request (3) received from ('127.0.0.1', 55709).
+[11-02-2025 21:55:10] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 55709).
+[11-02-2025 21:55:11] [Handler] Request (3), Request passed all checks.
+[11-02-2025 21:55:11] [Server] Request (3), Client test became a player on lobby 392706.
+[11-02-2025 21:55:12] [Handler] Request (4) received from ('127.0.0.1', 55709).
+[11-02-2025 21:55:12] [Handle] Request (4), identified as Start Game from ('127.0.0.1', 55709).
+[11-02-2025 21:55:12] [Handler] Request (4), Request passed all checks.
+[11-02-2025 21:55:13] [Server] Request (4), Game started on lobby 392706.
+[11-02-2025 21:55:16] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[11-02-2025 21:55:16] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host

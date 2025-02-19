@@ -1,14 +1,15 @@
-import pygame
 import os
 
-from Client.States.BaseState import BaseState
-from Client.Components.Text import Text
+import pygame
+
 from Client.Components.Button import Button
-from Client.Components.TextBox import TextBox
-from Client.client import ClientSocket
-from Client.Components.MonoBehaviour import MonoBehaviour
-from Client.Components.Image import Image
 from Client.Components.FriendList import FriendList
+from Client.Components.Image import Image
+from Client.Components.MonoBehaviour import MonoBehaviour
+from Client.Components.Text import Text
+from Client.Components.TextBox import TextBox
+from Client.States.BaseState import BaseState
+from Client.client import ClientSocket
 
 
 class Home(BaseState):

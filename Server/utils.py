@@ -1,4 +1,3 @@
-import string
 import datetime as dt
 
 def server_print(category: str, text: str) -> None:

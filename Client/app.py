@@ -1,10 +1,9 @@
 import pygame
 
-from States.LogRegisterState import LogRegister
 from States.Home import Home
-from States.InLobby import InLobby
 from States.InGame import InGame
-
+from States.InLobby import InLobby
+from States.LogRegisterState import LogRegister
 from client import ClientSocket
 
 

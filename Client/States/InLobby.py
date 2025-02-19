@@ -1,14 +1,14 @@
-import pygame
-import os
-import pyperclip
 import copy
+import os
 
-from Client.States.BaseState import BaseState
-from Client.Components.Text import Text
+import pygame
+import pyperclip
+
 from Client.Components.Button import Button
-from Client.Components.TextBox import TextBox
 from Client.Components.Image import Image
 from Client.Components.MonoBehaviour import MonoBehaviour
+from Client.Components.Text import Text
+from Client.States.BaseState import BaseState
 from Client.client import ClientSocket
 
 COLOR_NAMES = {

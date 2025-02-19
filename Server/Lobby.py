@@ -1,10 +1,9 @@
-import pygame
 import random
 import string
 
-from Server.SudokuBoard import SudokuBoard
-from ClientInterface import Client
 import utils
+from ClientInterface import Client
+from Server.SudokuBoard import SudokuBoard
 
 
 class Lobby:

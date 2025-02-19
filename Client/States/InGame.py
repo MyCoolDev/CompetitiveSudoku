@@ -1,9 +1,8 @@
 import pygame
-import os
 
+from Client.Components.SudokuBoard import SudokuBoard
 from Client.States.BaseState import BaseState
 from Client.client import ClientSocket
-from Client.Components.SudokuBoard import SudokuBoard
 
 
 class InGame(BaseState):

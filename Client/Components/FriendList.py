@@ -7,6 +7,9 @@ from Client.client import ClientSocket
 
 class FriendList:
     def __init__(self, screen: pygame.Surface, client: ClientSocket):
+        self.friend_tab = None
+        self.requests_selection_text = None
+        self.requests_selection_bg = None
         self.friends_selection_text = None
         self.friends_selection_bg = None
         self.small_profile_username_position = None
@@ -28,10 +31,10 @@ class FriendList:
         """
         Initialize the components of the friend list display.
         """
-        self.background = MonoBehaviour(pygame.Vector2(self.width, self.screen.get_height()), pygame.Vector2(-self.width, 0), (32, 32, 32))
+        self.background = MonoBehaviour(pygame.Vector2(self.width, self.screen.get_height()), pygame.Vector2(-self.width, 0), (26, 26, 26))
         # small profile box for positioning only, will not be rendered.
         self.small_profile = MonoBehaviour(pygame.Vector2(self.width, 134), self.background.position, (255, 255, 255))
-        self.small_profile_username = Text(self.client.get_data("username"), "Medium", 26, pygame.Vector2(0, 0), (255, 255, 255), top_left_mode=True)
+        self.small_profile_username = Text(self.client.get_data("username"), "Medium", 26, pygame.Vector2(0, 0), (255, 255, 255), center_mode=True)
 
         # count all the online friends
         online = 0
@@ -39,16 +42,23 @@ class FriendList:
             if friend["status"] == "Online":
                 online += 1
 
-        self.small_profile_friends_count = Text(f"{len(self.client.friends_information[0])} Friends / {online} Online", "Regular", 16, pygame.Vector2(0, 0), (255, 255, 255), top_left_mode=True)
+        self.small_profile_friends_count = Text(f"{len(self.client.friends_information[0])} Friends / {online} Online", "Regular", 16, pygame.Vector2(0, 0), (255, 255, 255), center_mode=True)
 
         # calc the position of the username and the friends count.
         self.__calc_small_profile_username_position()
         self.small_profile_username.update_position(self.small_profile_username_position)
         self.small_profile_friends_count.update_position(self.small_profile_username_position + pygame.Vector2(0, 10))
 
-        # tab selection
-        self.friends_selection_bg = MonoBehaviour(pygame.Vector2(self.width / 2, 54), self.small_profile.position + pygame.Vector2(0, self.small_profile.size[1]), (32, 32, 32), border_top_right_radius=10)
-        self.friends_selection_text = Text("Friends", "Medium", 16, self.friends_selection_bg.position + pygame.Vector2(self.friends_selection_bg.size[0] / 2, self.friends_selection_bg.size[1] / 2), (255, 255, 255))
+        # Friends / Request Tab Selection
+        self.friend_tab = True
+        self.friends_selection_bg = MonoBehaviour(pygame.Vector2(self.width / 2, 54), self.small_profile.position, (32, 32, 32), border_top_right_radius=10)
+        self.friends_selection_text = Text("Friends", "Medium", 16, self.friends_selection_bg.position + pygame.Vector2(self.friends_selection_bg.size[0] / 2, self.friends_selection_bg.size[1] / 2), (255, 255, 255), center_mode=True)
+
+        self.requests_selection_bg = MonoBehaviour(pygame.Vector2(self.width / 2, 54), self.small_profile.position + pygame.Vector2(self.width / 2, 0),
+                                                  (26, 26, 26), border_top_left_radius=10)
+        self.requests_selection_text = Text("Requests", "Medium", 16, self.requests_selection_bg.position + pygame.Vector2(
+                                            self.requests_selection_bg.size.x / 2, self.requests_selection_bg.size.y / 2), (255, 255, 255),
+                                            center_mode=True)
 
     def toggle(self):
         """
@@ -71,8 +81,9 @@ class FriendList:
         self.__calc_small_profile_username_position()
         self.small_profile_username.update_position(self.small_profile_username_position)
         self.small_profile_friends_count.update_position(self.small_profile_username_position + pygame.Vector2(0, self.small_profile_username.text_surface.get_size()[1] + 10))
-        self.friends_selection_bg.position = self.small_profile.position + pygame.Vector2(0, self.small_profile.size[1])
-        self.friends_selection_text.update_position(self.friends_selection_bg.position + pygame.Vector2(self.friends_selection_bg.size[0] / 2, self.friends_selection_bg.size[1] / 2))
+        self.friends_selection_bg.position = self.small_profile.position + pygame.Vector2(0, self.small_profile.size.y)
+        self.friends_selection_text.update_position(self.friends_selection_bg.position + pygame.Vector2(self.friends_selection_bg.size.x / 2, self.friends_selection_bg.size.y / 2))
+        print(self.friends_selection_text.position)
 
     def update(self, dt: float, events: list):
         """

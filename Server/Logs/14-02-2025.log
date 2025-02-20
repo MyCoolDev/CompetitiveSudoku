@@ -1,0 +1,42 @@
+=============== Initiating the server. ===============
+[14-02-2025 12:09:18] [Database] Database worker is running
+[14-02-2025 12:09:18] [Status] ServerSocket initialized.
+[14-02-2025 12:09:18] [Status] Server is running.
+[14-02-2025 12:09:19] [Connection] Client ('127.0.0.1', 61100) connection request accepted.
+[14-02-2025 12:09:19] [Handler] Starting to handle ('127.0.0.1', 61100).
+[14-02-2025 12:09:23] [Handler] Request (0) received from ('127.0.0.1', 61100).
+[14-02-2025 12:09:23] [Handler] Request (0), identified as Login from ('127.0.0.1', 61100).
+[14-02-2025 12:09:24] [Handler] Request (0), Request passed all checks.
+[14-02-2025 12:09:24] [Server] Request (0), User test logged in successfully.
+[14-02-2025 12:09:26] [Handler] Request (1) received from ('127.0.0.1', 61100).
+[14-02-2025 12:09:27] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 61100).
+[14-02-2025 12:09:27] [Handler] Request (1), Request passed all checks.
+[14-02-2025 12:09:27] [Lobby Manager] Creating new lobby
+[14-02-2025 12:09:27] [Server] Request (1), Lobby created successfully.
+[14-02-2025 12:09:34] [Handler] Request (2) received from ('127.0.0.1', 61100).
+[14-02-2025 12:09:34] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 61100).
+[14-02-2025 12:09:34] [Handler] Request (2), Request passed all checks.
+[14-02-2025 12:09:34] [Server] Request (2), Game started on lobby 279339.
+[14-02-2025 12:09:47] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[14-02-2025 12:09:47] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[14-02-2025 12:17:38] [Database] Database worker is running
+[14-02-2025 12:17:38] [Status] ServerSocket initialized.
+[14-02-2025 12:17:38] [Status] Server is running.
+[14-02-2025 12:17:39] [Connection] Client ('127.0.0.1', 61145) connection request accepted.
+[14-02-2025 12:17:39] [Handler] Starting to handle ('127.0.0.1', 61145).
+[14-02-2025 12:17:43] [Handler] Request (0) received from ('127.0.0.1', 61145).
+[14-02-2025 12:17:43] [Handler] Request (0), identified as Login from ('127.0.0.1', 61145).
+[14-02-2025 12:17:43] [Handler] Request (0), Request passed all checks.
+[14-02-2025 12:17:43] [Server] Request (0), User test logged in successfully.
+[14-02-2025 12:17:44] [Handler] Request (1) received from ('127.0.0.1', 61145).
+[14-02-2025 12:17:44] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 61145).
+[14-02-2025 12:17:44] [Handler] Request (1), Request passed all checks.
+[14-02-2025 12:17:45] [Lobby Manager] Creating new lobby
+[14-02-2025 12:17:45] [Server] Request (1), Lobby created successfully.
+[14-02-2025 12:17:48] [Handler] Request (2) received from ('127.0.0.1', 61145).
+[14-02-2025 12:17:48] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 61145).
+[14-02-2025 12:17:48] [Handler] Request (2), Request passed all checks.
+[14-02-2025 12:17:48] [Server] Request (2), Game started on lobby 030337.
+[14-02-2025 12:18:10] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[14-02-2025 12:18:11] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host

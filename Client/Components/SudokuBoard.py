@@ -15,7 +15,7 @@ class SudokuBoard:
     def update(self, dt, events):
         for line in self.files:
             for file in line:
-                if file.default_content != "":
+                if file.default_content == "":
                     file.update(dt, events)
 
     def render(self):

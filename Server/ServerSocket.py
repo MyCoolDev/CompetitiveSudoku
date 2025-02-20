@@ -137,6 +137,9 @@ class ServerSocket:
             elif request["Command"].lower() == "start_game":
                 self.handle_start_game(client, request, rid, request_id)
 
+            elif request["Command"].lower() == "game_move":
+                pass
+
             elif request["Command"].lower() == "add_friend":
                 self.handle_add_friend(client, request, rid, request_id)
 

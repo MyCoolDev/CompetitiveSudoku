@@ -14,7 +14,7 @@ class LogRegister(BaseState):
         self.__init_vars()
 
     def __init_vars(self, *args, **kwargs) -> None:
-        self.title = Text("Login Or Register", "SemiBold", 60, pygame.Vector2(self.screen.get_width() / 2, self.screen.get_height() / 6), (255, 255, 255))
+        self.title = Text("Login Or Register", "SemiBold", 60, pygame.Vector2(self.screen.get_width() / 2, self.screen.get_height() / 6), (255, 255, 255), center_mode=True)
         self.password_textbox = TextBox(pygame.Vector2(self.screen.get_width() / 3, 60), pygame.Vector2(self.screen.get_width() / 3, 3.5 * self.screen.get_height() / 7), (46, 46, 46), "Enter Password", "Light", 16, (193, 193, 193), padding_left=20, padding_right=20, border_radius=25, hidden=True)
         self.password_textbox_border = MonoBehaviour(pygame.Vector2((self.screen.get_width() / 3) + (2 * 2), 60 + (2 * 2)), pygame.Vector2((self.screen.get_width() / 3) - 2, (3.5 * self.screen.get_height() / 7) - 2), (193, 193, 193), border_radius=25)
         self.username_textbox = TextBox(pygame.Vector2(self.screen.get_width() / 3, 60), pygame.Vector2(self.screen.get_width() / 3, 2.5 * self.screen.get_height() / 7), (46, 46, 46), "Enter Username", "Light", 16, (193, 193, 193), padding_left=20, padding_right=20, border_radius=25, next_input=self.password_textbox)

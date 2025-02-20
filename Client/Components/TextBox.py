@@ -44,7 +44,7 @@ class TextBox(MonoBehaviour):
         self.text_position = pygame.Vector2(self.position.x + self.padding[0], self.position.y + self.size.y / 2)
 
         if text_centered:
-            self.text_position = pygame.Vector2((self.position.x + self.size.x / 2), (self.position.y + self.size.y  /2))
+            self.text_position = pygame.Vector2((self.position.x + self.size.x / 2), (self.position.y + self.size.y /2))
 
         self.text = Text(self.content, self.font, self.font_size, self.text_position, self.text_color,
                          left_mode=text_left_mode)

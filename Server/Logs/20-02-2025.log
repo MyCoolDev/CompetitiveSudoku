@@ -157,3 +157,17 @@
 [20-02-2025 11:57:27] [Handler] Request (0), identified as Login from ('127.0.0.1', 64572).
 [20-02-2025 11:57:28] [Handler] Request (0), Request passed all checks.
 [20-02-2025 11:57:28] [Server] Request (0), User test logged in successfully.
+[20-02-2025 19:15:59] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-02-2025 19:15:59] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[20-02-2025 20:22:56] [Database] Database worker is running
+[20-02-2025 20:22:56] [Status] ServerSocket initialized.
+[20-02-2025 20:22:56] [Status] Server is running.
+[20-02-2025 20:22:59] [Connection] Client ('127.0.0.1', 50466) connection request accepted.
+[20-02-2025 20:22:59] [Handler] Starting to handle ('127.0.0.1', 50466).
+[20-02-2025 20:23:07] [Handler] Request (0) received from ('127.0.0.1', 50466).
+[20-02-2025 20:23:07] [Handler] Request (0), identified as Login from ('127.0.0.1', 50466).
+[20-02-2025 20:23:08] [Handler] Request (0), Request passed all checks.
+[20-02-2025 20:23:08] [Server] Request (0), User test logged in successfully.
+[20-02-2025 20:23:14] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-02-2025 20:23:14] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host

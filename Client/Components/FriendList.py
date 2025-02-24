@@ -83,7 +83,6 @@ class FriendList:
         self.small_profile_friends_count.update_position(self.small_profile_username_position + pygame.Vector2(0, self.small_profile_username.text_surface.get_size()[1] + 10))
         self.friends_selection_bg.position = self.small_profile.position + pygame.Vector2(0, self.small_profile.size.y)
         self.friends_selection_text.update_position(self.friends_selection_bg.position + pygame.Vector2(self.friends_selection_bg.size.x / 2, self.friends_selection_bg.size.y / 2))
-        print(self.friends_selection_text.position)
 
     def update(self, dt: float, events: list):
         """

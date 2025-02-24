@@ -144,9 +144,11 @@ class ServerSocket:
                 self.handle_add_friend(client, request, rid, request_id)
 
             elif request["Command"].lower() == "accept_friend":
-                pass
+                self.handle_accept_friend(client, request, rid, request_id)
+
             elif request["Command"].lower() == "reject_friend":
-                pass
+                self.handle_reject_friend(client, request, rid, request_id)
+
             elif request["Command"].lower() == "invite_friend":
                 pass
             elif request["Command"].lower() == "accept_friend_invitation":
@@ -731,7 +733,93 @@ class ServerSocket:
             self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request", {
                 "Username": client.get_data("username")})
 
-        utils.server_print("Server", f"Request ({request_id}), Friend Added.")
+        utils.server_print("Server", f"Request ({request_id}), Friend Request Sent.")
+
+    def handle_accept_friend(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Accept a friend request.
+        """
+        utils.server_print("Handler",
+                           f"Request ({request_id}), identified as Accept Friend Request from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        if "Username" not in request["Data"]:
+            utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
+            return
+
+        information = api.account.get(request["Data"]["Username"], self.database)
+
+        if information is None:
+            utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
+            client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
+            return
+
+        # check if the user sent a request already.
+        friend_list = api.friend.get_friend_list(client.get_data("username"), self.logged_clients, self.database)[1]
+
+        if request["Data"]["Username"] in friend_list:
+            utils.server_print("Handler Error", f"Request ({request_id}), No Friend Request")
+            client.send_response(rid, 404, "Not Found", {"Msg": "No friend request."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        api.friend.accept_friend(client.get_data("username"), request["Data"]["Username"], self.database)
+        client.send_response(rid, 200, "OK", {"Msg": "Friend request accepted."})
+
+        self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request_Accepted", {"Username": client.get_data("username")})
+
+        utils.server_print("Server", f"Request ({request_id}), Friend Request Accepted.")
+
+    def handle_reject_friend(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Reject friend request.
+        """
+        utils.server_print("Handler",
+                           f"Request ({request_id}), identified as Reject Friend Request from " + str(
+                               client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        if "Username" not in request["Data"]:
+            utils.server_print("Handler Error", f"Request ({request_id}), No username provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No username provided."})
+            return
+
+        information = api.account.get(request["Data"]["Username"], self.database)
+
+        if information is None:
+            utils.server_print("Handler Error", f"Request ({request_id}), Invalid username.")
+            client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
+            return
+
+        # check if the user sent a request already.
+        friend_list = api.friend.get_friend_list(client.get_data("username"), self.logged_clients, self.database)[1]
+
+        if request["Data"]["Username"] in friend_list:
+            utils.server_print("Handler Error", f"Request ({request_id}), No Friend Request")
+            client.send_response(rid, 404, "Not Found", {"Msg": "No friend request."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        api.friend.reject_friend(client.get_data("username"), request["Data"]["Username"], self.database)
+        client.send_response(rid, 200, "OK", {"Msg": "Friend request rejected."})
+
+        self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request_Accepted",
+                                                                           {"Username": client.get_data("username")})
+
+        utils.server_print("Server", f"Request ({request_id}), Friend Request Rejected.")
 
     # -- User authentication token generator --
 

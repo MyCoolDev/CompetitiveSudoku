@@ -17,7 +17,9 @@ def get_friend_list(username: str, logged_users: dict, db_interface: Database) -
 
     # check if the user exists
     if username in users:
-        return [[get_friend_list(friend_name, db_interface, is_logged=(friend_name in logged_users), users=users) for friend_name in users[username]["friends"]], [friend_name for friend_name in users[username]["friends"]]]
+        return [
+            [get_friend_information(friend_name, db_interface, is_logged=(friend_name in logged_users), users=users) for
+             friend_name in users[username]["friends"]], [friend_name for friend_name in users[username]["friends"]]]
 
     return None
 
@@ -100,3 +102,42 @@ def accept_friend(username: str, requested_username, db_interface: Database) -> 
     users[requested_username]["friends"].append(username)
 
     return db_interface.submit_update("Users", users)
+
+
+def reject_friend(username: str, requested_username: str, db_interface: Database) -> bool:
+    """
+    Reject a friend request from other user.
+    :param username: The user username.
+    :param requested_username: The requested user username.
+    :param db_interface: The database interface of the server.
+    :return: The success of the rejection.
+    """
+
+    users = db_interface.submit_read("Users")
+
+    if username not in users[requested_username]["friend_requests"]:
+        return False
+
+    users[requested_username]["friend_requests"].remove(username)
+
+    return db_interface.submit_update("Users", users)
+
+
+def invite_friend(username: str, friend_username: str, lobby_code: str, db_interface: Database) -> bool:
+    """
+    Invite a friend to lobby.
+    :param username: The user username.
+    :param friend_username: The friend username.
+    :param lobby_code: The code of the lobby.
+    :param db_interface: The database interface of the server.
+    :return: The success of the invitation.
+    """
+    pass
+
+
+def accept_friend_invite(username: str, friend_name: str, db_interface: Database) -> bool:
+    pass
+
+
+def reject_friend_invite(username: str, friend_name: str, db_interface: Database) -> bool:
+    pass

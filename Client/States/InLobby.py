@@ -283,5 +283,5 @@ class InLobby(BaseState):
         self.spectator_icon.render(self.screen)
         self.spectator_count.render(self.screen)
 
-        if self.start_game_button:
+        if self.owner and self.start_game_button is not None:
             self.start_game_button.render(self.screen)

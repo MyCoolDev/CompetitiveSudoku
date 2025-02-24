@@ -1,0 +1,12 @@
+=============== Initiating the server. ===============
+[21-02-2025 23:03:05] [Database] Database worker is running
+[21-02-2025 23:03:05] [Status] ServerSocket initialized.
+[21-02-2025 23:03:05] [Status] Server is running.
+[21-02-2025 23:03:11] [Connection] Client ('127.0.0.1', 64182) connection request accepted.
+[21-02-2025 23:03:11] [Handler] Starting to handle ('127.0.0.1', 64182).
+[21-02-2025 23:03:15] [Handler] Request (0) received from ('127.0.0.1', 64182).
+[21-02-2025 23:03:15] [Handler] Request (0), identified as Login from ('127.0.0.1', 64182).
+[21-02-2025 23:03:16] [Handler] Request (0), Request passed all checks.
+[21-02-2025 23:03:16] [Server] Request (0), User test logged in successfully.
+[21-02-2025 23:03:50] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[21-02-2025 23:03:50] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host

@@ -47,3 +47,20 @@
 [24-02-2025 10:33:22] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
 [24-02-2025 10:33:51] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
 [24-02-2025 10:33:51] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+=============== Initiating the server. ===============
+[24-02-2025 23:22:14] [Database] Database worker is running
+[24-02-2025 23:22:14] [Status] ServerSocket initialized.
+[24-02-2025 23:22:14] [Status] Server is running.
+[24-02-2025 23:22:19] [Connection] Client ('127.0.0.1', 63550) connection request accepted.
+[24-02-2025 23:22:19] [Handler] Starting to handle ('127.0.0.1', 63550).
+[24-02-2025 23:22:30] [Handler] Request (0) received from ('127.0.0.1', 63550).
+[24-02-2025 23:22:30] [Handler] Request (0), identified as Login from ('127.0.0.1', 63550).
+[24-02-2025 23:22:31] [Handler] Request (0), Request passed all checks.
+[24-02-2025 23:22:31] [Server] Request (0), User test logged in successfully.
+[24-02-2025 23:22:39] [Handler] Request (1) received from ('127.0.0.1', 63550).
+[24-02-2025 23:22:39] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 63550).
+[24-02-2025 23:22:39] [Handler] Request (1), Request passed all checks.
+[24-02-2025 23:22:39] [Lobby Manager] Creating new lobby
+[24-02-2025 23:22:39] [Server] Request (1), Lobby created successfully.
+[24-02-2025 23:22:44] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[24-02-2025 23:22:44] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host

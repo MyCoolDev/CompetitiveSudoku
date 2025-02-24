@@ -16,6 +16,8 @@
 - Create levov 3d mode.
 - request ratelimit.
 - tutorial
+- profile picture selection from the existing set.
+- add 30 days token for remember me. (?)
 
 ### Client communications
 - **Create a protocol (format of a set of commends) of the communication.**

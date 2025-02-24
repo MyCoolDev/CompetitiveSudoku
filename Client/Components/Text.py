@@ -20,17 +20,17 @@ class Text:
         self.center_mode = center_mode
 
         if top_left_mode:
-            self.abs_position = pygame.Vector2(position.x,
-                                               position.y)
+            self.position = pygame.Vector2(position.x,
+                                           position.y)
         elif left_mode:
-            self.abs_position = pygame.Vector2(position.x,
-                                               position.y - self.text_surface.get_height() / 2)
+            self.position = pygame.Vector2(position.x,
+                                           position.y - self.text_surface.get_height() / 2)
         elif top_mode:
-            self.abs_position = pygame.Vector2(position.x - self.text_surface.get_width() / 2,
-                                               position.y)
+            self.position = pygame.Vector2(position.x - self.text_surface.get_width() / 2,
+                                           position.y)
         elif center_mode:
-            self.abs_position = pygame.Vector2(position.x - self.text_surface.get_width() / 2,
-                                               position.y - self.text_surface.get_height() / 2)
+            self.position = pygame.Vector2(position.x - self.text_surface.get_width() / 2,
+                                           position.y - self.text_surface.get_height() / 2)
 
         self.alpha = alpha
         self.update_alpha()
@@ -47,23 +47,25 @@ class Text:
         self.__generate_position()
 
     def __generate_position(self):
-        self.position = pygame.Vector2(self.abs_position.x,
-                                       self.abs_position.y)
+        if self.top_left_mode:
+            self.position = pygame.Vector2(self.abs_position.x,
+                                           self.abs_position.y)
+        elif self.left_mode:
+            self.position = pygame.Vector2(self.abs_position.x,
+                                           self.abs_position.y - self.text_surface.get_height() / 2)
+        elif self.top_mode:
+            self.position = pygame.Vector2(self.abs_position.x - self.text_surface.get_width() / 2,
+                                           self.abs_position.y)
+        elif self.center_mode:
+            self.position = pygame.Vector2(self.abs_position.x - self.text_surface.get_width() / 2,
+                                           self.abs_position.y - self.text_surface.get_height() / 2)
 
     def update_text(self, new_text: str):
         self.txt = new_text
         self.__create_text_surface()
 
     def update_position(self, position: pygame.Vector2):
-        if self.top_left_mode:
-            self.abs_position = pygame.Vector2(position.x + self.text_surface.get_width() / 2, position.y + self.text_surface.get_height() / 2)
-        elif self.left_mode:
-            self.abs_position = pygame.Vector2(position.x + self.text_surface.get_width() / 2, position.y)
-        elif self.top_mode:
-            self.abs_position = pygame.Vector2(position.x, position.y + self.text_surface.get_height() / 2)
-        elif self.center_mode:
-            self.abs_position = pygame.Vector2(position.x - self.text_surface.get_width() / 2,
-                                               position.y - self.text_surface.get_height() / 2)
+        self.abs_position = position
         self.__generate_position()
 
     def update_font_size(self, new_size: int):

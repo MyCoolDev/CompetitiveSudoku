@@ -68,6 +68,7 @@ class ServerSocket:
         try:
             # accept client connection.
             client_socket, client_address = self.server_socket.accept()
+            print(client_address)
             utils.server_print("Connection", "Client " + str(client_address) + " connection request accepted.")
 
             # create object for the client.
@@ -89,78 +90,83 @@ class ServerSocket:
         utils.server_print("Handler", "Starting to handle " + str(client.address) + ".")
 
         while client.running:
-            request = client.get_request()
-            request_id = self.requests
-            self.requests += 1
+            try:
+                request = client.get_request()
+                request_id = self.requests
+                self.requests += 1
 
-            rid = request["Id"]
+                rid = request["Id"]
 
-            utils.server_print("Handler", f"Request ({request_id}) received from " + str(client.address) + ".")
+                utils.server_print("Handler", f"Request ({request_id}) received from " + str(client.address) + ".")
 
-            # route the command to the specific api path.
-            if request["Command"].lower() == "register":
-                self.handle_register(client, request, rid, request_id)
+                # route the command to the specific api path.
+                if request["Command"].lower() == "register":
+                    self.handle_register(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "login":
-                self.handle_login(client, request, rid, request_id)
+                elif request["Command"].lower() == "login":
+                    self.handle_login(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "create_lobby":
-                self.handle_create_lobby(client, request, rid, request_id)
+                elif request["Command"].lower() == "create_lobby":
+                    self.handle_create_lobby(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "join_lobby":
-                self.handle_join_lobby(client, request, rid, request_id)
+                elif request["Command"].lower() == "join_lobby":
+                    self.handle_join_lobby(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "leave_lobby":
-                self.handle_leave_lobby(client, request, rid, request_id)
+                elif request["Command"].lower() == "leave_lobby":
+                    self.handle_leave_lobby(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "delete_lobby":
-                pass
+                elif request["Command"].lower() == "delete_lobby":
+                    pass
 
-            elif request["Command"].lower() == "get_lobby":
-                self.handle_get_lobby(client, request, rid, request_id)
+                elif request["Command"].lower() == "get_lobby":
+                    self.handle_get_lobby(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "become_lobby_spectator":
-                self.handle_become_lobby_spectator(client, request, rid, request_id)
+                elif request["Command"].lower() == "become_lobby_spectator":
+                    self.handle_become_lobby_spectator(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "become_lobby_player":
-                self.handle_become_lobby_player(client, request, rid, request_id)
+                elif request["Command"].lower() == "become_lobby_player":
+                    self.handle_become_lobby_player(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "make_lobby_spectator":
-                self.handle_make_lobby_spectator(client, request, rid, request_id)
+                elif request["Command"].lower() == "make_lobby_spectator":
+                    self.handle_make_lobby_spectator(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "kick_user_lobby":
-                self.handle_kick_user_lobby(client, request, rid, request_id)
+                elif request["Command"].lower() == "kick_user_lobby":
+                    self.handle_kick_user_lobby(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "ban_user_lobby":
-                self.handle_ban_user_lobby(client, request, rid, request_id)
+                elif request["Command"].lower() == "ban_user_lobby":
+                    self.handle_ban_user_lobby(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "start_game":
-                self.handle_start_game(client, request, rid, request_id)
+                elif request["Command"].lower() == "start_game":
+                    self.handle_start_game(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "game_move":
-                pass
+                elif request["Command"].lower() == "game_move":
+                    pass
 
-            elif request["Command"].lower() == "add_friend":
-                self.handle_add_friend(client, request, rid, request_id)
+                elif request["Command"].lower() == "add_friend":
+                    self.handle_add_friend(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "accept_friend":
-                self.handle_accept_friend(client, request, rid, request_id)
+                elif request["Command"].lower() == "accept_friend":
+                    self.handle_accept_friend(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "reject_friend":
-                self.handle_reject_friend(client, request, rid, request_id)
+                elif request["Command"].lower() == "reject_friend":
+                    self.handle_reject_friend(client, request, rid, request_id)
 
-            elif request["Command"].lower() == "invite_friend":
-                pass
-            elif request["Command"].lower() == "accept_friend_invitation":
-                pass
-            elif request["Command"].lower() == "reject_friend_invitation":
-                pass
-            elif request["Command"].lower() == "get_friend_information":
-                pass
-            elif request["Command"].lower() == "message_friend":
-                pass
-            elif request["Command"].lower() == "get_chat_information":
-                pass
+                elif request["Command"].lower() == "invite_friend":
+                    pass
+                elif request["Command"].lower() == "accept_friend_invitation":
+                    pass
+                elif request["Command"].lower() == "reject_friend_invitation":
+                    pass
+                elif request["Command"].lower() == "get_friend_information":
+                    pass
+                elif request["Command"].lower() == "message_friend":
+                    pass
+                elif request["Command"].lower() == "get_chat_information":
+                    pass
+            except Exception as e:
+                utils.server_print("Error", str(e))
+                self.disconnect_user(client)
+                break
 
     # -- Server Command Handlers --
 
@@ -186,7 +192,7 @@ class ServerSocket:
         utils.server_print("Handler", f"Request ({request_id}), passed all checks.")
 
         # register the user
-        if not api.account.register(request["Data"]["Username"], request["Data"]["Password"], self.database):
+        if not api.account.register(client.address, request["Data"]["Username"], request["Data"]["Password"], self.database):
             utils.server_print("Handler Error", f"Request ({request_id}), Error while registering the user.")
             client.send_response(rid, 500, "Internal Server Error", {"Msg": "Error while registering the user."})
             return
@@ -249,7 +255,7 @@ class ServerSocket:
         client.send_response(rid, 200, "OK", {"Msg": "Logged in successfully.", "Token": token, "Friends": friends})
         utils.server_print("Server",
                            f"Request ({request_id}), User " + request["Data"]["Username"] + " logged in successfully.")
-        api.account.update_login_time(request["Data"]["Username"], self.database)
+        api.account.update_login_data(client.address, request["Data"]["Username"], self.database)
 
     def handle_create_lobby(self, client: Client, request: dict, rid: int, request_id: int) -> None:
         """
@@ -726,7 +732,7 @@ class ServerSocket:
 
         utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
 
-        api.friend.add_friend(client.get_data("username"), request, self.database)
+        api.friend.add_friend(client.get_data("username"), request["Data"]["Username"], self.database)
         client.send_response(rid, 200, "OK", {"Msg": "Friend request sent."})
 
         if request["Data"]["Username"] in self.logged_clients:
@@ -770,7 +776,7 @@ class ServerSocket:
 
         utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
 
-        api.friend.accept_friend(client.get_data("username"), request["Data"]["Username"], self.database)
+        api.friend.accept_friend(request["Data"]["Username"], client.get_data("username"), self.database)
         client.send_response(rid, 200, "OK", {"Msg": "Friend request accepted."})
 
         self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request_Accepted", {"Username": client.get_data("username")})
@@ -813,7 +819,7 @@ class ServerSocket:
 
         utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
 
-        api.friend.reject_friend(client.get_data("username"), request["Data"]["Username"], self.database)
+        api.friend.reject_friend(request["Data"]["Username"], client.get_data("username"), self.database)
         client.send_response(rid, 200, "OK", {"Msg": "Friend request rejected."})
 
         self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request_Accepted",
@@ -833,6 +839,21 @@ class ServerSocket:
             token = "".join([random.choice(string.hexdigits) for _ in range(32)])
 
         return token
+
+    # -- User Logout --
+
+    def disconnect_user(self, client: Client):
+        """
+        Disconnect the client from the server in a safe way.
+        :param client: The client to disconnect.
+        """
+
+        # remove client, client token from list
+        self.clients.remove(client)
+        self.tokens.remove(client.get_data("token"))
+        api.account.update_logout(client.get_data("username"), self.database)
+
+        utils.server_print("Server", f"Client {client.get_data('username')} disconnected.")
 
     # -- Server running status --
 

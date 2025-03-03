@@ -8,6 +8,7 @@ from Client.Components.Button import Button
 from Client.Components.Image import Image
 from Client.Components.MonoBehaviour import MonoBehaviour
 from Client.Components.Text import Text
+from Client.Components.FriendList import FriendList
 from Client.States.BaseState import BaseState
 from Client.client import ClientSocket
 
@@ -39,6 +40,9 @@ class InLobby(BaseState):
         self.data = self.client.get_data('lobby_info')
         self.old_data = copy.deepcopy(self.data)
         self.data_checksum = self.client.create_checksum(self.data)
+
+        # Friend list ui
+        self.friend_list = FriendList(self.screen, self.client, self.mouse_cursor)
 
         self.owner = self.data["owner"] == self.client.get_data("username")
 
@@ -83,6 +87,10 @@ class InLobby(BaseState):
 
     def update(self, dt: float, events: list, *args, **kwargs):
         super().update(dt, events, args, kwargs)
+        self.friend_list.update(dt, events)
+
+        if self.menu_icon.update(events):
+            self.friend_list.toggle()
 
         if self.code_copy_icon.update(events):
             pyperclip.copy(self.data["code"])
@@ -285,3 +293,5 @@ class InLobby(BaseState):
 
         if self.owner and self.start_game_button is not None:
             self.start_game_button.render(self.screen)
+
+        self.friend_list.render()

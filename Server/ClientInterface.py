@@ -6,7 +6,7 @@ import utils
 
 
 class Client:
-    def __init__(self, address: str, con: socket.socket, **data):
+    def __init__(self, address: tuple, con: socket.socket, **data):
         """
         Client interface for organized collection of the client data with the connection.
         :param address: the address of the client

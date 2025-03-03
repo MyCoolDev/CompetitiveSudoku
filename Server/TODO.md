@@ -4,11 +4,10 @@
 - Check about config options.
 - ~~Create the database system.~~
 - **Create encryption to the communications.**
-- Create user system.
-- Create lobby system.
-- The lobby will show all the users in the lobby in a graph when the connections are friends.
-- Create the sudoku algorithms.
-- Connect the lobby with a sudoku board.
+- ~~Create user system.~~
+- ~~Create lobby system.~~
+- ~~Create the sudoku algorithms.~~
+- ~~Connect the lobby with a sudoku board.~~
 - Create the interactive sudoku.
 - Create a winning checker.
 - Create the rating system.
@@ -18,6 +17,7 @@
 - tutorial
 - profile picture selection from the existing set.
 - add 30 days token for remember me. (?)
+- showing error and handling them on the client side.
 
 ### Client communications
 - **Create a protocol (format of a set of commends) of the communication.**

@@ -8,9 +8,10 @@ import Server.Hashing as Hashing
 from Server.Database.Database import Database
 
 
-def register(username: str, password: str, db_interface: Database) -> bool:
+def register(address: tuple, username: str, password: str, db_interface: Database) -> bool:
     """
     Register a new user to the database.
+    :param address: The address of the user.
     :param username: The user username.
     :param password: The password of the user.
     :param db_interface: The database interface of the server.
@@ -25,17 +26,19 @@ def register(username: str, password: str, db_interface: Database) -> bool:
         "username": username,
         "password": hashed_password,
         "last_login": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "last_login_address": address,
         "messages": {
             "seen": {},
             "unseen": []
         },
         "friends": [],
         "friend_requests": [],
+        "lifetime": 0,
+        "account_level": 1,
+        "account_experience": 0,
         "playtime": 0,
         "games_played": 0,
         "games_won": 0,
-        "account_level": 1,
-        "account_experience": 0
     }
 
     return db_interface.submit_update("Users", users)
@@ -44,9 +47,10 @@ def register(username: str, password: str, db_interface: Database) -> bool:
 def delete(username: str, password: str):
     pass
 
-def update_login_time(username: str, db_interface: Database) -> bool:
+def update_login_data(address: tuple, username: str, db_interface: Database) -> bool:
     """
     Update the login time of the user.
+    :param address: The address of the user.
     :param username: The user username.
     :param db_interface: The database interface of the server.
     :return: The success of the update.
@@ -57,9 +61,25 @@ def update_login_time(username: str, db_interface: Database) -> bool:
         return False
 
     users[username]["last_login"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    users[username]["last_login_address"] = address
 
     return db_interface.submit_update("Users", users)
 
+def update_logout(username: str, db_interface: Database):
+    """
+    Update the lifetime of the user.
+    :param username: The user username.
+    :param db_interface: The database interface of the server.
+    """
+    users = db_interface.submit_read("Users")
+
+    if username not in users:
+        return False
+
+    # update the lifetime of the user, lifetime is presented in minutes.
+    users[username]["lifetime"] += round((datetime.datetime.now() - datetime.datetime.strptime(users[username]["last_login"], "%Y-%m-%d %H:%M:%S")).seconds / 60, 2)
+
+    return db_interface.submit_update("Users", users)
 
 def get(username: str, db_interface: Database) -> dict or None:
     """

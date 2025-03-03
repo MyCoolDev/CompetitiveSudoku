@@ -18,6 +18,9 @@ class MonoBehaviour:
                       border_bottom_right_radius: int = -1):
         self.width, self.border_radius, self.border_top_left_radius, self.border_top_right_radius, self.border_bottom_left_radius, self.border_bottom_right_radius = width, border_radius, border_top_left_radius, border_top_right_radius, border_bottom_left_radius, border_bottom_right_radius
 
+    def is_collide(self, mouse_pos: tuple) -> bool:
+        return self.position.x <= mouse_pos[0] <= self.position.x + self.size.x and self.position.y <= mouse_pos[1] <= self.position.y + self.size.y
+
     def render(self, surface: pygame.Surface) -> pygame.Rect or None:
         return pygame.draw.rect(surface, self.color, pygame.Rect(self.position, self.size), self.width,
                                 self.border_radius, self.border_top_left_radius, self.border_top_right_radius,

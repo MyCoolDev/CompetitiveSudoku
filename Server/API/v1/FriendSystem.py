@@ -100,6 +100,7 @@ def accept_friend(username: str, requested_username, db_interface: Database) -> 
 
     users[requested_username]["friend_requests"].remove(username)
     users[requested_username]["friends"].append(username)
+    users[username]["friends"].append(requested_username)
 
     return db_interface.submit_update("Users", users)
 

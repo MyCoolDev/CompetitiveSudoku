@@ -5,10 +5,11 @@ from Client.Components.Text import Text
 from Client.client import ClientSocket
 from Client.Components.Friend import Friend
 from Client.Components.TextBox import TextBox
+from Client.Components.Image import Image
 
 
 class FriendList:
-    def __init__(self, screen: pygame.Surface, client: ClientSocket):
+    def __init__(self, screen: pygame.Surface, client: ClientSocket, mouse_cursor: dict):
         self.profile_picture_size = None
         self.friend_tab = None
         self.requests_selection_text = None
@@ -24,6 +25,7 @@ class FriendList:
         self.width = 484
         self.init_components()
         self.shown = False
+        self.mouse_cursor = mouse_cursor
 
         # the sliding animation
         self.animation_status = False
@@ -80,7 +82,9 @@ class FriendList:
 
         # Add Friend
         self.add_friend_bg = MonoBehaviour(Vector2(self.width, 75), Vector2(self.friends_selection_bg.position.x, self.screen.get_height() - 75), (32, 32, 32))
-        self.add_friend_text_box = TextBox(Vector2(self.width, 75), self.add_friend_bg.position, (255, 0, 0), "Testing", "Regular", 24, (255, 255, 255), padding=(10, 0, 10, 0))
+        self.add_friend_text_box = TextBox(Vector2(383, 55), self.add_friend_bg.position + Vector2(15, 10), (22, 22, 22), "Add Friend", "Regular", 16, (255, 255, 255), padding=(20, 0, 20, 0), border_radius=10, text_left_mode=True)
+        self.add_friend_send_button_bg = MonoBehaviour(Vector2(55, 55), self.add_friend_text_box.position + Vector2(self.add_friend_text_box.size.x + 15, 0), (69, 72, 233), border_radius=10)
+        self.add_friend_send_button_icon = Image(os.path.join("Images", "Arrow.png"), Vector2(22, 19), self.add_friend_send_button_bg.position + self.add_friend_send_button_bg.size / 2, rotate=-90, centered=True)
 
     def toggle(self):
         """
@@ -110,7 +114,9 @@ class FriendList:
         self.online_text.update_position(self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y) + Vector2((self.width - self.online_text.text_surface.get_size()[0] - 300 - self.online_counter.text_surface.get_size()[0]) / 2, 65 / 2))
         self.online_counter.update_position(self.online_text.position + Vector2(self.online_text.text_surface.get_size()[0] + 300, 0))
         self.add_friend_bg.position = Vector2(self.friends_selection_bg.position.x, self.screen.get_height() - 75)
-        self.add_friend_text_box.update_position(self.add_friend_bg.position)
+        self.add_friend_text_box.update_position(self.add_friend_bg.position + Vector2(15, 10))
+        self.add_friend_send_button_bg.position = self.add_friend_text_box.position + Vector2(self.add_friend_text_box.size.x + 15, 0)
+        self.add_friend_send_button_icon.position = self.add_friend_send_button_bg.position + self.add_friend_send_button_bg.size / 2
 
         for friend in self.friends:
             for i, comp in enumerate(friend):
@@ -135,13 +141,40 @@ class FriendList:
                 self.animation_status = False
                 self.background.position.x = 0
                 self.small_profile.position.x = self.background.position.x
+                self.mouse_cursor["HAND"] = [self.friends_selection_bg, self.requests_selection_bg,
+                                             self.add_friend_send_button_bg, self.add_friend_send_button_icon]
+                self.mouse_cursor["IBEAM"] = [self.add_friend_text_box]
             elif not self.shown and self.background.position.x > -self.width:
                 self.background.position.x -= self.width * (dt / self.animation_time)
             elif self.shown and self.background.position.x <= -self.width:
                 self.animation_status = False
                 self.background.position.x = -self.width
 
+                # remove friend list components only from mouse cursor
+                self.mouse_cursor["HAND"].remove(self.friends_selection_bg, self.requests_selection_bg, self.add_friend_send_button_bg, self.add_friend_send_button_icon)
+                self.mouse_cursor["IBEAM"].remove(self.add_friend_text_box)
+
             self.__update_positions()
+
+        elif self.shown:
+            for event in events:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_pos = pygame.mouse.get_pos()
+                    if self.friends_selection_bg.is_collide(mouse_pos):
+                        self.friend_tab = True
+                        self.friends_selection_bg.color = (32, 32, 32)
+                        self.requests_selection_bg.color = (26, 26, 26)
+                    elif self.requests_selection_bg.is_collide(mouse_pos):
+                        self.friend_tab = False
+                        self.friends_selection_bg.color = (26, 26, 26)
+                        self.requests_selection_bg.color = (32, 32, 32)
+                    elif self.add_friend_send_button_bg.is_collide(mouse_pos):
+                        response = self.client.send_request("Add_Friend", {"Username": self.add_friend_text_box.content})
+                        self.add_friend_text_box.content = ""
+                        if response["StatusCode"] == 200:
+                            print("Friend request sent successfully")
+                        else:
+                            print("Friend request failed")
 
     def render(self):
         """
@@ -160,21 +193,26 @@ class FriendList:
             self.requests_selection_bg.render(self.screen)
         if self.requests_selection_text.position.x + self.requests_selection_text.text_surface.get_size()[0] >= 0:
             self.requests_selection_text.render(self.screen)
-        if self.online_display_bg.position.x + self.online_display_bg.size.x >= 0:
+        if self.friend_tab and self.online_display_bg.position.x + self.online_display_bg.size.x >= 0:
             self.online_display_bg.render(self.screen)
-        if self.online_text.position.x + self.online_text.text_surface.get_size()[0] >= 0:
+        if self.friend_tab and self.online_text.position.x + self.online_text.text_surface.get_size()[0] >= 0:
             self.online_text.render(self.screen)
-        if self.online_counter.position.x + self.online_counter.text_surface.get_size()[0] >= 0:
+        if self.friend_tab and self.online_counter.position.x + self.online_counter.text_surface.get_size()[0] >= 0:
             self.online_counter.render(self.screen)
         if self.add_friend_bg.position.x + self.add_friend_bg.size.x >= 0:
             self.add_friend_bg.render(self.screen)
         if self.add_friend_text_box.position.x + self.add_friend_text_box.size.x >= 0:
             self.add_friend_text_box.render(self.screen)
+        if self.add_friend_send_button_bg.position.x + self.add_friend_send_button_bg.size.x >= 0:
+            self.add_friend_send_button_bg.render(self.screen)
+        if self.add_friend_send_button_icon.position.x + self.add_friend_send_button_icon.size.x >= 0:
+            self.add_friend_send_button_icon.render(self.screen)
 
-        for friend in self.friends:
-            for comp in friend:
-                if type(comp) is Text:
-                    if comp.position.x + comp.text_surface.get_size()[0] >= 0:
+        if self.friend_tab:
+            for friend in self.friends:
+                for comp in friend:
+                    if type(comp) is Text:
+                        if comp.position.x + comp.text_surface.get_size()[0] >= 0:
+                            comp.render(self.screen)
+                    elif comp.position.x + comp.size.x >= 0:
                         comp.render(self.screen)
-                elif comp.position.x + comp.size.x >= 0:
-                    comp.render(self.screen)

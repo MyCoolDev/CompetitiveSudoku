@@ -119,12 +119,3 @@ class SudokuGenerator:
         solution_grid = copy.deepcopy(self.grid)
         self.remove_numbers(attempts)
         return solution_grid, self.grid
-
-
-# Example Usage
-sudoku = SudokuGenerator()
-solution, puzzle = sudoku.generate_puzzle("medium")
-
-# Print puzzle
-for row in solution:
-    print(row)

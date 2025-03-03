@@ -3,7 +3,7 @@ import string
 
 import utils
 from ClientInterface import Client
-from Server.SudokuBoard import SudokuBoard
+from Server.SudokuBoard import SudokuGenerator
 
 
 class Lobby:
@@ -11,7 +11,8 @@ class Lobby:
         """
         The lobby data structure to store all the data and do some actions on it.
         """
-        self.board = SudokuBoard(3)
+        self.board = SudokuGenerator()
+        self.solution, self.puzzle = self.board.generate_puzzle("medium")
 
         self.code = code
 

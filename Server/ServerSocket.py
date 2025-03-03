@@ -691,11 +691,11 @@ class ServerSocket:
 
         utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
 
-        client.send_response(rid, 200, "OK", {"Msg": "Lobby game started.", "Board": lobby.board.puzzle})
+        client.send_response(rid, 200, "OK", {"Msg": "Lobby game started.", "Board": lobby.puzzle})
 
         for c in lobby.players + lobby.spectators:
             if c is not client:
-                c.push_notification("Game_Started", {"board": lobby.board.puzzle})
+                c.push_notification("Game_Started", {"board": lobby.puzzle})
 
         utils.server_print("Server", f"Request ({request_id}), Game started on lobby {lobby.code}.")
 

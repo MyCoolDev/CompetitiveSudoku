@@ -4,6 +4,7 @@ from Client.Components.MonoBehaviour import MonoBehaviour
 from Client.Components.Text import Text
 from Client.client import ClientSocket
 from Client.Components.Friend import Friend
+from Client.Components.TextBox import TextBox
 
 
 class FriendList:
@@ -77,6 +78,10 @@ class FriendList:
         for i, friend in enumerate(self.client.friends_information[0]):
             self.friends.append(Friend(friend).to_renderable_list(self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y + 65) + Vector2(0, i * (76 + 10))))
 
+        # Add Friend
+        self.add_friend_bg = MonoBehaviour(Vector2(self.width, 75), Vector2(self.friends_selection_bg.position.x, self.screen.get_height() - 75), (32, 32, 32))
+        self.add_friend_text_box = TextBox(Vector2(self.width, 75), self.add_friend_bg.position, (255, 0, 0), "Testing", "Regular", 24, (255, 255, 255), padding=(10, 0, 10, 0))
+
     def toggle(self):
         """
         Toggle the friend list display.
@@ -104,6 +109,8 @@ class FriendList:
         self.online_display_bg.position = Vector2(self.background.position.x, self.online_display_bg.position.y)
         self.online_text.update_position(self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y) + Vector2((self.width - self.online_text.text_surface.get_size()[0] - 300 - self.online_counter.text_surface.get_size()[0]) / 2, 65 / 2))
         self.online_counter.update_position(self.online_text.position + Vector2(self.online_text.text_surface.get_size()[0] + 300, 0))
+        self.add_friend_bg.position = Vector2(self.friends_selection_bg.position.x, self.screen.get_height() - 75)
+        self.add_friend_text_box.update_position(self.add_friend_bg.position)
 
         for friend in self.friends:
             for i, comp in enumerate(friend):
@@ -120,6 +127,7 @@ class FriendList:
         :param dt: the delta time between each frame.
         :param events: the events that are happening in the game.
         """
+        self.add_friend_text_box.update(dt, events)
         if self.animation_status:
             if self.shown and self.background.position.x < 0:
                 self.background.position.x += self.width * (dt / self.animation_time)
@@ -158,6 +166,10 @@ class FriendList:
             self.online_text.render(self.screen)
         if self.online_counter.position.x + self.online_counter.text_surface.get_size()[0] >= 0:
             self.online_counter.render(self.screen)
+        if self.add_friend_bg.position.x + self.add_friend_bg.size.x >= 0:
+            self.add_friend_bg.render(self.screen)
+        if self.add_friend_text_box.position.x + self.add_friend_text_box.size.x >= 0:
+            self.add_friend_text_box.render(self.screen)
 
         for friend in self.friends:
             for comp in friend:

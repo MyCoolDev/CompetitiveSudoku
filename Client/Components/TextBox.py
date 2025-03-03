@@ -13,7 +13,7 @@ class TextBox(MonoBehaviour):
                  padding_top: int = 0, padding_right: int = 0, padding_bottom: int = 0, width: int = 0,
                  border_radius: int = -1,
                  border_top_left_radius: int = -1, border_top_right_radius: int = -1,
-                 border_bottom_left_radius: int = -1, border_bottom_right_radius: int = -1, next_input=None, hidden=False, text_left_mode=True, text_centered=False):
+                 border_bottom_left_radius: int = -1, border_bottom_right_radius: int = -1, next_input=None, hidden=False, text_left_mode=True, text_centered=False, num_only=False, max_length=None):
         super().__init__(size, position, box_color, width, border_radius, border_top_left_radius,
                          border_top_right_radius, border_bottom_left_radius, border_bottom_right_radius)
 
@@ -49,10 +49,19 @@ class TextBox(MonoBehaviour):
         self.text = Text(self.content, self.font, self.font_size, self.text_position, self.text_color,
                          left_mode=text_left_mode)
 
+        self.text_centered = text_centered
+        self.left_mode = text_left_mode
+
         self.hidden = hidden
 
+        self.max_length = max_length
+
     def update_text(self, content):
-        self.content = content
+        if self.max_length is not None and len(content) > self.max_length:
+            self.content = content[:self.max_length]
+        else:
+            self.content = content
+
         if self.content == "":
             self.content = self.default_content
             self.is_default_content_presented = True
@@ -77,8 +86,20 @@ class TextBox(MonoBehaviour):
     def is_collide(self, point: tuple):
         if self.rect is None:
             return None
-        
+
         return self.rect.collidepoint(point[0], point[1])
+
+    def update_position(self, position: pygame.Vector2):
+        self.position = position
+
+        self.text_position = pygame.Vector2(self.position.x + self.padding[0], self.position.y + self.size.y / 2)
+
+        if self.text_centered:
+            self.text_position = pygame.Vector2((self.position.x + self.size.x / 2),
+                                                (self.position.y + self.size.y / 2))
+
+        self.text = Text(self.content, self.font, self.font_size, self.text_position, self.text_color,
+                         left_mode=self.left_mode)
 
     def update(self, dt: float, events: list) -> bool:
         for event in events:

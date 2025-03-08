@@ -67,6 +67,13 @@ class FriendList:
                                             center_mode=True)
 
         # Friends Tab
+
+        # Friends
+        self.online_friends = []
+        self.offline_friends = []
+
+        # online friends
+
         self.online_display_bg = MonoBehaviour(Vector2(self.width, 65), self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y), (32, 32, 32))
         self.online_text = Text("Online", "Medium", 10, self.friends_selection_bg.position + Vector2(0, 0), (87, 255, 53), left_mode=True)
         self.online_counter = Text(f"{online}/{len(self.client.friends_information[0])}", "Medium", 10, Vector2(0, 0), (255, 255, 255), left_mode=True)
@@ -74,11 +81,20 @@ class FriendList:
         self.online_text.update_position(self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y) + Vector2((self.width - self.online_text.text_surface.get_size()[0] - 300 - self.online_counter.text_surface.get_size()[0]) / 2, 65 / 2))
         self.online_counter.update_position(self.online_text.position + Vector2(self.online_text.text_surface.get_size()[0] + 300, 0))
 
-        # Friends
-        self.friends = []
+        for i, friend in enumerate(filter(lambda x: x["status"] == "Online", self.client.friends_information[0])):
+                self.online_friends.append(Friend(friend).to_renderable_list(self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y + 65) + Vector2(0, i * (76 + 10))))
 
-        for i, friend in enumerate(self.client.friends_information[0]):
-            self.friends.append(Friend(friend).to_renderable_list(self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y + 65) + Vector2(0, i * (76 + 10))))
+        # offline friends
+
+        self.offline_display_bg = MonoBehaviour(Vector2(self.width, 65), (self.online_friends[-1][0].position + Vector2(0, self.online_friends[-1][0].size.y) if len(self.online_friends) > 0 else self.online_display_bg.position + Vector2(0, self.online_display_bg.size.y)), (32, 32, 32))
+        self.offline_text = Text("Offline", "Medium", 10, self.offline_display_bg.position, (180, 180, 180), left_mode=True)
+        self.offline_counter = Text(f"{len(self.client.friends_information[0]) - online}/{len(self.client.friends_information[0])}", "Medium", 10, Vector2(0, 0), (255, 255, 255), left_mode=True)
+
+        self.offline_text.update_position(self.offline_display_bg.position + Vector2((self.width - self.offline_text.text_surface.get_size()[0] - 300 - self.offline_counter.text_surface.get_size()[0]) / 2, 65 / 2))
+        self.offline_counter.update_position(self.offline_text.position + Vector2(self.offline_text.text_surface.get_size()[0] + 300, 0))
+
+        for i, friend in enumerate(filter(lambda x: x["status"] == "Offline", self.client.friends_information[0])):
+            self.offline_friends.append(Friend(friend).to_renderable_list(self.offline_display_bg.position + Vector2(0, self.offline_display_bg.size.y + 65) + Vector2(0, i * (76 + 10))))
 
         # Add Friend
         self.add_friend_bg = MonoBehaviour(Vector2(self.width, 75), Vector2(self.friends_selection_bg.position.x, self.screen.get_height() - 75), (32, 32, 32))
@@ -113,12 +129,15 @@ class FriendList:
         self.online_display_bg.position = Vector2(self.background.position.x, self.online_display_bg.position.y)
         self.online_text.update_position(self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y) + Vector2((self.width - self.online_text.text_surface.get_size()[0] - 300 - self.online_counter.text_surface.get_size()[0]) / 2, 65 / 2))
         self.online_counter.update_position(self.online_text.position + Vector2(self.online_text.text_surface.get_size()[0] + 300, 0))
+        self.offline_display_bg.position = (self.online_friends[-1][0].position + Vector2(0, self.online_friends[-1][0].size.y) if len(self.online_friends) > 0 else self.online_display_bg.position + Vector2(0, self.online_display_bg.size.y))
+        self.offline_text.update_position(self.offline_display_bg.position + Vector2((self.width - self.offline_text.text_surface.get_size()[0] - 300 - self.offline_counter.text_surface.get_size()[0]) / 2, 65 / 2))
+        self.offline_counter.update_position(self.offline_text.position + Vector2(self.offline_text.text_surface.get_size()[0] + 300, 0))
         self.add_friend_bg.position = Vector2(self.friends_selection_bg.position.x, self.screen.get_height() - 75)
         self.add_friend_text_box.update_position(self.add_friend_bg.position + Vector2(15, 10))
         self.add_friend_send_button_bg.position = self.add_friend_text_box.position + Vector2(self.add_friend_text_box.size.x + 15, 0)
         self.add_friend_send_button_icon.position = self.add_friend_send_button_bg.position + self.add_friend_send_button_bg.size / 2
 
-        for friend in self.friends:
+        for friend in self.online_friends + self.offline_friends:
             for i, comp in enumerate(friend):
                 if i == 1:
                     comp.update_position(Vector2(self.background.position.x + 40 + 42 + 35, comp.abs_position.y))
@@ -141,9 +160,9 @@ class FriendList:
                 self.animation_status = False
                 self.background.position.x = 0
                 self.small_profile.position.x = self.background.position.x
-                self.mouse_cursor["HAND"] = [self.friends_selection_bg, self.requests_selection_bg,
+                self.mouse_cursor["HAND"] += [self.friends_selection_bg, self.requests_selection_bg,
                                              self.add_friend_send_button_bg, self.add_friend_send_button_icon]
-                self.mouse_cursor["IBEAM"] = [self.add_friend_text_box]
+                self.mouse_cursor["IBEAM"] += [self.add_friend_text_box]
             elif not self.shown and self.background.position.x > -self.width:
                 self.background.position.x -= self.width * (dt / self.animation_time)
             elif self.shown and self.background.position.x <= -self.width:
@@ -199,6 +218,12 @@ class FriendList:
             self.online_text.render(self.screen)
         if self.friend_tab and self.online_counter.position.x + self.online_counter.text_surface.get_size()[0] >= 0:
             self.online_counter.render(self.screen)
+        if self.friend_tab and self.offline_display_bg.position.x + self.offline_display_bg.size.x >= 0:
+            self.offline_display_bg.render(self.screen)
+        if self.friend_tab and self.offline_text.position.x + self.offline_text.text_surface.get_size()[0] >= 0:
+            self.offline_text.render(self.screen)
+        if self.friend_tab and self.offline_counter.position.x + self.offline_counter.text_surface.get_size()[0] >= 0:
+            self.offline_counter.render(self.screen)
         if self.add_friend_bg.position.x + self.add_friend_bg.size.x >= 0:
             self.add_friend_bg.render(self.screen)
         if self.add_friend_text_box.position.x + self.add_friend_text_box.size.x >= 0:
@@ -209,7 +234,7 @@ class FriendList:
             self.add_friend_send_button_icon.render(self.screen)
 
         if self.friend_tab:
-            for friend in self.friends:
+            for friend in self.online_friends + self.offline_friends:
                 for comp in friend:
                     if type(comp) is Text:
                         if comp.position.x + comp.text_surface.get_size()[0] >= 0:

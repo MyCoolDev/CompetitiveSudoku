@@ -1,7 +1,5 @@
-import datetime
 import random
 import string
-import threading
 
 import utils
 from ClientInterface import Client
@@ -9,7 +7,7 @@ from Server.SudokuBoard import SudokuGenerator
 
 
 class Lobby:
-    def __init__(self, owner: Client, code: str, max_time = 60 * 15):
+    def __init__(self, owner: Client, code: str):
         """
         The lobby data structure to store all the data and do some actions on it.
         """
@@ -28,28 +26,6 @@ class Lobby:
         self.owner.set_data("lobby", self)
         self.players_colors = [(255, 90, 90), (96, 90, 255), (255, 230, 90), (90, 255, 134), (66, 255, 211), (227, 90, 255)]
         self.__shuffle_colors()
-
-        self.players_data = {}
-
-        # player data structure
-        """
-        {
-            "username": {
-                "color": (r, g, b),
-                "score": 0,
-                "current_moves": 0,
-                "mistakes": 0,
-            },
-            ...
-        }
-        """
-
-        # game vars
-        self.game_started = False
-        self.MAX_TIME = max_time
-        self.ending_time = None
-        self.leaderboard = []   # (username, score)
-        self.winner = None
 
     def register_client(self, client: Client) -> (str, bool):
         """
@@ -112,44 +88,7 @@ class Lobby:
         pass
 
     def __shuffle_colors(self):
-        """
-        Shuffle the colors set of the players to randomize the colors.
-        """
         self.players_colors = random.sample(self.players_colors, len(self.players_colors))
-
-    # --- Game ---
-
-    def run_game(self):
-        """
-        Run the game as long as the timelimit hasn't been reached, the players haven't finished the game and the players are still in the lobby / game (lobby exists).
-        """
-        while self.check_timer() > 0 and len(self.players) > 0 and self.winner is None:
-            pass
-
-    def start_game(self) -> None:
-        """
-        Start the game by init the game vars and run the game in a separate thread.
-        """
-        self.game_started = True
-
-        # start the timer
-        self.ending_time = datetime.datetime.now() + datetime.timedelta(seconds=self.MAX_TIME)
-
-        # run the game in a separate thread.
-        threading.Thread(target=self.run_game).start()
-
-    def end_game(self):
-        pass
-
-    def player_move(self, client: Client, x: int, y: int, value: int) -> bool:
-        pass
-
-    def check_timer(self):
-        """
-        check the time left for the game.
-        :return: the time left for the game in seconds.
-        """
-        return (self.ending_time - datetime.datetime.now()).seconds
 
     def __repr__(self):
         return {

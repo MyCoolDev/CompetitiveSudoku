@@ -3,7 +3,7 @@ import random
 import socket
 import string
 
-import Methods.LatestVersion as api
+import API.LatestVersion as api
 import Hashing
 import utils
 from ClientInterface import Client

@@ -1,3 +1,4 @@
+import argparse
 import datetime as dt
 import random
 import socket
@@ -17,7 +18,7 @@ class ServerSocket:
     The server socket side, run the server socket and listen for incoming connections.
     """
 
-    def __init__(self):
+    def __init__(self, address, port, db_profile):
         # create or split the log file:
         with open(f"Logs/{dt.datetime.now().strftime('%d-%m-%Y')}.log", 'a') as log:
             log.write("=============== Initiating the server. ===============\n")
@@ -39,8 +40,12 @@ class ServerSocket:
             # create a socket with tpc protocol.
             self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+            # set up the address and port for the server.
+            self.address = address
+            self.port = port
+
             # bind the server to the local ip address and port 8080.
-            self.server_socket.bind(('127.0.0.1', 8080))
+            self.server_socket.bind((self.address, self.port))
 
             # running variable for the main loop, variable is private.
             self.__running = False
@@ -900,5 +905,11 @@ class ServerSocket:
 
 
 if __name__ == '__main__':
-    server = ServerSocket()
+    # parse the arguments from running with this format: Server\ServerSocket.py --host %HOST% --port %PORT% --database %STATUS%
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", type=str, default="127.0.0.1", help="The host address of the server.")
+    parser.add_argument("--port", type=int, default=8080, help="The port of the server.")
+    parser.add_argument("--database", type=int, default=0, help="The database status.")
+    args = parser.parse_args()
+    server = ServerSocket(args.host, args.port, args.database)
     server.start_socket()

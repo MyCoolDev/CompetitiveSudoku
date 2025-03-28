@@ -8,7 +8,7 @@ from Server.SudokuBoard import SudokuGenerator
 
 
 class Lobby:
-    def __init__(self, owner: Client, code: str):
+    def __init__(self, owner: Client, code: str, max_time=60 * 15):
         """
         The lobby data structure to store all the data and do some actions on it.
         """

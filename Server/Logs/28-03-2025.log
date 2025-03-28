@@ -1,0 +1,16 @@
+=============== Initiating the server. ===============
+[28-03-2025 21:01:00] [Database] Database worker is running
+[28-03-2025 21:01:01] [Status] ServerSocket initialized.
+[28-03-2025 21:01:01] [Status] Server is running.
+[28-03-2025 21:01:03] [Connection] Client ('127.0.0.1', 62418) connection request accepted.
+[28-03-2025 21:01:04] [Handler] Starting to handle ('127.0.0.1', 62418).
+[28-03-2025 21:01:07] [Handler] Request (0) received from ('127.0.0.1', 62418).
+[28-03-2025 21:01:07] [Handler] Request (0) identified as Register from ('127.0.0.1', 62418).
+[28-03-2025 21:01:07] [Handler] Request (0), passed all checks.
+[28-03-2025 21:01:08] [Server] Request (0), User test registered.
+[28-03-2025 21:01:11] [Handler] Request (1) received from ('127.0.0.1', 62418).
+[28-03-2025 21:01:11] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 62418).
+[28-03-2025 21:01:11] [Handler] Request (1), Request passed all checks.
+[28-03-2025 21:01:11] [Lobby Manager] Creating new lobby
+[28-03-2025 21:01:11] [Error] name 'max_time' is not defined
+[28-03-2025 21:01:12] [Server] Client test disconnected.

@@ -1,0 +1,19 @@
+=============== Initiating the server. ===============
+[21-03-2025 12:13:54] [Database] Database worker is running
+[21-03-2025 12:13:54] [Status] ServerSocket initialized.
+[21-03-2025 12:13:54] [Status] Server is running.
+[21-03-2025 12:13:56] [Connection] Client ('127.0.0.1', 50240) connection request accepted.
+[21-03-2025 12:13:56] [Handler] Starting to handle ('127.0.0.1', 50240).
+[21-03-2025 12:14:00] [Handler] Request (0) received from ('127.0.0.1', 50240).
+[21-03-2025 12:14:00] [Handler] Request (0), identified as Login from ('127.0.0.1', 50240).
+[21-03-2025 12:14:01] [Handler] Request (0), Request passed all checks.
+[21-03-2025 12:14:01] [Server] Request (0), User test logged in successfully.
+[21-03-2025 12:14:25] [Handler] Request (1) received from ('127.0.0.1', 50240).
+[21-03-2025 12:14:25] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 50240).
+[21-03-2025 12:14:26] [Handler] Request (1), Request passed all checks.
+[21-03-2025 12:14:26] [Lobby Manager] Creating new lobby
+[21-03-2025 12:14:26] [Server] Request (1), Lobby created successfully.
+[21-03-2025 12:14:35] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[21-03-2025 12:14:35] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[21-03-2025 12:14:35] [Error] 'NoneType' object is not subscriptable
+[21-03-2025 12:14:36] [Server] Client test disconnected.

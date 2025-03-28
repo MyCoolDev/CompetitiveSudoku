@@ -1,0 +1,36 @@
+=============== Initiating the server. ===============
+[13-03-2025 12:09:48] [Database] Database worker is running
+[13-03-2025 12:09:49] [Status] ServerSocket initialized.
+[13-03-2025 12:09:49] [Status] Server is running.
+[13-03-2025 12:09:51] [Connection] Client ('127.0.0.1', 65192) connection request accepted.
+[13-03-2025 12:09:52] [Handler] Starting to handle ('127.0.0.1', 65192).
+[13-03-2025 12:09:57] [Handler] Request (0) received from ('127.0.0.1', 65192).
+[13-03-2025 12:09:57] [Handler] Request (0), identified as Login from ('127.0.0.1', 65192).
+[13-03-2025 12:09:57] [Handler] Request (0), Request passed all checks.
+[13-03-2025 12:09:57] [Server] Request (0), User test logged in successfully.
+[13-03-2025 12:10:06] [Handler] Request (1) received from ('127.0.0.1', 65192).
+[13-03-2025 12:10:06] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 65192).
+[13-03-2025 12:10:06] [Handler] Request (1), Request passed all checks.
+[13-03-2025 12:10:06] [Lobby Manager] Creating new lobby
+[13-03-2025 12:10:06] [Server] Request (1), Lobby created successfully.
+[13-03-2025 12:10:09] [Handler] Request (2) received from ('127.0.0.1', 65192).
+[13-03-2025 12:10:09] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 65192).
+[13-03-2025 12:10:09] [Handler] Request (2), Request passed all checks.
+[13-03-2025 12:10:09] [Server] Request (2), Game started on lobby 362371.
+[13-03-2025 12:10:14] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[13-03-2025 12:10:14] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[13-03-2025 12:10:14] [Error] 'NoneType' object is not subscriptable
+[13-03-2025 12:10:15] [Server] Client test disconnected.
+[13-03-2025 12:12:09] [Connection] Client ('127.0.0.1', 65232) connection request accepted.
+[13-03-2025 12:12:09] [Handler] Starting to handle ('127.0.0.1', 65232).
+[13-03-2025 12:12:11] [Handler] Request (4) received from ('127.0.0.1', 65232).
+[13-03-2025 12:12:11] [Handler] Request (4), identified as Login from ('127.0.0.1', 65232).
+[13-03-2025 12:12:11] [Handler Error] Request (4), Invalid credentials.
+[13-03-2025 12:12:17] [Handler] Request (5) received from ('127.0.0.1', 65232).
+[13-03-2025 12:12:17] [Handler] Request (5), identified as Login from ('127.0.0.1', 65232).
+[13-03-2025 12:12:18] [Handler] Request (5), Request passed all checks.
+[13-03-2025 12:12:18] [Server] Request (5), User test logged in successfully.
+[13-03-2025 12:12:28] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[13-03-2025 12:12:28] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[13-03-2025 12:12:28] [Error] 'NoneType' object is not subscriptable
+[13-03-2025 12:12:28] [Server] Client test disconnected.

@@ -31,7 +31,9 @@ class Lobby:
 
         self.players_data = {}
 
-        # player data structure
+        self.BASE_EXP = 10
+
+        # player data structuren
         """
         {
             "username": {
@@ -39,6 +41,7 @@ class Lobby:
                 "score": 0,
                 "current_moves": 0,
                 "mistakes": 0,
+                "moves": [(x, y), ...]
             },
             ...
         }
@@ -132,17 +135,39 @@ class Lobby:
         """
         self.game_started = True
 
-        # start the timer
+        # Start the timer
         self.ending_time = datetime.datetime.now() + datetime.timedelta(seconds=self.MAX_TIME)
 
-        # run the game in a separate thread.
+        for index, player in enumerate(self.players):
+            self.players_data[player.get_data("username")] = {
+                "color": self.players_colors[index],
+                "score": 0,
+                "mistakes": 0,
+                "moves": [],
+                "game_exp": 0
+            }
+
+        # Run the game in a separate thread.
         threading.Thread(target=self.run_game).start()
 
     def end_game(self):
         pass
 
     def player_move(self, client: Client, x: int, y: int, value: int) -> bool:
-        pass
+        username = client.get_data("username")
+        if self.solution[x][y] != value:
+            self.players_data[username]["mistakes"] += 1
+            return False
+
+        # get the delta time between the starting time and the move in seconds
+        move_time = (datetime.timedelta(seconds=self.MAX_TIME) - (self.ending_time - datetime.datetime.now())).seconds
+
+        self.players_data[username]["moves"] += (x, y)
+        self.players_data[username]["game_exp"] += self.BASE_EXP * move_time
+        return True
+
+    def update_score(self, client):
+        self.players_data[username]
 
     def check_timer(self):
         """

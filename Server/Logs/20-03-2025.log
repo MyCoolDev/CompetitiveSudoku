@@ -1,0 +1,93 @@
+=============== Initiating the server. ===============
+[20-03-2025 11:46:50] [Database] Database worker is running
+[20-03-2025 11:46:50] [Status] ServerSocket initialized.
+[20-03-2025 11:46:50] [Status] Server is running.
+=============== Initiating the server. ===============
+[20-03-2025 11:58:12] [Database] Database worker is running
+[20-03-2025 11:58:12] [Status] ServerSocket initialized.
+[20-03-2025 11:58:12] [Status] Server is running.
+[20-03-2025 11:58:17] [Connection] Client ('127.0.0.1', 50557) connection request accepted.
+[20-03-2025 11:58:17] [Handler] Starting to handle ('127.0.0.1', 50557).
+[20-03-2025 11:58:25] [Handler] Request (0) received from ('127.0.0.1', 50557).
+[20-03-2025 11:58:25] [Handler] Request (0), identified as Login from ('127.0.0.1', 50557).
+[20-03-2025 11:58:25] [Handler] Request (0), Request passed all checks.
+[20-03-2025 11:58:25] [Server] Request (0), User test logged in successfully.
+[20-03-2025 11:59:20] [Handler] Request (1) received from ('127.0.0.1', 50557).
+[20-03-2025 11:59:20] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 50557).
+[20-03-2025 11:59:20] [Handler] Request (1), Request passed all checks.
+[20-03-2025 11:59:20] [Lobby Manager] Creating new lobby
+[20-03-2025 11:59:20] [Server] Request (1), Lobby created successfully.
+[20-03-2025 11:59:27] [Connection] Client ('127.0.0.1', 50577) connection request accepted.
+[20-03-2025 11:59:27] [Handler] Starting to handle ('127.0.0.1', 50577).
+[20-03-2025 11:59:31] [Handler] Request (2) received from ('127.0.0.1', 50577).
+[20-03-2025 11:59:31] [Handler] Request (2), identified as Login from ('127.0.0.1', 50577).
+[20-03-2025 11:59:32] [Handler Error] Request (2), Invalid credentials.
+[20-03-2025 11:59:33] [Handler] Request (3) received from ('127.0.0.1', 50577).
+[20-03-2025 11:59:33] [Handler] Request (3) identified as Register from ('127.0.0.1', 50577).
+[20-03-2025 11:59:34] [Handler Error] Request (3), Username already registered.
+[20-03-2025 11:59:35] [Handler] Request (4) received from ('127.0.0.1', 50577).
+[20-03-2025 11:59:35] [Handler] Request (4) identified as Register from ('127.0.0.1', 50577).
+[20-03-2025 11:59:35] [Handler Error] Request (4), Username already registered.
+[20-03-2025 11:59:39] [Handler] Request (5) received from ('127.0.0.1', 50577).
+[20-03-2025 11:59:39] [Handler] Request (5) identified as Register from ('127.0.0.1', 50577).
+[20-03-2025 11:59:39] [Handler] Request (5), passed all checks.
+[20-03-2025 11:59:40] [Server] Request (5), User ron2 registered.
+[20-03-2025 11:59:47] [Handler] Request (6) received from ('127.0.0.1', 50577).
+[20-03-2025 11:59:47] [Handler] Request identified as Join Lobby from ('127.0.0.1', 50577).
+[20-03-2025 11:59:47] [Handler] Request (6), Request passed all checks.
+[20-03-2025 11:59:48] [Server] Request (6), Client registered to lobby 410867.
+[20-03-2025 11:59:48] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-03-2025 11:59:48] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-03-2025 11:59:48] [Error] 'NoneType' object is not subscriptable
+[20-03-2025 11:59:49] [Server] Client ron2 disconnected.
+[20-03-2025 11:59:55] [Handler] Request (8) received from ('127.0.0.1', 50557).
+[20-03-2025 11:59:55] [Handle] Request (8), identified as Start Game from ('127.0.0.1', 50557).
+[20-03-2025 11:59:55] [Handler] Request (8), Request passed all checks.
+[20-03-2025 11:59:55] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-03-2025 11:59:55] [Server] Request (8), Game started on lobby 410867.
+[20-03-2025 12:00:07] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-03-2025 12:00:07] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-03-2025 12:00:07] [Error] 'NoneType' object is not subscriptable
+[20-03-2025 12:00:08] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[20-03-2025 12:03:05] [Database] Database worker is running
+[20-03-2025 12:03:06] [Status] ServerSocket initialized.
+[20-03-2025 12:03:06] [Status] Server is running.
+[20-03-2025 12:07:49] [Connection] Client ('127.0.0.1', 50744) connection request accepted.
+[20-03-2025 12:07:49] [Handler] Starting to handle ('127.0.0.1', 50744).
+[20-03-2025 12:07:52] [Handler] Request (0) received from ('127.0.0.1', 50744).
+[20-03-2025 12:07:52] [Handler] Request (0), identified as Login from ('127.0.0.1', 50744).
+[20-03-2025 12:07:53] [Handler] Request (0), Request passed all checks.
+[20-03-2025 12:07:53] [Server] Request (0), User test logged in successfully.
+[20-03-2025 12:07:55] [Handler] Request (1) received from ('127.0.0.1', 50744).
+[20-03-2025 12:07:55] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 50744).
+[20-03-2025 12:07:55] [Handler] Request (1), Request passed all checks.
+[20-03-2025 12:07:55] [Lobby Manager] Creating new lobby
+[20-03-2025 12:07:55] [Server] Request (1), Lobby created successfully.
+[20-03-2025 12:09:04] [Connection] Client ('127.0.0.1', 50760) connection request accepted.
+[20-03-2025 12:09:05] [Handler] Starting to handle ('127.0.0.1', 50760).
+[20-03-2025 12:09:11] [Handler] Request (2) received from ('127.0.0.1', 50760).
+[20-03-2025 12:09:11] [Handler] Request (2), identified as Login from ('127.0.0.1', 50760).
+[20-03-2025 12:09:11] [Handler] Request (2), Request passed all checks.
+[20-03-2025 12:09:12] [Server] Request (2), User ron2 logged in successfully.
+[20-03-2025 12:09:18] [Handler] Request (3) received from ('127.0.0.1', 50760).
+[20-03-2025 12:09:18] [Handler] Request identified as Join Lobby from ('127.0.0.1', 50760).
+[20-03-2025 12:09:18] [Handler] Request (3), Request passed all checks.
+[20-03-2025 12:09:18] [Server] Request (3), Client registered to lobby 989055.
+[20-03-2025 12:09:18] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-03-2025 12:09:18] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-03-2025 12:09:18] [Error] 'NoneType' object is not subscriptable
+[20-03-2025 12:09:20] [Server] Client ron2 disconnected.
+[20-03-2025 12:11:02] [Handler] Request (5) received from ('127.0.0.1', 50744).
+[20-03-2025 12:11:02] [Handler] Request (5), identified as Kick User From Lobby from ('127.0.0.1', 50744).
+[20-03-2025 12:11:02] [Handler] Request (5), Request passed all checks.
+[20-03-2025 12:11:02] [Server] Request (5), Client ron2 kicked the lobby 989055.
+[20-03-2025 12:11:03] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-03-2025 12:11:28] [Handler] Request (6) received from ('127.0.0.1', 50744).
+[20-03-2025 12:11:28] [Handle] Request (6), identified as Start Game from ('127.0.0.1', 50744).
+[20-03-2025 12:11:28] [Handler] Request (6), Request passed all checks.
+[20-03-2025 12:11:28] [Server] Request (6), Game started on lobby 989055.
+[20-03-2025 12:11:30] [Handler | get_request] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-03-2025 12:11:30] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[20-03-2025 12:11:30] [Error] 'NoneType' object is not subscriptable
+[20-03-2025 12:11:31] [Server] Client test disconnected.

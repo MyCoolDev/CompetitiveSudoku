@@ -886,7 +886,7 @@ class ServerSocket:
     def stop(self) -> None:
         self.__running = False
         self.server_socket.close()
-        utils.server_print("Server closed.")
+        utils.server_print("Server", "Server closed.")
 
     def toggle_status(self) -> None:
         if self.__running:

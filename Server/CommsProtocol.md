@@ -176,6 +176,8 @@ Login to account.
 
 ## Auth
 From here the user have a token therefore token is required for auth.
+The auth will use a token and username to identify the user request.
+The username is to prevent bruteforce of the token.
 
 ---
 
@@ -201,6 +203,7 @@ Create a new sudoku lobby.
   "Command": "Create_Lobby",
   "Data": {},
   "Token": "<TOKEN_HERE>",
+  "Username": "<USERNAME_HERE>",
   "Checksum": "<String>"
 }
 ```
@@ -243,6 +246,7 @@ Join a lobby using code.
     "Code": "<Number>"
   },
   "Token": "<TOKEN_HERE>",
+  "Username": "<USERNAME_HERE>",
   "Checksum": "<String>"
 }
 ```

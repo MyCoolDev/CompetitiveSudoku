@@ -28,6 +28,31 @@ class Lobby:
         self.players_colors = [(255, 90, 90), (96, 90, 255), (255, 230, 90), (90, 255, 134), (66, 255, 211), (227, 90, 255)]
         self.__shuffle_colors()
 
+        self.players_data = {}
+
+        self.BASE_EXP = 10
+
+        # player data structuren
+        """
+        {
+            "username": {
+                "color": (r, g, b),
+                "score": 0,
+                "current_moves": 0,
+                "mistakes": 0,
+                "moves": [(x, y), ...]
+            },
+            ...
+        }
+        """
+
+        # game vars
+        self.game_started = False
+        self.MAX_TIME = max_time
+        self.ending_time = None
+        self.leaderboard = []   # (username, score)
+        self.winner = None
+
     def register_client(self, client: Client) -> (str, bool):
         """
         Add a client to the lobby. (Implementation of join lobby or create lobby)
@@ -89,7 +114,66 @@ class Lobby:
         pass
 
     def __shuffle_colors(self):
+        """
+        Shuffle the colors set of the players to randomize the colors.
+        """
         self.players_colors = random.sample(self.players_colors, len(self.players_colors))
+
+    # --- Game ---
+
+    def run_game(self):
+        """
+        Run the game as long as the timelimit hasn't been reached, the players haven't finished the game and the players are still in the lobby / game (lobby exists).
+        """
+        while self.check_timer() > 0 and len(self.players) > 0 and self.winner is None:
+            pass
+
+    def start_game(self) -> None:
+        """
+        Start the game by init the game vars and run the game in a separate thread.
+        """
+        self.game_started = True
+
+        # Start the timer
+        self.ending_time = datetime.datetime.now() + datetime.timedelta(seconds=self.MAX_TIME)
+
+        for index, player in enumerate(self.players):
+            self.players_data[player.get_data("username")] = {
+                "color": self.players_colors[index],
+                "score": 0,
+                "mistakes": 0,
+                "moves": [],
+                "game_exp": 0
+            }
+
+        # Run the game in a separate thread.
+        threading.Thread(target=self.run_game).start()
+
+    def end_game(self):
+        pass
+
+    def player_move(self, client: Client, x: int, y: int, value: int) -> bool:
+        username = client.get_data("username")
+        if self.solution[x][y] != value:
+            self.players_data[username]["mistakes"] += 1
+            return False
+
+        # get the delta time between the starting time and the move in seconds
+        move_time = (datetime.timedelta(seconds=self.MAX_TIME) - (self.ending_time - datetime.datetime.now())).seconds
+
+        self.players_data[username]["moves"] += (x, y)
+        self.players_data[username]["game_exp"] += self.BASE_EXP * move_time
+        return True
+
+    def update_score(self, client):
+        self.players_data[username]
+
+    def check_timer(self):
+        """
+        check the time left for the game.
+        :return: the time left for the game in seconds.
+        """
+        return (self.ending_time - datetime.datetime.now()).seconds
 
     def __repr__(self):
         return {

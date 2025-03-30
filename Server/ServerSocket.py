@@ -24,7 +24,6 @@ class ServerSocket:
             log.write("=============== Initiating the server. ===============\n")
 
         try:
-
             # *should be in config*, for now just a static var
             self.MAX_CLIENTS = 3
 
@@ -35,7 +34,8 @@ class ServerSocket:
             self.logged_clients = {}
 
             # the database interface
-            self.database = Database(0)
+            self.db_profile = db_profile
+            self.database = Database(db_profile)
 
             # create a socket with tpc protocol.
             self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -73,7 +73,6 @@ class ServerSocket:
         try:
             # accept client connection.
             client_socket, client_address = self.server_socket.accept()
-            print(client_address)
             utils.server_print("Connection", "Client " + str(client_address) + " connection request accepted.")
 
             # create object for the client.
@@ -855,8 +854,19 @@ class ServerSocket:
 
         # remove client, client token from list
         self.clients.remove(client)
-        self.tokens.remove(client.get_data("token"))
-        api.account.update_logout(client.get_data("username"), self.database)
+        if client.get_data("token") is not None:
+            self.tokens.remove(client.get_data("token"))
+            api.account.update_logout(client.get_data("username"), self.database)
+
+        lobby = client.get_data("lobby_info")
+        if lobby is not None:
+            role, success = lobby.remove_client(client)
+
+            if success:
+                utils.server_print("Lobby Manager", f"Removing {client.get_data('username')} from lobby {lobby.code}.")
+
+                for c in lobby.players + lobby.spectators:
+                    c.push_notification("User_Left_Lobby", {"Username": client.get_data("username"), "Role": role})
 
         utils.server_print("Server", f"Client {client.get_data('username')} disconnected.")
 
@@ -872,7 +882,7 @@ class ServerSocket:
         # set the running variable to true and start the main loop.
         self.__running = True
 
-        utils.server_print("Status", "Server is running.")
+        utils.server_print("Status", f"Server is running on {self.address}:{self.port} using {'Official' if self.db_profile == 1 else 'Test'} db.")
 
         self.run()
 

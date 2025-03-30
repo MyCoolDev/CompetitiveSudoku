@@ -1,6 +1,7 @@
 import random
 import datetime
 import string
+import threading
 
 import utils
 from ClientInterface import Client
@@ -73,20 +74,17 @@ class Lobby:
         """
         Remove a client from the lobby. (Implementation of leave lobby)
         :param client: Client to remove.
-        :return: True if the client was removed, False otherwise.
+        :return: True if the client was removed, False otherwise. The role of the client will be returned too.
         """
-        if client != self.owner:
-            if client in self.players:
-                self.players.remove(client)
-                client.set_data("lobby_info", None)
-                return "players", True
+        if client in self.players:
+            self.players.remove(client)
+            client.set_data("lobby_info", None)
+            return "players", True
 
-            if client in self.spectators:
-                self.spectators.remove(client)
-                client.set_data("lobby_info", None)
-                return "spectators", True
-
-        return False
+        if client in self.spectators:
+            self.spectators.remove(client)
+            client.set_data("lobby_info", None)
+            return "spectators", True
 
     def ban_client(self, client: Client) -> bool:
         if self.remove_client(client):
@@ -165,8 +163,8 @@ class Lobby:
         self.players_data[username]["game_exp"] += self.BASE_EXP * move_time
         return True
 
-    def update_score(self, client):
-        self.players_data[username]
+    # def update_score(self, client):
+    #     self.players_data[username]
 
     def check_timer(self):
         """

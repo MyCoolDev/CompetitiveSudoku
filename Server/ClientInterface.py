@@ -50,6 +50,9 @@ class Client:
 
             lower_request = request.lower()
 
+            if request == "":
+                return self.get_request()
+
             # convert to json object.
             request = json.loads(request)
             lower_request = json.loads(lower_request)
@@ -89,6 +92,10 @@ class Client:
                 return None
 
             return request
+
+        except ConnectionResetError:
+            # if the connection is reset, return None.
+            return None
 
         except Exception as e:
             # print the exception

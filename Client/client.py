@@ -4,6 +4,8 @@ import socket
 import threading
 import time
 
+from Client.Components.Notification import Notification, NotificationInterface
+
 
 class ClientSocket:
     def __init__(self, application):
@@ -23,6 +25,9 @@ class ClientSocket:
 
         # saved data
         self.data = {}
+
+        # notifications
+        self.notifications = []
 
         self.requests_id_counter = 0
         self.responses = {}
@@ -108,6 +113,10 @@ class ClientSocket:
             if rid in self.responses:
                 response = self.responses[rid]
 
+            if response["StatusCode"] != 200 and response["StatusCode"] != 201:
+                # add notification with the status and message
+                self.notifications.append(NotificationInterface(response["Status"], response["Data"]["Msg"], span_color=(234, 68, 68)))
+
             return response
         except Exception as e:
             print(e)
@@ -132,15 +141,39 @@ class ClientSocket:
 
                 # check if the checksums match, if not send an error response.
                 if current_checksum == recv_checksum:
-                    print(response)
-                    if "Id" in response:
+                    if self.check_response_protocol(response):
                         self.responses[response["Id"]] = response
                         continue
-                    else:
+                    elif self.check_push_notification_protocol(response):
                         # push server notifications.
                         self.handle_server_notification(response)
+                        continue
             except Exception as e:
                 print(e)
+
+    @staticmethod
+    def check_response_protocol(response: dict):
+        """
+        Check if the response is in the correct format.
+        :param response: the response to check.
+        :return: True if the response is in the correct format, False otherwise.
+        """
+        if "Id" not in response:
+            return False
+
+        if "StatusCode" not in response:
+            return False
+
+        if "Status" not in response:
+            return False
+
+        if "Data" not in response:
+            return False
+
+        if "Msg" not in response["Data"]:
+            return False
+
+        return True
 
     def handle_server_notification(self, update: dict):
         """
@@ -148,28 +181,79 @@ class ClientSocket:
         :param update: the push notification received from the server.
         :return:
         """
+
         if update["Update"] == "Lobby_Kick":
+            """
+            On lobby user (this) kick.
+            """
             self.set_data("lobby_info", None)
             self.set_data("Lobby_Role", None)
+
+            # update the notification.
+            self.notifications.append(NotificationInterface("Lobby Kicked", "You have been kicked from the lobby.", span_color=(234, 68, 68)))
         elif update["Update"] == "Lobby_Ban":
+            """
+            On lobby user (this) ban.
+            """
             self.set_data("lobby_info", None)
             self.set_data("Lobby_Role", None)
+
+            # update the notification.
+            self.notifications.append(NotificationInterface("Lobby Baned", "You have been baned from the lobby.", span_color=(234, 68, 68)))
         elif update["Update"] == "User_Joined_Lobby":
+            """
+            On user join the lobby.
+            """
             lobby = self.get_data("lobby_info")
             lobby[update["Data"]["Role"]].append(update["Data"]["Username"])
             self.set_data("lobby_info", self.get_data("lobby_info"))
+
+            # update the notification if the user is not the current user.
+            if self.get_data("username") != update["Data"]["Username"]:
+                self.notifications.append(NotificationInterface("Lobby Update", f"{update['Data']['Username']} joined the lobby with {update['Data']['Role']} role."))
+        elif update["Update"] == "User_Left_Lobby":
+            """
+            On user left the lobby.
+            """
+            lobby = self.get_data("lobby_info")
+            lobby[update["Data"]["Role"]].remove(update["Data"]["Username"])
+            self.set_data("lobby_info", self.get_data("lobby_info"))
+
+            # update the notification if the user is not the current user.
+            if self.get_data("username") != update["Data"]["Username"]:
+                self.notifications.append(NotificationInterface("Lobby Update", f"{update['Data']['Username']} left the lobby."))
         elif update["Update"] == "Become_Spectator":
+            """
+            On user become spectator.
+            """
             lobby = self.get_data("lobby_info")
             lobby["spectators"] += 1
             lobby["players"].remove(update["Data"]["Username"])
 
             if self.get_data("username") == update["Data"]["Username"]:
                 self.set_data("Lobby_Role", "spectators")
-
         elif update["Update"] == "Become_Player":
+            """
+            On user become player.
+            """
             lobby = self.get_data("lobby_info")
             lobby["players"].append(update["Data"]["Username"])
             lobby["spectators"] -= 1
+
+    @staticmethod
+    def check_push_notification_protocol(update: dict):
+        """
+        Check if the push notification is in the correct format.
+        :param update: the push notification to check.
+        :return: True if the push notification is in the correct format, False otherwise.
+        """
+        if "Update" not in update:
+            return False
+
+        if "Data" not in update:
+            return False
+
+        return True
 
     def set_token(self, token: str):
         """

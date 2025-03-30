@@ -1,0 +1,18 @@
+{
+    "name": "CompetitiveSudoku",
+    "description": "A competitive sudoku game",
+    "server": {
+        "version": "1.0.0",
+        "main": "Server/ServerSocket.py",
+        "database": {
+            "type": "json",
+            "location": "Server/[Tests|Official]/<NAME>.json",
+            "manager": "Server/Database.py"
+        }
+    },
+    "client": {
+        "version": "1.0.0",
+        "main": "Client/app.py",
+        "gui": "pygame"
+    }
+}

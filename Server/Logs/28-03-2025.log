@@ -14,3 +14,11 @@
 [28-03-2025 21:01:11] [Lobby Manager] Creating new lobby
 [28-03-2025 21:01:11] [Error] name 'max_time' is not defined
 [28-03-2025 21:01:12] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[28-03-2025 21:10:10] [Database] Database worker is running
+[28-03-2025 21:10:10] [Status] ServerSocket initialized.
+[28-03-2025 21:10:10] [Status] Server is running.
+=============== Initiating the server. ===============
+[28-03-2025 21:10:22] [Database] Database worker is running
+[28-03-2025 21:10:22] [Status] ServerSocket initialized.
+[28-03-2025 21:10:22] [Status] Server is running.

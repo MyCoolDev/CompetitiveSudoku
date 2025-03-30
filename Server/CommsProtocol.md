@@ -18,21 +18,24 @@ An update the server send to a client.
 ## Basic client protocol
 ```json
 {
-  "Id": "<Any>",
-  "Command": "<String>",
-  "Data": "<Json>",
-  "Checksum": "<String>"
+    "Id": "<Any>",
+    "Command": "<String>",
+    "Data": "<Json>",
+    "Checksum": "<String>"
 }
 ```
 
 ## Basic server protocol
 ```json
 {
-  "Id?": "<Any>",
-  "StatusCode": "<Number>",
-  "Status": "<String>",
-  "Data?": "<Json>",
-  "Checksum": "<String>"
+    "Id?": "<Any>",
+    "StatusCode": "<Number>",
+    "Status": "<String>",
+    "Data": {
+        "Msg": "<String>",
+        ...
+    },
+    "Checksum": "<String>"
 }
 ```
 
@@ -52,12 +55,12 @@ Register a new user to the system.
 
 ```json
 {
-  "Command": "Register",
-  "Data": {
-    "Username": "<String>",
-    "Password": "<String>"
-  },
-  "Checksum": "<String>"
+    "Command": "Register",
+    "Data": {
+        "Username": "<String>",
+        "Password": "<String>"
+    },
+    "Checksum": "<String>"
 }
 ```
 
@@ -65,12 +68,12 @@ Register a new user to the system.
 
 ```json
 {
-  "StatusCode": 400,
-  "Status": "Bad Request",
-  "Data": {
-    "Msg": "Missing Username or Password attribute."
-  },
-  "Checksum": "<String>"
+    "StatusCode": 400,
+    "Status": "Bad Request",
+    "Data": {
+        "Msg": "Missing Username or Password attribute."
+    },
+    "Checksum": "<String>"
 }
 ```
 
@@ -78,12 +81,12 @@ Register a new user to the system.
 
 ```json
 {
-  "StatusCode": 409,
-  "Status": "Conflict",
-  "Data": {
-    "Msg": "Username must be unique."
-  },
-  "Checksum": "<String>"
+    "StatusCode": 409,
+    "Status": "Conflict",
+    "Data": {
+        "Msg": "Username must be unique."
+    },
+    "Checksum": "<String>"
 }
 ```
 
@@ -302,29 +305,29 @@ Join a lobby using code.
 ### The server response on successfully joining the lobby
 ```json
 {
-  "StatusCode": 200,
-  "Status": "OK",
-  "Data": {
+    "StatusCode": 200,
+    "Status": "OK",
+    "Data": {
     "Msg": "Successfully joining lobby.",
     "Lobby_Info": {
       ...
     },
     "Role": "<String>"
-  },
-  "Checksum": "<String>"
+    },
+    "Checksum": "<String>"
 }
 ```
 
 ### The server push notification to all the user in the lobby
 ```json
 {
-  "Update": "User_Joined_Lobby",
-  "Data": {
+    "Update": "User_Joined_Lobby",
+    "Data": {
     "Msg": "New user joined the lobby.",
     "Username": "<String>",
     "Role": "<String>"
-  },
-  "Checksum": "<String>"
+    },
+    "Checksum": "<String>"
 }
 ```
 
@@ -334,46 +337,47 @@ Leave a lobby the user inside.
 ### The clint request
 ```json
 {
-  "Command": "Leave_Lobby",
-  "Data": {},
-  "Token": "<TOKEN_HERE>",
-  "Checksum": "<String>"
+    "Command": "Leave_Lobby",
+    "Data": {},
+    "Token": "<TOKEN_HERE>",
+    "Username": "<USERNAME_HERE>",
+    "Checksum": "<String>"
 }
 ```
 
 ### The server response in case the user isn't in lobby
 ```json
 {
-  "StatusCode": 409,
-  "Status": "Conflict",
-  "Data": {
+    "StatusCode": 409,
+    "Status": "Conflict",
+    "Data": {
     "Msg": "User isn't in lobby."
-  },
-  "Checksum": "<String>"
+    },
+    "Checksum": "<String>"
 }
 ```
 
 ### The server response on successfully leaving the lobby
 ```json
 {
-  "StatusCode": 200,
-  "Status": "OK",
-  "Data": {
+    "StatusCode": 200,
+    "Status": "OK",
+    "Data": {
     "Msg": "Successfully leaving lobby."
-  },
-  "Checksum": "<String>"
+    },
+    "Checksum": "<String>"
 }
 ```
 
 ### The server push notification to all the clients in the lobby
 ```json
 {
-  "Update": "User_Left_Lobby",
-  "Data": {
+    "Update": "User_Left_Lobby",
+    "Data": {
     "Username": "<USERNAME_HERE>",
     "Role": "<ROLE_HERE>"
-  },
-  "Checksum": "<String>"
+    },
+    "Checksum": "<String>"
 }
 ```
 
@@ -383,10 +387,11 @@ Become a spectator in lobby (players only)
 ### The client request
 ```json
 {
-  "Command": "Become_Lobby_Spectator",
-  "Data": {},
-  "Token": "<TOKEN_HERE>",
-  "Checksum": "<String>"
+    "Command": "Become_Lobby_Spectator",
+    "Data": {},
+    "Token": "<TOKEN_HERE>",
+    "Username": "<USERNAME_HERE>",
+    "Checksum": "<String>"
 }
 ```
 

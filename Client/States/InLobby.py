@@ -151,7 +151,7 @@ class InLobby(BaseState):
                                 lobby["spectators"] += 1
                                 lobby["players"].remove(card[2].txt)
 
-        if self.start_game_button.update(dt, events):
+        if self.owner and self.start_game_button.update(dt, events):
             response = self.client.send_request("Start_Game", {})
             if response["StatusCode"] == 200:
                 print("test")
@@ -295,3 +295,4 @@ class InLobby(BaseState):
             self.start_game_button.render(self.screen)
 
         self.friend_list.render()
+        super().render()

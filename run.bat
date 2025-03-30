@@ -1,7 +1,7 @@
 @echo off
 REM Check if an argument is provided
 if "%1"=="" (
-    echo Usage: run.bat [test|official]
+    echo "Usage: run.bat [test|official]"
     exit /b 1
 )
 
@@ -15,6 +15,10 @@ if "%1"=="test" (
     set HOST=127.0.0.1
     set PORT=8080
     set STATUS=0
+) else if "%1"=="net-test" (
+    set HOST=0.0.0.0
+    set PORT=8000
+    set STATUS=0
 ) else if "%1"=="official" (
     set HOST=0.0.0.0
     set PORT=8000
@@ -25,4 +29,4 @@ if "%1"=="test" (
 )
 
 REM Run the server with the selected configuration
-python %~pd0Server\ServerSocket.py --host %HOST% --port %PORT% --database %STATUS%
+python %~pd0\ServerSocket.py --host %HOST% --port %PORT% --database %STATUS%

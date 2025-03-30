@@ -60,3 +60,4 @@ class LogRegister(BaseState):
         self.password_textbox.render(self.screen)
         self.login.render(self.screen)
         self.register.render(self.screen)
+        super().render()

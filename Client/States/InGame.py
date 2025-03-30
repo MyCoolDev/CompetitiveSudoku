@@ -19,3 +19,4 @@ class InGame(BaseState):
 
     def render(self, *args, **kwargs):
         self.board.render()
+        super().render()

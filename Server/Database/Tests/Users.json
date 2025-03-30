@@ -1,1 +1,44 @@
-{}
+{
+    "test": {
+        "username": "test",
+        "password": "243262243132244a736e477a65395a5577464f48794a6c2f737a6c734f2e757953714d4571577a6e66642f4f735a6a623246586e4b58724b4f4c3343",
+        "last_login": "2025-03-30 23:28:59",
+        "last_login_address": [
+            "127.0.0.1",
+            51882
+        ],
+        "messages": {
+            "seen": {},
+            "unseen": []
+        },
+        "friends": [],
+        "friend_requests": [],
+        "lifetime": 5.44,
+        "account_level": 1,
+        "account_experience": 0,
+        "playtime": 0,
+        "games_played": 0,
+        "games_won": 0
+    },
+    "test2": {
+        "username": "test2",
+        "password": "24326224313224544e453246304e63784d6a6c2e327275524c353450754b64753851302f785757506c762e4a4b76682f536d6e2f397339624c593169",
+        "last_login": "2025-03-30 23:15:02",
+        "last_login_address": [
+            "127.0.0.1",
+            51584
+        ],
+        "messages": {
+            "seen": {},
+            "unseen": []
+        },
+        "friends": [],
+        "friend_requests": [],
+        "lifetime": 2.6799999999999997,
+        "account_level": 1,
+        "account_experience": 0,
+        "playtime": 0,
+        "games_played": 0,
+        "games_won": 0
+    }
+}

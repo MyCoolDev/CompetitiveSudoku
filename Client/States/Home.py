@@ -69,3 +69,4 @@ class Home(BaseState):
         self.menu_icon.render(self.screen)
         self.friend_icon.render(self.screen)
         self.friend_list.render()
+        super().render()

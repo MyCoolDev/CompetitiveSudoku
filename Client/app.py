@@ -1,4 +1,4 @@
-import pygame
+import default
 
 from States.Home import Home
 from States.InGame import InGame

@@ -147,19 +147,6 @@ Login to account.
 }
 ```
 
-#### The server response in case the user doesn't exist
-
-```json
-{
-  "StatusCode": 404,
-  "Status": "Not Found",
-  "Data": {
-    "Msg": "Invalid Credentials."
-  },
-  "Checksum": "<String>"
-}
-```
-
 #### The server response on successful login.
 
 ```json
@@ -954,3 +941,35 @@ add friend
   "Checksum": "<String>"
 }
 ```
+
+## Accept Friend
+accept friend request.
+
+## Reject Friend
+reject friend request.
+
+## Remove Friend
+remove friend.
+
+## Start Game
+start a game in the lobby (owner only).
+
+## Game Move
+make a move in the game.
+
+### The clint request
+```json
+{
+  "Command": "Game_Move",
+  "Data": {
+    "Move": {
+        "row": "<Number>",
+        "column": "<Number>",
+        "value": "<Number>"
+    }
+  },
+  "Token": "<TOKEN_HERE>",
+  "Checksum": "<String>"
+}
+```
+

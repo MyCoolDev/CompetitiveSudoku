@@ -1,0 +1,22 @@
+=============== Initiating the server. ===============
+[19-04-2025 14:30:46] [Database] Database worker is running
+[19-04-2025 14:30:46] [Status] ServerSocket initialized.
+[19-04-2025 14:30:46] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[19-04-2025 14:30:52] [Connection] Client ('127.0.0.1', 63570) connection request accepted.
+[19-04-2025 14:30:52] [Handler] Starting to handle ('127.0.0.1', 63570).
+[19-04-2025 14:30:56] [Handler] Request (0) received from ('127.0.0.1', 63570).
+[19-04-2025 14:30:57] [Handler] Request (0), identified as Login from ('127.0.0.1', 63570).
+[19-04-2025 14:30:57] [Handler] Request (0), Request passed all checks.
+[19-04-2025 14:30:57] [Server] Request (0), User test logged in successfully.
+[19-04-2025 14:31:04] [Handler] Request (1) received from ('127.0.0.1', 63570).
+[19-04-2025 14:31:04] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 63570).
+[19-04-2025 14:31:04] [Handler] Request (1), Request passed all checks.
+[19-04-2025 14:31:04] [Lobby Manager] Creating new lobby
+[19-04-2025 14:31:04] [Server] Request (1), Lobby created successfully.
+[19-04-2025 14:31:14] [Handler] Request (2) received from ('127.0.0.1', 63570).
+[19-04-2025 14:31:15] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 63570).
+[19-04-2025 14:31:15] [Handler] Request (2), Request passed all checks.
+[19-04-2025 14:31:15] [Server] Request (2), Game started on lobby 560218.
+[19-04-2025 14:31:18] [Error] 'NoneType' object is not subscriptable
+[19-04-2025 14:31:19] [Lobby Manager] Removing test from lobby 560218.
+[19-04-2025 14:31:19] [Server] Client test disconnected.

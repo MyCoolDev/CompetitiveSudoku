@@ -2,10 +2,10 @@
     "test": {
         "username": "test",
         "password": "243262243132244a736e477a65395a5577464f48794a6c2f737a6c734f2e757953714d4571577a6e66642f4f735a6a623246586e4b58724b4f4c3343",
-        "last_login": "2025-03-30 23:28:59",
+        "last_login": "2025-04-19 14:30:58",
         "last_login_address": [
             "127.0.0.1",
-            51882
+            63570
         ],
         "messages": {
             "seen": {},
@@ -13,7 +13,7 @@
         },
         "friends": [],
         "friend_requests": [],
-        "lifetime": 5.44,
+        "lifetime": 5.7700000000000005,
         "account_level": 1,
         "account_experience": 0,
         "playtime": 0,

@@ -144,7 +144,7 @@ class ServerSocket:
                     self.handle_start_game(client, request, rid, request_id)
 
                 elif request["Command"].lower() == "game_move":
-                    pass
+                    self.handle_game_move(client, request, rid, request_id)
 
                 elif request["Command"].lower() == "add_friend":
                     self.handle_add_friend(client, request, rid, request_id)
@@ -708,6 +708,21 @@ class ServerSocket:
                 c.push_notification("Game_Started", {"board": lobby.puzzle})
 
         utils.server_print("Server", f"Request ({request_id}), Game started on lobby {lobby.code}.")
+
+    def handle_game_move(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Handle game move.
+        """
+        utils.server_print("Handler",
+                           f"Request ({request_id}), identified as Add Friend from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+    # -- Friend System Handlers --
 
     def handle_add_friend(self, client: Client, request: dict, rid: int, request_id: int) -> None:
         """

@@ -1,4 +1,4 @@
-import default
+from default import *
 
 from States.Home import Home
 from States.InGame import InGame

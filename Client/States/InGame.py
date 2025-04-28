@@ -11,7 +11,7 @@ class InGame(BaseState):
         self.__init_vars()
 
     def __init_vars(self, *args, **kwargs) -> None:
-        self.puzzle = self.client.get_data("Lobby_Board")
+        self.puzzle = self.client.lobby.lobby_board
         self.board = SudokuBoard(self.screen, self.puzzle)
 
     def update(self, dt: float, events: list, *args, **kwargs):

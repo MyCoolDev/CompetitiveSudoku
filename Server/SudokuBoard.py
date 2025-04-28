@@ -119,3 +119,8 @@ class SudokuGenerator:
         solution_grid = copy.deepcopy(self.grid)
         self.remove_numbers(attempts)
         return solution_grid, self.grid
+
+    @staticmethod
+    def get_empty_cells(grid):
+        """Get the list of empty cells in the grid"""
+        return [(r, c) for r in range(9) for c in range(9) if grid[r][c] == 0]

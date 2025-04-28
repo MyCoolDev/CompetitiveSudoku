@@ -55,6 +55,7 @@ class TextBox(MonoBehaviour):
         self.hidden = hidden
 
         self.max_length = max_length
+        self.num_only = num_only
 
     def update_text(self, content):
         if self.max_length is not None and len(content) > self.max_length:
@@ -123,6 +124,19 @@ class TextBox(MonoBehaviour):
                         self.update_text(self.content + event.unicode)
 
         return False
+
+    def update_board_square(self, dt, events):
+        for event in events:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+
+                self.is_focused = self.is_collide(mouse_pos)
+            if self.is_focused:
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_BACKSPACE:
+                        self.update_text(self.content[:-1])
+                    elif self.num_only and event.unicode in "0123456789":
+                        return event.unicode
 
     def render(self, surface: pygame.Surface) -> pygame.Rect or None:
         self.rect = super().render(surface)

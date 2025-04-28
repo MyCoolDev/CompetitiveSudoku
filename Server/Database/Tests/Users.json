@@ -2,18 +2,21 @@
     "test": {
         "username": "test",
         "password": "243262243132244a736e477a65395a5577464f48794a6c2f737a6c734f2e757953714d4571577a6e66642f4f735a6a623246586e4b58724b4f4c3343",
-        "last_login": "2025-04-19 14:30:58",
+        "last_login": "2025-04-28 09:39:22",
         "last_login_address": [
             "127.0.0.1",
-            63570
+            60230
         ],
         "messages": {
             "seen": {},
             "unseen": []
         },
-        "friends": [],
+        "friends": [
+            "test2",
+            "ron"
+        ],
         "friend_requests": [],
-        "lifetime": 5.7700000000000005,
+        "lifetime": 14.120000000000001,
         "account_level": 1,
         "account_experience": 0,
         "playtime": 0,
@@ -32,9 +35,34 @@
             "seen": {},
             "unseen": []
         },
-        "friends": [],
+        "friends": [
+            "test"
+        ],
         "friend_requests": [],
-        "lifetime": 2.6799999999999997,
+        "lifetime": 14.909999999999998,
+        "account_level": 1,
+        "account_experience": 0,
+        "playtime": 0,
+        "games_played": 0,
+        "games_won": 0
+    },
+    "ron": {
+        "username": "ron",
+        "password": "2432622431322444707161513651714d47716c526531342f306730312e5a33794556635344334d59745056656131364d71457156487a374762727475",
+        "last_login": "2025-03-31 10:41:28",
+        "last_login_address": [
+            "127.0.0.1",
+            54438
+        ],
+        "messages": {
+            "seen": {},
+            "unseen": []
+        },
+        "friends": [
+            "test"
+        ],
+        "friend_requests": [],
+        "lifetime": 1.21,
         "account_level": 1,
         "account_experience": 0,
         "playtime": 0,

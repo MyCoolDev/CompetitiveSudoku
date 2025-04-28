@@ -4,7 +4,11 @@ import socket
 import threading
 import time
 
-from Client.Components.Notification import Notification, NotificationInterface
+from lobby import Lobby
+
+from Client.Components.Notification import NotificationInterface
+
+from dotenv import dotenv_values
 
 
 class ClientSocket:
@@ -15,13 +19,17 @@ class ClientSocket:
 
         self.application = application
 
-        self.server_address = "127.0.0.1"
-        self.server_port = 8080
+        self.config = dotenv_values(".env")
+
+        self.server_address = self.config["SERVER_ADDRESS"]
+        self.server_port = int(self.config["SERVER_PORT"])
 
         # auth token
         self.token = None
 
         self.friends_information = []
+
+        self.lobby: Lobby = None
 
         # saved data
         self.data = {}
@@ -186,27 +194,23 @@ class ClientSocket:
             """
             On lobby user (this) kick.
             """
-            self.set_data("lobby_info", None)
-            self.set_data("Lobby_Role", None)
+            self.lobby = None
 
             # update the notification.
-            self.notifications.append(NotificationInterface("Lobby Kicked", "You have been kicked from the lobby.", span_color=(234, 68, 68)))
+            self.notifications.append(NotificationInterface("Removed From Lobby", "You have been kicked from the lobby by the host.", span_color=(234, 68, 68)))
         elif update["Update"] == "Lobby_Ban":
             """
             On lobby user (this) ban.
             """
-            self.set_data("lobby_info", None)
-            self.set_data("Lobby_Role", None)
+            self.lobby = None
 
             # update the notification.
-            self.notifications.append(NotificationInterface("Lobby Baned", "You have been baned from the lobby.", span_color=(234, 68, 68)))
+            self.notifications.append(NotificationInterface("Baned From Lobby", "You have been baned from the lobby by the host.", span_color=(234, 68, 68)))
         elif update["Update"] == "User_Joined_Lobby":
             """
             On user join the lobby.
             """
-            lobby = self.get_data("lobby_info")
-            lobby[update["Data"]["Role"]].append(update["Data"]["Username"])
-            self.set_data("lobby_info", self.get_data("lobby_info"))
+            self.lobby[update["Data"]["Role"]].append(update["Data"]["Username"])
 
             # update the notification if the user is not the current user.
             if self.get_data("username") != update["Data"]["Username"]:
@@ -215,9 +219,7 @@ class ClientSocket:
             """
             On user left the lobby.
             """
-            lobby = self.get_data("lobby_info")
-            lobby[update["Data"]["Role"]].remove(update["Data"]["Username"])
-            self.set_data("lobby_info", self.get_data("lobby_info"))
+            self.lobby[update["Data"]["Role"]].remove(update["Data"]["Username"])
 
             # update the notification if the user is not the current user.
             if self.get_data("username") != update["Data"]["Username"]:
@@ -226,9 +228,8 @@ class ClientSocket:
             """
             On user become spectator.
             """
-            lobby = self.get_data("lobby_info")
-            lobby["spectators"] += 1
-            lobby["players"].remove(update["Data"]["Username"])
+            self.lobby["spectators"] += 1
+            self.lobby["players"].remove(update["Data"]["Username"])
 
             if self.get_data("username") == update["Data"]["Username"]:
                 self.set_data("Lobby_Role", "spectators")
@@ -236,9 +237,8 @@ class ClientSocket:
             """
             On user become player.
             """
-            lobby = self.get_data("lobby_info")
-            lobby["players"].append(update["Data"]["Username"])
-            lobby["spectators"] -= 1
+            self.lobby["players"].append(update["Data"]["Username"])
+            self.lobby["spectators"] -= 1
 
     @staticmethod
     def check_push_notification_protocol(update: dict):

@@ -15,6 +15,7 @@ class Lobby:
         """
         self.board = SudokuGenerator()
         self.solution, self.puzzle = self.board.generate_puzzle("medium")
+        self.puzzle_size = len(SudokuGenerator.get_empty_cells(self.puzzle))
 
         self.code = code
 
@@ -31,9 +32,9 @@ class Lobby:
 
         self.players_data = {}
 
-        self.BASE_EXP = 10
+        self.BASE_EXP = 10000
 
-        # player data structuren
+        # player data structure
         """
         {
             "username": {
@@ -151,6 +152,9 @@ class Lobby:
         pass
 
     def player_move(self, client: Client, x: int, y: int, value: int) -> bool:
+        """
+        Check if the move is valid and update the player data.
+        """
         username = client.get_data("username")
         if self.solution[x][y] != value:
             self.players_data[username]["mistakes"] += 1
@@ -160,18 +164,36 @@ class Lobby:
         move_time = (datetime.timedelta(seconds=self.MAX_TIME) - (self.ending_time - datetime.datetime.now())).seconds
 
         self.players_data[username]["moves"] += (x, y)
-        self.players_data[username]["game_exp"] += self.BASE_EXP * move_time
+        self.players_data[username]["game_exp"] += round(self.BASE_EXP / move_time)
+        self.players_data[username]["score"] = len(self.players_data[username]["moves"]) / self.puzzle_size
+        self.update_leaderboard()
         return True
 
     # def update_score(self, client):
     #     self.players_data[username]
 
-    def check_timer(self):
+    def check_timer(self) -> int:
         """
         check the time left for the game.
         :return: the time left for the game in seconds.
         """
         return (self.ending_time - datetime.datetime.now()).seconds
+
+    def update_leaderboard(self) -> None:
+        """
+        get the updated leaderboard and send it to everyone on the lobby.
+        """
+        self.leaderboard = self.get_leaderboard()
+        for player in self.players + self.spectators:
+            player.push_notification("Leaderboard", {"Leaderboard": self.leaderboard})
+
+    def get_leaderboard(self) -> list:
+        """
+        Get the leaderboard of the game.
+        :return: The leaderboard of the game.
+        """
+        self.leaderboard = sorted(self.players_data.items(), key=lambda x: x[1]["score"], reverse=True)
+        return self.leaderboard
 
     def __repr__(self):
         return {

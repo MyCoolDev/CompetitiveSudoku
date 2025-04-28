@@ -196,7 +196,8 @@ class ServerSocket:
         utils.server_print("Handler", f"Request ({request_id}), passed all checks.")
 
         # register the user
-        if not api.account.register(client.address, request["Data"]["Username"], request["Data"]["Password"], self.database):
+        if not api.account.register(client.address, request["Data"]["Username"], request["Data"]["Password"],
+                                    self.database):
             utils.server_print("Handler Error", f"Request ({request_id}), Error while registering the user.")
             client.send_response(rid, 500, "Internal Server Error", {"Msg": "Error while registering the user."})
             return
@@ -677,7 +678,8 @@ class ServerSocket:
         """
         Start lobby game.
         """
-        utils.server_print("Handle", f"Request ({request_id}), identified as Start Game from " + str(client.address) + ".")
+        utils.server_print("Handle",
+                           f"Request ({request_id}), identified as Start Game from " + str(client.address) + ".")
 
         # check if the token exists
         if "Token" not in request or request["Token"] != client.get_data("token"):
@@ -709,7 +711,8 @@ class ServerSocket:
 
         utils.server_print("Server", f"Request ({request_id}), Game started on lobby {lobby.code}.")
 
-    def handle_game_move(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+    @staticmethod
+    def handle_game_move(client: Client, request: dict, rid: int, request_id: int) -> None:
         """
         Handle game move.
         """
@@ -721,6 +724,36 @@ class ServerSocket:
             utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
             client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
             return
+
+        if "Move" not in request["Data"] or type(request["Data"]["Move"]) is not dict:
+            utils.server_print("Handler Error", f"Request ({request_id}), Not move provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "Not move provided."})
+            return
+
+        if "row" in request["Data"]["Move"] or "column" in request["Data"]["Move"] or "value" not in request["Data"][
+            "Move"] or type(request["Data"]["Move"]["row"]) is not int or type(
+                request["Data"]["Move"]["column"]) is not int or type(request["Data"]["Move"]["value"]) is not int:
+            utils.server_print("Handler Error", f"Request ({request_id}), Invalid move provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "Invalid move provided."})
+            return
+
+        lobby: Lobby = client.get_data("lobby_info")
+        if lobby is None:
+            utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        status = lobby.player_move(client, request["Data"]["Move"]["row"], request["Data"]["Move"]["column"],
+                                        request["Data"]["Move"]["value"])
+
+        if status:
+            utils.server_print("Game Handler", f"Request ({request_id}), Move accepted.")
+            client.send_response(rid, 200, "OK", {"Msg": "Move accepted."})
+        else:
+            utils.server_print("Game Handler", f"Request ({request_id}), Move rejected.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "Move rejected."})
 
     # -- Friend System Handlers --
 
@@ -765,7 +798,8 @@ class ServerSocket:
         Accept a friend request.
         """
         utils.server_print("Handler",
-                           f"Request ({request_id}), identified as Accept Friend Request from " + str(client.address) + ".")
+                           f"Request ({request_id}), identified as Accept Friend Request from " + str(
+                               client.address) + ".")
 
         # check if the token exists
         if "Token" not in request or request["Token"] != client.get_data("token"):
@@ -788,7 +822,7 @@ class ServerSocket:
         # check if the user sent a request already.
         friend_list = api.friend.get_friend_list(client.get_data("username"), self.logged_clients, self.database)[1]
 
-        if request["Data"]["Username"] in friend_list:
+        if request["Data"]["Username"] not in friend_list:
             utils.server_print("Handler Error", f"Request ({request_id}), No Friend Request")
             client.send_response(rid, 404, "Not Found", {"Msg": "No friend request."})
             return
@@ -798,7 +832,9 @@ class ServerSocket:
         api.friend.accept_friend(request["Data"]["Username"], client.get_data("username"), self.database)
         client.send_response(rid, 200, "OK", {"Msg": "Friend request accepted."})
 
-        self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request_Accepted", {"Username": client.get_data("username")})
+        if request["Data"]["Username"] in self.logged_clients:
+            self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request_Accepted", {
+                "Username": client.get_data("username")})
 
         utils.server_print("Server", f"Request ({request_id}), Friend Request Accepted.")
 
@@ -831,7 +867,7 @@ class ServerSocket:
         # check if the user sent a request already.
         friend_list = api.friend.get_friend_list(client.get_data("username"), self.logged_clients, self.database)[1]
 
-        if request["Data"]["Username"] in friend_list:
+        if request["Data"]["Username"] not in friend_list:
             utils.server_print("Handler Error", f"Request ({request_id}), No Friend Request")
             client.send_response(rid, 404, "Not Found", {"Msg": "No friend request."})
             return
@@ -897,7 +933,8 @@ class ServerSocket:
         # set the running variable to true and start the main loop.
         self.__running = True
 
-        utils.server_print("Status", f"Server is running on {self.address}:{self.port} using {'Official' if self.db_profile == 1 else 'Test'} db.")
+        utils.server_print("Status",
+                           f"Server is running on {self.address}:{self.port} using {'Official' if self.db_profile == 1 else 'Test'} db.")
 
         self.run()
 

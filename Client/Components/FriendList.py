@@ -1,11 +1,8 @@
 from Client.default import *
 
-from Client.Components.MonoBehaviour import MonoBehaviour
-from Client.Components.Text import Text
+from Client.Components.default_comp import *
 from Client.client import ClientSocket
-from Client.Components.Friend import Friend
-from Client.Components.TextBox import TextBox
-from Client.Components.Image import Image
+from Client.Components.Friend import FriendInterface, FriendRequest
 
 
 class FriendList:
@@ -42,7 +39,7 @@ class FriendList:
 
         # count all the online friends
         online = 0
-        for friend in self.client.friends_information[0]:
+        for friend in self.client.friends_information[0][0]:
             if friend["status"] == "Online":
                 online += 1
 
@@ -76,25 +73,31 @@ class FriendList:
 
         self.online_display_bg = MonoBehaviour(Vector2(self.width, 65), self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y), (32, 32, 32))
         self.online_text = Text("Online", "Medium", 10, self.friends_selection_bg.position + Vector2(0, 0), (87, 255, 53), left_mode=True)
-        self.online_counter = Text(f"{online}/{len(self.client.friends_information[0])}", "Medium", 10, Vector2(0, 0), (255, 255, 255), left_mode=True)
+        self.online_counter = Text(f"{online}/{len(self.client.friends_information[0][0])}", "Medium", 10, Vector2(0, 0), (255, 255, 255), left_mode=True)
 
         self.online_text.update_position(self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y) + Vector2((self.width - self.online_text.text_surface.get_size()[0] - 300 - self.online_counter.text_surface.get_size()[0]) / 2, 65 / 2))
         self.online_counter.update_position(self.online_text.position + Vector2(self.online_text.text_surface.get_size()[0] + 300, 0))
 
-        for i, friend in enumerate(filter(lambda x: x["status"] == "Online", self.client.friends_information[0])):
-                self.online_friends.append(Friend(friend).to_renderable_list(self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y + 65) + Vector2(0, i * (76 + 10))))
+        for i, friend in enumerate(filter(lambda x: x["status"] == "Online", self.client.friends_information[0][0])):
+                self.online_friends.append(FriendInterface(friend).to_renderable_list(self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y + 65) + Vector2(0, i * (76 + 10))))
 
         # offline friends
 
         self.offline_display_bg = MonoBehaviour(Vector2(self.width, 65), (self.online_friends[-1][0].position + Vector2(0, self.online_friends[-1][0].size.y) if len(self.online_friends) > 0 else self.online_display_bg.position + Vector2(0, self.online_display_bg.size.y)), (32, 32, 32))
         self.offline_text = Text("Offline", "Medium", 10, self.offline_display_bg.position, (180, 180, 180), left_mode=True)
-        self.offline_counter = Text(f"{len(self.client.friends_information[0]) - online}/{len(self.client.friends_information[0])}", "Medium", 10, Vector2(0, 0), (255, 255, 255), left_mode=True)
+        self.offline_counter = Text(f"{len(self.client.friends_information[0][0]) - online}/{len(self.client.friends_information[0][0])}", "Medium", 10, Vector2(0, 0), (255, 255, 255), left_mode=True)
 
         self.offline_text.update_position(self.offline_display_bg.position + Vector2((self.width - self.offline_text.text_surface.get_size()[0] - 300 - self.offline_counter.text_surface.get_size()[0]) / 2, 65 / 2))
         self.offline_counter.update_position(self.offline_text.position + Vector2(self.offline_text.text_surface.get_size()[0] + 300, 0))
 
-        for i, friend in enumerate(filter(lambda x: x["status"] == "Offline", self.client.friends_information[0])):
-            self.offline_friends.append(Friend(friend).to_renderable_list(self.offline_display_bg.position + Vector2(0, self.offline_display_bg.size.y + 65) + Vector2(0, i * (76 + 10))))
+        for i, friend in enumerate(filter(lambda x: x["status"] == "Offline", self.client.friends_information[0][0])):
+            self.offline_friends.append(FriendInterface(friend).to_renderable_list(self.offline_display_bg.position + Vector2(0, self.offline_display_bg.size.y + 65) + Vector2(0, i * (76 + 10))))
+
+        # request sections
+        self.renderable_requests = []
+
+        for index, request_username in enumerate(self.client.friends_information[1]):
+            self.renderable_requests.append(FriendRequest(request_username, self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y) + Vector2(0, index * (76 + 10))))
 
         # Add Friend
         self.add_friend_bg = MonoBehaviour(Vector2(self.width, 75), Vector2(self.friends_selection_bg.position.x, self.screen.get_height() - 75), (32, 32, 32))
@@ -146,6 +149,10 @@ class FriendList:
                 else:
                     comp.position = Vector2(self.background.position.x, comp.position.y)
 
+        self.renderable_requests = []
+        for index, request_username in enumerate(self.client.friends_information[1]):
+            self.renderable_requests.append(FriendRequest(request_username, self.friends_selection_bg.position + Vector2(0, self.friends_selection_bg.size.y) + Vector2(0, index * (76 + 10))))
+
     def update(self, dt: float, events: list):
         """
         Update the friend list display.
@@ -176,6 +183,18 @@ class FriendList:
             self.__update_positions()
 
         elif self.shown:
+            if self.friend_tab:
+                pass
+            else:
+                for request in self.renderable_requests:
+                    status = request.update(dt, events)
+                    if status is not None:
+                        print(request.username)
+                        if status:
+                            self.client.send_request("accept_friend", {"Username": request.username})
+                        else:
+                            self.client.send_request("reject_friend", {"Username": request.username})
+
             for event in events:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_pos = pygame.mouse.get_pos()
@@ -241,3 +260,8 @@ class FriendList:
                             comp.render(self.screen)
                     elif comp.position.x + comp.size.x >= 0:
                         comp.render(self.screen)
+
+        else:
+            for request in self.renderable_requests:
+                request.render(self.screen)
+

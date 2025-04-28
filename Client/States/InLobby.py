@@ -37,7 +37,7 @@ class InLobby(BaseState):
         self.join_lobby.play()
 
     def __init_vars(self, *args, **kwargs) -> None:
-        self.data = self.client.get_data('lobby_info')
+        self.data = self.client.lobby.to_dict()
         self.old_data = copy.deepcopy(self.data)
         self.data_checksum = self.client.create_checksum(self.data)
 
@@ -155,8 +155,8 @@ class InLobby(BaseState):
             response = self.client.send_request("Start_Game", {})
             if response["StatusCode"] == 200:
                 print("test")
-                self.client.set_data("Lobby_Board", response["Data"]["Board"])
-                self.client.set_data("lobby_status", True)
+                self.client.lobby.lobby_board = response["Data"]["Board"]
+                self.client.lobby.started = True
 
         # check if data has changed, if not don't update.
 

@@ -10,6 +10,7 @@ from Client.Components.Text import Text
 from Client.Components.TextBox import TextBox
 from Client.States.BaseState import BaseState
 from Client.client import ClientSocket
+from Client.lobby import Lobby
 
 
 class Home(BaseState):
@@ -48,17 +49,13 @@ class Home(BaseState):
         response = self.client.send_request("Create_Lobby", {})
         if response["StatusCode"] == 201:
             print("Lobby created successfully")
-            self.client.set_data("lobby_info", response["Data"]["Lobby_Info"])
-            self.client.set_data("Lobby_Role", "players")
-            self.client.set_data("Lobby_Status", False)
+            self.client.lobby = Lobby.from_dict(response["Data"]["Lobby_Info"], "players")
 
     def join_lobby(self):
         response = self.client.send_request("Join_Lobby", {"Code": self.lobby_code.content})
         if response["StatusCode"] == 200:
             print("Lobby joined successfully")
-            self.client.set_data("lobby_info", response["Data"]["Lobby_Info"])
-            self.client.set_data("Lobby_Role", response["Data"]["Role"])
-            self.client.set_data("Lobby_Status", False)
+            self.client.lobby = Lobby.from_dict(response["Data"]["Lobby_Info"], response["Data"]["Role"])
 
     def render(self, *args, **kwargs):
         self.title.render(self.screen)

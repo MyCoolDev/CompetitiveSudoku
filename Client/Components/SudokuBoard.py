@@ -13,10 +13,10 @@ class SudokuBoard:
         ]
 
     def update(self, dt, events):
-        for line in self.files:
-            for file in line:
+        for i, line in enumerate(self.files):
+            for k, file in enumerate(line):
                 if file.default_content == "":
-                    file.update(dt, events)
+                    key = file.update(dt, events)
 
     def render(self):
         for line in self.files:

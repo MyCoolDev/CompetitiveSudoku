@@ -1,0 +1,280 @@
+=============== Initiating the server. ===============
+[31-03-2025 08:26:43] [Database] Database worker is running
+[31-03-2025 08:26:43] [Status] ServerSocket initialized.
+[31-03-2025 08:26:43] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[31-03-2025 08:26:46] [Connection] Client ('127.0.0.1', 52778) connection request accepted.
+[31-03-2025 08:26:47] [Handler] Starting to handle ('127.0.0.1', 52778).
+[31-03-2025 08:26:50] [Handler] Request (0) received from ('127.0.0.1', 52778).
+[31-03-2025 08:26:50] [Handler] Request (0), identified as Login from ('127.0.0.1', 52778).
+[31-03-2025 08:26:51] [Handler] Request (0), Request passed all checks.
+[31-03-2025 08:26:51] [Server] Request (0), User test logged in successfully.
+[31-03-2025 08:26:52] [Handler] Request (1) received from ('127.0.0.1', 52778).
+[31-03-2025 08:26:52] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 52778).
+[31-03-2025 08:26:52] [Handler] Request (1), Request passed all checks.
+[31-03-2025 08:26:52] [Lobby Manager] Creating new lobby
+[31-03-2025 08:26:52] [Server] Request (1), Lobby created successfully.
+[31-03-2025 08:27:02] [Connection] Client ('127.0.0.1', 52779) connection request accepted.
+[31-03-2025 08:27:03] [Handler] Starting to handle ('127.0.0.1', 52779).
+[31-03-2025 08:27:08] [Handler] Request (2) received from ('127.0.0.1', 52779).
+[31-03-2025 08:27:08] [Handler] Request (2), identified as Login from ('127.0.0.1', 52779).
+[31-03-2025 08:27:09] [Handler] Request (2), Request passed all checks.
+[31-03-2025 08:27:09] [Server] Request (2), User test2 logged in successfully.
+[31-03-2025 08:27:13] [Handler] Request (3) received from ('127.0.0.1', 52779).
+[31-03-2025 08:27:13] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52779).
+[31-03-2025 08:27:13] [Handler] Request (3), Request passed all checks.
+[31-03-2025 08:27:13] [Server] Request (3), Client registered to lobby 181386.
+[31-03-2025 08:27:19] [Handler] Request (4) received from ('127.0.0.1', 52778).
+[31-03-2025 08:27:19] [Handler] Request (4), identified as Kick User From Lobby from ('127.0.0.1', 52778).
+[31-03-2025 08:27:20] [Handler] Request (4), Request passed all checks.
+[31-03-2025 08:27:20] [Server] Request (4), Client test2 kicked the lobby 181386.
+[31-03-2025 08:27:37] [Handler] Request (5) received from ('127.0.0.1', 52778).
+[31-03-2025 08:27:37] [Handler] Request (5), identified as Add Friend from ('127.0.0.1', 52778).
+[31-03-2025 08:27:37] [Handler] Request (5), Request passed all checks.
+[31-03-2025 08:27:38] [Server] Request (5), Friend Request Sent.
+[31-03-2025 08:29:40] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 08:29:41] [Server] Client test2 disconnected.
+[31-03-2025 08:29:42] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 08:29:43] [Lobby Manager] Removing test from lobby 181386.
+[31-03-2025 08:29:43] [Server] Client test disconnected.
+[31-03-2025 08:29:47] [Connection] Client ('127.0.0.1', 52838) connection request accepted.
+[31-03-2025 08:29:47] [Handler] Starting to handle ('127.0.0.1', 52838).
+[31-03-2025 08:29:52] [Handler] Request (8) received from ('127.0.0.1', 52838).
+[31-03-2025 08:29:52] [Handler] Request (8), identified as Login from ('127.0.0.1', 52838).
+[31-03-2025 08:29:52] [Handler] Request (8), Request passed all checks.
+[31-03-2025 08:29:52] [Server] Request (8), User test2 logged in successfully.
+[31-03-2025 08:34:20] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 08:34:20] [Server] Client test2 disconnected.
+[31-03-2025 08:34:22] [Connection] Client ('127.0.0.1', 52881) connection request accepted.
+[31-03-2025 08:34:22] [Handler] Starting to handle ('127.0.0.1', 52881).
+[31-03-2025 08:34:35] [Handler] Request (10) received from ('127.0.0.1', 52881).
+[31-03-2025 08:34:35] [Handler] Request (10) identified as Register from ('127.0.0.1', 52881).
+[31-03-2025 08:34:35] [Handler Error] Request (10), Username already registered.
+[31-03-2025 08:34:44] [Handler] Request (11) received from ('127.0.0.1', 52881).
+[31-03-2025 08:34:44] [Handler] Request (11), identified as Login from ('127.0.0.1', 52881).
+[31-03-2025 08:34:45] [Handler] Request (11), Request passed all checks.
+[31-03-2025 08:34:45] [Server] Request (11), User test logged in successfully.
+[31-03-2025 08:34:47] [Handler] Request (12) received from ('127.0.0.1', 52881).
+[31-03-2025 08:34:48] [Handler] Request (12), identified as Create Lobby from ('127.0.0.1', 52881).
+[31-03-2025 08:34:48] [Handler] Request (12), Request passed all checks.
+[31-03-2025 08:34:48] [Lobby Manager] Creating new lobby
+[31-03-2025 08:34:48] [Server] Request (12), Lobby created successfully.
+[31-03-2025 08:34:53] [Connection] Client ('127.0.0.1', 52883) connection request accepted.
+[31-03-2025 08:34:53] [Handler] Starting to handle ('127.0.0.1', 52883).
+[31-03-2025 08:34:56] [Handler] Request (13) received from ('127.0.0.1', 52883).
+[31-03-2025 08:34:57] [Handler] Request (13), identified as Login from ('127.0.0.1', 52883).
+[31-03-2025 08:34:57] [Handler] Request (13), Request passed all checks.
+[31-03-2025 08:34:57] [Server] Request (13), User test2 logged in successfully.
+[31-03-2025 08:34:59] [Handler] Request (14) received from ('127.0.0.1', 52883).
+[31-03-2025 08:34:59] [Handler] Request identified as Join Lobby from ('127.0.0.1', 52883).
+[31-03-2025 08:34:59] [Handler] Request (14), Request passed all checks.
+[31-03-2025 08:34:59] [Server] Request (14), Client registered to lobby 002615.
+[31-03-2025 08:35:06] [Handler] Request (15) received from ('127.0.0.1', 52881).
+[31-03-2025 08:35:06] [Handler] Request (15), identified as Kick User From Lobby from ('127.0.0.1', 52881).
+[31-03-2025 08:35:06] [Handler] Request (15), Request passed all checks.
+[31-03-2025 08:35:06] [Server] Request (15), Client test2 kicked the lobby 002615.
+[31-03-2025 08:38:58] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 08:38:58] [Server] Client test2 disconnected.
+[31-03-2025 08:38:59] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 08:38:59] [Lobby Manager] Removing test from lobby 002615.
+[31-03-2025 08:38:59] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[31-03-2025 10:04:57] [Database] Database worker is running
+[31-03-2025 10:04:57] [Status] ServerSocket initialized.
+[31-03-2025 10:04:57] [Status] Server is running on 127.0.0.1:8080 using Test db.
+=============== Initiating the server. ===============
+[31-03-2025 10:06:53] [Database] Database worker is running
+[31-03-2025 10:06:53] [Status] ServerSocket initialized.
+[31-03-2025 10:06:53] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[31-03-2025 10:06:55] [Connection] Client ('127.0.0.1', 53866) connection request accepted.
+[31-03-2025 10:06:55] [Handler] Starting to handle ('127.0.0.1', 53866).
+[31-03-2025 10:06:58] [Handler] Request (0) received from ('127.0.0.1', 53866).
+[31-03-2025 10:06:58] [Handler] Request (0), identified as Login from ('127.0.0.1', 53866).
+[31-03-2025 10:06:59] [Handler] Request (0), Request passed all checks.
+[31-03-2025 10:06:59] [Server] Request (0), User test2 logged in successfully.
+[31-03-2025 10:07:14] [Handler] Request (1) received from ('127.0.0.1', 53866).
+[31-03-2025 10:07:14] [Handler] Request (1), identified as Reject Friend Request from ('127.0.0.1', 53866).
+[31-03-2025 10:07:14] [Handler Error] Request (1), No Friend Request
+[31-03-2025 10:07:14] [Handler] Request (2) received from ('127.0.0.1', 53866).
+[31-03-2025 10:07:15] [Handler] Request (2), identified as Reject Friend Request from ('127.0.0.1', 53866).
+[31-03-2025 10:07:15] [Handler Error] Request (2), No Friend Request
+[31-03-2025 10:07:15] [Handler] Request (3) received from ('127.0.0.1', 53866).
+[31-03-2025 10:07:15] [Handler] Request (3), identified as Reject Friend Request from ('127.0.0.1', 53866).
+[31-03-2025 10:07:15] [Handler Error] Request (3), No Friend Request
+[31-03-2025 10:07:15] [Handler] Request (4) received from ('127.0.0.1', 53866).
+[31-03-2025 10:07:15] [Handler] Request (4), identified as Reject Friend Request from ('127.0.0.1', 53866).
+[31-03-2025 10:07:16] [Handler Error] Request (4), No Friend Request
+[31-03-2025 10:07:31] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 10:07:31] [Server] Client test2 disconnected.
+=============== Initiating the server. ===============
+[31-03-2025 10:12:23] [Database] Database worker is running
+[31-03-2025 10:12:23] [Status] ServerSocket initialized.
+[31-03-2025 10:12:23] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[31-03-2025 10:12:26] [Connection] Client ('127.0.0.1', 54000) connection request accepted.
+[31-03-2025 10:12:26] [Handler] Starting to handle ('127.0.0.1', 54000).
+[31-03-2025 10:12:36] [Handler] Request (0) received from ('127.0.0.1', 54000).
+[31-03-2025 10:12:36] [Handler] Request (0), identified as Login from ('127.0.0.1', 54000).
+[31-03-2025 10:12:37] [Handler] Request (0), Request passed all checks.
+[31-03-2025 10:12:37] [Server] Request (0), User test2 logged in successfully.
+[31-03-2025 10:12:49] [Handler] Request (1) received from ('127.0.0.1', 54000).
+[31-03-2025 10:12:49] [Handler] Request (1), identified as Accept Friend Request from ('127.0.0.1', 54000).
+[31-03-2025 10:12:50] [Handler Error] Request (1), No Friend Request
+[31-03-2025 10:13:09] [Handler] Request (2) received from ('127.0.0.1', 54000).
+[31-03-2025 10:13:09] [Handler] Request (2), identified as Reject Friend Request from ('127.0.0.1', 54000).
+[31-03-2025 10:13:09] [Handler Error] Request (2), No Friend Request
+=============== Initiating the server. ===============
+=============== Initiating the server. ===============
+[31-03-2025 10:18:07] [Database] Database worker is running
+[31-03-2025 10:18:07] [Status] ServerSocket initialized.
+[31-03-2025 10:18:07] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[31-03-2025 10:18:12] [Connection] Client ('127.0.0.1', 54123) connection request accepted.
+[31-03-2025 10:18:13] [Handler] Starting to handle ('127.0.0.1', 54123).
+[31-03-2025 10:18:17] [Handler] Request (0) received from ('127.0.0.1', 54123).
+[31-03-2025 10:18:17] [Handler] Request (0), identified as Login from ('127.0.0.1', 54123).
+[31-03-2025 10:18:18] [Handler] Request (0), Request passed all checks.
+[31-03-2025 10:18:18] [Server] Request (0), User test2 logged in successfully.
+[31-03-2025 10:18:30] [Handler] Request (1) received from ('127.0.0.1', 54123).
+[31-03-2025 10:18:30] [Handler] Request (1), identified as Accept Friend Request from ('127.0.0.1', 54123).
+[31-03-2025 10:18:30] [Handler Error] Request (1), No Friend Request
+=============== Initiating the server. ===============
+[31-03-2025 10:19:21] [Database] Database worker is running
+[31-03-2025 10:19:21] [Status] ServerSocket initialized.
+[31-03-2025 10:19:21] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[31-03-2025 10:19:25] [Connection] Client ('127.0.0.1', 54131) connection request accepted.
+[31-03-2025 10:19:25] [Handler] Starting to handle ('127.0.0.1', 54131).
+[31-03-2025 10:19:28] [Handler] Request (0) received from ('127.0.0.1', 54131).
+[31-03-2025 10:19:28] [Handler] Request (0), identified as Login from ('127.0.0.1', 54131).
+[31-03-2025 10:19:29] [Handler Error] Request (0), Invalid credentials.
+[31-03-2025 10:19:33] [Handler] Request (1) received from ('127.0.0.1', 54131).
+[31-03-2025 10:19:33] [Handler] Request (1), identified as Login from ('127.0.0.1', 54131).
+[31-03-2025 10:19:34] [Handler Error] Request (1), Invalid credentials.
+[31-03-2025 10:19:39] [Handler] Request (2) received from ('127.0.0.1', 54131).
+[31-03-2025 10:19:40] [Handler] Request (2), identified as Login from ('127.0.0.1', 54131).
+[31-03-2025 10:19:41] [Handler] Request (2), Request passed all checks.
+[31-03-2025 10:19:41] [Server] Request (2), User test2 logged in successfully.
+[31-03-2025 10:21:12] [Handler] Request (3) received from ('127.0.0.1', 54131).
+[31-03-2025 10:21:12] [Handler] Request (3), identified as Accept Friend Request from ('127.0.0.1', 54131).
+[31-03-2025 10:21:12] [Handler Error] Request (3), No Friend Request
+=============== Initiating the server. ===============
+[31-03-2025 10:23:34] [Database] Database worker is running
+[31-03-2025 10:23:34] [Status] ServerSocket initialized.
+[31-03-2025 10:23:34] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[31-03-2025 10:23:36] [Connection] Client ('127.0.0.1', 54162) connection request accepted.
+[31-03-2025 10:23:37] [Handler] Starting to handle ('127.0.0.1', 54162).
+[31-03-2025 10:23:47] [Handler] Request (0) received from ('127.0.0.1', 54162).
+[31-03-2025 10:23:47] [Handler] Request (0), identified as Login from ('127.0.0.1', 54162).
+[31-03-2025 10:23:48] [Handler] Request (0), Request passed all checks.
+[31-03-2025 10:23:49] [Server] Request (0), User test2 logged in successfully.
+[31-03-2025 10:23:54] [Handler] Request (1) received from ('127.0.0.1', 54162).
+[31-03-2025 10:23:54] [Handler] Request (1), identified as Accept Friend Request from ('127.0.0.1', 54162).
+[31-03-2025 10:23:55] [Handler Error] Request (1), No Friend Request
+=============== Initiating the server. ===============
+[31-03-2025 10:29:59] [Database] Database worker is running
+[31-03-2025 10:29:59] [Status] ServerSocket initialized.
+[31-03-2025 10:29:59] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[31-03-2025 10:30:02] [Connection] Client ('127.0.0.1', 54224) connection request accepted.
+[31-03-2025 10:30:02] [Handler] Starting to handle ('127.0.0.1', 54224).
+[31-03-2025 10:30:06] [Handler] Request (0) received from ('127.0.0.1', 54224).
+[31-03-2025 10:30:06] [Handler] Request (0), identified as Login from ('127.0.0.1', 54224).
+[31-03-2025 10:30:07] [Handler] Request (0), Request passed all checks.
+[31-03-2025 10:30:07] [Server] Request (0), User test2 logged in successfully.
+[31-03-2025 10:30:21] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 10:30:21] [Server] Client test2 disconnected.
+[31-03-2025 10:30:24] [Connection] Client ('127.0.0.1', 54229) connection request accepted.
+[31-03-2025 10:30:24] [Handler] Starting to handle ('127.0.0.1', 54229).
+[31-03-2025 10:30:29] [Handler] Request (2) received from ('127.0.0.1', 54229).
+[31-03-2025 10:30:29] [Handler] Request (2), identified as Login from ('127.0.0.1', 54229).
+[31-03-2025 10:30:30] [Handler] Request (2), Request passed all checks.
+[31-03-2025 10:30:31] [Server] Request (2), User test2 logged in successfully.
+[31-03-2025 10:30:38] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 10:30:38] [Server] Client test2 disconnected.
+[31-03-2025 10:30:58] [Connection] Client ('127.0.0.1', 54233) connection request accepted.
+[31-03-2025 10:30:58] [Handler] Starting to handle ('127.0.0.1', 54233).
+[31-03-2025 10:31:01] [Handler] Request (4) received from ('127.0.0.1', 54233).
+[31-03-2025 10:31:01] [Handler] Request (4), identified as Login from ('127.0.0.1', 54233).
+[31-03-2025 10:31:02] [Handler] Request (4), Request passed all checks.
+[31-03-2025 10:31:02] [Server] Request (4), User test logged in successfully.
+[31-03-2025 10:31:09] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 10:31:09] [Server] Client test disconnected.
+[31-03-2025 10:31:13] [Connection] Client ('127.0.0.1', 54237) connection request accepted.
+[31-03-2025 10:31:13] [Handler] Starting to handle ('127.0.0.1', 54237).
+[31-03-2025 10:31:17] [Handler] Request (6) received from ('127.0.0.1', 54237).
+[31-03-2025 10:31:17] [Handler] Request (6), identified as Login from ('127.0.0.1', 54237).
+[31-03-2025 10:31:18] [Handler] Request (6), Request passed all checks.
+[31-03-2025 10:31:18] [Server] Request (6), User test2 logged in successfully.
+[31-03-2025 10:31:23] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 10:31:23] [Server] Client test2 disconnected.
+[31-03-2025 10:31:37] [Connection] Client ('127.0.0.1', 54242) connection request accepted.
+[31-03-2025 10:31:37] [Handler] Starting to handle ('127.0.0.1', 54242).
+[31-03-2025 10:31:41] [Handler] Request (8) received from ('127.0.0.1', 54242).
+[31-03-2025 10:31:41] [Handler] Request (8), identified as Login from ('127.0.0.1', 54242).
+[31-03-2025 10:31:42] [Handler] Request (8), Request passed all checks.
+[31-03-2025 10:31:42] [Server] Request (8), User test2 logged in successfully.
+[31-03-2025 10:31:56] [Handler] Request (9) received from ('127.0.0.1', 54242).
+[31-03-2025 10:31:56] [Handler] Request (9), identified as Accept Friend Request from ('127.0.0.1', 54242).
+[31-03-2025 10:31:57] [Handler] Request (9), Request passed all checks.
+[31-03-2025 10:31:57] [Handler | send_response] [WinError 10054] An existing connection was forcibly closed by the remote host
+[31-03-2025 10:31:57] [Server] Request (9), Friend Request Accepted.
+=============== Initiating the server. ===============
+[31-03-2025 10:33:22] [Database] Database worker is running
+[31-03-2025 10:33:22] [Status] ServerSocket initialized.
+[31-03-2025 10:33:22] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[31-03-2025 10:33:24] [Connection] Client ('127.0.0.1', 54249) connection request accepted.
+[31-03-2025 10:33:25] [Handler] Starting to handle ('127.0.0.1', 54249).
+[31-03-2025 10:33:28] [Handler] Request (0) received from ('127.0.0.1', 54249).
+[31-03-2025 10:33:28] [Handler] Request (0), identified as Login from ('127.0.0.1', 54249).
+[31-03-2025 10:33:29] [Handler] Request (0), Request passed all checks.
+[31-03-2025 10:33:29] [Server] Request (0), User test2 logged in successfully.
+[31-03-2025 10:33:45] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 10:33:45] [Server] Client test2 disconnected.
+=============== Initiating the server. ===============
+[31-03-2025 10:39:46] [Database] Database worker is running
+[31-03-2025 10:39:46] [Status] ServerSocket initialized.
+[31-03-2025 10:39:46] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[31-03-2025 10:39:51] [Connection] Client ('127.0.0.1', 54428) connection request accepted.
+[31-03-2025 10:39:52] [Handler] Starting to handle ('127.0.0.1', 54428).
+[31-03-2025 10:40:09] [Handler] Request (0) received from ('127.0.0.1', 54428).
+[31-03-2025 10:40:09] [Handler] Request (0) identified as Register from ('127.0.0.1', 54428).
+[31-03-2025 10:40:09] [Handler Error] Request (0), Username already registered.
+[31-03-2025 10:40:18] [Handler] Request (1) received from ('127.0.0.1', 54428).
+[31-03-2025 10:40:18] [Handler] Request (1) identified as Register from ('127.0.0.1', 54428).
+[31-03-2025 10:40:18] [Handler] Request (1), passed all checks.
+[31-03-2025 10:40:19] [Server] Request (1), User ron registered.
+[31-03-2025 10:40:29] [Handler] Request (2) received from ('127.0.0.1', 54428).
+[31-03-2025 10:40:29] [Handler] Request (2), identified as Add Friend from ('127.0.0.1', 54428).
+[31-03-2025 10:40:29] [Handler] Request (2), Request passed all checks.
+[31-03-2025 10:40:29] [Server] Request (2), Friend Request Sent.
+[31-03-2025 10:40:40] [Connection] Client ('127.0.0.1', 54437) connection request accepted.
+[31-03-2025 10:40:40] [Handler] Starting to handle ('127.0.0.1', 54437).
+[31-03-2025 10:40:44] [Handler] Request (3) received from ('127.0.0.1', 54437).
+[31-03-2025 10:40:44] [Handler] Request (3), identified as Login from ('127.0.0.1', 54437).
+[31-03-2025 10:40:45] [Handler] Request (3), Request passed all checks.
+[31-03-2025 10:40:45] [Server] Request (3), User test logged in successfully.
+[31-03-2025 10:40:56] [Handler] Request (4) received from ('127.0.0.1', 54437).
+[31-03-2025 10:40:56] [Handler] Request (4), identified as Accept Friend Request from ('127.0.0.1', 54437).
+[31-03-2025 10:40:57] [Handler] Request (4), Request passed all checks.
+[31-03-2025 10:40:57] [Server] Request (4), Friend Request Accepted.
+[31-03-2025 10:41:00] [Handler] Request (5) received from ('127.0.0.1', 54437).
+[31-03-2025 10:41:00] [Handler] Request (5), identified as Accept Friend Request from ('127.0.0.1', 54437).
+[31-03-2025 10:41:00] [Handler Error] Request (5), No Friend Request
+[31-03-2025 10:41:03] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 10:41:04] [Server] Client test disconnected.
+[31-03-2025 10:41:05] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 10:41:06] [Server] Client ron disconnected.
+[31-03-2025 10:41:10] [Connection] Client ('127.0.0.1', 54438) connection request accepted.
+[31-03-2025 10:41:10] [Handler] Starting to handle ('127.0.0.1', 54438).
+[31-03-2025 10:41:26] [Handler] Request (8) received from ('127.0.0.1', 54438).
+[31-03-2025 10:41:26] [Handler] Request (8), identified as Login from ('127.0.0.1', 54438).
+[31-03-2025 10:41:27] [Handler] Request (8), Request passed all checks.
+[31-03-2025 10:41:28] [Server] Request (8), User ron logged in successfully.
+[31-03-2025 10:41:36] [Handler] Request (9) received from ('127.0.0.1', 54438).
+[31-03-2025 10:41:36] [Handler] Request (9), identified as Create Lobby from ('127.0.0.1', 54438).
+[31-03-2025 10:41:36] [Handler] Request (9), Request passed all checks.
+[31-03-2025 10:41:37] [Lobby Manager] Creating new lobby
+[31-03-2025 10:41:37] [Server] Request (9), Lobby created successfully.
+[31-03-2025 10:41:42] [Handler] Request (10) received from ('127.0.0.1', 54438).
+[31-03-2025 10:41:42] [Handle] Request (10), identified as Start Game from ('127.0.0.1', 54438).
+[31-03-2025 10:41:42] [Handler] Request (10), Request passed all checks.
+[31-03-2025 10:41:42] [Server] Request (10), Game started on lobby 312829.
+[31-03-2025 10:41:53] [Error] 'NoneType' object is not subscriptable
+[31-03-2025 10:41:54] [Lobby Manager] Removing ron from lobby 312829.
+[31-03-2025 10:41:54] [Server] Client ron disconnected.

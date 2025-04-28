@@ -18,8 +18,8 @@ def get_friend_list(username: str, logged_users: dict, db_interface: Database) -
     # check if the user exists
     if username in users:
         return [
-            [get_friend_information(friend_name, db_interface, is_logged=(friend_name in logged_users), users=users) for
-             friend_name in users[username]["friends"]], [friend_name for friend_name in users[username]["friends"]]]
+            [[get_friend_information(friend_name, db_interface, is_logged=(friend_name in logged_users), users=users) for
+             friend_name in users[username]["friends"]], [friend_name for friend_name in users[username]["friends"]]], [friend_name for friend_name in users[username]["friend_requests"]]]
 
     return None
 

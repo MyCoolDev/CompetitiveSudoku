@@ -717,7 +717,9 @@ class ServerSocket:
         Handle game move.
         """
         utils.server_print("Handler",
-                           f"Request ({request_id}), identified as Add Friend from " + str(client.address) + ".")
+                           f"Request ({request_id}), identified as Game Move from " + str(client.address) + ".")
+
+        print(request)
 
         # check if the token exists
         if "Token" not in request or request["Token"] != client.get_data("token"):
@@ -730,7 +732,7 @@ class ServerSocket:
             client.send_response(rid, 400, "Bad Request", {"Msg": "Not move provided."})
             return
 
-        if "row" in request["Data"]["Move"] or "column" in request["Data"]["Move"] or "value" not in request["Data"][
+        if "row" not in request["Data"]["Move"] or "column" not in request["Data"]["Move"] or "value" not in request["Data"][
             "Move"] or type(request["Data"]["Move"]["row"]) is not int or type(
                 request["Data"]["Move"]["column"]) is not int or type(request["Data"]["Move"]["value"]) is not int:
             utils.server_print("Handler Error", f"Request ({request_id}), Invalid move provided.")
@@ -746,7 +748,9 @@ class ServerSocket:
         utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
 
         status = lobby.player_move(client, request["Data"]["Move"]["row"], request["Data"]["Move"]["column"],
-                                        request["Data"]["Move"]["value"])
+                                   request["Data"]["Move"]["value"])
+
+        print(status)
 
         if status:
             utils.server_print("Game Handler", f"Request ({request_id}), Move accepted.")

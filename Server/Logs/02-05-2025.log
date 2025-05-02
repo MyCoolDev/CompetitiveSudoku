@@ -1,0 +1,380 @@
+=============== Initiating the server. ===============
+[02-05-2025 13:02:26] [Database] Database worker is running
+[02-05-2025 13:02:26] [Status] ServerSocket initialized.
+[02-05-2025 13:02:26] [Status] Server is running on 127.0.0.1:8080 using Test db.
+=============== Initiating the server. ===============
+[02-05-2025 13:03:03] [Database] Database worker is running
+[02-05-2025 13:03:03] [Status] ServerSocket initialized.
+[02-05-2025 13:03:03] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:04:35] [Connection] Client ('127.0.0.1', 64073) connection request accepted.
+[02-05-2025 13:04:35] [Handler] Starting to handle ('127.0.0.1', 64073).
+[02-05-2025 13:04:35] [Error] 'NoneType' object is not subscriptable
+[02-05-2025 13:04:35] [Server] Client None disconnected.
+[02-05-2025 13:04:54] [Connection] Client ('127.0.0.1', 64077) connection request accepted.
+[02-05-2025 13:04:54] [Handler] Starting to handle ('127.0.0.1', 64077).
+[02-05-2025 13:04:57] [Handler] Request (1) received from ('127.0.0.1', 64077).
+[02-05-2025 13:04:57] [Handler] Request (1), identified as Login from ('127.0.0.1', 64077).
+[02-05-2025 13:04:58] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:04:58] [Server] Request (1), User test logged in successfully.
+[02-05-2025 13:05:06] [Handler] Request (2) received from ('127.0.0.1', 64077).
+[02-05-2025 13:05:06] [Handler] Request (2), identified as Create Lobby from ('127.0.0.1', 64077).
+[02-05-2025 13:05:06] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:05:06] [Lobby Manager] Creating new lobby
+[02-05-2025 13:05:07] [Server] Request (2), Lobby created successfully.
+[02-05-2025 13:05:08] [Handler] Request (3) received from ('127.0.0.1', 64077).
+[02-05-2025 13:05:08] [Handle] Request (3), identified as Start Game from ('127.0.0.1', 64077).
+[02-05-2025 13:05:08] [Handler] Request (3), Request passed all checks.
+[02-05-2025 13:05:08] [Server] Request (3), Game started on lobby 281394.
+[02-05-2025 13:05:08] [Error] 'NoneType' object is not subscriptable
+[02-05-2025 13:05:09] [Lobby Manager] Removing test from lobby 281394.
+[02-05-2025 13:05:10] [Server] Client test disconnected.
+[02-05-2025 13:30:07] [Connection] Client ('127.0.0.1', 64759) connection request accepted.
+[02-05-2025 13:30:07] [Handler] Starting to handle ('127.0.0.1', 64759).
+[02-05-2025 13:30:11] [Handler] Request (5) received from ('127.0.0.1', 64759).
+[02-05-2025 13:30:11] [Handler] Request (5), identified as Login from ('127.0.0.1', 64759).
+[02-05-2025 13:30:11] [Handler] Request (5), Request passed all checks.
+[02-05-2025 13:30:11] [Server] Request (5), User test logged in successfully.
+[02-05-2025 13:30:13] [Handler] Request (6) received from ('127.0.0.1', 64759).
+[02-05-2025 13:30:13] [Handler] Request (6), identified as Create Lobby from ('127.0.0.1', 64759).
+[02-05-2025 13:30:13] [Handler] Request (6), Request passed all checks.
+[02-05-2025 13:30:13] [Lobby Manager] Creating new lobby
+[02-05-2025 13:30:13] [Server] Request (6), Lobby created successfully.
+[02-05-2025 13:30:16] [Handler] Request (7) received from ('127.0.0.1', 64759).
+[02-05-2025 13:30:16] [Handle] Request (7), identified as Start Game from ('127.0.0.1', 64759).
+[02-05-2025 13:30:16] [Handler] Request (7), Request passed all checks.
+[02-05-2025 13:30:16] [Server] Request (7), Game started on lobby 072445.
+[02-05-2025 13:30:22] [Handler] Request (8) received from ('127.0.0.1', 64759).
+[02-05-2025 13:30:27] [Error] 'NoneType' object is not subscriptable
+[02-05-2025 13:30:27] [Lobby Manager] Removing test from lobby 072445.
+[02-05-2025 13:30:27] [Server] Client test disconnected.
+[02-05-2025 13:30:44] [Connection] Client ('127.0.0.1', 64782) connection request accepted.
+[02-05-2025 13:30:44] [Handler] Starting to handle ('127.0.0.1', 64782).
+[02-05-2025 13:30:53] [Handler] Request (10) received from ('127.0.0.1', 64782).
+[02-05-2025 13:30:53] [Handler] Request (10), identified as Login from ('127.0.0.1', 64782).
+[02-05-2025 13:30:54] [Handler] Request (10), Request passed all checks.
+[02-05-2025 13:30:54] [Server] Request (10), User test logged in successfully.
+[02-05-2025 13:30:55] [Handler] Request (11) received from ('127.0.0.1', 64782).
+[02-05-2025 13:30:55] [Handler] Request (11), identified as Create Lobby from ('127.0.0.1', 64782).
+[02-05-2025 13:30:55] [Handler] Request (11), Request passed all checks.
+[02-05-2025 13:30:55] [Lobby Manager] Creating new lobby
+[02-05-2025 13:30:55] [Server] Request (11), Lobby created successfully.
+[02-05-2025 13:30:57] [Handler] Request (12) received from ('127.0.0.1', 64782).
+[02-05-2025 13:30:57] [Handle] Request (12), identified as Start Game from ('127.0.0.1', 64782).
+[02-05-2025 13:30:57] [Handler] Request (12), Request passed all checks.
+[02-05-2025 13:30:57] [Server] Request (12), Game started on lobby 930102.
+[02-05-2025 13:31:11] [Handler] Request (13) received from ('127.0.0.1', 64782).
+[02-05-2025 13:31:16] [Error] 'NoneType' object is not subscriptable
+[02-05-2025 13:31:16] [Lobby Manager] Removing test from lobby 930102.
+[02-05-2025 13:31:16] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[02-05-2025 13:35:05] [Database] Database worker is running
+[02-05-2025 13:35:05] [Status] ServerSocket initialized.
+[02-05-2025 13:35:06] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:35:07] [Connection] Client ('127.0.0.1', 64885) connection request accepted.
+[02-05-2025 13:35:07] [Handler] Starting to handle ('127.0.0.1', 64885).
+[02-05-2025 13:35:11] [Handler] Request (0) received from ('127.0.0.1', 64885).
+[02-05-2025 13:35:11] [Handler] Request (0), identified as Login from ('127.0.0.1', 64885).
+[02-05-2025 13:35:11] [Handler] Request (0), Request passed all checks.
+[02-05-2025 13:35:12] [Server] Request (0), User test logged in successfully.
+[02-05-2025 13:35:13] [Handler] Request (1) received from ('127.0.0.1', 64885).
+[02-05-2025 13:35:13] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 64885).
+[02-05-2025 13:35:13] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:35:13] [Lobby Manager] Creating new lobby
+[02-05-2025 13:35:13] [Server] Request (1), Lobby created successfully.
+[02-05-2025 13:35:15] [Handler] Request (2) received from ('127.0.0.1', 64885).
+[02-05-2025 13:35:15] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 64885).
+[02-05-2025 13:35:15] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:35:15] [Server] Request (2), Game started on lobby 893696.
+[02-05-2025 13:35:16] [Handler] Request (3) received from ('127.0.0.1', 64885).
+[02-05-2025 13:35:16] [Handler] Request (3), identified as Game Move from ('127.0.0.1', 64885).
+[02-05-2025 13:35:17] [Handler Error] Request (3), Not move provided.
+[02-05-2025 13:35:20] [Handler] Request (4) received from ('127.0.0.1', 64885).
+[02-05-2025 13:35:20] [Handler] Request (4), identified as Game Move from ('127.0.0.1', 64885).
+[02-05-2025 13:35:20] [Handler Error] Request (4), Not move provided.
+[02-05-2025 13:35:21] [Handler] Request (5) received from ('127.0.0.1', 64885).
+[02-05-2025 13:35:22] [Handler] Request (5), identified as Game Move from ('127.0.0.1', 64885).
+[02-05-2025 13:35:22] [Handler Error] Request (5), Not move provided.
+[02-05-2025 13:35:23] [Handler] Request (6) received from ('127.0.0.1', 64885).
+[02-05-2025 13:35:23] [Handler] Request (6), identified as Game Move from ('127.0.0.1', 64885).
+[02-05-2025 13:35:23] [Handler Error] Request (6), Not move provided.
+[02-05-2025 13:35:25] [Handler] Request (7) received from ('127.0.0.1', 64885).
+[02-05-2025 13:35:25] [Handler] Request (7), identified as Game Move from ('127.0.0.1', 64885).
+[02-05-2025 13:35:25] [Handler Error] Request (7), Not move provided.
+[02-05-2025 13:35:25] [Handler] Request (8) received from ('127.0.0.1', 64885).
+[02-05-2025 13:35:26] [Handler] Request (8), identified as Game Move from ('127.0.0.1', 64885).
+[02-05-2025 13:35:26] [Handler Error] Request (8), Not move provided.
+[02-05-2025 13:35:27] [Handler] Request (9) received from ('127.0.0.1', 64885).
+[02-05-2025 13:35:27] [Handler] Request (9), identified as Game Move from ('127.0.0.1', 64885).
+[02-05-2025 13:35:27] [Handler Error] Request (9), Not move provided.
+=============== Initiating the server. ===============
+[02-05-2025 13:36:17] [Database] Database worker is running
+[02-05-2025 13:36:17] [Status] ServerSocket initialized.
+[02-05-2025 13:36:17] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:36:19] [Connection] Client ('127.0.0.1', 64910) connection request accepted.
+[02-05-2025 13:36:19] [Handler] Starting to handle ('127.0.0.1', 64910).
+[02-05-2025 13:36:23] [Handler] Request (0) received from ('127.0.0.1', 64910).
+[02-05-2025 13:36:23] [Handler] Request (0), identified as Login from ('127.0.0.1', 64910).
+[02-05-2025 13:36:24] [Handler] Request (0), Request passed all checks.
+[02-05-2025 13:36:24] [Server] Request (0), User test logged in successfully.
+[02-05-2025 13:36:25] [Handler] Request (1) received from ('127.0.0.1', 64910).
+[02-05-2025 13:36:25] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 64910).
+[02-05-2025 13:36:25] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:36:25] [Lobby Manager] Creating new lobby
+[02-05-2025 13:36:25] [Server] Request (1), Lobby created successfully.
+[02-05-2025 13:36:26] [Handler] Request (2) received from ('127.0.0.1', 64910).
+[02-05-2025 13:36:26] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 64910).
+[02-05-2025 13:36:27] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:36:27] [Server] Request (2), Game started on lobby 367546.
+[02-05-2025 13:36:27] [Handler] Request (3) received from ('127.0.0.1', 64910).
+[02-05-2025 13:36:27] [Handler] Request (3), identified as Game Move from ('127.0.0.1', 64910).
+[02-05-2025 13:36:27] [Handler Error] Request (3), Not move provided.
+=============== Initiating the server. ===============
+[02-05-2025 13:37:26] [Database] Database worker is running
+[02-05-2025 13:37:26] [Status] ServerSocket initialized.
+[02-05-2025 13:37:26] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:37:27] [Connection] Client ('127.0.0.1', 64943) connection request accepted.
+[02-05-2025 13:37:28] [Handler] Starting to handle ('127.0.0.1', 64943).
+[02-05-2025 13:37:31] [Handler] Request (0) received from ('127.0.0.1', 64943).
+[02-05-2025 13:37:31] [Handler] Request (0), identified as Login from ('127.0.0.1', 64943).
+[02-05-2025 13:37:31] [Handler] Request (0), Request passed all checks.
+[02-05-2025 13:37:32] [Server] Request (0), User test logged in successfully.
+[02-05-2025 13:37:32] [Handler] Request (1) received from ('127.0.0.1', 64943).
+[02-05-2025 13:37:33] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 64943).
+[02-05-2025 13:37:33] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:37:33] [Lobby Manager] Creating new lobby
+[02-05-2025 13:37:33] [Server] Request (1), Lobby created successfully.
+[02-05-2025 13:37:34] [Handler] Request (2) received from ('127.0.0.1', 64943).
+[02-05-2025 13:37:34] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 64943).
+[02-05-2025 13:37:34] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:37:34] [Server] Request (2), Game started on lobby 898843.
+[02-05-2025 13:37:36] [Handler] Request (3) received from ('127.0.0.1', 64943).
+[02-05-2025 13:37:36] [Handler] Request (3), identified as Game Move from ('127.0.0.1', 64943).
+[02-05-2025 13:37:36] [Error] 'row'
+[02-05-2025 13:37:37] [Lobby Manager] Removing test from lobby 898843.
+[02-05-2025 13:37:37] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[02-05-2025 13:38:43] [Database] Database worker is running
+[02-05-2025 13:38:44] [Status] ServerSocket initialized.
+[02-05-2025 13:38:44] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:38:45] [Connection] Client ('127.0.0.1', 65038) connection request accepted.
+[02-05-2025 13:38:45] [Handler] Starting to handle ('127.0.0.1', 65038).
+[02-05-2025 13:38:49] [Handler] Request (0) received from ('127.0.0.1', 65038).
+[02-05-2025 13:38:49] [Handler] Request (0), identified as Login from ('127.0.0.1', 65038).
+[02-05-2025 13:38:49] [Handler] Request (0), Request passed all checks.
+[02-05-2025 13:38:50] [Server] Request (0), User test logged in successfully.
+[02-05-2025 13:38:50] [Handler] Request (1) received from ('127.0.0.1', 65038).
+[02-05-2025 13:38:50] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 65038).
+[02-05-2025 13:38:50] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:38:50] [Lobby Manager] Creating new lobby
+[02-05-2025 13:38:51] [Server] Request (1), Lobby created successfully.
+[02-05-2025 13:38:51] [Handler] Request (2) received from ('127.0.0.1', 65038).
+[02-05-2025 13:38:51] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 65038).
+[02-05-2025 13:38:51] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:38:52] [Server] Request (2), Game started on lobby 667845.
+=============== Initiating the server. ===============
+[02-05-2025 13:38:55] [Database] Database worker is running
+[02-05-2025 13:38:55] [Status] ServerSocket initialized.
+[02-05-2025 13:38:55] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:38:58] [Connection] Client ('127.0.0.1', 65052) connection request accepted.
+[02-05-2025 13:38:58] [Handler] Starting to handle ('127.0.0.1', 65052).
+[02-05-2025 13:39:01] [Handler] Request (0) received from ('127.0.0.1', 65052).
+[02-05-2025 13:39:01] [Handler] Request (0), identified as Login from ('127.0.0.1', 65052).
+[02-05-2025 13:39:02] [Handler Error] Request (0), Invalid credentials.
+[02-05-2025 13:39:06] [Handler] Request (1) received from ('127.0.0.1', 65052).
+[02-05-2025 13:39:06] [Handler] Request (1), identified as Login from ('127.0.0.1', 65052).
+[02-05-2025 13:39:06] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:39:07] [Server] Request (1), User test logged in successfully.
+[02-05-2025 13:39:09] [Handler] Request (2) received from ('127.0.0.1', 65052).
+[02-05-2025 13:39:09] [Handler] Request (2), identified as Create Lobby from ('127.0.0.1', 65052).
+[02-05-2025 13:39:09] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:39:09] [Lobby Manager] Creating new lobby
+[02-05-2025 13:39:09] [Server] Request (2), Lobby created successfully.
+[02-05-2025 13:39:12] [Handler] Request (3) received from ('127.0.0.1', 65052).
+[02-05-2025 13:39:12] [Handle] Request (3), identified as Start Game from ('127.0.0.1', 65052).
+[02-05-2025 13:39:12] [Handler] Request (3), Request passed all checks.
+[02-05-2025 13:39:12] [Server] Request (3), Game started on lobby 621992.
+[02-05-2025 13:39:14] [Handler] Request (4) received from ('127.0.0.1', 65052).
+[02-05-2025 13:39:14] [Handler] Request (4), identified as Game Move from ('127.0.0.1', 65052).
+[02-05-2025 13:39:14] [Handler Error] Request (4), Invalid move provided.
+[02-05-2025 13:39:14] [Handler] Request (5) received from ('127.0.0.1', 65052).
+[02-05-2025 13:39:14] [Handler] Request (5), identified as Game Move from ('127.0.0.1', 65052).
+[02-05-2025 13:39:14] [Handler Error] Request (5), Invalid move provided.
+=============== Initiating the server. ===============
+[02-05-2025 13:39:51] [Database] Database worker is running
+[02-05-2025 13:39:51] [Status] ServerSocket initialized.
+[02-05-2025 13:39:51] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:39:53] [Connection] Client ('127.0.0.1', 65101) connection request accepted.
+[02-05-2025 13:39:53] [Handler] Starting to handle ('127.0.0.1', 65101).
+[02-05-2025 13:39:56] [Handler] Request (0) received from ('127.0.0.1', 65101).
+[02-05-2025 13:39:56] [Handler] Request (0), identified as Login from ('127.0.0.1', 65101).
+[02-05-2025 13:39:57] [Handler Error] Request (0), Invalid credentials.
+[02-05-2025 13:40:02] [Handler] Request (1) received from ('127.0.0.1', 65101).
+[02-05-2025 13:40:02] [Handler] Request (1), identified as Login from ('127.0.0.1', 65101).
+[02-05-2025 13:40:03] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:40:03] [Server] Request (1), User test logged in successfully.
+[02-05-2025 13:40:06] [Handler] Request (2) received from ('127.0.0.1', 65101).
+[02-05-2025 13:40:06] [Handler] Request (2), identified as Create Lobby from ('127.0.0.1', 65101).
+[02-05-2025 13:40:06] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:40:06] [Lobby Manager] Creating new lobby
+[02-05-2025 13:40:06] [Server] Request (2), Lobby created successfully.
+[02-05-2025 13:40:07] [Handler] Request (3) received from ('127.0.0.1', 65101).
+[02-05-2025 13:40:07] [Handle] Request (3), identified as Start Game from ('127.0.0.1', 65101).
+[02-05-2025 13:40:08] [Handler] Request (3), Request passed all checks.
+[02-05-2025 13:40:08] [Server] Request (3), Game started on lobby 533281.
+[02-05-2025 13:40:09] [Handler] Request (4) received from ('127.0.0.1', 65101).
+[02-05-2025 13:40:09] [Handler] Request (4), identified as Game Move from ('127.0.0.1', 65101).
+[02-05-2025 13:40:10] [Handler Error] Request (4), Invalid move provided.
+=============== Initiating the server. ===============
+[02-05-2025 13:41:40] [Database] Database worker is running
+[02-05-2025 13:41:40] [Status] ServerSocket initialized.
+[02-05-2025 13:41:40] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:41:42] [Connection] Client ('127.0.0.1', 65190) connection request accepted.
+[02-05-2025 13:41:42] [Handler] Starting to handle ('127.0.0.1', 65190).
+[02-05-2025 13:41:45] [Handler] Request (0) received from ('127.0.0.1', 65190).
+[02-05-2025 13:41:46] [Handler] Request (0), identified as Login from ('127.0.0.1', 65190).
+[02-05-2025 13:41:46] [Handler] Request (0), Request passed all checks.
+[02-05-2025 13:41:46] [Server] Request (0), User test logged in successfully.
+[02-05-2025 13:41:47] [Handler] Request (1) received from ('127.0.0.1', 65190).
+[02-05-2025 13:41:47] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 65190).
+[02-05-2025 13:41:47] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:41:47] [Lobby Manager] Creating new lobby
+[02-05-2025 13:41:47] [Server] Request (1), Lobby created successfully.
+[02-05-2025 13:41:48] [Handler] Request (2) received from ('127.0.0.1', 65190).
+[02-05-2025 13:41:49] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 65190).
+[02-05-2025 13:41:49] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:41:49] [Server] Request (2), Game started on lobby 128094.
+[02-05-2025 13:41:51] [Handler] Request (3) received from ('127.0.0.1', 65190).
+[02-05-2025 13:41:51] [Handler] Request (3), identified as Game Move from ('127.0.0.1', 65190).
+[02-05-2025 13:41:51] [Handler] Request (3), Request passed all checks.
+[02-05-2025 13:41:51] [Error] 'test'
+[02-05-2025 13:41:52] [Lobby Manager] Removing test from lobby 128094.
+[02-05-2025 13:41:52] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[02-05-2025 13:43:30] [Database] Database worker is running
+[02-05-2025 13:43:30] [Status] ServerSocket initialized.
+[02-05-2025 13:43:30] [Status] Server is running on 127.0.0.1:8080 using Test db.
+=============== Initiating the server. ===============
+[02-05-2025 13:45:59] [Database] Database worker is running
+[02-05-2025 13:45:59] [Status] ServerSocket initialized.
+[02-05-2025 13:45:59] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:46:01] [Connection] Client ('127.0.0.1', 65309) connection request accepted.
+[02-05-2025 13:46:01] [Handler] Starting to handle ('127.0.0.1', 65309).
+[02-05-2025 13:46:04] [Handler] Request (0) received from ('127.0.0.1', 65309).
+[02-05-2025 13:46:04] [Handler] Request (0), identified as Login from ('127.0.0.1', 65309).
+[02-05-2025 13:46:04] [Handler] Request (0), Request passed all checks.
+[02-05-2025 13:46:05] [Server] Request (0), User test logged in successfully.
+[02-05-2025 13:46:05] [Handler] Request (1) received from ('127.0.0.1', 65309).
+[02-05-2025 13:46:06] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 65309).
+[02-05-2025 13:46:06] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:46:06] [Lobby Manager] Creating new lobby
+[02-05-2025 13:46:06] [Server] Request (1), Lobby created successfully.
+[02-05-2025 13:46:07] [Handler] Request (2) received from ('127.0.0.1', 65309).
+[02-05-2025 13:46:07] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 65309).
+[02-05-2025 13:46:07] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:46:07] [Server] Request (2), Game started on lobby 260605.
+[02-05-2025 13:46:08] [Handler] Request (3) received from ('127.0.0.1', 65309).
+[02-05-2025 13:46:08] [Handler] Request (3), identified as Game Move from ('127.0.0.1', 65309).
+[02-05-2025 13:46:09] [Handler] Request (3), Request passed all checks.
+[02-05-2025 13:46:09] [Error] 'test'
+[02-05-2025 13:46:10] [Lobby Manager] Removing test from lobby 260605.
+[02-05-2025 13:46:10] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[02-05-2025 13:47:07] [Database] Database worker is running
+[02-05-2025 13:47:07] [Status] ServerSocket initialized.
+[02-05-2025 13:47:07] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:47:09] [Connection] Client ('127.0.0.1', 65313) connection request accepted.
+[02-05-2025 13:47:09] [Handler] Starting to handle ('127.0.0.1', 65313).
+[02-05-2025 13:47:12] [Handler] Request (0) received from ('127.0.0.1', 65313).
+[02-05-2025 13:47:12] [Handler] Request (0), identified as Login from ('127.0.0.1', 65313).
+[02-05-2025 13:47:13] [Handler] Request (0), Request passed all checks.
+[02-05-2025 13:47:13] [Server] Request (0), User test logged in successfully.
+[02-05-2025 13:47:14] [Handler] Request (1) received from ('127.0.0.1', 65313).
+[02-05-2025 13:47:14] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 65313).
+[02-05-2025 13:47:14] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:47:14] [Lobby Manager] Creating new lobby
+[02-05-2025 13:47:14] [Server] Request (1), Lobby created successfully.
+[02-05-2025 13:47:17] [Handler] Request (2) received from ('127.0.0.1', 65313).
+[02-05-2025 13:47:17] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 65313).
+[02-05-2025 13:47:17] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:47:17] [Server] Request (2), Game started on lobby 721930.
+[02-05-2025 13:47:18] [Handler] Request (3) received from ('127.0.0.1', 65313).
+[02-05-2025 13:47:18] [Handler] Request (3), identified as Game Move from ('127.0.0.1', 65313).
+[02-05-2025 13:47:18] [Handler] Request (3), Request passed all checks.
+[02-05-2025 13:47:18] [Error] 'test'
+[02-05-2025 13:47:19] [Lobby Manager] Removing test from lobby 721930.
+[02-05-2025 13:47:19] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[02-05-2025 13:48:39] [Database] Database worker is running
+[02-05-2025 13:48:40] [Status] ServerSocket initialized.
+[02-05-2025 13:48:40] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 13:48:40] [Connection] Client ('127.0.0.1', 65323) connection request accepted.
+[02-05-2025 13:48:40] [Handler] Starting to handle ('127.0.0.1', 65323).
+[02-05-2025 13:48:40] [Error] 'NoneType' object is not subscriptable
+[02-05-2025 13:48:40] [Server] Client None disconnected.
+[02-05-2025 13:48:41] [Connection] Client ('127.0.0.1', 65324) connection request accepted.
+[02-05-2025 13:48:41] [Handler] Starting to handle ('127.0.0.1', 65324).
+[02-05-2025 13:48:44] [Handler] Request (1) received from ('127.0.0.1', 65324).
+[02-05-2025 13:48:44] [Handler] Request (1), identified as Login from ('127.0.0.1', 65324).
+[02-05-2025 13:48:45] [Handler] Request (1), Request passed all checks.
+[02-05-2025 13:48:45] [Server] Request (1), User test logged in successfully.
+[02-05-2025 13:48:46] [Handler] Request (2) received from ('127.0.0.1', 65324).
+[02-05-2025 13:48:46] [Handler] Request (2), identified as Create Lobby from ('127.0.0.1', 65324).
+[02-05-2025 13:48:46] [Handler] Request (2), Request passed all checks.
+[02-05-2025 13:48:46] [Lobby Manager] Creating new lobby
+[02-05-2025 13:48:46] [Server] Request (2), Lobby created successfully.
+[02-05-2025 13:48:48] [Handler] Request (3) received from ('127.0.0.1', 65324).
+[02-05-2025 13:48:48] [Handle] Request (3), identified as Start Game from ('127.0.0.1', 65324).
+[02-05-2025 13:48:48] [Handler] Request (3), Request passed all checks.
+[02-05-2025 13:48:48] [Server] Request (3), Game started on lobby 418192.
+[02-05-2025 13:48:49] [Handler] Request (4) received from ('127.0.0.1', 65324).
+[02-05-2025 13:48:49] [Handler] Request (4), identified as Game Move from ('127.0.0.1', 65324).
+[02-05-2025 13:48:49] [Handler] Request (4), Request passed all checks.
+[02-05-2025 13:48:49] [Error] 'test'
+[02-05-2025 13:48:50] [Lobby Manager] Removing test from lobby 418192.
+[02-05-2025 13:48:51] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[02-05-2025 14:12:20] [Database] Database worker is running
+[02-05-2025 14:12:20] [Status] ServerSocket initialized.
+[02-05-2025 14:12:20] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[02-05-2025 14:12:23] [Connection] Client ('127.0.0.1', 49172) connection request accepted.
+[02-05-2025 14:12:23] [Handler] Starting to handle ('127.0.0.1', 49172).
+[02-05-2025 14:12:26] [Handler] Request (0) received from ('127.0.0.1', 49172).
+[02-05-2025 14:12:26] [Handler] Request (0), identified as Login from ('127.0.0.1', 49172).
+[02-05-2025 14:12:27] [Handler] Request (0), Request passed all checks.
+[02-05-2025 14:12:27] [Server] Request (0), User test logged in successfully.
+[02-05-2025 14:12:28] [Handler] Request (1) received from ('127.0.0.1', 49172).
+[02-05-2025 14:12:28] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 49172).
+[02-05-2025 14:12:28] [Handler] Request (1), Request passed all checks.
+[02-05-2025 14:12:28] [Lobby Manager] Creating new lobby
+[02-05-2025 14:12:28] [Server] Request (1), Lobby created successfully.
+[02-05-2025 14:12:29] [Handler] Request (2) received from ('127.0.0.1', 49172).
+[02-05-2025 14:12:29] [Handle] Request (2), identified as Start Game from ('127.0.0.1', 49172).
+[02-05-2025 14:12:29] [Handler] Request (2), Request passed all checks.
+[02-05-2025 14:12:30] [Server] Request (2), Game started on lobby 790955.
+[02-05-2025 14:12:32] [Handler] Request (3) received from ('127.0.0.1', 49172).
+[02-05-2025 14:12:32] [Handler] Request (3), identified as Game Move from ('127.0.0.1', 49172).
+[02-05-2025 14:12:32] [Handler] Request (3), Request passed all checks.
+[02-05-2025 14:12:32] [Error] unsupported operand type(s) for -: 'NoneType' and 'datetime.datetime'
+[02-05-2025 14:12:32] [Lobby Manager] Removing test from lobby 790955.
+[02-05-2025 14:12:32] [Server] Client test disconnected.
+[02-05-2025 14:13:22] [Connection] Client ('127.0.0.1', 49183) connection request accepted.
+[02-05-2025 14:13:22] [Handler] Starting to handle ('127.0.0.1', 49183).
+[02-05-2025 14:13:25] [Handler] Request (4) received from ('127.0.0.1', 49183).
+[02-05-2025 14:13:25] [Handler] Request (4), identified as Login from ('127.0.0.1', 49183).
+[02-05-2025 14:13:25] [Handler] Request (4), Request passed all checks.
+[02-05-2025 14:13:25] [Server] Request (4), User test logged in successfully.
+[02-05-2025 14:13:26] [Handler] Request (5) received from ('127.0.0.1', 49183).
+[02-05-2025 14:13:26] [Handler] Request (5), identified as Create Lobby from ('127.0.0.1', 49183).
+[02-05-2025 14:13:27] [Handler] Request (5), Request passed all checks.
+[02-05-2025 14:13:27] [Lobby Manager] Creating new lobby
+[02-05-2025 14:13:27] [Server] Request (5), Lobby created successfully.
+[02-05-2025 14:13:29] [Handler] Request (6) received from ('127.0.0.1', 49183).
+[02-05-2025 14:13:29] [Handle] Request (6), identified as Start Game from ('127.0.0.1', 49183).
+[02-05-2025 14:13:29] [Handler] Request (6), Request passed all checks.
+[02-05-2025 14:13:29] [Server] Request (6), Game started on lobby 140230.
+[02-05-2025 14:13:30] [Handler] Request (7) received from ('127.0.0.1', 49183).
+[02-05-2025 14:13:31] [Handler] Request (7), identified as Game Move from ('127.0.0.1', 49183).
+[02-05-2025 14:13:31] [Handler] Request (7), Request passed all checks.
+[02-05-2025 14:13:31] [Error] 'test'
+[02-05-2025 14:13:31] [Lobby Manager] Removing test from lobby 140230.
+[02-05-2025 14:13:31] [Server] Client test disconnected.

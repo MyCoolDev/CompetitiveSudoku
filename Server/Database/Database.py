@@ -107,6 +107,13 @@ class Database:
 
     @staticmethod
     def update(profile: str, collection: str, data: dict) -> bool:
+        """
+        Update the collection with the new data.
+        :param profile: The profile of the database.
+        :param collection: The collection to work on.
+        :param data: The new data to be writen the collection.
+        :return: The success of the update command.
+        """
         try:
             with open(os.getcwd() + f"\\Database\\{profile}\\{collection}.json", "w") as f:
                 f.write(json.dumps(data, indent=4))

@@ -13,7 +13,7 @@ class TextBox(MonoBehaviour):
                  padding_top: int = 0, padding_right: int = 0, padding_bottom: int = 0, width: int = 0,
                  border_radius: int = -1,
                  border_top_left_radius: int = -1, border_top_right_radius: int = -1,
-                 border_bottom_left_radius: int = -1, border_bottom_right_radius: int = -1, next_input=None, hidden=False, text_left_mode=True, text_centered=False, num_only=False, max_length=None):
+                 border_bottom_left_radius: int = -1, border_bottom_right_radius: int = -1, next_input=None, hidden=False, text_left_mode=True, text_centered=False, num_only=False, max_length=None, lock=False):
         super().__init__(size, position, box_color, width, border_radius, border_top_left_radius,
                          border_top_right_radius, border_bottom_left_radius, border_bottom_right_radius)
 
@@ -56,8 +56,12 @@ class TextBox(MonoBehaviour):
 
         self.max_length = max_length
         self.num_only = num_only
+        self.lock = lock
 
     def update_text(self, content):
+        if self.lock:
+            return
+
         if self.max_length is not None and len(content) > self.max_length:
             self.content = content[:self.max_length]
         else:
@@ -103,6 +107,9 @@ class TextBox(MonoBehaviour):
                          left_mode=self.left_mode)
 
     def update(self, dt: float, events: list) -> bool:
+        if self.lock:
+            return False
+
         for event in events:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
@@ -126,6 +133,9 @@ class TextBox(MonoBehaviour):
         return False
 
     def update_board_square(self, dt, events):
+        if self.lock:
+            return None
+
         for event in events:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()

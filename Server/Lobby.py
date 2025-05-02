@@ -156,8 +156,10 @@ class Lobby:
         Check if the move is valid and update the player data.
         """
         username = client.get_data("username")
+
         if self.solution[x][y] != value:
             self.players_data[username]["mistakes"] += 1
+            print("test")
             return False
 
         # get the delta time between the starting time and the move in seconds

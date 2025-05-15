@@ -13,7 +13,7 @@ class Text:
         self.abs_position = position
         self.font_size = font_size
         self.color = color
-        self.text_surface = self.font.render(txt, True, color)
+        self.text_surface = self.font.render(txt, True, self.color)
         self.top_left_mode = top_left_mode
         self.left_mode = left_mode
         self.top_mode = top_mode
@@ -74,7 +74,7 @@ class Text:
         self.__create_text_surface()
 
     def update_color(self, color: tuple or pygame.Color):
-        self.text_surface = self.font.render(self.txt, True, color)
+        self.color = color
 
     def render(self, surface: pygame.Surface):
         surface.blit(self.text_surface, self.position)

@@ -6,7 +6,7 @@ import utils
 
 
 class Client:
-    def __init__(self, address: tuple, con: socket.socket, **data):
+    def __init__(self, address: tuple, con: socket.socket, cipher, **data):
         """
         Client interface for organized collection of the client data with the connection.
         :param address: the address of the client
@@ -15,6 +15,7 @@ class Client:
         """
         self.connection = con
         self.address = address
+        self.aes_cipher = cipher
         self.running = True
         self.data = data
 
@@ -46,7 +47,17 @@ class Client:
         rid = -1
         try:
             # wait for the request to arrive.
-            request = self.connection.recv(1024).decode('utf-8')
+            encrypted_request = b""
+
+            while True:
+                piece = self.connection.recv(1024)
+                if piece == b"-- End Request --":
+                    break
+                else:
+                    encrypted_request += piece
+
+            # decrypt the request using the aes decryptor.
+            request = self.decrypt(encrypted_request)
 
             lower_request = request.lower()
 
@@ -106,6 +117,30 @@ class Client:
 
             return None
 
+    def encrypt(self, data: bytes) -> bytes:
+        """
+        Encrypt the data using the aes encryptor.
+        :param data: the data to encrypt.
+        :return: the encrypted data.
+        """
+        # create the aes encryptor.
+        aes_encryptor = self.aes_cipher.encryptor()
+
+        # encrypt the data using the aes encryptor.
+        return aes_encryptor.update(data) + aes_encryptor.finalize()
+
+    def decrypt(self, data: bytes) -> bytes:
+        """
+        Decrypt the data using the aes encryptor.
+        :param data: the data to decrypt.
+        :return: the decrypted data.
+        """
+        # create the aes decryptor.
+        aes_decryptor = self.aes_cipher.decryptor()
+
+        # decrypt the data using the aes decryptor.
+        return aes_decryptor.update(data) + aes_decryptor.finalize()
+
     def send_response(self, rid, status_code: int, status: str, data = None) -> bool:
         """
         Send a response to the client.
@@ -136,11 +171,20 @@ class Client:
             # stringify the json format and encode to bytes.
             stringify_response = json.dumps(response).encode('utf-8')
 
+            # encrypt the response using the aes encryptor.
+            encrypted_response = self.encrypt(stringify_response)
+
             # send the response to the client.
-            sent = self.connection.send(stringify_response)
+            sent = self.connection.send(encrypted_response)
 
             # check if the sent response length is the same the original stringify response.
-            return sent == len(stringify_response)
+            status = sent == len(encrypted_response)
+
+            if status:
+                # send the end of request signal to the client.
+                self.connection.send(b"-- End Request --")
+
+            return status
 
         except Exception as e:
             # print the exception to the console
@@ -174,11 +218,20 @@ class Client:
             # stringify the json format and encode to bytes.
             stringify_response = json.dumps(response).encode('utf-8')
 
+            # encrypt the response using the aes encryptor.
+            encrypted_response = self.encrypt(stringify_response)
+
             # send the response to the client.
-            sent = self.connection.send(stringify_response)
+            sent = self.connection.send(encrypted_response)
 
             # check if the sent response length is the same the original stringify response.
-            return sent == len(stringify_response)
+            status = sent == len(encrypted_response)
+
+            if status:
+                # send the end of request signal to the client.
+                self.connection.send(b"-- End Request --")
+
+            return status
 
         except Exception as e:
             # print the exception to the console

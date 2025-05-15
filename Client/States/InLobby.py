@@ -4,10 +4,7 @@ import os
 import pygame
 import pyperclip
 
-from Client.Components.Button import Button
-from Client.Components.Image import Image
-from Client.Components.MonoBehaviour import MonoBehaviour
-from Client.Components.Text import Text
+from Client.Components.default_comp import *
 from Client.Components.FriendList import FriendList
 from Client.States.BaseState import BaseState
 from Client.client import ClientSocket
@@ -25,6 +22,10 @@ COLOR_NAMES = {
 class InLobby(BaseState):
     def __init__(self, screen: pygame.Surface, client: ClientSocket):
         super().__init__(screen, client)
+
+        # change the screen name
+        pygame.display.set_caption("Competitive Sudoku - Lobby (" + self.client.lobby.code + ") - " + self.client.get_data("username"))
+
         self.join_lobby = pygame.mixer.Sound(os.path.join("Sounds", "Join.wav"))
         self.join_lobby.set_volume(0.5)
         self.data_checksum = None
@@ -95,23 +96,23 @@ class InLobby(BaseState):
         if self.code_copy_icon.update(events):
             pyperclip.copy(self.data["code"])
 
+        self.spectator_count.update_text(f"{self.data['spectators']}")
+
         if self.become_a_player_button is not None and self.become_a_player_button[0].update(events):
             response = self.client.send_request("Become_Lobby_Player", {})
             if response["StatusCode"] == 200:
                 self.become_a_player_button = None
-                lobby = self.client.get_data("lobby_info")
-                lobby["spectators"] -= 1
-                lobby["players"].append(self.client.get_data("username"))
-                self.client.set_data("Lobby_Role", "players")
+                self.client.lobby.spectators -= 1
+                self.client.lobby.players.append(self.client.get_data("username"))
+                self.client.lobby.lobby_role = "players"
 
         if self.my_card[3].update(events):
             print(self.data)
             response = self.client.send_request("Become_Lobby_Spectator", {})
             if response["StatusCode"] == 200:
-                lobby = self.client.get_data("lobby_info")
-                lobby["spectators"] += 1
-                lobby["players"].remove(self.client.get_data("username"))
-                self.client.set_data("Lobby_Role", "spectators")
+                self.client.lobby.spectators += 1
+                self.client.lobby.players.remove(self.client.get_data("username"))
+                self.client.lobby.lobby_role = "spectators"
 
         if self.owner:
             for card in self.players_cards:
@@ -127,8 +128,7 @@ class InLobby(BaseState):
                             response = self.client.send_request("Kick_User_Lobby", {"Username": card[2].txt})
 
                             if response["StatusCode"] == 200:
-                                lobby = self.client.get_data("lobby_info")
-                                lobby["players"].remove(card[2].txt)
+                                self.client.lobby.players.remove(card[2].txt)
 
                         elif i == 1:
                             """
@@ -137,8 +137,7 @@ class InLobby(BaseState):
                             response = self.client.send_request("Ban_User_Lobby", {"Username": card[2].txt})
 
                             if response["StatusCode"] == 200:
-                                lobby = self.client.get_data("lobby_info")
-                                lobby["players"].remove(card[2].txt)
+                                self.client.lobby.players.remove(card[2].txt)
 
                         elif i == 2:
                             """
@@ -147,19 +146,18 @@ class InLobby(BaseState):
                             response = self.client.send_request("Make_Lobby_Spectator", {"Username": card[2].txt})
 
                             if response["StatusCode"] == 200:
-                                lobby = self.client.get_data("lobby_info")
-                                lobby["spectators"] += 1
-                                lobby["players"].remove(card[2].txt)
+                                self.client.lobby.spectators += 1
+                                self.client.lobby.players.remove(card[2].txt)
 
         if self.owner and self.start_game_button.update(dt, events):
             response = self.client.send_request("Start_Game", {})
             if response["StatusCode"] == 200:
-                print("test")
+                self.client.lobby.set_ending_date(response["Data"]["Ending_Time"])
+                self.client.lobby.leaderboard = response["Data"]["Leaderboard"]
                 self.client.lobby.lobby_board = response["Data"]["Board"]
                 self.client.lobby.started = True
 
         # check if data has changed, if not don't update.
-
         new_data_checksum = self.client.create_checksum(self.data)
         if new_data_checksum == self.data_checksum:
             return
@@ -190,7 +188,7 @@ class InLobby(BaseState):
                                                             self.number_of_players.position + pygame.Vector2(20,
                                                                                                              self.number_of_players.text_surface.get_height() + 50)))
 
-        if len(self.players_cards) < 6 and self.client.get_data("Lobby_Role") == "spectators":
+        if len(self.players_cards) < 6 and self.client.lobby.lobby_role == "spectators":
             self.become_a_player_button = self.init_player_card("Become A Player",
                                                                 COLOR_NAMES[str(colors[len(self.data["players"])])],
                                                                 len(self.data["players"]),

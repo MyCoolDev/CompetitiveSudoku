@@ -1,0 +1,352 @@
+=============== Initiating the server. ===============
+[13-05-2025 21:09:24] [Database] Database worker is running
+[13-05-2025 21:09:24] [Status] ServerSocket initialized.
+[13-05-2025 21:09:24] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[13-05-2025 21:09:26] [Connection] Client ('127.0.0.1', 62062) connection request accepted.
+[13-05-2025 21:09:26] [Handler] Starting to handle ('127.0.0.1', 62062).
+[13-05-2025 21:09:30] [Handler] Request (0) received from ('127.0.0.1', 62062).
+[13-05-2025 21:09:30] [Handler] Request (0), identified as Login from ('127.0.0.1', 62062).
+[13-05-2025 21:09:31] [Handler] Request (0), Request passed all checks.
+[13-05-2025 21:09:31] [Server] Request (0), User test logged in successfully.
+[13-05-2025 21:09:41] [Handler] Request (1) received from ('127.0.0.1', 62062).
+[13-05-2025 21:09:41] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 62062).
+[13-05-2025 21:09:42] [Handler] Request (1), Request passed all checks.
+[13-05-2025 21:09:42] [Lobby Manager] Creating new lobby
+[13-05-2025 21:09:42] [Server] Request (1), Lobby created successfully.
+[13-05-2025 21:09:48] [Connection] Client ('127.0.0.1', 62065) connection request accepted.
+[13-05-2025 21:09:48] [Handler] Starting to handle ('127.0.0.1', 62065).
+[13-05-2025 21:09:58] [Handler] Request (2) received from ('127.0.0.1', 62065).
+[13-05-2025 21:09:58] [Handler] Request (2), identified as Login from ('127.0.0.1', 62065).
+[13-05-2025 21:09:58] [Handler] Request (2), Request passed all checks.
+[13-05-2025 21:09:58] [Server] Request (2), User ron logged in successfully.
+[13-05-2025 21:10:08] [Handler] Request (3) received from ('127.0.0.1', 62065).
+[13-05-2025 21:10:08] [Handler] Request identified as Join Lobby from ('127.0.0.1', 62065).
+[13-05-2025 21:10:08] [Handler] Request (3), Request passed all checks.
+[13-05-2025 21:10:08] [Server] Request (3), Client registered to lobby 272810.
+[13-05-2025 21:10:14] [Handler] Request (4) received from ('127.0.0.1', 62062).
+[13-05-2025 21:10:14] [Handle] Request (4), identified as Start Game from ('127.0.0.1', 62062).
+[13-05-2025 21:10:14] [Handler] Request (4), Request passed all checks.
+[13-05-2025 21:10:14] [Server] Request (4), Game started on lobby 272810.
+[13-05-2025 21:10:18] [Handler] Request (5) received from ('127.0.0.1', 62062).
+[13-05-2025 21:10:18] [Handler] Request (5), identified as Game Move from ('127.0.0.1', 62062).
+[13-05-2025 21:10:18] [Handler] Request (5), Request passed all checks.
+[13-05-2025 21:10:18] [Error] 'test'
+[13-05-2025 21:10:19] [Lobby Manager] Removing test from lobby 272810.
+[13-05-2025 21:10:19] [Server] Client test disconnected.
+[13-05-2025 21:10:25] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 21:10:25] [Lobby Manager] Removing ron from lobby 272810.
+[13-05-2025 21:10:25] [Server] Client ron disconnected.
+=============== Initiating the server. ===============
+[13-05-2025 21:42:29] [Database] Database worker is running
+[13-05-2025 21:42:29] [Status] ServerSocket initialized.
+[13-05-2025 21:42:29] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[13-05-2025 21:42:31] [Connection] Client ('127.0.0.1', 62356) connection request accepted.
+[13-05-2025 21:42:31] [Handler] Starting to handle ('127.0.0.1', 62356).
+[13-05-2025 21:42:35] [Handler] Request (0) received from ('127.0.0.1', 62356).
+[13-05-2025 21:42:35] [Handler] Request (0), identified as Login from ('127.0.0.1', 62356).
+[13-05-2025 21:42:36] [Handler] Request (0), Request passed all checks.
+[13-05-2025 21:42:36] [Server] Request (0), User test logged in successfully.
+[13-05-2025 21:42:38] [Handler] Request (1) received from ('127.0.0.1', 62356).
+[13-05-2025 21:42:38] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 62356).
+[13-05-2025 21:42:38] [Handler] Request (1), Request passed all checks.
+[13-05-2025 21:42:38] [Lobby Manager] Creating new lobby
+[13-05-2025 21:42:38] [Server] Request (1), Lobby created successfully.
+[13-05-2025 21:42:43] [Connection] Client ('127.0.0.1', 62357) connection request accepted.
+[13-05-2025 21:42:43] [Handler] Starting to handle ('127.0.0.1', 62357).
+[13-05-2025 21:42:48] [Handler] Request (2) received from ('127.0.0.1', 62357).
+[13-05-2025 21:42:48] [Handler] Request (2), identified as Login from ('127.0.0.1', 62357).
+[13-05-2025 21:42:48] [Handler] Request (2), Request passed all checks.
+[13-05-2025 21:42:49] [Server] Request (2), User ron logged in successfully.
+[13-05-2025 21:42:50] [Handler] Request (3) received from ('127.0.0.1', 62357).
+[13-05-2025 21:42:50] [Handler] Request identified as Join Lobby from ('127.0.0.1', 62357).
+[13-05-2025 21:42:50] [Handler] Request (3), Request passed all checks.
+[13-05-2025 21:42:50] [Server] Request (3), Client registered to lobby 221802.
+[13-05-2025 21:42:54] [Handler] Request (4) received from ('127.0.0.1', 62356).
+[13-05-2025 21:42:54] [Handler] Request identified as Make Lobby Spectator from ('127.0.0.1', 62356).
+[13-05-2025 21:42:54] [Handler] Request (4), Request passed all checks.
+[13-05-2025 21:42:54] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 21:42:55] [Lobby Manager] Removing test from lobby 221802.
+[13-05-2025 21:42:55] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[13-05-2025 21:44:59] [Database] Database worker is running
+[13-05-2025 21:44:59] [Status] ServerSocket initialized.
+[13-05-2025 21:44:59] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[13-05-2025 21:45:03] [Connection] Client ('127.0.0.1', 62376) connection request accepted.
+[13-05-2025 21:45:03] [Handler] Starting to handle ('127.0.0.1', 62376).
+[13-05-2025 21:45:09] [Handler] Request (0) received from ('127.0.0.1', 62376).
+[13-05-2025 21:45:09] [Handler] Request (0), identified as Login from ('127.0.0.1', 62376).
+[13-05-2025 21:45:10] [Handler] Request (0), Request passed all checks.
+[13-05-2025 21:45:10] [Server] Request (0), User test logged in successfully.
+[13-05-2025 21:45:11] [Handler] Request (1) received from ('127.0.0.1', 62376).
+[13-05-2025 21:45:11] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 62376).
+[13-05-2025 21:45:11] [Handler] Request (1), Request passed all checks.
+[13-05-2025 21:45:11] [Lobby Manager] Creating new lobby
+[13-05-2025 21:45:11] [Server] Request (1), Lobby created successfully.
+[13-05-2025 21:45:13] [Connection] Client ('127.0.0.1', 62377) connection request accepted.
+[13-05-2025 21:45:13] [Handler] Starting to handle ('127.0.0.1', 62377).
+[13-05-2025 21:45:17] [Handler] Request (2) received from ('127.0.0.1', 62377).
+[13-05-2025 21:45:17] [Handler] Request (2), identified as Login from ('127.0.0.1', 62377).
+[13-05-2025 21:45:17] [Handler] Request (2), Request passed all checks.
+[13-05-2025 21:45:17] [Server] Request (2), User ron logged in successfully.
+[13-05-2025 21:45:24] [Handler] Request (3) received from ('127.0.0.1', 62377).
+[13-05-2025 21:45:24] [Handler] Request identified as Join Lobby from ('127.0.0.1', 62377).
+[13-05-2025 21:45:24] [Handler] Request (3), Request passed all checks.
+[13-05-2025 21:45:24] [Server] Request (3), Client registered to lobby 490215.
+[13-05-2025 21:45:27] [Handler] Request (4) received from ('127.0.0.1', 62377).
+[13-05-2025 21:45:27] [Handler] Request identified as Become Lobby Spectator from ('127.0.0.1', 62377).
+[13-05-2025 21:45:27] [Handler] Request (4), Request passed all checks.
+[13-05-2025 21:45:27] [Server] Request (4), Client ron became a spectator on lobby 490215.
+[13-05-2025 21:45:32] [Handler] Request (5) received from ('127.0.0.1', 62377).
+[13-05-2025 21:45:33] [Handler] Request identified as Become Lobby Player from ('127.0.0.1', 62377).
+[13-05-2025 21:45:33] [Handler] Request (5), Request passed all checks.
+[13-05-2025 21:45:33] [Server] Request (5), Client ron became a player on lobby 490215.
+[13-05-2025 21:46:43] [Handler] Request (6) received from ('127.0.0.1', 62376).
+[13-05-2025 21:46:43] [Handler] Request identified as Make Lobby Spectator from ('127.0.0.1', 62376).
+[13-05-2025 21:46:43] [Handler] Request (6), Request passed all checks.
+[13-05-2025 21:46:52] [Handler] Request (7) received from ('127.0.0.1', 62376).
+[13-05-2025 21:46:52] [Handle] Request (7), identified as Start Game from ('127.0.0.1', 62376).
+[13-05-2025 21:46:52] [Handler] Request (7), Request passed all checks.
+[13-05-2025 21:46:52] [Server] Request (7), Game started on lobby 490215.
+[13-05-2025 21:46:55] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 21:46:56] [Lobby Manager] Removing ron from lobby 490215.
+[13-05-2025 21:46:56] [Server] Client ron disconnected.
+[13-05-2025 21:46:58] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 21:46:59] [Lobby Manager] Removing test from lobby 490215.
+[13-05-2025 21:46:59] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[13-05-2025 22:07:30] [Database] Database worker is running
+[13-05-2025 22:07:30] [Status] ServerSocket initialized.
+[13-05-2025 22:07:30] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[13-05-2025 22:07:32] [Connection] Client ('127.0.0.1', 62567) connection request accepted.
+[13-05-2025 22:07:32] [Handler] Starting to handle ('127.0.0.1', 62567).
+[13-05-2025 22:07:35] [Handler] Request (0) received from ('127.0.0.1', 62567).
+[13-05-2025 22:07:35] [Handler] Request (0), identified as Login from ('127.0.0.1', 62567).
+[13-05-2025 22:07:36] [Handler] Request (0), Request passed all checks.
+[13-05-2025 22:07:36] [Server] Request (0), User test logged in successfully.
+[13-05-2025 22:07:37] [Handler] Request (1) received from ('127.0.0.1', 62567).
+[13-05-2025 22:07:37] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 62567).
+[13-05-2025 22:07:37] [Handler] Request (1), Request passed all checks.
+[13-05-2025 22:07:37] [Lobby Manager] Creating new lobby
+[13-05-2025 22:07:38] [Server] Request (1), Lobby created successfully.
+[13-05-2025 22:07:42] [Connection] Client ('127.0.0.1', 62571) connection request accepted.
+[13-05-2025 22:07:42] [Handler] Starting to handle ('127.0.0.1', 62571).
+[13-05-2025 22:07:46] [Handler] Request (2) received from ('127.0.0.1', 62571).
+[13-05-2025 22:07:46] [Handler] Request (2), identified as Login from ('127.0.0.1', 62571).
+[13-05-2025 22:07:46] [Handler] Request (2), Request passed all checks.
+[13-05-2025 22:07:47] [Server] Request (2), User ron logged in successfully.
+[13-05-2025 22:07:48] [Handler] Request (3) received from ('127.0.0.1', 62571).
+[13-05-2025 22:07:48] [Handler] Request identified as Join Lobby from ('127.0.0.1', 62571).
+[13-05-2025 22:07:48] [Handler] Request (3), Request passed all checks.
+[13-05-2025 22:07:48] [Server] Request (3), Client registered to lobby 909102.
+[13-05-2025 22:07:52] [Handler] Request (4) received from ('127.0.0.1', 62567).
+[13-05-2025 22:07:52] [Handle] Request (4), identified as Start Game from ('127.0.0.1', 62567).
+[13-05-2025 22:07:52] [Handler] Request (4), Request passed all checks.
+[13-05-2025 22:07:52] [Server] Request (4), Game started on lobby 909102.
+[13-05-2025 22:07:56] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:07:56] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:07:57] [Lobby Manager] Removing ron from lobby 909102.
+[13-05-2025 22:07:57] [Server] Client ron disconnected.
+lobby 909102.
+[13-05-2025 22:07:57] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[13-05-2025 22:09:28] [Database] Database worker is running
+[13-05-2025 22:09:28] [Status] ServerSocket initialized.
+[13-05-2025 22:09:29] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[13-05-2025 22:09:33] [Connection] Client ('127.0.0.1', 62586) connection request accepted.
+[13-05-2025 22:09:33] [Handler] Starting to handle ('127.0.0.1', 62586).
+[13-05-2025 22:09:37] [Handler] Request (0) received from ('127.0.0.1', 62586).
+[13-05-2025 22:09:37] [Handler] Request (0), identified as Login from ('127.0.0.1', 62586).
+[13-05-2025 22:09:38] [Handler] Request (0), Request passed all checks.
+[13-05-2025 22:09:38] [Server] Request (0), User test logged in successfully.
+[13-05-2025 22:09:39] [Handler] Request (1) received from ('127.0.0.1', 62586).
+[13-05-2025 22:09:39] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 62586).
+[13-05-2025 22:09:39] [Handler] Request (1), Request passed all checks.
+[13-05-2025 22:09:39] [Lobby Manager] Creating new lobby
+[13-05-2025 22:09:39] [Server] Request (1), Lobby created successfully.
+[13-05-2025 22:09:43] [Connection] Client ('127.0.0.1', 62587) connection request accepted.
+[13-05-2025 22:09:43] [Handler] Starting to handle ('127.0.0.1', 62587).
+[13-05-2025 22:09:47] [Handler] Request (2) received from ('127.0.0.1', 62587).
+[13-05-2025 22:09:47] [Handler] Request (2), identified as Login from ('127.0.0.1', 62587).
+[13-05-2025 22:09:47] [Handler] Request (2), Request passed all checks.
+[13-05-2025 22:09:48] [Server] Request (2), User ron logged in successfully.
+[13-05-2025 22:09:49] [Handler] Request (3) received from ('127.0.0.1', 62587).
+[13-05-2025 22:09:49] [Handler] Request identified as Join Lobby from ('127.0.0.1', 62587).
+[13-05-2025 22:09:49] [Handler] Request (3), Request passed all checks.
+[13-05-2025 22:09:49] [Server] Request (3), Client registered to lobby 735237.
+[13-05-2025 22:09:53] [Handler] Request (4) received from ('127.0.0.1', 62586).
+[13-05-2025 22:09:53] [Handle] Request (4), identified as Start Game from ('127.0.0.1', 62586).
+[13-05-2025 22:09:53] [Handler] Request (4), Request passed all checks.
+[13-05-2025 22:09:54] [Server] Request (4), Game started on lobby 735237.
+[13-05-2025 22:10:28] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:10:30] [Lobby Manager] Removing ron from lobby 735237.
+[13-05-2025 22:10:30] [Server] Client ron disconnected.
+[13-05-2025 22:10:32] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:10:32] [Lobby Manager] Removing test from lobby 735237.
+[13-05-2025 22:10:32] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[13-05-2025 22:12:02] [Database] Database worker is running
+[13-05-2025 22:12:02] [Status] ServerSocket initialized.
+[13-05-2025 22:12:02] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[13-05-2025 22:12:04] [Connection] Client ('127.0.0.1', 62605) connection request accepted.
+[13-05-2025 22:12:04] [Handler] Starting to handle ('127.0.0.1', 62605).
+[13-05-2025 22:12:13] [Handler] Request (0) received from ('127.0.0.1', 62605).
+[13-05-2025 22:12:13] [Handler] Request (0), identified as Login from ('127.0.0.1', 62605).
+[13-05-2025 22:12:13] [Handler] Request (0), Request passed all checks.
+[13-05-2025 22:12:14] [Server] Request (0), User test logged in successfully.
+[13-05-2025 22:12:18] [Connection] Client ('127.0.0.1', 62608) connection request accepted.
+[13-05-2025 22:12:18] [Handler] Starting to handle ('127.0.0.1', 62608).
+[13-05-2025 22:12:21] [Handler] Request (1) received from ('127.0.0.1', 62608).
+[13-05-2025 22:12:21] [Handler] Request (1), identified as Login from ('127.0.0.1', 62608).
+[13-05-2025 22:12:22] [Handler] Request (1), Request passed all checks.
+[13-05-2025 22:12:22] [Server] Request (1), User ron logged in successfully.
+[13-05-2025 22:12:25] [Handler] Request (2) received from ('127.0.0.1', 62605).
+[13-05-2025 22:12:25] [Handler] Request (2), identified as Create Lobby from ('127.0.0.1', 62605).
+[13-05-2025 22:12:25] [Handler] Request (2), Request passed all checks.
+[13-05-2025 22:12:25] [Lobby Manager] Creating new lobby
+[13-05-2025 22:12:25] [Server] Request (2), Lobby created successfully.
+[13-05-2025 22:12:27] [Handler] Request (3) received from ('127.0.0.1', 62608).
+[13-05-2025 22:12:27] [Handler] Request identified as Join Lobby from ('127.0.0.1', 62608).
+[13-05-2025 22:12:27] [Handler] Request (3), Request passed all checks.
+[13-05-2025 22:12:27] [Server] Request (3), Client registered to lobby 226400.
+[13-05-2025 22:12:32] [Handler] Request (4) received from ('127.0.0.1', 62605).
+[13-05-2025 22:12:32] [Handle] Request (4), identified as Start Game from ('127.0.0.1', 62605).
+[13-05-2025 22:12:33] [Handler] Request (4), Request passed all checks.
+[13-05-2025 22:12:33] [Server] Request (4), Game started on lobby 226400.
+[13-05-2025 22:12:43] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:12:44] [Lobby Manager] Removing ron from lobby 226400.
+[13-05-2025 22:12:44] [Server] Client ron disconnected.
+[13-05-2025 22:12:44] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:12:44] [Lobby Manager] Removing test from lobby 226400.
+[13-05-2025 22:12:45] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[13-05-2025 22:19:15] [Database] Database worker is running
+[13-05-2025 22:19:16] [Status] ServerSocket initialized.
+[13-05-2025 22:19:16] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[13-05-2025 22:19:17] [Connection] Client ('127.0.0.1', 62672) connection request accepted.
+[13-05-2025 22:19:17] [Handler] Starting to handle ('127.0.0.1', 62672).
+[13-05-2025 22:19:20] [Handler] Request (0) received from ('127.0.0.1', 62672).
+[13-05-2025 22:19:20] [Handler] Request (0), identified as Login from ('127.0.0.1', 62672).
+[13-05-2025 22:19:21] [Handler] Request (0), Request passed all checks.
+[13-05-2025 22:19:21] [Server] Request (0), User test logged in successfully.
+[13-05-2025 22:30:29] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:30:30] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[13-05-2025 22:48:04] [Database] Database worker is running
+[13-05-2025 22:48:05] [Status] ServerSocket initialized.
+[13-05-2025 22:48:05] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[13-05-2025 22:48:07] [Connection] Client ('127.0.0.1', 63094) connection request accepted.
+[13-05-2025 22:48:07] [Handler] Starting to handle ('127.0.0.1', 63094).
+[13-05-2025 22:48:10] [Handler] Request (0) received from ('127.0.0.1', 63094).
+[13-05-2025 22:48:10] [Handler] Request (0), identified as Login from ('127.0.0.1', 63094).
+[13-05-2025 22:48:11] [Handler] Request (0), Request passed all checks.
+[13-05-2025 22:48:11] [Server] Request (0), User test logged in successfully.
+[13-05-2025 22:48:12] [Handler] Request (1) received from ('127.0.0.1', 63094).
+[13-05-2025 22:48:12] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 63094).
+[13-05-2025 22:48:12] [Handler] Request (1), Request passed all checks.
+[13-05-2025 22:48:12] [Lobby Manager] Creating new lobby
+[13-05-2025 22:48:12] [Server] Request (1), Lobby created successfully.
+[13-05-2025 22:48:12] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:48:13] [Lobby Manager] Removing test from lobby 811257.
+[13-05-2025 22:48:13] [Server] Client test disconnected.
+[13-05-2025 22:49:27] [Connection] Client ('127.0.0.1', 63105) connection request accepted.
+[13-05-2025 22:49:27] [Handler] Starting to handle ('127.0.0.1', 63105).
+[13-05-2025 22:49:32] [Handler] Request (3) received from ('127.0.0.1', 63105).
+[13-05-2025 22:49:32] [Handler] Request (3), identified as Login from ('127.0.0.1', 63105).
+[13-05-2025 22:49:33] [Handler] Request (3), Request passed all checks.
+[13-05-2025 22:49:33] [Server] Request (3), User test logged in successfully.
+[13-05-2025 22:49:35] [Handler] Request (4) received from ('127.0.0.1', 63105).
+[13-05-2025 22:49:35] [Handler] Request (4), identified as Create Lobby from ('127.0.0.1', 63105).
+[13-05-2025 22:49:36] [Handler] Request (4), Request passed all checks.
+[13-05-2025 22:49:36] [Lobby Manager] Creating new lobby
+[13-05-2025 22:49:36] [Server] Request (4), Lobby created successfully.
+[13-05-2025 22:49:41] [Connection] Client ('127.0.0.1', 63110) connection request accepted.
+[13-05-2025 22:49:41] [Handler] Starting to handle ('127.0.0.1', 63110).
+[13-05-2025 22:49:42] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:49:42] [Server] Client None disconnected.
+[13-05-2025 22:49:43] [Connection] Client ('127.0.0.1', 63111) connection request accepted.
+[13-05-2025 22:49:43] [Handler] Starting to handle ('127.0.0.1', 63111).
+[13-05-2025 22:49:44] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:49:45] [Server] Client None disconnected.
+[13-05-2025 22:49:45] [Connection] Client ('127.0.0.1', 63113) connection request accepted.
+[13-05-2025 22:49:46] [Handler] Starting to handle ('127.0.0.1', 63113).
+[13-05-2025 22:49:54] [Handler] Request (7) received from ('127.0.0.1', 63113).
+[13-05-2025 22:49:54] [Handler] Request (7), identified as Login from ('127.0.0.1', 63113).
+[13-05-2025 22:49:55] [Handler] Request (7), Request passed all checks.
+[13-05-2025 22:49:55] [Server] Request (7), User ron logged in successfully.
+[13-05-2025 22:49:56] [Handler] Request (8) received from ('127.0.0.1', 63113).
+[13-05-2025 22:49:56] [Handler] Request identified as Join Lobby from ('127.0.0.1', 63113).
+[13-05-2025 22:49:56] [Handler] Request (8), Request passed all checks.
+[13-05-2025 22:49:56] [Server] Request (8), Client registered to lobby 760149.
+[13-05-2025 22:49:59] [Handler] Request (9) received from ('127.0.0.1', 63105).
+[13-05-2025 22:49:59] [Handle] Request (9), identified as Start Game from ('127.0.0.1', 63105).
+[13-05-2025 22:49:59] [Handler] Request (9), Request passed all checks.
+[13-05-2025 22:49:59] [Server] Request (9), Game started on lobby 760149.
+[13-05-2025 22:50:09] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:50:09] [Lobby Manager] Removing ron from lobby 760149.
+[13-05-2025 22:50:10] [Server] Client ron disconnected.
+[13-05-2025 22:50:11] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:50:11] [Lobby Manager] Removing test from lobby 760149.
+[13-05-2025 22:50:11] [Server] Client test disconnected.
+=============== Initiating the server. ===============
+[13-05-2025 22:51:16] [Database] Database worker is running
+[13-05-2025 22:51:16] [Status] ServerSocket initialized.
+[13-05-2025 22:51:16] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[13-05-2025 22:51:18] [Connection] Client ('127.0.0.1', 63129) connection request accepted.
+[13-05-2025 22:51:18] [Handler] Starting to handle ('127.0.0.1', 63129).
+[13-05-2025 22:51:21] [Handler] Request (0) received from ('127.0.0.1', 63129).
+[13-05-2025 22:51:21] [Handler] Request (0), identified as Login from ('127.0.0.1', 63129).
+[13-05-2025 22:51:22] [Handler] Request (0), Request passed all checks.
+[13-05-2025 22:51:22] [Server] Request (0), User test logged in successfully.
+[13-05-2025 22:51:23] [Handler] Request (1) received from ('127.0.0.1', 63129).
+[13-05-2025 22:51:23] [Handler] Request (1), identified as Create Lobby from ('127.0.0.1', 63129).
+[13-05-2025 22:51:24] [Handler] Request (1), Request passed all checks.
+[13-05-2025 22:51:24] [Lobby Manager] Creating new lobby
+[13-05-2025 22:51:24] [Server] Request (1), Lobby created successfully.
+[13-05-2025 22:51:29] [Connection] Client ('127.0.0.1', 63134) connection request accepted.
+[13-05-2025 22:51:29] [Handler] Starting to handle ('127.0.0.1', 63134).
+[13-05-2025 22:51:34] [Handler] Request (2) received from ('127.0.0.1', 63134).
+[13-05-2025 22:51:35] [Handler] Request (2), identified as Login from ('127.0.0.1', 63134).
+[13-05-2025 22:51:35] [Handler] Request (2), Request passed all checks.
+[13-05-2025 22:51:35] [Server] Request (2), User ron logged in successfully.
+[13-05-2025 22:51:37] [Handler] Request (3) received from ('127.0.0.1', 63134).
+[13-05-2025 22:51:37] [Handler] Request identified as Join Lobby from ('127.0.0.1', 63134).
+[13-05-2025 22:51:37] [Handler] Request (3), Request passed all checks.
+[13-05-2025 22:51:37] [Server] Request (3), Client registered to lobby 150893.
+[13-05-2025 22:51:41] [Handler] Request (4) received from ('127.0.0.1', 63129).
+[13-05-2025 22:51:41] [Handle] Request (4), identified as Start Game from ('127.0.0.1', 63129).
+[13-05-2025 22:51:41] [Handler] Request (4), Request passed all checks.
+[13-05-2025 22:51:41] [Server] Request (4), Game started on lobby 150893.
+[13-05-2025 22:51:45] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:51:46] [Lobby Manager] Removing ron from lobby 150893.
+[13-05-2025 22:51:46] [Server] Client ron disconnected.
+=============== Initiating the server. ===============
+[13-05-2025 22:51:56] [Database] Database worker is running
+[13-05-2025 22:51:56] [Status] ServerSocket initialized.
+[13-05-2025 22:51:56] [Status] Server is running on 127.0.0.1:8080 using Test db.
+[13-05-2025 22:51:58] [Connection] Client ('127.0.0.1', 63136) connection request accepted.
+[13-05-2025 22:51:58] [Handler] Starting to handle ('127.0.0.1', 63136).
+[13-05-2025 22:51:59] [Connection] Client ('127.0.0.1', 63137) connection request accepted.
+[13-05-2025 22:51:59] [Handler] Starting to handle ('127.0.0.1', 63137).
+[13-05-2025 22:52:04] [Handler] Request (0) received from ('127.0.0.1', 63136).
+[13-05-2025 22:52:04] [Handler] Request (0), identified as Login from ('127.0.0.1', 63136).
+[13-05-2025 22:52:05] [Handler] Request (0), Request passed all checks.
+[13-05-2025 22:52:05] [Server] Request (0), User ron logged in successfully.
+[13-05-2025 22:52:10] [Handler] Request (1) received from ('127.0.0.1', 63137).
+[13-05-2025 22:52:10] [Handler] Request (1), identified as Login from ('127.0.0.1', 63137).
+[13-05-2025 22:52:11] [Handler] Request (1), Request passed all checks.
+[13-05-2025 22:52:11] [Server] Request (1), User test logged in successfully.
+[13-05-2025 22:52:13] [Handler] Request (2) received from ('127.0.0.1', 63136).
+[13-05-2025 22:52:14] [Handler] Request (2), identified as Create Lobby from ('127.0.0.1', 63136).
+[13-05-2025 22:52:14] [Handler] Request (2), Request passed all checks.
+[13-05-2025 22:52:14] [Lobby Manager] Creating new lobby
+[13-05-2025 22:52:14] [Server] Request (2), Lobby created successfully.
+[13-05-2025 22:52:18] [Handler] Request (3) received from ('127.0.0.1', 63137).
+[13-05-2025 22:52:18] [Handler] Request identified as Join Lobby from ('127.0.0.1', 63137).
+[13-05-2025 22:52:18] [Handler] Request (3), Request passed all checks.
+[13-05-2025 22:52:18] [Server] Request (3), Client registered to lobby 033833.
+[13-05-2025 22:52:23] [Handler] Request (4) received from ('127.0.0.1', 63136).
+[13-05-2025 22:52:23] [Handle] Request (4), identified as Start Game from ('127.0.0.1', 63136).
+[13-05-2025 22:52:23] [Handler] Request (4), Request passed all checks.
+[13-05-2025 22:52:23] [Server] Request (4), Game started on lobby 033833.
+[13-05-2025 22:55:18] [Error] 'NoneType' object is not subscriptable
+[13-05-2025 22:55:18] [Error] 'NoneType' object is not subscriptable

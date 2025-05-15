@@ -7,8 +7,17 @@ import time
 from lobby import Lobby
 
 from Client.Components.Notification import NotificationInterface
+from Client.lobby import Message
 
 from dotenv import dotenv_values
+
+# Encryptions
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
+from cryptography.hazmat.primitives import serialization, hashes
+
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
+
 
 
 class ClientSocket:
@@ -16,6 +25,17 @@ class ClientSocket:
         """
         The client socket side, interact with the server to get and post data to the server.
         """
+
+        # Create a pair of public and private keys
+        # Generate RSA keys
+        self.private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+        public_key = self.private_key.public_key()
+
+        # Serialize public key to send to client
+        public_pem = public_key.public_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PublicFormat.SubjectPublicKeyInfo
+        )
 
         self.application = application
 
@@ -45,6 +65,58 @@ class ClientSocket:
             self.socket.connect((self.server_address, self.server_port))
             print("Connected to the server.")
 
+            print("Sending public key to the server.")
+
+            self.socket.sendall(public_pem)
+
+            print("Waiting for aes key from the server.")
+
+            # Receive aes key from the server
+            aes_key = self.socket.recv(1024)
+
+            print("Received aes key from the server.")
+
+            # Decrypt the aes key using the private key
+            aes_key = self.private_key.decrypt(
+                aes_key,
+                padding.OAEP(
+                    mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                    algorithm=hashes.SHA256(),
+                    label=None
+                )
+            )
+
+            # send confirmation to the server
+            self.socket.send("AES key received".encode('utf-8'))
+
+            print("Decrypted aes key.")
+
+            # get the nonce key from the server
+
+            nonce = self.socket.recv(1024)
+
+            # Decrypt the nonce key using the private key
+            nonce = self.private_key.decrypt(
+                nonce,
+                padding.OAEP(
+                    mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                    algorithm=hashes.SHA256(),
+                    label=None
+                )
+            )
+
+            # send confirmation to the server
+            self.socket.send("Nonce key received".encode('utf-8'))
+
+            print("Decrypted nonce key.")
+
+            # create a cipher
+            self.cipher = Cipher(
+                algorithms.AES(aes_key),
+                modes.CFB(nonce),
+                backend=default_backend()
+            )
+
             threading.Thread(target=self.listener, daemon=True).start()
 
         except Exception as e:
@@ -53,8 +125,8 @@ class ClientSocket:
     def get_data(self, name: str):
         """
         Get a specific key from the data collection.
-        :param name: the key of the data value
-        :return: the value of the key in the data collection
+        :param name: the key of the data value.
+        :return: the value of the key in the data collection.
         """
         if name in self.data:
             return self.data[name]
@@ -69,6 +141,30 @@ class ClientSocket:
         :return: the success of the operation.
         """
         self.data[name] = value
+
+    def encrypt(self, data: bytes) -> bytes:
+        """
+        Encrypt the data using the aes encryptor.
+        :param data: the data to encrypt.
+        :return: the encrypted data.
+        """
+        # create the aes encryptor.
+        aes_encryptor = self.cipher.encryptor()
+
+        # encrypt the data using the aes encryptor.
+        return aes_encryptor.update(data) + aes_encryptor.finalize()
+
+    def decrypt(self, data: bytes) -> bytes:
+        """
+        Decrypt the data using the aes encryptor.
+        :param data: the data to decrypt.
+        :return: the decrypted data.
+        """
+        # create the aes decryptor.
+        aes_decryptor = self.cipher.decryptor()
+
+        # decrypt the data using the aes decryptor.
+        return aes_decryptor.update(data) + aes_decryptor.finalize()
 
     def send_request(self, command: str, data: dict, timeout=5) -> dict:
         """
@@ -101,14 +197,14 @@ class ClientSocket:
             # stringify the json format and encode to bytes.
             stringify_response = json.dumps(request).encode('utf-8')
 
+            # encrypt the response using the aes encryptor.
+            encrypted_response = self.encrypt(stringify_response)
+
             # send the response to the client.
-            sent = self.socket.send(stringify_response)
+            self.socket.sendall(encrypted_response)
 
-            # check if the sent response length is the same the original stringify response.
-            if not sent == len(stringify_response):
-                return {}
-
-            print("Request sent.")
+            # send ending to server
+            self.socket.send("-- End Request --".encode('utf-8'))
 
             start = time.time()
             end_time = time.time()
@@ -130,10 +226,27 @@ class ClientSocket:
             print(e)
 
     def listener(self):
+        """
+        Listen to the server for incoming requests.
+        """
         while True:
             try:
+                response = b""
+
                 # wait for the request to arrive.
-                response = self.socket.recv(1024).decode('utf-8')
+                while True:
+                    # receive the request from the server.
+                    piece = self.socket.recv(1024)
+
+                    # check if the request is the end of request signal.
+                    if piece == b"-- End Request --":
+                        break
+                    else:
+                        # decode the response from base64.
+                        response += piece
+
+                # decrypt the response using the aes encryptor.
+                response = self.decrypt(response)
 
                 # convert to json object.
                 response = json.loads(response)
@@ -210,7 +323,10 @@ class ClientSocket:
             """
             On user join the lobby.
             """
-            self.lobby[update["Data"]["Role"]].append(update["Data"]["Username"])
+            if update["Data"]["Role"] == "players":
+                self.lobby.players.append(update["Data"]["Username"])
+            else:
+                self.lobby.spectators.append(update["Data"]["Username"])
 
             # update the notification if the user is not the current user.
             if self.get_data("username") != update["Data"]["Username"]:
@@ -219,7 +335,10 @@ class ClientSocket:
             """
             On user left the lobby.
             """
-            self.lobby[update["Data"]["Role"]].remove(update["Data"]["Username"])
+            if update["Data"]["Role"] == "players":
+                self.lobby.players.remove(update["Data"]["Username"])
+            else:
+                self.lobby.spectators -= 1
 
             # update the notification if the user is not the current user.
             if self.get_data("username") != update["Data"]["Username"]:
@@ -228,17 +347,52 @@ class ClientSocket:
             """
             On user become spectator.
             """
-            self.lobby["spectators"] += 1
-            self.lobby["players"].remove(update["Data"]["Username"])
+            self.lobby.spectators += 1
+            self.lobby.players.remove(update["Data"]["Username"])
 
             if self.get_data("username") == update["Data"]["Username"]:
-                self.set_data("Lobby_Role", "spectators")
+                self.lobby.lobby_role = "spectators"
         elif update["Update"] == "Become_Player":
             """
             On user become player.
             """
-            self.lobby["players"].append(update["Data"]["Username"])
-            self.lobby["spectators"] -= 1
+            self.lobby.players.append(update["Data"]["Username"])
+            self.lobby.spectators -= 1
+
+            if self.get_data("username") == update["Data"]["Username"]:
+                self.lobby.lobby_role = "players"
+        elif update["Update"] == "Leaderboard":
+            """
+            On leaderboard update.
+            """
+            self.lobby.leaderboard = update["Data"]["Leaderboard"]
+        elif update["Update"] == "Game_Started":
+            """
+            On lobby started.
+            """
+            print("Game started")
+            self.lobby.lobby_board = update["Data"]["Board"]
+            self.lobby.leaderboard = update["Data"]["Leaderboard"]
+            self.lobby.set_ending_date(update["Data"]["Ending_Time"])
+            self.lobby.started = True
+        elif update["Update"] == "Game_Ended":
+            """
+            On lobby ended.
+            """
+            self.lobby.lobby_board = None
+            self.lobby.leaderboard = update["Data"]["Leaderboard"]
+        elif update["Update"] == "Game_Ended":
+            """
+            On lobby ended.
+            """
+            self.lobby.lobby_board = None
+            self.lobby.leaderboard = update["Data"]["Leaderboard"]
+        elif update["Update"] == "Chat_Message":
+            """
+            On chat message.
+            """
+            self.lobby.chat.append(Message(update["Data"]["Username"], update["Data"]["Message"], update["Data"]["Time"]))
+            self.lobby.chat = self.lobby.chat[-4:]
 
     @staticmethod
     def check_push_notification_protocol(update: dict):

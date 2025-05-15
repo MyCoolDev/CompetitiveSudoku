@@ -3,6 +3,7 @@ import datetime as dt
 import random
 import socket
 import string
+import os
 
 import Methods.LatestVersion as api
 import Hashing
@@ -11,7 +12,11 @@ from ClientInterface import Client
 from Database.Database import Database
 from Lobby import Lobby, LobbyManager
 from ThreadPool import ThreadPool
-
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
 
 class ServerSocket:
     """
@@ -75,8 +80,85 @@ class ServerSocket:
             client_socket, client_address = self.server_socket.accept()
             utils.server_print("Connection", "Client " + str(client_address) + " connection request accepted.")
 
+            utils.server_print("Encryption", "Waiting for the client to send the public key.")
+
+            # -- Encryption --
+
+            # receive the client public key.
+            public_pem = b""
+            while True:
+                part = client_socket.recv(1024)
+                public_pem += part
+                if b"-----END PUBLIC KEY-----" in public_pem:
+                    break
+
+            utils.server_print("Encryption", "Client public key received.")
+
+            # load the public key.
+            client_public_key = serialization.load_pem_public_key(public_pem)
+
+            utils.server_print("Encryption", "Client public key loaded.")
+
+            # create aes key
+            aes_key = os.urandom(32)
+            nonce = os.urandom(16)
+            print(aes_key)
+
+            utils.server_print("Encryption", "AES key generated.")
+
+            # encrypt the aes key using the client public key.
+            encrypted_aes_key = client_public_key.encrypt(
+                aes_key,
+                padding.OAEP(
+                    mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                    algorithm=hashes.SHA256(),
+                    label=None
+                )
+            )
+
+            utils.server_print("Encryption", "AES key encrypted.")
+
+            # set the public key to the client.
+            client_socket.sendall(encrypted_aes_key)
+
+            # get confirmation from the client
+            confirmation = client_socket.recv(1024).decode('utf-8')
+            if confirmation != "AES key received":
+                raise Exception("Client didn't receive the AES key.")
+
+            utils.server_print("Encryption", "AES key sent to the client.")
+
+            utils.server_print("Encryption", "Sending nonce to the client.")
+
+            # encrypt the nonce using the client public key.
+            encrypted_nonce = client_public_key.encrypt(
+                nonce,
+                padding.OAEP(
+                    mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                    algorithm=hashes.SHA256(),
+                    label=None
+                )
+            )
+
+            # send the nonce to the client
+            client_socket.sendall(encrypted_nonce)
+
+            # get confirmation from the client
+            confirmation = client_socket.recv(1024).decode('utf-8')
+
+            if confirmation != "Nonce key received":
+                raise Exception("Client didn't receive the nonce.")
+
+            utils.server_print("Encryption", "Nonce sent to the client.")
+
+            # create cipher object from the key and nonce.
+
+            cipher = Cipher(algorithms.AES(aes_key), modes.CFB(nonce), backend=default_backend())
+
+            # -- End Encryption --
+
             # create object for the client.
-            client = Client(client_address, client_socket)
+            client = Client(client_address, client_socket, cipher)
 
             # start to handle the client on a different thread.
             self.threadpool.submit(self.handle_client, client)
@@ -89,7 +171,7 @@ class ServerSocket:
         """
         Handle each client individually, wait for incoming requests and serve them.
         Should be running on the different thread.
-        :param client: the client interface to handle
+        :param client: the client interface to handle.
         """
         utils.server_print("Handler", "Starting to handle " + str(client.address) + ".")
 
@@ -119,9 +201,6 @@ class ServerSocket:
                 elif request["Command"].lower() == "leave_lobby":
                     self.handle_leave_lobby(client, request, rid, request_id)
 
-                elif request["Command"].lower() == "delete_lobby":
-                    pass
-
                 elif request["Command"].lower() == "get_lobby":
                     self.handle_get_lobby(client, request, rid, request_id)
 
@@ -145,6 +224,9 @@ class ServerSocket:
 
                 elif request["Command"].lower() == "game_move":
                     self.handle_game_move(client, request, rid, request_id)
+
+                elif request["Command"].lower() == "chat_message":
+                    self.handle_chat_message(client, request, rid, request_id)
 
                 elif request["Command"].lower() == "add_friend":
                     self.handle_add_friend(client, request, rid, request_id)
@@ -702,12 +784,14 @@ class ServerSocket:
             return
 
         utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+        lobby.start_game()
+        utils.server_print("Lobby Manager", "Request ({request_id}), Game started on lobby " + lobby.code + ".")
 
-        client.send_response(rid, 200, "OK", {"Msg": "Lobby game started.", "Board": lobby.puzzle})
+        client.send_response(rid, 200, "OK", {"Msg": "Lobby game started.", "Board": lobby.puzzle, "Leaderboard": lobby.leaderboard, "Ending_Time": lobby.ending_time.strftime("%Y-%m-%d %H:%M:%S")})
 
         for c in lobby.players + lobby.spectators:
             if c is not client:
-                c.push_notification("Game_Started", {"board": lobby.puzzle})
+                c.push_notification("Game_Started", {"Board": lobby.puzzle, "Leaderboard": lobby.leaderboard, "Ending_Time": lobby.ending_time.strftime("%Y-%m-%d %H:%M:%S")})
 
         utils.server_print("Server", f"Request ({request_id}), Game started on lobby {lobby.code}.")
 
@@ -719,12 +803,23 @@ class ServerSocket:
         utils.server_print("Handler",
                            f"Request ({request_id}), identified as Game Move from " + str(client.address) + ".")
 
-        print(request)
-
         # check if the token exists
         if "Token" not in request or request["Token"] != client.get_data("token"):
             utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
             client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        lobby: Lobby = client.get_data("lobby_info")
+        if lobby is None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
+            return
+
+        if client not in lobby.players:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't a player.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't a player."})
             return
 
         if "Move" not in request["Data"] or type(request["Data"]["Move"]) is not dict:
@@ -739,18 +834,10 @@ class ServerSocket:
             client.send_response(rid, 400, "Bad Request", {"Msg": "Invalid move provided."})
             return
 
-        lobby: Lobby = client.get_data("lobby_info")
-        if lobby is None:
-            utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
-            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
-            return
-
         utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
 
         status = lobby.player_move(client, request["Data"]["Move"]["row"], request["Data"]["Move"]["column"],
                                    request["Data"]["Move"]["value"])
-
-        print(status)
 
         if status:
             utils.server_print("Game Handler", f"Request ({request_id}), Move accepted.")
@@ -758,6 +845,43 @@ class ServerSocket:
         else:
             utils.server_print("Game Handler", f"Request ({request_id}), Move rejected.")
             client.send_response(rid, 400, "Bad Request", {"Msg": "Move rejected."})
+
+        lobby.update_leaderboard()
+
+    @staticmethod
+    def handle_chat_message(client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Handle chat message.
+        """
+        utils.server_print("Handle",
+                           f"Request ({request_id}), identified as Chat Message from " + str(client.address) + ".")
+
+        now = dt.datetime.now()
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        lobby: Lobby = client.get_data("lobby_info")
+
+        if lobby is None:
+            utils.server_print("Handler Error",
+                               f"Request ({request_id}), User {client.get_data('username')} isn't in lobby.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "User isn't in lobby."})
+            return
+
+        if "Message" not in request["Data"]:
+            utils.server_print("Handler Error", f"Request ({request_id}), No message provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No message provided."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        lobby.send_message(client, request["Data"]["Message"], now.strftime("%H:%M:%S"))
+        client.send_response(rid, 200, "OK", {"Msg": "Message sent."})
+        utils.server_print("Server", f"Request ({request_id}), Message sent to lobby {lobby.code}.")
 
     # -- Friend System Handlers --
 

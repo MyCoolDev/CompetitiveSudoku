@@ -10,13 +10,14 @@ class TextBox(MonoBehaviour):
     def __init__(self, size: pygame.Vector2, position: pygame.Vector2, box_color: tuple, default_content: str,
                  font: str,
                  font_size: int, text_color: tuple, padding: tuple = (0, 0, 0, 0), padding_left: int = 0,
-                 padding_top: int = 0, padding_right: int = 0, padding_bottom: int = 0, width: int = 0,
+                 padding_top: int = 0, padding_right: int = 0, padding_bottom: int = 0, border_width: int = 0,
                  border_radius: int = -1,
                  border_top_left_radius: int = -1, border_top_right_radius: int = -1,
-                 border_bottom_left_radius: int = -1, border_bottom_right_radius: int = -1, next_input=None, hidden=False, text_left_mode=True, text_centered=False, num_only=False, max_length=None, lock=False):
-        super().__init__(size, position, box_color, width, border_radius, border_top_left_radius,
+                 border_bottom_left_radius: int = -1, border_bottom_right_radius: int = -1, next_input=None, hidden=False, text_left_mode=True, text_centered=False, num_only=False, max_length=None, lock=False, focused_color=None):
+        super().__init__(size, position, box_color, border_width, border_radius, border_top_left_radius,
                          border_top_right_radius, border_bottom_left_radius, border_bottom_right_radius)
 
+        self.normal_color = box_color
         self.is_focused = False
         self.next_input: TextBox = next_input
 
@@ -57,6 +58,8 @@ class TextBox(MonoBehaviour):
         self.max_length = max_length
         self.num_only = num_only
         self.lock = lock
+
+        self.focused_color = focused_color
 
     def update_text(self, content):
         if self.lock:
@@ -141,11 +144,16 @@ class TextBox(MonoBehaviour):
                 mouse_pos = pygame.mouse.get_pos()
 
                 self.is_focused = self.is_collide(mouse_pos)
+                if self.focused_color is not None:
+                    if self.is_focused:
+                        self.color = self.focused_color
+                    else:
+                        self.color = self.normal_color
             if self.is_focused:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_BACKSPACE:
                         self.update_text(self.content[:-1])
-                    elif self.num_only and event.unicode in "0123456789":
+                    elif self.num_only and event.unicode in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
                         return event.unicode
 
     def render(self, surface: pygame.Surface) -> pygame.Rect or None:

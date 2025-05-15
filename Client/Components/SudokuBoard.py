@@ -10,7 +10,7 @@ class SudokuBoard:
         self.board = board
         self.size = 910
         self.files = [
-            [TextBox(pygame.Vector2(self.size / 9, self.size / 9), pygame.Vector2((self.screen.get_width() - self.size) / 2 + 100 * index_file + (5 if index_file % 3 == 0 and index_file != 0 else 0), (self.screen.get_height() - self.size) / 2 + 100 * index_line + (5 if index_line % 3 == 0 and index_line != 0 else 0)), (81, 81, 81), str(number) if number != 0 else "", "Regular", 24, (255, 255, 255), text_left_mode=False, text_centered=True, num_only=True) for index_file, number in enumerate(line)] for index_line, line in enumerate(board)
+            [TextBox(pygame.Vector2(self.size / 9, self.size / 9), pygame.Vector2((self.screen.get_width() - self.size) / 2 + 100 * index_file + (5 if index_file % 3 == 0 and index_file != 0 else 0), (self.screen.get_height() - self.size) / 2 + 20 + 100 * index_line + (5 if index_line % 3 == 0 and index_line != 0 else 0)), (81, 81, 81), str(number) if number != 0 else "", "Regular", 24, (255, 255, 255), text_left_mode=False, text_centered=True, num_only=True, focused_color=(105, 105, 105)) for index_file, number in enumerate(line)] for index_line, line in enumerate(board)
         ]
 
         self.client = client
@@ -23,11 +23,12 @@ class SudokuBoard:
                     if key is not None:
                         response = self.client.send_request("game_move", {"Move": {"row": row, "column": column, "value": int(key)}})
                         if response["StatusCode"] == 200:
-                            file.update_text(key)
+                            file.text.update_color((0, 255, 0))
+                            file.text.update_text(key)
                             file.lock = True
                         else:
                             file.text.update_color((255, 0, 0))
-                            file.update_text(key)
+                            file.text.update_text(key)
                             file.lock = False
 
     def render(self):

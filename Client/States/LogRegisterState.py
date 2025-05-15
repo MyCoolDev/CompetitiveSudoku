@@ -11,6 +11,10 @@ from Client.client import ClientSocket
 class LogRegister(BaseState):
     def __init__(self, screen: pygame.Surface, client: ClientSocket):
         super().__init__(screen, client)
+
+        # change the screen name
+        pygame.display.set_caption("Competitive Sudoku - Login / Register")
+
         self.__init_vars()
 
     def __init_vars(self, *args, **kwargs) -> None:
@@ -45,7 +49,7 @@ class LogRegister(BaseState):
             self.client.friends_information = response["Data"]["Friends"]
 
     def login_func(self):
-        response = self.client.send_request("Login", {"Username": self.username_textbox.content, "Password": self.password_textbox.content})
+        response = self.client.send_request("Login", {"Username": self.username_textbox.content, "Password": self.password_textbox.content}, timeout=10)
         if response["StatusCode"] == 200:
             print("Login successfully")
             self.client.set_token(response["Data"]["Token"])

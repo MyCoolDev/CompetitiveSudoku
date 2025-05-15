@@ -5,8 +5,8 @@ from Client.Components.Text import Text
 
 
 class Button(MonoBehaviour):
-    def __init__(self, size: pygame.Vector2, position: pygame.Vector2, color: tuple, content: str, font: str = "", font_size: int = 0, text_color: tuple = (0, 0, 0), top_left_mode=False, width: int = 0, border_radius: int = -1, border_top_left_radius: int = -1, border_top_right_radius: int = -1, border_bottom_left_radius: int = -1, border_bottom_right_radius: int = -1):
-        super().__init__(size, position - 1/2 * size + int(top_left_mode) * 1/2 * size, color, width, border_radius, border_top_left_radius, border_top_right_radius, border_bottom_left_radius, border_bottom_right_radius)
+    def __init__(self, size: pygame.Vector2, position: pygame.Vector2, color: tuple, content: str, font: str = "", font_size: int = 0, text_color: tuple = (0, 0, 0), top_left_mode=False, border_width: int = 0, border_radius: int = -1, border_top_left_radius: int = -1, border_top_right_radius: int = -1, border_bottom_left_radius: int = -1, border_bottom_right_radius: int = -1):
+        super().__init__(size, position - 1/2 * size + int(top_left_mode) * 1/2 * size, color, border_width, border_radius, border_top_left_radius, border_top_right_radius, border_bottom_left_radius, border_bottom_right_radius)
         self.rect: pygame.Rect or None = None
         self.content = content
         if content != "":

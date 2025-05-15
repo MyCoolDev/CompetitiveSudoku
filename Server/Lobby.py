@@ -12,6 +12,9 @@ class Lobby:
     def __init__(self, owner: Client, code: str, max_time=60 * 15):
         """
         The lobby data structure to store all the data and do some actions on it.
+        :param owner: The owner of the lobby.
+        :param code: The code of the lobby.
+        :param max_time: The maximum time for the game in seconds.
         """
         self.board = SudokuGenerator()
         self.solution, self.puzzle = self.board.generate_puzzle("medium")
@@ -88,6 +91,11 @@ class Lobby:
             return "spectators", True
 
     def ban_client(self, client: Client) -> bool:
+        """
+        Ban a client from the lobby. (Implementation of ban user)
+        :param client: Client to ban.
+        :return: True if the client was banned, False otherwise.
+        """
         if self.remove_client(client):
             self.bans.append(client)
             return True
@@ -95,6 +103,11 @@ class Lobby:
         return False
 
     def get_client(self, username) -> Client or None:
+        """
+        Get a client by username.
+        :param username: The username of the client to get.
+        :return: The client object if found, None otherwise.
+        """
         for client in self.players:
             if client.get_data("username") == username:
                 return client
@@ -145,6 +158,8 @@ class Lobby:
                 "game_exp": 0
             }
 
+        self.leaderboard = [(username, 0) for username in self.players_data.keys()]
+
         # Run the game in a separate thread.
         threading.Thread(target=self.run_game).start()
 
@@ -154,12 +169,17 @@ class Lobby:
     def player_move(self, client: Client, x: int, y: int, value: int) -> bool:
         """
         Check if the move is valid and update the player data.
+        :param client: The client that made the move.
+        :param x: The x coordinate of the move.
+        :param y: The y coordinate of the move.
+        :param value: The value of the move.
+        :return: True if the move is valid, False otherwise.
         """
         username = client.get_data("username")
 
         if self.solution[x][y] != value:
             self.players_data[username]["mistakes"] += 1
-            print("test")
+            self.players_data[username]["score"] = len(self.players_data[username]["moves"]) / self.puzzle_size * 100 - self.players_data[username]["mistakes"] / self.puzzle_size * 50
             return False
 
         # get the delta time between the starting time and the move in seconds
@@ -167,12 +187,8 @@ class Lobby:
 
         self.players_data[username]["moves"] += (x, y)
         self.players_data[username]["game_exp"] += round(self.BASE_EXP / move_time)
-        self.players_data[username]["score"] = len(self.players_data[username]["moves"]) / self.puzzle_size
-        self.update_leaderboard()
+        self.players_data[username]["score"] = len(self.players_data[username]["moves"]) / self.puzzle_size * 100 - (self.players_data[username]["mistakes"] / self.puzzle_size * 50)
         return True
-
-    # def update_score(self, client):
-    #     self.players_data[username]
 
     def check_timer(self) -> int:
         """
@@ -185,17 +201,29 @@ class Lobby:
         """
         get the updated leaderboard and send it to everyone on the lobby.
         """
-        self.leaderboard = self.get_leaderboard()
+        self.get_leaderboard()
         for player in self.players + self.spectators:
             player.push_notification("Leaderboard", {"Leaderboard": self.leaderboard})
 
-    def get_leaderboard(self) -> list:
+    def get_leaderboard(self):
         """
         Get the leaderboard of the game.
-        :return: The leaderboard of the game.
         """
-        self.leaderboard = sorted(self.players_data.items(), key=lambda x: x[1]["score"], reverse=True)
-        return self.leaderboard
+        self.leaderboard = [(username, int(self.players_data[username]["score"])) for username in self.players_data.keys()]
+        self.leaderboard = sorted(self.leaderboard, key=lambda x: x[1], reverse=True)
+        if self.leaderboard is []:
+            self.leaderboard = [(username, 0) for username in self.players_data.keys()]
+
+    # -- Lobby Chat --
+    def send_message(self, client: Client, message: str, time: str) -> None:
+        """
+        Send a message to the lobby chat.
+        :param client: The client that sent the message.
+        :param message: The message to send.
+        """
+        for player in self.players + self.spectators:
+            if player != client:
+                player.push_notification("Chat_Message", {"Username": client.get_data("username"), "Message": message, "Time": time})
 
     def __repr__(self):
         return {
@@ -205,7 +233,7 @@ class Lobby:
             "max_players": self.MAX_PLAYERS,
             "players": [x.get_data("username") for x in self.players],
             "spectators": len(self.spectators),
-            "players_colors": self.players_colors
+            "players_colors": self.players_colors,
         }
 
 

@@ -1,3 +1,5 @@
+import datetime
+
 import default
 
 
@@ -18,12 +20,16 @@ class Lobby:
         self.code = code
         self.started = started
         self.max_players = max_players
+        self.ending_date = None
         self.players = players
         self.spectators = spectators
         self.players_colors = players_colors
         self.lobby_role = lobby_role
         self.leaderboard = []
         self.lobby_board = None
+
+        # chat
+        self.chat: list[Message] = []
 
     @staticmethod
     def from_dict(lobby: dict, user_role: str):
@@ -34,6 +40,13 @@ class Lobby:
         :return: The created lobby object.
         """
         return Lobby(lobby["owner"], lobby["code"], lobby["started"], lobby["max_players"], lobby["players"], lobby["spectators"], lobby["players_colors"], user_role)
+
+    def set_ending_date(self, ending_date: str):
+        """
+        Set the ending date of the lobby.
+        :param ending_date: The ending date of the lobby.
+        """
+        self.ending_date = datetime.datetime.strptime(ending_date, "%Y-%m-%d %H:%M:%S")
 
     def to_dict(self):
         """
@@ -48,3 +61,15 @@ class Lobby:
             "spectators": self.spectators,
             "players_colors": self.players_colors
         }
+
+
+class Message:
+    def __init__(self, username: str, message: str, time: str):
+        """
+        Store the message data.
+        :param username: The username of the sender.
+        :param message: The message content.
+        """
+        self.username = username
+        self.message = message
+        self.time = datetime.datetime.strptime(time, "%H:%M:%S")

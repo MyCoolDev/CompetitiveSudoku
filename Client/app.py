@@ -1,9 +1,11 @@
 from default import *
 
+from States.WelcomeState import WelcomeState
 from States.Home import Home
 from States.InGame import InGame
 from States.InLobby import InLobby
 from States.LogRegisterState import LogRegister
+from States.GameSpectator import GameSpectator
 from client import ClientSocket
 
 
@@ -19,12 +21,16 @@ class App:
         self.client = ClientSocket(self)
 
         self.screen = pygame.display.set_mode((int(self.client.config["SCREEN_WIDTH"]), int(self.client.config["SCREEN_HEIGHT"])))
+
+        # change the screen name
+        pygame.display.set_caption("Competitive Sudoku")
+
         self.clock = pygame.time.Clock()
         self.events = None
         self.running = False
         self.dt = 0  # delta time
 
-        self.current_state = LogRegister(self.screen, self.client)
+        self.current_state = WelcomeState(self.screen, self.client)
 
     def start_client(self):
         """
@@ -58,15 +64,21 @@ class App:
         # update using the state
         self.current_state.update(self.dt, self.events)
 
+        if isinstance(self.current_state, WelcomeState) and not self.current_state.intro_status:
+            self.current_state = LogRegister(self.screen, self.client)
+
         if self.client.token is not None:
             if self.client.lobby is None and type(self.current_state) is not Home:
                 self.current_state = Home(self.screen, self.client)
 
-            elif self.client.lobby is not None and self.client.lobby.lobby_board is None and type(self.current_state) is not InLobby:
+            elif self.client.lobby is not None and self.client.lobby.lobby_board is None and not self.client.lobby.started and type(self.current_state) is not InLobby:
                 self.current_state = InLobby(self.screen, self.client)
 
-            elif self.client.lobby and self.client.lobby.lobby_board is not None and type(self.current_state) is not InGame:
-                self.current_state = InGame(self.screen, self.client)
+            elif self.client.lobby is not None and self.client.lobby.lobby_board is not None and self.client.lobby.started and type(self.current_state) is InLobby:
+                if self.client.get_data("username") not in self.client.lobby.players:
+                    self.current_state = GameSpectator(self.screen, self.client)
+                else:
+                    self.current_state = InGame(self.screen, self.client)
 
     def render(self):
         """

@@ -12,6 +12,12 @@ Every client request will have id for response identification.
 ## Push notification
 An update the server send to a client.
 
+# Encryption
+The protocol should be encrypted, therefore, we'll use rsa encryption for the protocol.
+At the beginning of the connection, the client will send his public key to the server and the server will reply with his public key.
+
+
+
 > [!Note]
 > The protocol should contain keys for encryption and tokens. This is something to be thinking on.
 

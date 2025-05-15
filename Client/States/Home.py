@@ -1,4 +1,5 @@
 import os
+import math
 
 import pygame
 
@@ -16,6 +17,11 @@ from Client.lobby import Lobby
 class Home(BaseState):
     def __init__(self, screen: pygame.Surface, client: ClientSocket):
         super().__init__(screen, client)
+
+        # change the screen name
+        self.light_circles = None
+        pygame.display.set_caption("Competitive Sudoku - Home - " + self.client.get_data("username"))
+
         self.__init_vars()
 
     def __init_vars(self, *args, **kwargs) -> None:
@@ -31,7 +37,17 @@ class Home(BaseState):
         self.mouse_cursor["IBEAM"] = [self.lobby_code]
         self.mouse_cursor["HAND"] = [self.menu_icon, self.join_lobby_button, self.create_lobby_button]
 
+        self.timer = 0
+        self.radius = 100
+        self.start_x = (self.screen.get_width()) / 2
+        self.start_y = self.screen.get_height() / 2 - 100
+        self.light_circles = []
+        self.light_circle_radius = 5
+        self.animation_durations = 4
+        self.animation_circle_duration = 2
+
     def update(self, dt: float, events: list, *args, **kwargs):
+        self.timer += dt
         super().update(dt, events, *args, **kwargs)
         self.lobby_code.update(dt, events)
         self.friend_list.update(dt, events)
@@ -44,6 +60,13 @@ class Home(BaseState):
 
         if self.join_lobby_button.update(dt, events) and not self.lobby_code.is_default_content_presented and len(self.lobby_code.content) == 6:
             self.join_lobby()
+
+        self.light_circles = [(self.radius * math.cos(
+            math.radians(self.timer / self.animation_circle_duration * 360 + 20 * i)) + self.start_x,
+                               self.radius * math.sin(math.radians(
+                                   self.timer / self.animation_circle_duration * 360 + (20 + (
+                                               self.timer) * 10) * i)) + self.start_y)
+                              for i in range(5)]
 
     def create_lobby(self):
         response = self.client.send_request("Create_Lobby", {})
@@ -67,3 +90,6 @@ class Home(BaseState):
         self.friend_icon.render(self.screen)
         self.friend_list.render()
         super().render()
+
+        for light_circle in self.light_circles:
+            pygame.draw.circle(self.screen, (255, 255, 255), (int(light_circle[0]), int(light_circle[1])), self.light_circle_radius)

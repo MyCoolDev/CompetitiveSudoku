@@ -8,7 +8,7 @@ if "%1"=="" (
 REM Set default values
 set HOST=127.0.0.1
 set PORT=8000
-set STATUS=test
+set STATUS=0
 
 REM Configure based on the argument
 if "%1"=="test" (

@@ -6,16 +6,19 @@ import threading
 import utils
 from ClientInterface import Client
 from Server.SudokuBoard import SudokuGenerator
+from Methods.LatestVersion import *
+from Database.Database import Database
 
 
 class Lobby:
-    def __init__(self, owner: Client, code: str, max_time=60 * 15):
+    def __init__(self, owner: Client, code: str, database: Database, max_time=60 * 15):
         """
         The lobby data structure to store all the data and do some actions on it.
         :param owner: The owner of the lobby.
         :param code: The code of the lobby.
         :param max_time: The maximum time for the game in seconds.
         """
+        self.database = database
         self.board = SudokuGenerator()
         self.solution, self.puzzle = self.board.generate_puzzle("medium")
         self.puzzle_size = len(SudokuGenerator.get_empty_cells(self.puzzle))
@@ -118,13 +121,6 @@ class Lobby:
 
         return None
 
-    def delete_lobby(self) -> bool:
-        """
-        Delete the lobby. (Implementation of delete lobby)
-        :return: True if the lobby was deleted, False otherwise.
-        """
-        pass
-
     def __shuffle_colors(self):
         """
         Shuffle the colors set of the players to randomize the colors.
@@ -138,7 +134,13 @@ class Lobby:
         Run the game as long as the timelimit hasn't been reached, the players haven't finished the game and the players are still in the lobby / game (lobby exists).
         """
         while self.check_timer() > 0 and len(self.players) > 0 and self.winner is None:
-            pass
+            # check if one player finished the puzzle
+            for player in self.players:
+                if len(self.players_data[player.get_data("username")]["moves"]) == self.puzzle_size:
+                    self.winner = player.get_data("username")
+                    break
+
+        self.end_game()
 
     def start_game(self) -> None:
         """
@@ -155,7 +157,8 @@ class Lobby:
                 "score": 0,
                 "mistakes": 0,
                 "moves": [],
-                "game_exp": 0
+                "game_exp": 0,
+                "playtime": 0,  # in mins
             }
 
         self.leaderboard = [(username, 0) for username in self.players_data.keys()]
@@ -164,7 +167,28 @@ class Lobby:
         threading.Thread(target=self.run_game).start()
 
     def end_game(self):
-        pass
+        """
+        End the game by sending all the clients that the game is over add update the new players exp to their profile in the db
+        """
+        utils.server_print("Lobby", f"Game ended in lobby ({self.code})")
+        self.game_started = False
+
+        if self.winner is None:
+            self.winner = max(self.players_data, key=lambda x: self.players_data[x]["score"])
+
+        # winning reward
+        self.players_data[self.winner]["game_exp"] = self.players_data[self.winner]["game_exp"] + self.BASE_EXP
+
+        for player in self.players:
+            # update the player playtime
+            self.players_data[player.get_data("username")]["playtime"] = self.MAX_TIME - ((self.ending_time - datetime.datetime.now()).seconds / 60)
+
+        for player in self.players + self.spectators:
+            player.push_notification("Game_Over", {"Winner": self.winner, "Leaderboard": self.leaderboard})
+
+        # update the players exp in the db
+        for player in self.players:
+            account.update_playtime(player.get_data("username"), self.winner == player, self.players_data[player.get_data("username")]["playtime"], self.players_data[player.get_data("username")]["game_exp"], self.database)
 
     def player_move(self, client: Client, x: int, y: int, value: int) -> bool:
         """
@@ -178,6 +202,12 @@ class Lobby:
         username = client.get_data("username")
 
         if self.solution[x][y] != value:
+            if self.players_data[username]["mistakes"] == 3:
+                # if the player made 3 mistakes, he is out of the game
+                self.players.remove(client)
+                self.spectators.append(client)
+                client.push_notification("Game_Finished", {"Leaderboard": self.leaderboard})
+                return False
             self.players_data[username]["mistakes"] += 1
             self.players_data[username]["score"] = len(self.players_data[username]["moves"]) / self.puzzle_size * 100 - self.players_data[username]["mistakes"] / self.puzzle_size * 50
             return False
@@ -190,12 +220,37 @@ class Lobby:
         self.players_data[username]["score"] = len(self.players_data[username]["moves"]) / self.puzzle_size * 100 - (self.players_data[username]["mistakes"] / self.puzzle_size * 50)
         return True
 
+    def player_max_mistakes_reached(self, client: Client) -> None:
+        """
+        Remove the player from the players to spectators, update the playtime and other staff
+        :param client: The client that made the move.
+        """
+        self.players_data[client.get_data("username")]["playtime"] = self.MAX_TIME - ((self.ending_time - datetime.datetime.now()).seconds / 60)
+        self.update_player_stats(client)
+        self.players.remove(client)
+        self.spectators.append(client)
+        client.push_notification("Game_Finished", {"Leaderboard": self.leaderboard})
+
+    def update_player_stats(self, client: Client) -> None:
+        """
+        Update the player stats in the database using the players_data dict.
+        :param client:
+        :return:
+        """
+        if client not in self.players:
+            return
+
+        username = client.get_data("username")
+        if username in self.players_data:
+            # update the player stats in the database
+            account.update_playtime(username, self.winner == client.get_data("username"), self.players_data[username]["playtime"], self.players_data[username]["game_exp"], self.database)
+
     def check_timer(self) -> int:
         """
         check the time left for the game.
         :return: the time left for the game in seconds.
         """
-        return (self.ending_time - datetime.datetime.now()).seconds
+        return (self.ending_time - datetime.datetime.now()).total_seconds()
 
     def update_leaderboard(self) -> None:
         """
@@ -238,11 +293,12 @@ class Lobby:
 
 
 class LobbyManager:
-    def __init__(self):
+    def __init__(self, database: Database):
         """
         Manage all the lobbies
         """
         self.all_lobbies = {}
+        self.database = database
 
     def create_lobby(self, owner: Client) -> Lobby:
         """
@@ -251,7 +307,7 @@ class LobbyManager:
         :return: The created lobby object.
         """
         utils.server_print("Lobby Manager", "Creating new lobby")
-        new_lobby = Lobby(owner, self.generate_code())
+        new_lobby = Lobby(owner, self.generate_code(), self.database)
 
         # add the new lobby to all the lobbies for auths.
         self.all_lobbies[new_lobby.code] = new_lobby

@@ -58,7 +58,7 @@ class ServerSocket:
             # create a thread pool of client handling.
             self.threadpool = ThreadPool(self.MAX_CLIENTS)
 
-            self.lobby_manager = LobbyManager()
+            self.lobby_manager = LobbyManager(self.database)
 
             # all the tokens that have been generated.
             self.tokens = []
@@ -102,7 +102,6 @@ class ServerSocket:
             # create aes key
             aes_key = os.urandom(32)
             nonce = os.urandom(16)
-            print(aes_key)
 
             utils.server_print("Encryption", "AES key generated.")
 
@@ -237,6 +236,9 @@ class ServerSocket:
                 elif request["Command"].lower() == "reject_friend":
                     self.handle_reject_friend(client, request, rid, request_id)
 
+                elif request["Command"].lower() == "get_friend_list":
+                    self.handle_get_friend_list(client, request, rid, request_id)
+
                 elif request["Command"].lower() == "invite_friend":
                     pass
                 elif request["Command"].lower() == "accept_friend_invitation":
@@ -245,10 +247,7 @@ class ServerSocket:
                     pass
                 elif request["Command"].lower() == "get_friend_information":
                     pass
-                elif request["Command"].lower() == "message_friend":
-                    pass
-                elif request["Command"].lower() == "get_chat_information":
-                    pass
+
             except Exception as e:
                 utils.server_print("Error", str(e))
                 self.disconnect_user(client)
@@ -340,8 +339,7 @@ class ServerSocket:
         friends = api.friend.get_friend_list(request["Data"]["Username"], self.logged_clients, self.database)
 
         client.send_response(rid, 200, "OK", {"Msg": "Logged in successfully.", "Token": token, "Friends": friends})
-        utils.server_print("Server",
-                           f"Request ({request_id}), User " + request["Data"]["Username"] + " logged in successfully.")
+        utils.server_print("Server", f"Request ({request_id}), User " + request["Data"]["Username"] + " logged in successfully.")
         api.account.update_login_data(client.address, request["Data"]["Username"], self.database)
 
     def handle_create_lobby(self, client: Client, request: dict, rid: int, request_id: int) -> None:
@@ -359,8 +357,7 @@ class ServerSocket:
             return
 
         if client.get_data("lobby") is not None:
-            utils.server_print("Handler Error",
-                               f"Request ({request_id}), User {client.get_data('username')} already in lobby.")
+            utils.server_print("Handler Error", f"Request ({request_id}), User {client.get_data('username')} already in lobby.")
             client.send_response(rid, 409, "Conflict", {"Msg": "User already in lobby."})
             return
 
@@ -369,8 +366,7 @@ class ServerSocket:
         # create and use the lobby
         lobby = self.lobby_manager.create_lobby(client)
         client.set_data("lobby_info", lobby)
-        client.send_response(rid, 201, "Created",
-                             {"Msg": "Lobby created successfully.", "Lobby_Info": lobby.__repr__()})
+        client.send_response(rid, 201, "Created", {"Msg": "Lobby created successfully.", "Lobby_Info": lobby.__repr__()})
         utils.server_print("Server", f"Request ({request_id}), Lobby created successfully.")
 
     def handle_join_lobby(self, client: Client, request: dict, rid: int, request_id: int) -> None:
@@ -834,6 +830,11 @@ class ServerSocket:
             client.send_response(rid, 400, "Bad Request", {"Msg": "Invalid move provided."})
             return
 
+        if not lobby.game_started:
+            utils.server_print("Handler Error", f"Request ({request_id}), Game not started or ended.")
+            client.send_response(rid, 409, "Conflict", {"Msg": "Game not started or ended."})
+            return
+
         utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
 
         status = lobby.player_move(client, request["Data"]["Move"]["row"], request["Data"]["Move"]["column"],
@@ -916,8 +917,7 @@ class ServerSocket:
         client.send_response(rid, 200, "OK", {"Msg": "Friend request sent."})
 
         if request["Data"]["Username"] in self.logged_clients:
-            self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request", {
-                "Username": client.get_data("username")})
+            self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request", {"Username": client.get_data("username")})
 
         utils.server_print("Server", f"Request ({request_id}), Friend Request Sent.")
 
@@ -947,7 +947,7 @@ class ServerSocket:
             client.send_response(rid, 404, "Not Found", {"Msg": "Invalid username."})
             return
 
-        # check if the user sent a request already.
+        # check if the user sent a request.
         friend_list = api.friend.get_friend_list(client.get_data("username"), self.logged_clients, self.database)[1]
 
         if request["Data"]["Username"] not in friend_list:
@@ -958,11 +958,11 @@ class ServerSocket:
         utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
 
         api.friend.accept_friend(request["Data"]["Username"], client.get_data("username"), self.database)
-        client.send_response(rid, 200, "OK", {"Msg": "Friend request accepted."})
+        client.send_response(rid, 200, "OK", {"Msg": "Friend request accepted.", "Friend_Information": api.friend.get_friend_information(request["Data"]["Username"], self.database, (request["Data"]["Username"] in self.logged_clients))})
+        print("sent response")
 
         if request["Data"]["Username"] in self.logged_clients:
-            self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request_Accepted", {
-                "Username": client.get_data("username")})
+            self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request_Accepted", {"Username": client.get_data("username"), "New_Friend_List": api.friend.get_friend_list(request["Data"]["Username"], self.logged_clients, self.database)})
 
         utils.server_print("Server", f"Request ({request_id}), Friend Request Accepted.")
 
@@ -1005,10 +1005,25 @@ class ServerSocket:
         api.friend.reject_friend(request["Data"]["Username"], client.get_data("username"), self.database)
         client.send_response(rid, 200, "OK", {"Msg": "Friend request rejected."})
 
-        self.logged_clients[request["Data"]["Username"]].push_notification("Friend_Request_Accepted",
-                                                                           {"Username": client.get_data("username")})
-
         utils.server_print("Server", f"Request ({request_id}), Friend Request Rejected.")
+
+    def handle_get_friend_list(self, client: Client, request: dict, rid: int, request_id: int) -> None:
+        """
+        Get the friend list of the user.
+        """
+        utils.server_print("Handler",
+                           f"Request ({request_id}), identified as Get Friend List from " + str(client.address) + ".")
+
+        # check if the token exists
+        if "Token" not in request or request["Token"] != client.get_data("token"):
+            utils.server_print("Handler Error", f"Request ({request_id}), No Token provided.")
+            client.send_response(rid, 400, "Bad Request", {"Msg": "No Token provided."})
+            return
+
+        utils.server_print("Handler", f"Request ({request_id}), Request passed all checks.")
+
+        friend_list = api.friend.get_friend_list(client.get_data("username"), self.logged_clients, self.database)
+        client.send_response(rid, 200, "OK", {"Msg": "Friend list retrieved.", "Friend_List": friend_list})
 
     # -- User authentication token generator --
 

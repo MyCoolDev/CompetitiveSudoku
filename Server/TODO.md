@@ -22,11 +22,3 @@
 ### Client communications
 - ~~**Create a protocol (format of a set of commends) of the communication.**~~
 - ~~Use the protocol ^ in Client.handle_client() function.~~
-
-### Save for later - Server dashboard
-- ~~Create a flask webserver.~~
-- **Design the dashboard.**
-- Create Server dashboard.
-- Create a websocket for the dashboard for live updates.
-- Run the server socket using the dashboard.
-- Have information in the Dashboard.

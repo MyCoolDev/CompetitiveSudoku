@@ -71,14 +71,14 @@ class Home(BaseState):
     def create_lobby(self):
         response = self.client.send_request("Create_Lobby", {})
         if response["StatusCode"] == 201:
-            print("Lobby created successfully")
             self.client.lobby = Lobby.from_dict(response["Data"]["Lobby_Info"], "players")
+            self.client.set_data("go_to_lobby", True)
 
     def join_lobby(self):
         response = self.client.send_request("Join_Lobby", {"Code": self.lobby_code.content})
         if response["StatusCode"] == 200:
-            print("Lobby joined successfully")
             self.client.lobby = Lobby.from_dict(response["Data"]["Lobby_Info"], response["Data"]["Role"])
+            self.client.set_data("go_to_lobby", True)
 
     def render(self, *args, **kwargs):
         self.title.render(self.screen)

@@ -43,18 +43,18 @@ class LogRegister(BaseState):
     def register_func(self):
         response = self.client.send_request("Register", {"Username": self.username_textbox.content, "Password": self.password_textbox.content})
         if response["StatusCode"] == 201:
-            print("Registered successfully")
             self.client.set_token(response["Data"]["Token"])
             self.client.set_data("username", self.username_textbox.content)
             self.client.friends_information = response["Data"]["Friends"]
+            self.client.set_data("go_to_home", True)
 
     def login_func(self):
         response = self.client.send_request("Login", {"Username": self.username_textbox.content, "Password": self.password_textbox.content}, timeout=10)
         if response["StatusCode"] == 200:
-            print("Login successfully")
             self.client.set_token(response["Data"]["Token"])
             self.client.set_data("username", self.username_textbox.content)
             self.client.friends_information = response["Data"]["Friends"]
+            self.client.set_data("go_to_home", True)
 
     def render(self, *args, **kwargs):
         self.title.render(self.screen)

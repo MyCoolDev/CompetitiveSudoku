@@ -48,6 +48,10 @@ class InGame(BaseState):
         self.animation_circle_duration = 2
         self.animation_timer = 0
 
+        # setting some mouse cursors
+        self.mouse_cursor["HAND"] = [self.chat_input_send_button_bg, self.chat_input_send_button_icon]
+        self.mouse_cursor["IBEAM"] = [self.chat_input]
+
     def update_leaderboard(self):
         """
         Update the leaderboard with the current players scores.
@@ -56,6 +60,7 @@ class InGame(BaseState):
         self.leaderboard_rating = [(Text(f"{player[0]}", "Regular", 14, Vector2(self.leaderboard.position.x + 24, self.leaderboard_title.position.y + self.leaderboard_title.text_surface.get_height() + 20 + i * 28), ((251, 175, 55) if i == 0 else (201, 212, 203) if i == 1 else (187, 137, 121) if i == 2 else (218, 218, 218)), top_left_mode=True), Text(f"{player[1]}", "Regular", 14, Vector2(self.leaderboard.position.x + self.leaderboard.size.x - 24, self.leaderboard_title.position.y + self.leaderboard_title.text_surface.get_height() + 20 + i * 28), ((251, 175, 55) if i == 0 else (201, 212, 203) if i == 1 else (187, 137, 121) if i == 2 else (218, 218, 218)), top_mode=True)) for i, player in enumerate(self.client.lobby.leaderboard)]
 
     def update(self, dt: float, events: list, *args, **kwargs):
+        super().update(dt, events, *args, **kwargs)
         self.timer -= dt
         self.animation_timer += dt
         self.timer_display.update_text(f"Time: {int(self.timer // 60)}:{int(self.timer % 60):02d}")

@@ -24,6 +24,7 @@ class InLobby(BaseState):
         super().__init__(screen, client)
 
         # change the screen name
+        self.data = None
         pygame.display.set_caption("Competitive Sudoku - Lobby (" + self.client.lobby.code + ") - " + self.client.get_data("username"))
 
         self.join_lobby = pygame.mixer.Sound(os.path.join("Sounds", "Join.wav"))
@@ -81,7 +82,15 @@ class InLobby(BaseState):
                                     (255, 255, 255), left_mode=True)
 
         if self.owner:
-            self.start_game_button = Button(pygame.Vector2(200, 60), pygame.Vector2(self.screen.get_width() - 75 - 200, self.screen.get_height() - 50 - 60), (52, 191, 73), "Start Game", "Bold", 20, (226, 226, 226), border_radius=10, top_left_mode=True)
+            self.start_game_button = Button(pygame.Vector2(200, 60), pygame.Vector2(self.screen.get_width() - 75 - 200, self.screen.get_height() - 50 - 60), (52, 191, 73), "Showdown", "Bold", 20, (226, 226, 226), border_radius=10, top_left_mode=True)
+
+        if self.my_card is None:
+            self.become_a_player_button = self.init_player_card("Become A Player",
+                                                                COLOR_NAMES[str(self.data["players_colors"][len(self.data["players"])])],
+                                                                len(self.data["players"]),
+                                                                self.number_of_players.position + pygame.Vector2(20,
+                                                                                                                 self.number_of_players.text_surface.get_height() + 50),
+                                                                True)
 
         # setting some mouse cursors
         self.mouse_cursor["HAND"] = [self.menu_icon, self.code_copy_icon]
@@ -96,8 +105,6 @@ class InLobby(BaseState):
         if self.code_copy_icon.update(events):
             pyperclip.copy(self.data["code"])
 
-        self.spectator_count.update_text(f"{self.data['spectators']}")
-
         if self.become_a_player_button is not None and self.become_a_player_button[0].update(events):
             response = self.client.send_request("Become_Lobby_Player", {})
             if response["StatusCode"] == 200:
@@ -106,8 +113,7 @@ class InLobby(BaseState):
                 self.client.lobby.players.append(self.client.get_data("username"))
                 self.client.lobby.lobby_role = "players"
 
-        if self.my_card[3].update(events):
-            print(self.data)
+        if self.my_card is not None and self.my_card[3].update(events):
             response = self.client.send_request("Become_Lobby_Spectator", {})
             if response["StatusCode"] == 200:
                 self.client.lobby.spectators += 1
@@ -156,6 +162,11 @@ class InLobby(BaseState):
                 self.client.lobby.leaderboard = response["Data"]["Leaderboard"]
                 self.client.lobby.lobby_board = response["Data"]["Board"]
                 self.client.lobby.started = True
+                self.client.set_data("go_to_game", True)
+
+        self.data = self.client.lobby.to_dict()
+
+        self.spectator_count.update_text(f"{self.data['spectators']}")
 
         # check if data has changed, if not don't update.
         new_data_checksum = self.client.create_checksum(self.data)

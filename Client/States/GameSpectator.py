@@ -2,7 +2,6 @@ import datetime
 
 import pygame
 
-from Client.Components.SudokuBoard import SudokuBoard
 from Client.States.BaseState import BaseState
 from Client.client import ClientSocket
 from Client.Components.default_comp import *
@@ -15,7 +14,7 @@ class GameSpectator(BaseState):
 
         # change the screen name
         self.leaderboard_rating = None
-        pygame.display.set_caption("Competitive Sudoku - Spectating - " + self.client.get_data("username"))
+        pygame.display.set_caption("Competitive Sudoku - Spectating (" + self.client.lobby.code + ") - " + self.client.get_data("username"))
 
         self.__init_vars()
 
@@ -53,6 +52,12 @@ class GameSpectator(BaseState):
                                                  self.chat_input_send_button_bg.position + self.chat_input_send_button_bg.size / 2,
                                                  rotate=-90, centered=True)
 
+        self.return_to_lobby_button = Button(Vector2(200, 50), Vector2(45, 35), (69, 72, 233), "Back to Lobby", "Regular", 16, (255, 255, 255), border_radius=10, top_left_mode=True)
+
+        # setting some mouse cursors
+        self.mouse_cursor["HAND"] = [self.chat_input_send_button_bg, self.chat_input_send_button_icon, self.return_to_lobby_button]
+        self.mouse_cursor["IBEAM"] = [self.chat_input]
+
     def update_leaderboard(self):
         """
         Update the leaderboard with the current players scores.
@@ -71,7 +76,21 @@ class GameSpectator(BaseState):
 
     def update(self, dt: float, events: list, *args, **kwargs):
         super().update(dt, events, *args, **kwargs)
+        self.chat_input.update(dt, events)
         self.update_leaderboard()
+        for event in events:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                if self.chat_input_send_button_bg.is_collide(mouse_pos):
+                    if not self.chat_input.is_default_content_presented:
+                        self.client.send_request("Chat_Message", {"Message": self.chat_input.content})
+                        self.client.lobby.chat.append(Message(self.client.get_data("username"), self.chat_input.content, datetime.datetime.now().strftime("%H:%M:%S")))
+                        self.client.lobby.chat = self.client.lobby.chat[-4:]
+                        self.chat_input.update_text("")
+
+        if not self.client.lobby.started:
+            if self.return_to_lobby_button.update(dt, events):
+                self.client.set_data("go_to_lobby", True)
 
     def render(self, *args, **kwargs):
         """
@@ -91,3 +110,22 @@ class GameSpectator(BaseState):
         self.chat_input.render(self.screen)
         self.chat_input_send_button_bg.render(self.screen)
         self.chat_input_send_button_icon.render(self.screen)
+
+        # get the last 5 messages from the chat
+        next_pos = self.chat.position + Vector2(25, 30)
+        for i, message in enumerate(self.client.lobby.chat[-4:]):
+            author = Text(f"{message.username}", "Regular", 12, next_pos, (255, 255, 255), top_left_mode=True)
+            msg = Text(f"{message.message}", "Regular", 12,
+                       author.position + Vector2(25, author.text_surface.get_height() + 25), (255, 255, 255),
+                       top_left_mode=True)
+            box = MonoBehaviour(Vector2(25 * 2 + msg.text_surface.get_width(), 20 * 2 + msg.text_surface.get_height()),
+                                author.position + Vector2(0, author.text_surface.get_height() + 5), (105, 105, 105),
+                                border_radius=10)
+            box.render(self.screen)
+            author.render(self.screen)
+            msg.render(self.screen)
+            next_pos = box.position + Vector2(0, box.size.y + 20)
+
+        if not self.client.lobby.started:
+            self.return_to_lobby_button.render(self.screen)
+

@@ -27,10 +27,6 @@ def register(address: tuple, username: str, password: str, db_interface: Databas
         "password": hashed_password,
         "last_login": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "last_login_address": address,
-        "messages": {
-            "seen": {},
-            "unseen": []
-        },
         "friends": [],
         "friend_requests": [],
         "lifetime": 0,
@@ -62,6 +58,26 @@ def update_login_data(address: tuple, username: str, db_interface: Database) -> 
 
     users[username]["last_login"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     users[username]["last_login_address"] = address
+
+    return db_interface.submit_update("Users", users)
+
+def update_playtime(username: str, have_won: bool, playtime: str, account_exp: float, db_interface: Database):
+    """
+    Update the playtime of the user.
+    :param username: The user username.
+    :param db_interface: The database interface of the server.
+    :return: The success of the update.
+    """
+    users = db_interface.submit_read("Users")
+
+    if username not in users:
+        return False
+
+    # update the playtime of the user, playtime is presented in minutes.
+    users[username]["playtime"] += playtime
+    users[username]["account_experience"] += account_exp
+    users[username]["games_played"] += 1
+    users[username]["games_won"] += 1 if have_won else 0
 
     return db_interface.submit_update("Users", users)
 

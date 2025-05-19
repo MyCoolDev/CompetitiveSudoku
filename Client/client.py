@@ -19,7 +19,6 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 
 
-
 class ClientSocket:
     def __init__(self, application):
         """
@@ -242,7 +241,6 @@ class ClientSocket:
                     if piece == b"-- End Request --":
                         break
                     else:
-                        # decode the response from base64.
                         response += piece
 
                 # decrypt the response using the aes encryptor.
@@ -308,6 +306,7 @@ class ClientSocket:
             On lobby user (this) kick.
             """
             self.lobby = None
+            self.set_data("go_to_home", True)
 
             # update the notification.
             self.notifications.append(NotificationInterface("Removed From Lobby", "You have been kicked from the lobby by the host.", span_color=(234, 68, 68)))
@@ -316,6 +315,7 @@ class ClientSocket:
             On lobby user (this) ban.
             """
             self.lobby = None
+            self.set_data("go_to_home", True)
 
             # update the notification.
             self.notifications.append(NotificationInterface("Baned From Lobby", "You have been baned from the lobby by the host.", span_color=(234, 68, 68)))
@@ -375,24 +375,51 @@ class ClientSocket:
             self.lobby.leaderboard = update["Data"]["Leaderboard"]
             self.lobby.set_ending_date(update["Data"]["Ending_Time"])
             self.lobby.started = True
-        elif update["Update"] == "Game_Ended":
-            """
-            On lobby ended.
-            """
-            self.lobby.lobby_board = None
-            self.lobby.leaderboard = update["Data"]["Leaderboard"]
-        elif update["Update"] == "Game_Ended":
-            """
-            On lobby ended.
-            """
-            self.lobby.lobby_board = None
-            self.lobby.leaderboard = update["Data"]["Leaderboard"]
+            if self.lobby.lobby_role == "players":
+                self.set_data("go_to_game", True)
+            else:
+                self.set_data("go_to_spectator", True)
         elif update["Update"] == "Chat_Message":
             """
             On chat message.
             """
             self.lobby.chat.append(Message(update["Data"]["Username"], update["Data"]["Message"], update["Data"]["Time"]))
             self.lobby.chat = self.lobby.chat[-4:]
+        elif update["Update"] == "Game_Finished":
+            """
+            On max mistakes reached. move the player to spectator.
+            """
+            self.lobby.players.remove(self.get_data("username"))
+            self.lobby.spectators += 1
+
+            self.set_data("go_to_spectator", True)
+
+            self.notifications.append(NotificationInterface("Game Finished", f"You have reached the max mistakes. You are now a spectator.", span_color=(234, 68, 68)))
+        elif update["Update"] == "Game_Over":
+            """
+            On game over. move the player to spectator.
+            """
+            if self.lobby.lobby_role == "players":
+                self.lobby.players.remove(self.get_data("username"))
+            self.lobby.started = False
+            self.lobby.leaderboard = update["Data"]["Leaderboard"]
+
+            self.set_data("go_to_spectator", True)
+
+            self.notifications.append(NotificationInterface("Game Over", f"The game is over."))
+        elif update["Update"] == "Friend_Request":
+            """
+            On friend request received.
+            """
+            self.notifications.append(NotificationInterface("Friend Request", f"{update['Data']['Username']} sent you a friend request.", span_color=(234, 68, 68)))
+            self.friends_information[1].append(update["Data"]["Username"])
+        elif update["Update"] == "Friend_Request_Accepted":
+            """
+            On friend request accepted.
+            """
+            self.friends_information = update["Data"]["New_Friend_List"]
+
+            self.notifications.append(NotificationInterface("Friend Request Accepted", f"{update['Data']['Username']} accepted your friend request.", span_color=(234, 68, 68)))
 
     @staticmethod
     def check_push_notification_protocol(update: dict):

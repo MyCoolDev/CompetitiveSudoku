@@ -68,17 +68,18 @@ class App:
             self.current_state = LogRegister(self.screen, self.client)
 
         if self.client.token is not None:
-            if self.client.lobby is None and type(self.current_state) is not Home:
-                self.current_state = Home(self.screen, self.client)
-
-            elif self.client.lobby is not None and self.client.lobby.lobby_board is None and not self.client.lobby.started and type(self.current_state) is not InLobby:
+            if self.client.get_data("go_to_spectator"):
+                self.client.set_data("go_to_spectator", False)
+                self.current_state = GameSpectator(self.screen, self.client)
+            if self.client.get_data("go_to_lobby"):
+                self.client.set_data("go_to_lobby", False)
                 self.current_state = InLobby(self.screen, self.client)
-
-            elif self.client.lobby is not None and self.client.lobby.lobby_board is not None and self.client.lobby.started and type(self.current_state) is InLobby:
-                if self.client.get_data("username") not in self.client.lobby.players:
-                    self.current_state = GameSpectator(self.screen, self.client)
-                else:
-                    self.current_state = InGame(self.screen, self.client)
+            elif self.client.get_data("go_to_home"):
+                self.client.set_data("go_to_home", False)
+                self.current_state = Home(self.screen, self.client)
+            elif self.client.get_data("go_to_game"):
+                self.client.set_data("go_to_game", False)
+                self.current_state = InGame(self.screen, self.client)
 
     def render(self):
         """

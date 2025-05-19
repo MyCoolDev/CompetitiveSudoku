@@ -27,6 +27,7 @@ class Lobby:
         self.lobby_role = lobby_role
         self.leaderboard = []
         self.lobby_board = None
+        self.back_to_lobby_action = False
 
         # chat
         self.chat: list[Message] = []

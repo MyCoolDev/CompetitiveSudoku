@@ -20,7 +20,13 @@ class Button(MonoBehaviour):
 
         return self.rect.collidepoint(point[0], point[1])
 
-    def update(self, dt: float, events: list) -> None or bool:
+    def update(self, dt: float, events: list) -> bool:
+        """
+        Update the button state.
+        :param dt: The delta time between frames.
+        :param events: The pygame events.
+        :return: True if the button is clicked, False otherwise.
+        """
         for event in events:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
@@ -28,9 +34,7 @@ class Button(MonoBehaviour):
                 if self.is_collide(mouse_pos):
                     return True
 
-            return False
-
-        return None
+        return False
 
     def render(self, surface: pygame.Surface):
         self.rect = super().render(surface)

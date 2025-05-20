@@ -5,9 +5,6 @@ from queue import Queue
 
 import Server.utils as utils
 
-
-# maybe add cache system ;(
-
 class Database:
     def __init__(self, profile: int):
         """

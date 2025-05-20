@@ -1,4 +1,3 @@
-import copy
 import random
 from copy import deepcopy
 
@@ -116,7 +115,7 @@ class SudokuGenerator:
         """Generate a shuffled Sudoku puzzle with a unique solution"""
         self.generate_full_grid()
         attempts = {"easy": 40, "medium": 50, "hard": 60}.get(difficulty, 50)
-        solution_grid = copy.deepcopy(self.grid)
+        solution_grid = deepcopy(self.grid)
         self.remove_numbers(attempts)
         return solution_grid, self.grid
 

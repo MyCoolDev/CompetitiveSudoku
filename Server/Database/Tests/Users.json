@@ -2,33 +2,31 @@
     "test": {
         "username": "test",
         "password": "2432622431322446674d55543365734e5a496670764776444f5773466539515232496579434352664c31746d453450466d345a324f6633596f4b6e4b",
-        "last_login": "2025-05-19 19:39:15",
+        "last_login": "2025-05-20 02:42:53",
         "last_login_address": [
             "127.0.0.1",
-            56415
+            61135
         ],
-        "friends": [
-            "ron"
-        ],
+        "friends": [],
         "friend_requests": [],
-        "lifetime": 55.05999999999999,
+        "lifetime": 91.00999999999999,
         "account_level": 1,
-        "account_experience": 153540,
-        "playtime": -14232.516666666668,
-        "games_played": 13,
+        "account_experience": 165378,
+        "playtime": 0,
+        "games_played": 14,
         "games_won": 0
     },
     "pass": {
         "username": "pass",
         "password": "2432622431322452445535696a4e444e624d79676e4d7931343466482e414d4f504e423652734f752e786230674b7852424d63527470473263433975",
-        "last_login": "2025-05-19 19:31:29",
+        "last_login": "2025-05-20 02:43:39",
         "last_login_address": [
             "127.0.0.1",
-            56342
+            61139
         ],
         "friends": [],
         "friend_requests": [],
-        "lifetime": 9.99,
+        "lifetime": 25.56,
         "account_level": 1,
         "account_experience": 0,
         "playtime": 0,
@@ -38,16 +36,14 @@
     "ron": {
         "username": "ron",
         "password": "243262243132242e314341505238464b4b44683957662f30673169712e692e2e7a5a4b2e55466151706e792f2e767466706c447869334545656e6d2e",
-        "last_login": "2025-05-19 09:14:09",
+        "last_login": "2025-05-20 01:33:49",
         "last_login_address": [
             "127.0.0.1",
-            51262
+            60272
         ],
-        "friends": [
-            "test"
-        ],
+        "friends": [],
         "friend_requests": [],
-        "lifetime": 1.02,
+        "lifetime": 1.42,
         "account_level": 1,
         "account_experience": 0,
         "playtime": 0,
